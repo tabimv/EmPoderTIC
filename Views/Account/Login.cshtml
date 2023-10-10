@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "Iniciar Sesión";
+    Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
+}
+
+
+@if (User.Identity.IsAuthenticated)
+{
+    <script>
+        // Si el usuario ya ha iniciado sesión, redirigir automáticamente a la página principal
+        window.location.href = '@Url.Action("Perfil", "Insignia")';
+    </script>
+}
+
+else
+{
+
+
+<link rel="stylesheet" href="~/Content/css/login.css">
+
+<!--========================================
+       contenido
+    ==========================================-->
+
+
+<div class="contenedor-login">
+
+    <!--========================================
+        Slider
+    ==========================================-->
+    <div class="contenedor-slider">
+
+        <div class="slider">
+
+            <!-- Slide 1 -->
+            <div class="slide fade ">
+                <img src="~/Content/img/slider_1.png" alt="">
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide fade">
+                <img src="~/Content/img/slider_2.png" alt="">
+            </div>
+
+
+        </div>
+
+        <!-- Botones next y prev -->
+        <a href="#" class="prev"><i class="fas fa-chevron-left"></i></a>
+        <a href="#" class="next"><i class="fas fa-chevron-right"></i></a>
+
+        <!-- dots -->
+        <div class="dots">
+
+            <!-- <span class="dot active"></span> -->
+
+        </div>
+
+    </div>
+
+    <!--========================================
+        Formularios
+    ==========================================-->
+    <div class="contenedor-texto">
+        <div class="contenedor-form">
+            <h1 class="titulo">¡Bienvenido a EmPoderTIC!</h1>
+            <p class="descripcion">Donde Tu Reconocimiento Comienza.</p>
+
+
+            <!--========================================
+                Formulario login
+            ==========================================-->
+            <form action="/Account/Login" method="post" id="formLogin" class="formulario active">
+                <div class="error-text">
+                    <p>aqui los errores del formualrio</p>
+                </div>
+                @Html.AntiForgeryToken()
+                <input type="email" placeholder="Correo electrónico" class="input-text" name="correo" autocomplete="off" required>
+                <div class="grupo-input">
+                    <input type="password" placeholder="Contraseña" name="password" class="input-text clave">
+                    <button type="button" class="icono fas fa-eye mostrarClave" style="color: black;"></button>
+                </div>
+                <a href="#" class="link">¿Ovidaste tu contraseña?</a>
+                <button class="btn" id="btnLogin" type="submit">Iniciar Sesión</button>
+                @Html.Partial("_PartialMessage")
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Content/js/login_registro.js"></script>
+
+}

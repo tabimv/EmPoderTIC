@@ -1,0 +1,62 @@
+﻿@using System
+
+@{
+    ViewBag.Title = "EmPoderTIC";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>@ViewBag.EmPoderTIC</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <!-- Fuentes - Tipo de letra - Iconografía -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/css/menu.css">
+    @RenderSection("css", required: false)
+    @RenderSection("js", required: false)
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark menu" style="background: radial-gradient(circle at 0% 0%, #11468d, #8d2ba8, #500096, #6d39c2);">
+        <div class="container">
+            <img src="~/Content/img/logo.png" alt="">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 menu-list">
+                    <li class="nav-item active"><a class="nav-link" href="#!" style="color: white;">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!" style="color: white;">Programa "Más Mujeres en las TICs"</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!" style="color: white;">Eventos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Insignia/Index" style="color: white;">Reconocimiento</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle btn-perfil" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">Perfil</a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/Insignia/Perfil" style="color: black;">Mi Perfil</a>
+                            <div class="dropdown-divider"></div>
+                            @Html.ActionLink("Cerrar sesión", "Logout", "Account", null, new { @class = "dropdown-item", style = "color: black;" })
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Contenido -->
+    @RenderBody()
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="~/Content/js/menu.js"></script>
+    <!-- Scripts -->
+    @RenderSection("js", required: false)
+</body>
+</html>

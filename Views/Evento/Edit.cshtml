@@ -1,0 +1,108 @@
+﻿@model EmPoderTIC.Models.EVENTO
+
+@{
+    ViewBag.Title = "Edit";
+
+}
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Administrador")
+{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+else
+{
+    Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
+}
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Administrador")
+{
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/css/CRUD_Eventos.css">
+
+    using (Html.BeginForm())
+    {
+
+        @Html.AntiForgeryToken()
+        <div class="container-formularios">
+            <div class="form-container">
+                <h2>Editar Evento</h2>
+                <form>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.evento_id)
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.nombre, "Nombre Evento: ", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.descripcion, "Descripción:", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.tipo_evento, "Tipo de Evento: ", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.tipo_evento, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.tipo_evento, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.fecha_evento, "Fecha Evento: ", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.fecha_evento, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.fecha_evento, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.hora_evento, "Hora Evento: ", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.hora_evento, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.hora_evento, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.lugar_evento, "Lugar Evento: ", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.lugar_evento, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.lugar_evento, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AREA_area_id, "Area de Conocimiento: ", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.DropDownList("AREA_area_id", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.AREA_area_id, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.COMPETENCIA_competencia_id, "Competencia de Conocimiento: ", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.DropDownList("COMPETENCIA_competencia_id", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.COMPETENCIA_competencia_id, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.USUARIO_rut, "Usuario: ", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.DropDownList("USUARIO_rut", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.USUARIO_rut, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.INSIGNIA_insignia_id, "Insignia: ", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.DropDownList("INSIGNIA_insignia_id", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.INSIGNIA_insignia_id, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <input type="submit" value="Guardar Cambios" class="btn btn-primary-custom" />
+                    </div>
+                    <div>
+                        <a href="@Url.Action("Index")" class="btn-custom">Volver a la lista</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    }
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+}
+
+else
+{
+    <link rel="stylesheet" href="~/Content/css/accesodenegado.css">
+    <div id="header">
+        <h1> Acceso denegado. Esta vista solo está disponible para Administrador</h1>
+        <br />
+        <a href="@Url.Action("Login", "Account")" class="btn-acceso">Iniciar Sesión</a>
+    </div>
+}

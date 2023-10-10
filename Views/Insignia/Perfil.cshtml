@@ -1,0 +1,139 @@
+﻿@model List<EmPoderTIC.Models.INSIGNIA>
+
+@{
+    ViewBag.Title = "Perfil - EmPoderTIC";
+}
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Estudiante y/o Titulado")
+{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+else
+{
+    Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
+}
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Estudiante y/o Titulado")
+{
+
+    <link rel="stylesheet" href="~/Content/css/perfil-estudiante.css">
+
+    <!--========================================
+           contenido
+        ==========================================-->
+<div id="header">
+    <div class="mini-container-perfil">
+        <div class="mini-mini-container-perfil">
+            <div class="perfil-titulos">
+                @foreach (var usuario in ViewBag.InformacionUsuarios)
+                {
+                    <h2>Perfil: @usuario.TIPO_PERFIL.nombre_tipo_perfil</h2>
+                    <h3>@usuario.nombre @usuario.apellido_paterno</h3>
+                    <h3>Email Duoc UC: @usuario.correo_electronico</h3>
+                }
+            </div>
+            <div class="perfil-datos">
+                <p>Informática y telecomunicaciones</p>
+                <p>Ingeniería en informática</p>
+                <div class="mi-linea"></div>
+                <p>Duoc UC, San Andrés Concepción</p>
+            </div>
+        </div>
+
+    </div>
+
+
+ 
+
+
+    <h1>Insignias de Reconocimiento Certificadas</h1>
+    @foreach (var insignia in ViewBag.InsigniasNivel3)
+    {
+        <div class="mini-container">
+
+            <div class="contenido-insignia">
+                <div class="insignias-titulos">
+                    <h3>@insignia.nombre</h3>
+                    <h4>@insignia.NIVEL.categoría_nivel_insignia</h4>
+                    <br>
+                    <p>@insignia.objetivo</p>
+                </div>
+            </div>
+            <div class="imagen-insignia">
+                <img src="@insignia.imagen_url" alt="Insignia">
+            </div>
+            <div class="boton-compartir">
+                <button id="compartir-btn-1" class="compartir">
+                    <i class="fas fa-share"></i>
+                </button>
+                <div class="menu-compartir menu-compartir-1 oculto">
+                    <a href="#" class="linkedin">Compartir en Linkedin</a>
+                    <a href="#" class="certificado">Ver certificado</a>
+                </div>
+            </div>
+        </div>
+    }
+
+
+    <!--========================================
+    Otro mini container
+    ==========================================-->
+    <h1>Insignias de Reconocimiento</h1>
+
+    @foreach (var insignia in ViewBag.InsigniasNivel1y2)
+    {
+        <div class="mini-container">
+
+            <div class="contenido-insignia">
+                <div class="insignias-titulos">
+                    <h3>@insignia.nombre</h3>
+                    <h4>@insignia.NIVEL.categoría_nivel_insignia</h4>
+                    <br>
+                    <p>@insignia.objetivo</p>
+                </div>
+            </div>
+            <div class="imagen-insignia">
+                <img src="@insignia.imagen_url" alt="Insignia">
+            </div>
+            <div class="boton-compartir">
+                <button id="compartir-btn-2" class="compartir">
+                    <i class="fas fa-share"></i>
+                </button>
+                <div class="menu-compartir menu-compartir-2 oculto">
+                    <a href="#" class="linkedin">Compartir en Linkedin</a>
+                </div>
+            </div>
+        </div>
+    }
+
+
+    <!--========================================
+    Otro mini container
+    ==========================================-->
+    <h1>Historial de participación</h1>
+    @foreach (var evento in ViewBag.EventosConAsistencia)
+    {
+        <div class="mini-container">
+            <div class="historial-titulos">
+                <h3>@evento.nombre</h3>
+            </div>
+            <div class="fecha-historial">
+                <p> @evento.fecha_evento.ToString("dddd dd MMMM yyyy")</p>
+            </div>
+        </div>
+    }
+</div>
+    <script src="~/Content/js/perfil.js"></script>
+}
+
+else
+{
+
+    <link rel="stylesheet" href="~/Content/css/accesodenegado.css">
+    <div id="header">
+        <h1> Acceso denegado. Esta vista solo está disponible para estudiantes</h1>
+        <br /> 
+        <a href="@Url.Action("Login", "Account")" class="btn-acceso">Iniciar Sesión</a>
+    </div>
+
+}

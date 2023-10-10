@@ -1,0 +1,156 @@
+/* Define variables */
+:root {
+    --color-celeste: #3770B8;
+}
+
+/* General styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: radial-gradient(circle at 0% 0%, #11468d, #8d2ba8, #500096, #6d39c2);
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+/* Menu styles */
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    position: relative;
+    z-index: 999;
+}
+
+.menu a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.menu a:hover {
+    color: #d4d4d4;
+    text-decoration: none;
+}
+
+.menu-list {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.menu-list li:hover {
+    color: #3266a5;
+} 
+
+.menu-list li {
+    font-size: 16px;
+    transition: color 0.3s ease;
+    margin-right: 15px;
+}
+
+.btn-perfil {
+    background: #3266a5;
+    color: #fff;
+    padding: 5px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.2s ease;
+    position: relative;
+    transform: scale(1.1);
+}
+
+.btn-perfil i {
+    margin-left: 5px;
+    font-size: 10px;
+    vertical-align: middle;
+    position: relative;
+    top: -2px;
+}
+
+
+/* Agrega este CSS para estilos del botón de hamburguesa */
+.menu-icon {
+    display: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+    .menu-icon span {
+        background-color: #fff;
+        display: block;
+        height: 3px;
+        margin: 5px 0;
+        transition: 0.4s;
+        width: 30px;
+    }
+
+/* Estilos para el menú cuando está oculto */
+.menu-list {
+    display: flex;
+    gap: 20px;
+}
+
+/* Estilos para el menú cuando está visible */
+#menu-toggle:checked + .menu-list {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background-color: #11468d; /* Cambia el color de fondo según tu preferencia */
+    border-radius: 5px;
+    z-index: 999;
+}
+
+    #menu-toggle:checked + .menu-list li {
+        margin: 0;
+        text-align: center;
+    }
+
+        #menu-toggle:checked + .menu-list li:hover {
+            color: #fff; /* Cambia el color de texto cuando el menú está abierto según tu preferencia */
+        }
+
+
+
+/* Mostrar el botón de hamburguesa en el modo responsivo */
+@media screen and (max-width: 768px) {
+    .menu-icon {
+        display: block;
+    }
+
+    .menu-list {
+        display: none; /* Ocultar el menú normal */
+    }
+}
+
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .menu {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-bottom: 20px;
+    }
+
+    .menu-list {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    /* Add other responsive styles here if needed */
+}

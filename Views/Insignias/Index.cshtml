@@ -1,0 +1,164 @@
+﻿@model IEnumerable<EmPoderTIC.Models.INSIGNIA>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Administrador")
+{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+else
+{
+    Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
+}
+
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Administrador")
+{
+    <link rel="stylesheet" href="~/Content/css/CRUD.css">
+
+
+    <div class="container-xl">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2>Gestión de <b>Usuarios</b></h2>
+                        </div>
+                        <div class="col-sm-6">
+                            <a href="@Url.Action("Create")" class="btn btn-success">
+                                <i class="material-icons">&#xE147;</i>
+                                Crear Nuevo Usuario
+                            </a>
+
+                            <a href="@Url.Action("Index", "Nivel")" class="btn btn-success">
+                                <i class="material-icons">&#xE147;</i>
+                                Gestionar Nivel de Insignia
+                            </a>
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Objetivo</th>
+                            <th>Url Imagen</th>
+                            <th>Fecha Otorgamiento</th>
+                            <th>¿Insignia Bloqueada?</th>
+                            <th>Area Conocimiento</th>
+                            <th>Competencia Conocimiento</th>
+                            <th>¿Tiene Certificación?</th>
+                            <th>Evento</th>
+                            <th>Nivel Insignia</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td></td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.descripción)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.objetivo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.imagen_url)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.fecha_otorgamiento)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.insignia_bloqueada)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AREA.area_conocimiento)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.COMPETENCIA.competencia_conocimiento)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CERTIFICACION.certificacion_id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EVENTO1.nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NIVEL.categoría_nivel_insignia)
+                                </td>
+                                <td>
+                                    <!-- Enlace "Edit" dentro de un botón -->
+                                    <a href="#" class="edit" data-url="@Url.Action("Edit", new { id = item.insignia_id })">
+                                        <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+                                        <span style="display: none;">Edit</span>
+                                    </a>
+
+
+                                    <a href="#" class="delete" id="delete" data-toggle="modal" data-url="@Url.Action("Delete", new { id = item.insignia_id })">
+                                        <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalDelete"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            $(".edit").click(function (e) {
+                e.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
+
+                var url = $(this).data("url"); // Obtener la URL de data-url
+
+                // Redirigir a la vista "Edit"
+                window.location.href = url;
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $(".delete").click(function (e) {
+                e.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
+
+                var url = $(this).data("url"); // Obtener la URL de data-url
+
+                // Redirigir a la vista "Edit"
+                window.location.href = url;
+            });
+        });
+    </script>
+
+}
+
+
+else
+{
+    <link rel="stylesheet" href="~/Content/css/accesodenegado.css">
+    <div id="header">
+        <h1> Acceso denegado. Esta vista solo está disponible para Administrador</h1>
+        <br />
+        <a href="@Url.Action("Login", "Account")" class="btn-acceso">Iniciar Sesión</a>
+    </div>
+}

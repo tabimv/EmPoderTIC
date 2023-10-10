@@ -1,0 +1,298 @@
+﻿
+
+/*========================================
+Estilos del contenido
+==========================================*/
+/* Estilos para el div del título */
+#header {
+    background-color: #fff;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    height: auto;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+    /* Estilos para el título */
+    #header h1 {
+        font-size: 24px;
+        color: var(--color-celeste);
+        font-weight: bold;
+    }
+
+/*========================================
+Estilos del mini contenido
+==========================================*/
+.mini-container {
+    background-color: #9BB7DC;
+    width: 100%;
+    max-width: 1500px;
+    padding: 15px;
+    height: auto; /* Cambia la altura a automática */
+    position: relative;
+    margin: 70px auto 0;
+}
+
+    .mini-container h2 {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+/*========================================
+Estilos para insignias dentro del contenido
+==========================================*/
+/* Estilos para el botón "OBTENER INSIGNIA" */
+.imagen-bloqueada {
+    filter: grayscale(100%); /* Aplica el filtro gris */
+    -webkit-filter: grayscale(100%); /* Para navegadores basados en Webkit, como Chrome y Safari */
+}
+
+.btn-obtener-insignia {
+    background-color: #3770B8; /* Color de fondo azul */
+    color: #fff; /* Color del texto en blanco */
+    font-weight: bold; /* Texto en negrita */
+    border: none; /* Quita el borde del botón */
+    cursor: pointer; /* Cambia el cursor a una mano para indicar que es interactivo */
+    border-radius: 5px; /* Agrega esquinas redondeadas */
+    font-size: 20px; /* Tamaño de fuente más grande */
+    padding: 20px 30px; /* Ajusta el espaciado interno para hacer el botón más grande */
+    margin-top: 20px; /* Agrega espacio debajo del botón */
+}
+
+    /* Estilos para el botón cuando está en estado de "hover" (cuando el mouse está encima) */
+.btn-obtener-insignia:hover {
+ background-color: #3266a5; /* Cambia el color de fondo al pasar el cursor sobre el botón */
+}
+
+
+/* Estilos para las insignias */
+.insignias {
+    display: flex;
+    gap: 100px;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+/* Estilos para las columnas de insignias */
+.columna-insignia {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 50%;
+}
+
+    /* Estilos para las insignias */
+    .columna-insignia .insignias img {
+        max-width: 200px;
+        height: auto;
+        margin-top: 4%;
+    }
+
+/* Estilos para el título de la insignia */
+.insignias-titulos h3 {
+    margin-top: 10px;
+    font-size: 18px;
+    text-align: center;
+}
+
+/* Estilos para el círculo con el check */
+.check-circulo {
+    width: 35px;
+    height: 35px;
+    background-color: #3770B8;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    left: 37%;
+    margin-top: 5px;
+}
+
+    /* Estilos para el icono de check */
+    .check-circulo i {
+        color: #fff;
+        font-size: 18px;
+        z-index: 1;
+    }
+
+/* Estilos para las imágenes de las insignias */
+.insignias img {
+    max-width: 200px;
+    height: auto;
+}
+
+/* Estilos para el título de la insignia */
+.insignias-titulos h3 {
+    margin-top: 10px;
+    font-size: 18px;
+    text-align: center;
+}
+
+/* Estilos para el párrafo dentro de la columna de insignia */
+.columna-insignia p {
+    font-size: 14px; /* Tamaño de fuente deseado para el párrafo */
+    text-align: justify; /* Justifica el texto */
+    margin: 10px 0; /* Agrega espacio en la parte superior e inferior del párrafo */
+}
+
+.grayscale {
+    filter: grayscale(100%);
+}
+
+.btn-certificado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 20%; /* Ajusta la altura del contenedor al 100% del viewport */
+}
+
+.btn {
+    display: inline-block;
+    padding: 15px 20px; /* Ajusta el espaciado interno según sea necesario */
+    background-color: #3770B8; /* Color de fondo */
+    color: #fff; /* Color del texto en blanco */
+    text-decoration: none; /* Quita la decoración del texto */
+    font-weight: bold; /* Texto en negrita */
+    border: none; /* Quita el borde del botón */
+    cursor: pointer; /* Cambia el cursor a una mano para indicar que es interactivo */
+    border-radius: 5px; /* Agrega esquinas redondeadas */
+    font-size: 15px;
+}
+
+
+/* Estilos para el botón cuando está en estado de "hover" (cuando el mouse está encima) */
+.btn:hover {
+background-color: #3266a5; /* Cambia el color de fondo al pasar el cursor sobre el botón */
+}
+
+/* Estilo para el botón inactivo */
+.btn-inactivo {
+    background-color: #808080; /* Color de fondo gris */
+    color: #888; /* Color de texto gris más claro */
+    cursor: not-allowed; /* Cambiar el cursor a "no permitido" */
+    pointer-events: none; /* Deshabilitar eventos de puntero (clics) */
+}
+
+/* Eliminar efecto hover */
+.btn-inactivo:hover {
+    background-color: #ccc; /* Mantener el color de fondo gris */
+    color: #888; /* Mantener el color de texto gris más claro */
+}
+
+
+/*========================================
+Filtro
+==========================================*/
+
+/* Estilos para el filtro de área de interés */
+.filtro-area-interes {
+    display: flex; /* Para que los elementos estén en línea */
+    align-items: center; /* Para centrar verticalmente el texto y el cuadro de selección */
+    justify-content: flex-end; /* Alinea los elementos a la derecha */
+    margin-bottom: -5%;
+    margin-top: 2%;
+}
+
+    .filtro-area-interes label {
+        font-weight: bold;
+        margin-right: 10px; /* Espacio entre el texto y el cuadro de selección */
+        color: #000; /* Cambia el color del texto a negro */
+    }
+
+    .filtro-area-interes select {
+        width: 15%;
+        padding: 5px;
+        font-size: 15px;
+        border: 1px solid #000; /* Agrega un borde negro */
+        border-radius: 5px;
+        color: #000; /* Cambia el color del texto a negro */
+        background-color: #fff; /* Cambia el color de fondo a blanco */
+        transition: border-color 0.3s, box-shadow 0.3s; /* Agrega una animación de transición */
+    }
+
+        /* Estilos para el cuadro de selección cuando está enfocado */
+        .filtro-area-interes select:focus {
+            border-color: #3770B8; /* Cambia el borde a color celeste cuando está enfocado */
+            box-shadow: 0 0 5px rgba(55, 112, 184, 0.5); /* Agrega una sombra sutil cuando está enfocado */
+            outline: none; /* Quita el contorno predeterminado del navegador */
+        }
+
+        /* Estilos para las opciones del cuadro de selección */
+        .filtro-area-interes select option {
+            color: #000; /* Cambia el color del texto de las opciones a negro */
+        }
+
+/*========================================
+    Responsive
+==========================================*/
+/* Estilos adicionales para dispositivos móviles */
+@media screen and (max-width: 768px) {
+    .menu {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-bottom: 20px;
+    }
+
+
+    .menu-list {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .menu-btn {
+        order: 2;
+    }
+
+    .insignias {
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+        .insignias img {
+            margin-top: 10%;
+            max-width: 100px;
+        }
+
+    .mini-container {
+        overflow: auto;
+    }
+
+    .columna-insignia {
+        width: 70%;
+    }
+
+    .check-circulo {
+        width: 25px;
+        height: 25px;
+        justify-content: center;
+        align-items: center;
+        left: 35%;
+    }
+
+        .check-circulo i {
+            font-size: 12px;
+        }
+
+
+    .filtro-area-interes {
+        display: flex; /* Para que los elementos estén en línea */
+        flex-direction: column; /* Cambia la dirección a columna en pantallas pequeñas */
+        align-items: flex-start; /* Alinea el filtro al inicio en pantallas pequeñas */
+        justify-content: flex-start; /* Alinea el filtro al inicio en pantallas pequeñas */
+        margin-bottom: -10%;
+        margin-top: 5%;
+    }
+
+        .filtro-area-interes select {
+            width: 60%;
+            margin-top: 2%;
+            margin-right: 5%;
+        }
+}

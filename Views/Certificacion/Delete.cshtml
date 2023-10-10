@@ -1,0 +1,74 @@
+﻿@model EmPoderTIC.Models.CERTIFICACION
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Administrador")
+{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+else
+{
+    Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
+}
+
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Administrador")
+{
+    <link rel="stylesheet" href="~/Content/css/CRUD_delete.css">
+
+
+    <div class="container-delete">
+        <div class="form-container-delete">
+            <h2> Eliminar Requerimiento de Certificación </h2>
+            <h3>¿Estás seguro que quieres eliminar este requerimiento de Certificación?</h3>
+            <div>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        ¿Tiene Certificación?
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.tiene_certificacion)
+                    </dd>
+
+                    <dt>
+                        Nivel de Insignia
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.NIVEL.categoría_nivel_insignia)
+                    </dd>
+
+                </dl>
+
+                @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                {
+                    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+                }
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        @Html.ActionLink("Volver a la Lista", "Index", null, new { @class = "btn btn-sm btn-custom-link" }) |
+                        <input type="submit" value="Eliminar" class="btn btn-sm btn-primary-custom" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+else
+{
+    <link rel="stylesheet" href="~/Content/css/accesodenegado.css">
+    <div id="header">
+        <h1> Acceso denegado. Esta vista solo está disponible para Administrador</h1>
+        <br />
+        <a href="@Url.Action("Login", "Account")" class="btn-acceso">Iniciar Sesión</a>
+    </div>
+}

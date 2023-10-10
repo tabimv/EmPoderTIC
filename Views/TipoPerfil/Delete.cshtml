@@ -1,0 +1,72 @@
+﻿@model EmPoderTIC.Models.TIPO_PERFIL
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Administrador")
+{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+else
+{
+    Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/css/CRUD_delete.css">
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Administrador")
+{
+    <div class="container-delete">
+        <div class="form-container-delete">
+            <h2> Eliminar Usuario </h2>
+            <h3>¿Estás seguro que quieres eliminar a este Perfil?</h3>
+            <div>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        Tipo de Perfil:
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.nombre_tipo_perfil)
+                    </dd>
+
+                    <dt>
+                        Dominio Correo Electrónico
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.dominio_correo)
+                    </dd>
+
+                </dl>
+
+                @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                {
+                    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+                }
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        @Html.ActionLink("Volver a la Lista", "Index", null, new { @class = "btn btn-sm btn-custom-link" }) |
+                        <input type="submit" value="Eliminar" class="btn btn-sm btn-primary-custom" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+else
+{
+    <link rel="stylesheet" href="~/Content/css/accesodenegado.css">
+    <div id="header">
+        <h1> Acceso denegado. Esta vista solo está disponible para Administrador</h1>
+        <br />
+        <a href="@Url.Action("Login", "Account")" class="btn-acceso">Iniciar Sesión</a>
+    </div>
+}
