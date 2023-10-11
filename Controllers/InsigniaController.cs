@@ -92,29 +92,19 @@ namespace EmPoderTIC.Controllers
                      .Where(u => u.rut == usuarioAutenticado.rut) // Filtra la información solo para el usuario autenticado
                      .ToList();
 
+                var insigniasNivel3 = db.INSIGNIA
+               .Include(i => i.EVENTO)
+               .Include(i => i.NIVEL)
+               .Where(i => i.NIVEL.categoría_nivel_insignia == "Avanzado" &&
+                           i.EVENTO1.USUARIO_rut == usuarioAutenticado.rut && !i.insignia_bloqueada)
+               .ToList();
 
                 // Filtra las insignias de nivel 1 y 2 que no estén bloqueadas
                 var insigniasNivel1y2 = db.INSIGNIA
-                    .Include(i => i.NIVEL)
-                    .Include(i => i.CERTIFICADO)
-                    .Include(i => i.CERTIFICACION)
-                    .Include(i => i.EVENTO.Select(e => e.ASISTENCIA))
-                    .Include(i => i.AREA)
-                    .Where(i => (i.NIVEL.categoría_nivel_insignia == "Principiante" || i.NIVEL.categoría_nivel_insignia == "Intermedio") && !i.insignia_bloqueada)
-                    .ToList();
-
-
-
-                // Filtra las insignias de nivel 3 que no están bloqueadas y están asociadas al usuario autenticado
-                // Filtra las insignias de nivel 3 que no estén bloqueadas
-                var insigniasNivel3 = db.INSIGNIA
-                    .Include(i => i.NIVEL)
-                    .Include(i => i.CERTIFICADO)
-                    .Include(i => i.CERTIFICACION)
-                    .Include(i => i.EVENTO.Select(e => e.ASISTENCIA))
-                    .Include(i => i.AREA)
-                    .Where(i => i.NIVEL.categoría_nivel_insignia == "Avanzado" && !i.insignia_bloqueada)
-                    .ToList();
+              .Include(h => h.EVENTO)
+              .Include(h => h.NIVEL)
+               .Where(i => (i.NIVEL.categoría_nivel_insignia == "Principiante" || i.NIVEL.categoría_nivel_insignia == "Intermedio") && i.EVENTO1.USUARIO_rut == usuarioAutenticado.rut  && !i.insignia_bloqueada)
+              .ToList();
 
 
 

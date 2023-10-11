@@ -171,18 +171,12 @@ Estilos para insignias dentro del contenido
 background-color: #3266a5; /* Cambia el color de fondo al pasar el cursor sobre el botón */
 }
 
-/* Estilo para el botón inactivo */
-.btn-inactivo {
-    background-color: #808080; /* Color de fondo gris */
-    color: #888; /* Color de texto gris más claro */
-    cursor: not-allowed; /* Cambiar el cursor a "no permitido" */
-    pointer-events: none; /* Deshabilitar eventos de puntero (clics) */
-}
 
-/* Eliminar efecto hover */
-.btn-inactivo:hover {
-    background-color: #ccc; /* Mantener el color de fondo gris */
-    color: #888; /* Mantener el color de texto gris más claro */
+.btn-inactivo {
+    background-color: #3a3737; /* Color de fondo gris para inactivo */
+    color: #fff; /* Color del texto en blanco para inactivo */
+    cursor: not-allowed; /* Cambia el cursor a "no permitido" para inactivo */
+    pointer-events: none; /* Deshabilita eventos de puntero para inactivo */
 }
 
 
