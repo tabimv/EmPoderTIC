@@ -32,11 +32,21 @@ namespace EmPoderTIC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-                var user = db.USUARIO.FirstOrDefault(u => u.correo_electronico == model.correo && u.clave == model.password);
 
-                if (user != null)
+            var user = db.USUARIO.FirstOrDefault(u => u.correo_electronico == model.correo);
+
+            if (user == null)
+            {
+                ModelState.AddModelError("correo", "El correo es incorrecto.");
+            }
+            else if (ModelState.IsValid) // Solo si el correo es válido, verifica la contraseña
+            {
+                if (user.clave != model.password)
+                {
+                    ModelState.AddModelError("password", "La contraseña es incorrecta.");
+                }
+
+                if (ModelState.IsValid) // Verifica nuevamente después de agregar los errores
                 {
                     // Autenticar al usuario
                     FormsAuthentication.SetAuthCookie(model.correo, false);
@@ -58,14 +68,6 @@ namespace EmPoderTIC.Controllers
                     {
                         return RedirectToAction("Index", "Usuario");
                     }
-                    else
-                    {
-                        ModelState.AddModelError("", "El tipo de perfil no es válido.");
-                    }
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Las credenciales son incorrectas.");
                 }
             }
 

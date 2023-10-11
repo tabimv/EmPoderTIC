@@ -8,11 +8,11 @@ namespace EmPoderTIC.Models.ViewModels
 {
     public class LoginViewModel
     {
-        [Required(ErrorMessage = "El correo electrónico es obligatorio.")]
-        [EmailAddress(ErrorMessage = "El formato del correo electrónico no es válido.")]
+        [Required(ErrorMessage = "El campo Correo es obligatorio.")]
+        [EmailAddress(ErrorMessage = "El correo proporcionado no es válido.")]
         public String correo { get; set; }
 
-        [Required(ErrorMessage = "La contraseña es obligatoria.")]
+        [Required(ErrorMessage = "El campo Contraseña es obligatorio.")]
         [DataType(DataType.Password)]
         public String password { get; set; }
     }
