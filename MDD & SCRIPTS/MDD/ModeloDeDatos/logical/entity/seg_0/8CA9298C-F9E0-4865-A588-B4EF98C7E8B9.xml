@@ -1,0 +1,59 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="8CA9298C-F9E0-4865-A588-B4EF98C7E8B9" name="AREA">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-09-09 17:38:07 UTC</createdTime>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<engineerTo>
+<item key="8680AA13-B4F3-5499-0288-BD0897CFA632" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="area_id" id="9F482020-7B9B-E726-829D-A89D1181A1C8">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-09-09 17:38:18 UTC</createdTime>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<engineerTo>
+<item key="8680AA13-B4F3-5499-0288-BD0897CFA632" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="area_conocimiento" id="1F173E6F-5AFE-0DDD-49D9-AF8BE40F810B">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-09-09 17:39:03 UTC</createdTime>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<engineerTo>
+<item key="8680AA13-B4F3-5499-0288-BD0897CFA632" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="8DCC7314-715D-F75A-057B-CB12F06DAAF6" name="AREA_RECONOCIMIENTO PK">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-09-09 17:38:46 UTC</createdTime>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="8680AA13-B4F3-5499-0288-BD0897CFA632" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>9F482020-7B9B-E726-829D-A89D1181A1C8</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

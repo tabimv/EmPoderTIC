@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="3B7047C8-D02A-AA61-EFFD-3CD935EDD593" containerWithKeyObject="5C1DFF34-8EBC-D55D-9A18-4C3D6BDDAF58" localFKIndex="533458C6-6280-5495-3179-0031E8EA13D1" name="INSIGNIA_NIVEL_FK">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>69878299-F601-1E24-C1C5-9928629931F4</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<referredTableLongName>NIVEL</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>AA72D875-7315-EA19-612C-A647F03DCBC0</referredTableID>
+<keyObject>BDA5A52C-FCFE-B205-842D-694B8D48B45A</keyObject>
+<referredKeyID>BDA5A52C-FCFE-B205-842D-694B8D48B45A</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>nivel_id</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

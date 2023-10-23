@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_nvl_certificacion" directorySegmentName="seg_0" id="F895F40F-3E72-86C0-5700-99EB145F213F">
+<createdBy>jaxky</createdBy>
+<createdTime>2023-09-14 23:18:37 UTC</createdTime>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<engineerTo>
+<item key="8680AA13-B4F3-5499-0288-BD0897CFA632" value="true"/>
+</engineerTo>
+<sourcePk>5C8FF095-D8E7-AAA2-BDDD-9B0676F94247</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>Pertenece</nameOnSource>
+<nameOnTarget>Contiene</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>795B8F22-94C9-F449-5463-EEB67BB180B5</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>2AD836BC-EED3-681D-724E-295C46C0E723</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

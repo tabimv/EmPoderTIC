@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_EVENTO_INSIG" directorySegmentName="seg_0" id="F2BF7A0C-0408-3884-9F95-BE0988016923">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-18 16:55:29 UTC</createdTime>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<engineerTo>
+<item key="8680AA13-B4F3-5499-0288-BD0897CFA632" value="true"/>
+</engineerTo>
+<sourcePk>AB5F33A6-F2CE-3DE0-E1AB-8C076100B163</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>Asociado</nameOnSource>
+<nameOnTarget>Pertenece</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>5F579E80-D7F2-7E8A-4008-91EAC355D069</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>83D6A6E7-1591-CBCF-C0A7-285E2C98919E</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

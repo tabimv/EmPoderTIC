@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="820FB412-9DFB-5058-9DE7-223CC3C3CF83" containerWithKeyObject="135FDF48-2048-C976-D000-17ABA956EEB5" localFKIndex="3C405077-08E0-7FEE-ED31-1087DB5D6662" name="OTORGAR_INSIGNIA_P2_EVENTO_FK">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>32C88C86-5CFC-6EB8-5698-932307533757</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<referredTableLongName>EVENTO</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>E7848BBE-8777-0136-9D63-5B0DFCF36312</referredTableID>
+<keyObject>4B823266-5787-905F-6522-DF1D042A89D5</keyObject>
+<referredKeyID>4B823266-5787-905F-6522-DF1D042A89D5</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>evento_id</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

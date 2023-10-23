@@ -1,0 +1,78 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9F2DD691-2521-3669-B38F-6B329D25544F" name="CERTIFICACION">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>2AD836BC-EED3-681D-724E-295C46C0E723</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="certificacion_id" id="1167DD74-9031-8DDE-EA13-A91E391B2453">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>7AE631E8-F140-D43C-5BEE-66F060487805</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="tiene_certificacion" id="0E07A9C8-27E1-AE09-1AD6-72BA7DAFDFF3">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<commentInRDBMS><![CDATA[1 = FALSO
+2 = FALSO
+3 = VERDADERO]]></commentInRDBMS>
+<generatorID>1EB0805A-0E0E-FF28-09F4-7A9FFD5CBA9F</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>2</dataTypeSize>
+<ownDataTypeParameters>2,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="NIVEL_nivel_id" id="E989CF49-7A52-F358-4250-9BFCF9D377A6">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>B7281FA4-3B4E-D242-3801-9A0284BF3BBC</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="59B47DF0-4BF1-B256-8B2B-0B19A6BBDCFB" referredColumn="35B98720-8044-505B-DFED-EA29395E6523"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="3920057C-EEEC-0F01-CD3C-D2AE24DA7481" name="CERTIFICACION_PK">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>9D4D4BAC-5FC0-5863-53D2-42E7F88A6674</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1167DD74-9031-8DDE-EA13-A91E391B2453"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4DE9799E-71FC-F339-3A63-EC2233B5E7C1" name="CERTIFICACION_NIVEL_FK">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>F895F40F-3E72-86C0-5700-99EB145F213F</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E989CF49-7A52-F358-4250-9BFCF9D377A6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

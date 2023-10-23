@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="D4B7040B-B943-CE5F-611D-88C9F9E6E0B2" containerWithKeyObject="C03C1B98-23D8-2EAB-7697-3A26AA268AD8" localFKIndex="B3108201-F9D4-0D89-6912-F2DCBA8B81EB" name="COMPETENCIA_NIVEL_FK">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>505EE2BE-3885-1ECB-95DF-2DA413B14554</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<referredTableLongName>NIVEL</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>AA72D875-7315-EA19-612C-A647F03DCBC0</referredTableID>
+<keyObject>BDA5A52C-FCFE-B205-842D-694B8D48B45A</keyObject>
+<referredKeyID>BDA5A52C-FCFE-B205-842D-694B8D48B45A</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>nivel_id</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

@@ -67,7 +67,8 @@ INSERT INTO TIPO_PERFIL (nombre_tipo_perfil, dominio_correo)
 VALUES 
 ('Estudiante y/o Titulado', '@duocuc.cl'),
 ('Docente', '@profesor.duoc.cl'),
-('Administrador', '@duocuc.cl');
+('Colaborador administrativo', '@duoc.cl'),
+('Administrador', '@gmail.com');
 
 
 --***************************************************************************************--
@@ -85,7 +86,7 @@ SET @esValido = dbo.ValidarRut(@rutAValidar);
 IF @esValido = 1
 BEGIN
     -- El RUT es válido, por lo que puedes proceder con la inserción
-    INSERT INTO usuario (rut, nombre, apellido_paterno, apellido_materno, correo_electronico, clave, tipo_perfil_tipo_perfil_id)
+    INSERT INTO usuario (rut, nombre, apellido_paterno, apellido_materno, correo_electronico, contraseña, tipo_perfil_tipo_perfil_id)
     VALUES (@rutAValidar, 'Tabita', 'Melo', 'Vera', 'ta.melo@duocuc.cl', 'Student2023', 1);
 
     PRINT 'El RUT se insertó correctamente.';
@@ -95,8 +96,6 @@ BEGIN
     -- El RUT no es válido, no se realiza la inserción
     PRINT 'El RUT no es válido. No se realizó la inserción.';
 END;
-
-SELECT * FROM USUARIO;
 --****************************************************************************************************
 -- Resultado en la tabla
 SELECT * FROM USUARIO;

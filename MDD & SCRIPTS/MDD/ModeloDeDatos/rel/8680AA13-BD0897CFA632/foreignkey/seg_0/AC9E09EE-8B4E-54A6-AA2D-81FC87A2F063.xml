@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="AC9E09EE-8B4E-54A6-AA2D-81FC87A2F063" containerWithKeyObject="5C1DFF34-8EBC-D55D-9A18-4C3D6BDDAF58" localFKIndex="0BFD574D-9BD6-2970-9025-F01BDE896BE2" name="INSIGNIA_AREA_FK">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>92D321E5-E93A-A7BB-208A-D60472DF177B</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<referredTableLongName>AREA</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>50190982-81FB-51F3-C3AB-E681BE52D835</referredTableID>
+<keyObject>AA73B891-7E91-0CA9-8575-14DEBE8D8E56</keyObject>
+<referredKeyID>AA73B891-7E91-0CA9-8575-14DEBE8D8E56</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>area_id</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

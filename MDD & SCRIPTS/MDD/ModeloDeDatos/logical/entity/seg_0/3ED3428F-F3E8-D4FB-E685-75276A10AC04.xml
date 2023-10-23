@@ -1,0 +1,87 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="3ED3428F-F3E8-D4FB-E685-75276A10AC04" name="COMPETENCIA">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-09-09 17:59:04 UTC</createdTime>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<engineerTo>
+<item key="8680AA13-B4F3-5499-0288-BD0897CFA632" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="competencia_id" id="E5E45B39-F0DF-6956-9EE5-AD10B5EF0FCA">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-09-09 17:59:22 UTC</createdTime>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<engineerTo>
+<item key="8680AA13-B4F3-5499-0288-BD0897CFA632" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="competencia_conocimiento" id="6E59C07C-F709-86D4-4EBE-2F5681EC9A85">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-09-09 18:00:54 UTC</createdTime>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<engineerTo>
+<item key="8680AA13-B4F3-5499-0288-BD0897CFA632" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="area_id" id="A6622385-FCE8-4C9E-D5CF-3DAA0C77DFEB">
+<createdBy>jaxky</createdBy>
+<createdTime>2023-09-14 23:09:52 UTC</createdTime>
+<generatorID>27E2E280-9794-3543-320E-1202B3DD5694</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<engineerTo>
+<item key="8680AA13-B4F3-5499-0288-BD0897CFA632" value="true"/>
+</engineerTo>
+<referedAttribute>9F482020-7B9B-E726-829D-A89D1181A1C8</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nivel_id" id="AA6F3E79-6D2D-53B8-36AE-BFCB279205C3">
+<createdBy>jaxky</createdBy>
+<createdTime>2023-09-14 23:16:31 UTC</createdTime>
+<generatorID>505EE2BE-3885-1ECB-95DF-2DA413B14554</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<engineerTo>
+<item key="8680AA13-B4F3-5499-0288-BD0897CFA632" value="true"/>
+</engineerTo>
+<referedAttribute>CF5F622C-E065-1C57-57C4-9668DCFE4CA3</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="7932157A-CA3B-0FC2-4B0E-D1A7E9DD9CCA" name="COMPETENCIA_CONOCIMIENTO PK">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-09-09 18:00:52 UTC</createdTime>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="8680AA13-B4F3-5499-0288-BD0897CFA632" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>E5E45B39-F0DF-6956-9EE5-AD10B5EF0FCA</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

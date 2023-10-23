@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="DFE1E51D-0536-26E9-1BA6-DB0BA7755323" containerWithKeyObject="5C1DFF34-8EBC-D55D-9A18-4C3D6BDDAF58" localFKIndex="7A0FDAAD-90A2-54D9-60A2-FFEBB8BD5B7C" name="INSIGNIA_CERTIFICACION_FK">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>91768F3C-8646-77D6-CEE8-B3079914E8CE</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<referredTableLongName>CERTIFICACION</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>9F2DD691-2521-3669-B38F-6B329D25544F</referredTableID>
+<keyObject>3920057C-EEEC-0F01-CD3C-D2AE24DA7481</keyObject>
+<referredKeyID>3920057C-EEEC-0F01-CD3C-D2AE24DA7481</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>certificacion_id</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

@@ -1,0 +1,159 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E7848BBE-8777-0136-9D63-5B0DFCF36312" name="EVENTO">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>5F579E80-D7F2-7E8A-4008-91EAC355D069</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="evento_id" id="B266C650-7E68-F45B-9E7B-DB5673A5C0BB">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>005316EE-A435-29B5-F022-741BEFDBD44D</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nombre" id="4FFAD8EA-1FED-0F77-F81D-A3F63C93F3BF">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>2B09EF66-14FA-607D-7A11-A7EC2EE598EF</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descripcion" id="6ED2CB0E-9AA6-4992-E551-FF45925C30A9">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>8294FCA8-0DF0-D723-9ACD-5D0F5A31860D</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1000</dataTypeSize>
+<ownDataTypeParameters>1000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="tipo_evento" id="51A8A0C4-AF16-BEDD-1094-61EE0C61C391">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>3125E0AD-DF4E-0150-0636-7F35A38FAB78</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fecha_evento" id="3C740370-FA6E-033E-6762-E70B7BE36A9E">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>647A99F9-D4CD-49CC-C75E-03E11D67BC4C</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="hora_evento" id="AD2D72A1-FD55-B31C-F4FA-4C520F0B5458">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>EC3342FD-FB79-2DC0-5E74-7DF9A0EE2D5F</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT014</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="lugar_evento" id="A5184161-29AD-094D-6094-A089B1C2F474">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>98B43B44-C544-3079-C690-9622382BFF82</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="AREA_area_id" id="C70C0081-3FA5-9A29-532E-920B3B301B64">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>226A3A27-6A70-199F-99F7-5B4CAC143FEA</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="C6972981-2EBE-12A2-301C-6BD990740942" referredColumn="A3555A57-E8A0-10FE-4293-9B2C5474E059"/>
+</associations>
+</Column>
+<Column name="COMPETENCIA_competencia_id" id="F5FB9623-D229-5842-47C7-FA98D19ECF4E">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>A98D99B2-C8CA-4DE3-6DE6-9098EB28C0A7</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="8D0F7DDC-6130-3C96-0785-1EC348C5FE43" referredColumn="7E324DBF-A3DE-29FA-6D43-2AB52872A4DB"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="4B823266-5787-905F-6522-DF1D042A89D5" name="EVENTO_PK">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>AB5F33A6-F2CE-3DE0-E1AB-8C076100B163</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B266C650-7E68-F45B-9E7B-DB5673A5C0BB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CBDB2F42-D03C-29DD-4DC1-4666F5910165" name="EVENTO_AREA_FK">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>7819BB53-15A6-E7A4-FC6F-81CE7B03C0CC</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C70C0081-3FA5-9A29-532E-920B3B301B64"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="15EFAC14-56A5-2318-6AAB-4EEF58646363" name="EVENTO_COMPETENCIA_FK">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>75BB3389-BE02-B33E-F55D-39664E518AE8</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F5FB9623-D229-5842-47C7-FA98D19ECF4E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

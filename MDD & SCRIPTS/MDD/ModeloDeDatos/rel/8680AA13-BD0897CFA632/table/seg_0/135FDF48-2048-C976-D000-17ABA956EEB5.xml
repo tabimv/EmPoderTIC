@@ -1,0 +1,115 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="135FDF48-2048-C976-D000-17ABA956EEB5" name="OTORGAR_INSIGNIA_P2">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>2043E86A-F657-A71D-5E6C-5EE217F2820B</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="registro_insignia_evento" id="D6EA49D7-B2B5-8C49-15F3-34B38C6BF7E5">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>D8B61FE7-B187-68E6-D2BD-D45A8B44725C</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="contribucion_evento" id="629F9D9A-9B44-64FB-3940-0D3EE1865591">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>0150E315-26C9-EFB9-3828-488AFF81BD95</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500</dataTypeSize>
+<ownDataTypeParameters>500,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fecha_registro_otorgamiento" id="0C1CD07C-9D2C-6485-19E7-AD08044685E8">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>47886692-D4BC-C2A8-15AA-52DFA9D5145B</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="USUARIO_rut" id="B30D4AC0-160E-B1B8-73B0-4A5E86F6A357">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>849EFEB3-3D44-1315-6E59-EEDE90C61AC7</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>12</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="6737D117-B8DF-3C5C-FE8F-E02540C285FB" referredColumn="7C21F396-D708-C295-BF4B-8B3423BE1903"/>
+</associations>
+</Column>
+<Column name="EVENTO_evento_id" id="A448885A-986B-56CC-3393-2407E80253DA">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>D432491A-DB13-F98C-7461-A8A4F6428DF6</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="820FB412-9DFB-5058-9DE7-223CC3C3CF83" referredColumn="B266C650-7E68-F45B-9E7B-DB5673A5C0BB"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="B403CF5A-D632-88BB-C8BC-373FB070E7E5" name="OTORGAR_INSIGNIA_P2_PK">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>22D35EA3-DC97-A56A-8EF3-F0B1736B6C9A</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B30D4AC0-160E-B1B8-73B0-4A5E86F6A357"/>
+<colUsage columnID="A448885A-986B-56CC-3393-2407E80253DA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3C405077-08E0-7FEE-ED31-1087DB5D6662" name="OTORGAR_INSIGNIA_P2_EVENTO_FK">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>32C88C86-5CFC-6EB8-5698-932307533757</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A448885A-986B-56CC-3393-2407E80253DA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="278DE863-A950-7A31-ED97-290282DE7A29" name="OTORGAR_INSIGNIA_P2_USUARIO_FK">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>970426E7-E471-F3E5-0825-613C0CED63AA</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B30D4AC0-160E-B1B8-73B0-4A5E86F6A357"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

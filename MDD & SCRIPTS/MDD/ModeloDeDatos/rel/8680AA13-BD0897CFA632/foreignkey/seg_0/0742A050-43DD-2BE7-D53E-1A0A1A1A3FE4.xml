@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="0742A050-43DD-2BE7-D53E-1A0A1A1A3FE4" containerWithKeyObject="BE222D43-1CD6-6BFC-E539-D59CDBC183A3" localFKIndex="64F56C40-E5FB-EC1F-080F-35A93BF9FD29" name="OTORGAR_INSIGNIA_P3_USUARIO_FK">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>8B45C64D-4BA6-52AB-0C16-58E18B198D51</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<referredTableLongName>USUARIO</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>748D13BD-FCE6-A58D-2617-32E6D5A96BF4</referredTableID>
+<keyObject>A6452EB5-01F6-F9E3-67FB-08357E506DBF</keyObject>
+<referredKeyID>A6452EB5-01F6-F9E3-67FB-08357E506DBF</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>rut</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

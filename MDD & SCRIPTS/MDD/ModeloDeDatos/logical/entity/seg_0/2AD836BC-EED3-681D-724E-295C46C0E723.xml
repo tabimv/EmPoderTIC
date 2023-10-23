@@ -1,0 +1,76 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="2AD836BC-EED3-681D-724E-295C46C0E723" name="CERTIFICACION">
+<createdBy>jaxky</createdBy>
+<createdTime>2023-09-14 17:00:54 UTC</createdTime>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<engineerTo>
+<item key="8680AA13-B4F3-5499-0288-BD0897CFA632" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="certificacion_id" id="7AE631E8-F140-D43C-5BEE-66F060487805">
+<createdBy>jaxky</createdBy>
+<createdTime>2023-09-14 17:01:00 UTC</createdTime>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<engineerTo>
+<item key="8680AA13-B4F3-5499-0288-BD0897CFA632" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="tiene_certificacion" id="1EB0805A-0E0E-FF28-09F4-7A9FFD5CBA9F">
+<createdBy>jaxky</createdBy>
+<createdTime>2023-09-14 17:01:00 UTC</createdTime>
+<commentInRDBMS><![CDATA[1 = FALSO
+2 = FALSO
+3 = VERDADERO]]></commentInRDBMS>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<engineerTo>
+<item key="8680AA13-B4F3-5499-0288-BD0897CFA632" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>2</dataTypeSize>
+<ownDataTypeParameters>2,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="nivel_id" id="B7281FA4-3B4E-D242-3801-9A0284BF3BBC">
+<createdBy>jaxky</createdBy>
+<createdTime>2023-09-14 23:18:37 UTC</createdTime>
+<generatorID>F895F40F-3E72-86C0-5700-99EB145F213F</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<engineerTo>
+<item key="8680AA13-B4F3-5499-0288-BD0897CFA632" value="true"/>
+</engineerTo>
+<referedAttribute>CF5F622C-E065-1C57-57C4-9668DCFE4CA3</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="9D4D4BAC-5FC0-5863-53D2-42E7F88A6674" name="CERTIFICACIÓN PK">
+<createdBy>jaxky</createdBy>
+<createdTime>2023-09-14 17:01:17 UTC</createdTime>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="8680AA13-B4F3-5499-0288-BD0897CFA632" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>7AE631E8-F140-D43C-5BEE-66F060487805</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

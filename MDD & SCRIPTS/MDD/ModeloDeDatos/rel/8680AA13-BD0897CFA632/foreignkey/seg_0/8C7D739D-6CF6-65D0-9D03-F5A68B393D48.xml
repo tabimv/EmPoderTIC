@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="8C7D739D-6CF6-65D0-9D03-F5A68B393D48" containerWithKeyObject="5C1DFF34-8EBC-D55D-9A18-4C3D6BDDAF58" localFKIndex="8AA10574-4DE3-D09E-578F-B20FD6F4454E" name="INSIGNIA_TIPO_PERFIL_FK">
+<createdBy>tbmv1</createdBy>
+<createdTime>2023-10-23 15:10:00 UTC</createdTime>
+<generatorID>06C66233-D261-EE9D-78A9-9378042DCA89</generatorID>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<referredTableLongName>TIPO_PERFIL</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>F33689A7-36D4-4904-DA80-9D0BFD9CD281</referredTableID>
+<keyObject>05421798-A9C6-5664-6EF8-F85012EC3011</keyObject>
+<referredKeyID>05421798-A9C6-5664-6EF8-F85012EC3011</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>tipo_perfil_id</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

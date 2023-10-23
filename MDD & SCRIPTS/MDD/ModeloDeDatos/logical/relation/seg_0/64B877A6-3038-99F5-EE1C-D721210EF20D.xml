@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_certificacion" directorySegmentName="seg_0" id="64B877A6-3038-99F5-EE1C-D721210EF20D">
+<createdBy>jaxky</createdBy>
+<createdTime>2023-09-14 23:02:59 UTC</createdTime>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<engineerTo>
+<item key="8680AA13-B4F3-5499-0288-BD0897CFA632" value="true"/>
+</engineerTo>
+<sourcePk>9D4D4BAC-5FC0-5863-53D2-42E7F88A6674</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>Pertenece</nameOnSource>
+<nameOnTarget>Asociado</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>2AD836BC-EED3-681D-724E-295C46C0E723</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>4A865555-9246-45E7-308B-F9FB8BA63FA9</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

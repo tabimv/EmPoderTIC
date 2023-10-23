@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_competencia_evento" directorySegmentName="seg_0" id="75BB3389-BE02-B33E-F55D-39664E518AE8">
+<createdBy>jaxky</createdBy>
+<createdTime>2023-09-14 23:32:23 UTC</createdTime>
+<ownerDesignName>ModeloDeDatos</ownerDesignName>
+<engineerTo>
+<item key="8680AA13-B4F3-5499-0288-BD0897CFA632" value="true"/>
+</engineerTo>
+<sourcePk>7932157A-CA3B-0FC2-4B0E-D1A7E9DD9CCA</sourcePk>
+<identifying>false</identifying>
+<nameOnSource>Pertenece</nameOnSource>
+<nameOnTarget>Asociado</nameOnTarget>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>3ED3428F-F3E8-D4FB-E685-75276A10AC04</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>5F579E80-D7F2-7E8A-4008-91EAC355D069</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>
