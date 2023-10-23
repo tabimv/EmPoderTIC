@@ -21,8 +21,12 @@ namespace EmPoderTIC.Models
         public System.DateTime fecha_otorgamiento { get; set; }
         public int CERTIFICACION_certificacion_id { get; set; }
         public int INSIGNIA_insignia_id { get; set; }
+        public string USUARIO_rut { get; set; }
+        public int AREA_area_id { get; set; }
     
+        public virtual AREA AREA { get; set; }
         public virtual CERTIFICACION CERTIFICACION { get; set; }
         public virtual INSIGNIA INSIGNIA { get; set; }
+        public virtual USUARIO USUARIO { get; set; }
     }
 }

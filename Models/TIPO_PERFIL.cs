@@ -17,6 +17,7 @@ namespace EmPoderTIC.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TIPO_PERFIL()
         {
+            this.INSIGNIA = new HashSet<INSIGNIA>();
             this.USUARIO = new HashSet<USUARIO>();
         }
     
@@ -24,6 +25,8 @@ namespace EmPoderTIC.Models
         public string nombre_tipo_perfil { get; set; }
         public string dominio_correo { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<INSIGNIA> INSIGNIA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<USUARIO> USUARIO { get; set; }
     }

@@ -1,0 +1,181 @@
+﻿@model List<EmPoderTIC.Models.AREA>
+@using EmPoderTIC.Models
+
+
+@{
+    ViewBag.Title = "Reconocimiento de Insignias - EmPoderTIC";
+    bool algunaInsigniaBloqueada = ViewBag.AlgunaInsigniaBloqueada as bool? ?? false;
+}
+
+
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Colaborador administrativo" && Session["UsuarioAutenticado"] != null)
+{
+    Layout = "~/Views/Shared/_LayoutPerfil3.cshtml";
+}
+else
+{
+    Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
+}
+
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Colaborador administrativo" && Session["UsuarioAutenticado"] != null)
+{
+
+    <link rel="stylesheet" href="~/Content/css/insignias.css">
+
+    <!--========================================
+       contenido
+    ==========================================-->
+    <div id="header">
+        <h1>Reconocimiento de Insignias - EmPoderTIC</h1>
+        <!-- Filtro por Área de interés -->
+        <div class="filtro-area-interes">
+            <label for="area-interes">Filtrar por Área de interés:</label>
+            <select id="area-interes">
+                <option value="todos">Todos</option>
+                @foreach (var area in Model)
+                {
+
+
+                    var NombreArea = area.area_conocimiento;
+                    if (area.INSIGNIA.Any())
+                    {
+                        <option value="@NombreArea">@NombreArea</option>
+                    }
+
+                }
+            </select>
+        </div>
+        @foreach (var area in Model)
+        {
+            if (area.INSIGNIA.Any())
+            {
+                var NombreArea = area.area_conocimiento;
+
+                <div class="mini-container" data-area="@NombreArea">
+                    <h2>Área de participación en Talleres y eventos de @NombreArea</h2>
+                    <!-- Tu contenido dentro del mini contenedor -->
+                    <div class="insignias">
+                        @foreach (var viewModel in ViewBag.ListaInsigniasPorArea[area.area_id - 1])
+                        {
+
+                            var INSIGNIA = viewModel.Insignia;
+                            var DesbloqueoInsignia = viewModel.DesbloqueoInsignia;
+
+                            <div class="columna-insignia">
+                                <div class="insignia-progreso">
+                                    @if (DesbloqueoInsignia != null)
+                                    {
+                                        if (DesbloqueoInsignia.insignia_bloqueada == true)
+                                        {
+                                            <img src="@INSIGNIA.imagen_url" alt="@INSIGNIA.nombre" class="insignia-imagen grayscale">
+                                            <div class="check-circulo grayscale">
+                                                <i class="fas fa-check grayscale"></i>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <img src="@INSIGNIA.imagen_url" alt="@INSIGNIA.nombre" class="insignia-imagen">
+                                            <div class="check-circulo">
+                                                <i class="fas fa-check"></i>
+                                            </div>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <img src="@INSIGNIA.imagen_url" alt="@INSIGNIA.nombre" class="insignia-imagen grayscale">
+                                        <div class="check-circulo grayscale">
+                                            <i class="fas fa-check grayscale"></i>
+                                        </div>
+                                    }
+
+                                </div>
+                                <div class="insignias-titulos">
+                                    <h3>@INSIGNIA.nombre</h3>
+                                    <h4>@INSIGNIA.NIVEL.categoría_nivel_insignia </h4>
+                                    <p>
+                                        @INSIGNIA.descripción
+                                    </p>
+                                </div>
+                            </div>
+
+
+                        }
+                    </div>
+                    <!-- Agregar contenido adicional aquí -->
+
+                    <div class="btn-certificado">
+                        @if (ViewBag.Certificado != null)
+                        {
+                            if (ViewBag.AlgunaInsigniaBloqueada)
+                            {
+                                <a href="@ViewBag.Certificado.certificado_url" class="btn" download>OBTENER CERTIFICADO</a>
+
+                            }
+                            else
+                            {
+                                <button class="btn btn-inactivo" id="obtener-certificado" disabled>
+                                    OBTENER CERTIFICADO
+                                </button>
+                            }
+                        }
+                        else
+                        {
+                            <button class="btn btn-inactivo" id="obtener-certificado" disabled>
+                                OBTENER CERTIFICADO
+                            </button>
+                        }
+                    </div>
+                </div>
+
+            }
+
+        }
+    </div>
+
+
+    <script src="~/Content/js/reconocimiento.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Filtrar por Área de interés
+            $("#area-interes").change(function () {
+                var selectedArea = $(this).val();
+
+                // Ocultar todos los mini-contenedores
+                $(".mini-container").hide();
+
+                if (selectedArea === "todos") {
+                    // Mostrar todos los mini-contenedores si se selecciona "todos"
+                    $(".mini-container").show();
+                } else {
+                    // Mostrar solo los mini-contenedores que coincidan con el área seleccionada
+                    $(".mini-container[data-area='" + selectedArea + "']").show();
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            // Aplicar filtro de color gris a las imágenes bloqueadas
+            $(".insignia-imagen.grayscale").css("filter", "grayscale(100%)");
+            $(".insignia-imagen.grayscale").css("-webkit-filter", "grayscale(100%)");
+            $(".check-circulo.grayscale").css("filter", "grayscale(100%)");
+            $(".check-circulo.grayscale").css("-webkit-filter", "grayscale(100%)");
+
+
+
+        });
+    </script>
+
+}
+else
+{
+    <link rel="stylesheet" href="~/Content/css/accesodenegado.css">
+    <div id="header">
+        <h1> Acceso denegado. Esta vista solo está disponible para Colaboradores Administrativos</h1>
+        <br />
+        <a href="@Url.Action("Login", "Account")" class="btn-acceso">Iniciar Sesión</a>
+    </div>
+}

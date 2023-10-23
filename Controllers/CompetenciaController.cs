@@ -13,7 +13,7 @@ namespace EmPoderTIC.Controllers
 {
     public class CompetenciaController : Controller
     {
-        private EmPoderTICConexionFast db = new EmPoderTICConexionFast();
+        private EmPoderTICConectadoEntities db = new EmPoderTICConectadoEntities();
 
         // GET: Competencia
         public async Task<ActionResult> Index()

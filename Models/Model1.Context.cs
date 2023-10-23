@@ -13,10 +13,10 @@ namespace EmPoderTIC.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EmPoderTICConexionFast : DbContext
+    public partial class EmPoderTICConectadoEntities : DbContext
     {
-        public EmPoderTICConexionFast()
-            : base("name=EmPoderTICConexionFast")
+        public EmPoderTICConectadoEntities()
+            : base("name=EmPoderTICConectadoEntities")
         {
         }
     
@@ -30,9 +30,12 @@ namespace EmPoderTIC.Models
         public virtual DbSet<CERTIFICACION> CERTIFICACION { get; set; }
         public virtual DbSet<CERTIFICADO> CERTIFICADO { get; set; }
         public virtual DbSet<COMPETENCIA> COMPETENCIA { get; set; }
+        public virtual DbSet<CONTROL_INSIGNIA> CONTROL_INSIGNIA { get; set; }
         public virtual DbSet<EVENTO> EVENTO { get; set; }
         public virtual DbSet<INSIGNIA> INSIGNIA { get; set; }
         public virtual DbSet<NIVEL> NIVEL { get; set; }
+        public virtual DbSet<OTORGAR_INSIGNIA_P2> OTORGAR_INSIGNIA_P2 { get; set; }
+        public virtual DbSet<OTORGAR_INSIGNIA_P3> OTORGAR_INSIGNIA_P3 { get; set; }
         public virtual DbSet<TIPO_PERFIL> TIPO_PERFIL { get; set; }
         public virtual DbSet<USUARIO> USUARIO { get; set; }
     }

@@ -18,7 +18,7 @@ namespace EmPoderTIC.Models
         public INSIGNIA()
         {
             this.CERTIFICADO = new HashSet<CERTIFICADO>();
-            this.EVENTO = new HashSet<EVENTO>();
+            this.CONTROL_INSIGNIA = new HashSet<CONTROL_INSIGNIA>();
         }
     
         public int insignia_id { get; set; }
@@ -26,13 +26,12 @@ namespace EmPoderTIC.Models
         public string descripción { get; set; }
         public string objetivo { get; set; }
         public string imagen_url { get; set; }
-        public System.DateTime fecha_otorgamiento { get; set; }
-        public bool insignia_bloqueada { get; set; }
         public int NIVEL_nivel_id { get; set; }
         public int AREA_area_id { get; set; }
         public int COMPETENCIA_competencia_id { get; set; }
         public Nullable<int> CERTIFICACION_certificacion_id { get; set; }
-        public Nullable<int> EVENTO_evento_id { get; set; }
+        public int TIPO_PERFIL_tipo_perfil_id { get; set; }
+        public int EVENTO_evento_id { get; set; }
     
         public virtual AREA AREA { get; set; }
         public virtual CERTIFICACION CERTIFICACION { get; set; }
@@ -40,8 +39,9 @@ namespace EmPoderTIC.Models
         public virtual ICollection<CERTIFICADO> CERTIFICADO { get; set; }
         public virtual COMPETENCIA COMPETENCIA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EVENTO> EVENTO { get; set; }
-        public virtual EVENTO EVENTO1 { get; set; }
+        public virtual ICollection<CONTROL_INSIGNIA> CONTROL_INSIGNIA { get; set; }
+        public virtual EVENTO EVENTO { get; set; }
         public virtual NIVEL NIVEL { get; set; }
+        public virtual TIPO_PERFIL TIPO_PERFIL { get; set; }
     }
 }

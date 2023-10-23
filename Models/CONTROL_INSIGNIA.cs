@@ -12,14 +12,14 @@ namespace EmPoderTIC.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ASISTENCIA
+    public partial class CONTROL_INSIGNIA
     {
-        public bool registro_asistencia_evento { get; set; }
-        public System.DateTime fecha_registro_asistencia { get; set; }
+        public bool insignia_bloqueada { get; set; }
         public string USUARIO_rut { get; set; }
-        public int EVENTO_evento_id { get; set; }
+        public System.DateTime fecha_otorgamiento { get; set; }
+        public int INSIGNIA_insignia_id { get; set; }
     
-        public virtual EVENTO EVENTO { get; set; }
+        public virtual INSIGNIA INSIGNIA { get; set; }
         public virtual USUARIO USUARIO { get; set; }
     }
 }

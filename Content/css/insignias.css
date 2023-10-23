@@ -1,6 +1,4 @@
-﻿
-
-/*========================================
+﻿/*========================================
 Estilos del contenido
 ==========================================*/
 /* Estilos para el div del título */
@@ -15,12 +13,19 @@ Estilos del contenido
     margin-bottom: 20px;
 }
 
+
     /* Estilos para el título */
     #header h1 {
         font-size: 24px;
         color: var(--color-celeste);
         font-weight: bold;
     }
+
+
+.insignia-gris {
+    filter: grayscale(100%);
+}
+
 
 /*========================================
 Estilos del mini contenido
@@ -62,9 +67,9 @@ Estilos para insignias dentro del contenido
 }
 
     /* Estilos para el botón cuando está en estado de "hover" (cuando el mouse está encima) */
-.btn-obtener-insignia:hover {
- background-color: #3266a5; /* Cambia el color de fondo al pasar el cursor sobre el botón */
-}
+    .btn-obtener-insignia:hover {
+        background-color: #3266a5; /* Cambia el color de fondo al pasar el cursor sobre el botón */
+    }
 
 
 /* Estilos para las insignias */
@@ -166,18 +171,30 @@ Estilos para insignias dentro del contenido
 }
 
 
-/* Estilos para el botón cuando está en estado de "hover" (cuando el mouse está encima) */
-.btn:hover {
-background-color: #3266a5; /* Cambia el color de fondo al pasar el cursor sobre el botón */
-}
+    /* Estilos para el botón cuando está en estado de "hover" (cuando el mouse está encima) */
+    .btn:hover {
+        background-color: #3266a5; /* Cambia el color de fondo al pasar el cursor sobre el botón */
+    }
 
 
 .btn-inactivo {
-    background-color: #3a3737; /* Color de fondo gris para inactivo */
     color: #fff; /* Color del texto en blanco para inactivo */
     cursor: not-allowed; /* Cambia el cursor a "no permitido" para inactivo */
     pointer-events: none; /* Deshabilita eventos de puntero para inactivo */
 }
+
+/* Estilo predeterminado del botón cuando está habilitado */
+.btn-inactivo {
+    background-color: #color-normal;
+    color: #fff;
+}
+
+    /* Estilo del botón cuando está deshabilitado */
+    .btn-inactivo:disabled {
+        background-color: #545454; /* Fondo gris */
+        color: #fff;
+    }
+
 
 
 /*========================================

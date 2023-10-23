@@ -13,7 +13,7 @@ namespace EmPoderTIC.Controllers
 {
     public class AreaController : Controller
     {
-        private EmPoderTICConexionFast db = new EmPoderTICConexionFast();
+        private EmPoderTICConectadoEntities db = new EmPoderTICConectadoEntities();
 
         // GET: Area
         public async Task<ActionResult> Index()

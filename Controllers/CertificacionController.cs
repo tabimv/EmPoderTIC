@@ -13,7 +13,7 @@ namespace EmPoderTIC.Controllers
 {
     public class CertificacionController : Controller
     {
-        private EmPoderTICConexionFast db = new EmPoderTICConexionFast();
+        private EmPoderTICConectadoEntities db = new EmPoderTICConectadoEntities();
 
         // GET: Certificacion
         public async Task<ActionResult> Index()

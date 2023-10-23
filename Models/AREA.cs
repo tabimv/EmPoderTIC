@@ -17,6 +17,7 @@ namespace EmPoderTIC.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public AREA()
         {
+            this.CERTIFICADO = new HashSet<CERTIFICADO>();
             this.COMPETENCIA = new HashSet<COMPETENCIA>();
             this.EVENTO = new HashSet<EVENTO>();
             this.INSIGNIA = new HashSet<INSIGNIA>();
@@ -25,6 +26,8 @@ namespace EmPoderTIC.Models
         public int area_id { get; set; }
         public string area_conocimiento { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CERTIFICADO> CERTIFICADO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<COMPETENCIA> COMPETENCIA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

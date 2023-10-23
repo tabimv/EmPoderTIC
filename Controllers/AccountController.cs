@@ -14,7 +14,7 @@ namespace EmPoderTIC.Controllers
     public class AccountController : Controller
     {
         // GET: Account
-        private EmPoderTICConexionFast db = new EmPoderTICConexionFast(); // Tu contexto de base de datos
+        private EmPoderTICConectadoEntities db = new EmPoderTICConectadoEntities(); // Tu contexto de base de datos
 
         [HttpGet]
         [AllowAnonymous]
@@ -41,7 +41,7 @@ namespace EmPoderTIC.Controllers
             }
             else if (ModelState.IsValid) // Solo si el correo es válido, verifica la contraseña
             {
-                if (user.clave != model.password)
+                if (user.contraseña != model.password)
                 {
                     ModelState.AddModelError("password", "La contraseña es incorrecta.");
                 }
@@ -62,7 +62,15 @@ namespace EmPoderTIC.Controllers
 
                     if (Session["TipoPerfil"].Equals("Estudiante y/o Titulado"))
                     {
-                        return RedirectToAction("Perfil", "Insignia");
+                        return RedirectToAction("Perfil", "VistaPerfil1");
+                    }
+                    else if (Session["TipoPerfil"].Equals("Docente"))
+                    {
+                        return RedirectToAction("Perfil", "VistaPerfil2");
+                    }
+                    else if (Session["TipoPerfil"].Equals("Colaborador administrativo"))
+                    {
+                        return RedirectToAction("Perfil", "VistaPerfil3");
                     }
                     else if (Session["TipoPerfil"].Equals("Administrador"))
                     {

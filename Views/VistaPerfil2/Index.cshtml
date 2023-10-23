@@ -1,13 +1,17 @@
 ﻿@model List<EmPoderTIC.Models.AREA>
+@using EmPoderTIC.Models
+
 
 @{
     ViewBag.Title = "Reconocimiento de Insignias - EmPoderTIC";
+    bool algunaInsigniaBloqueada = ViewBag.AlgunaInsigniaBloqueada as bool? ?? false;
 }
 
 
-@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Estudiante y/o Titulado")
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Docente" && Session["UsuarioAutenticado"] != null)
 {
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutPerfil2.cshtml";
 }
 else
 {
@@ -15,12 +19,14 @@ else
 }
 
 
-@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Estudiante y/o Titulado")
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Docente" && Session["UsuarioAutenticado"] != null)
 {
 
     <link rel="stylesheet" href="~/Content/css/insignias.css">
 
-
+    <!--========================================
+       contenido
+    ==========================================-->
     <div id="header">
         <h1>Reconocimiento de Insignias - EmPoderTIC</h1>
         <!-- Filtro por Área de interés -->
@@ -31,70 +37,101 @@ else
                 @foreach (var area in Model)
                 {
                     var NombreArea = area.area_conocimiento;
-                    <option value="@NombreArea">@NombreArea</option>
+                    if (area.INSIGNIA.Any())
+                    {
+                        <option value="@NombreArea">@NombreArea</option>
+                    }
+
                 }
             </select>
         </div>
-
-        <!-- Contenedor de las insignias -->
-        <div class="insignias-container">
-            @foreach (var area in Model)
+        @foreach (var area in Model)
+        {
+            if (area.INSIGNIA.Any())
             {
-                var NombreArea = area.area_conocimiento; // Obtener el nombre del área actual
+                var NombreArea = area.area_conocimiento;
 
-                <!-- Mini contenedor por área -->
                 <div class="mini-container" data-area="@NombreArea">
                     <h2>Área de participación en Talleres y eventos de @NombreArea</h2>
                     <!-- Tu contenido dentro del mini contenedor -->
                     <div class="insignias">
-                        @foreach (var INSIGNIA in area.INSIGNIA)
+                        @foreach (var viewModel in ViewBag.ListaInsigniasPorArea[area.area_id - 1])
                         {
-                            <div class="columna-insignia @(INSIGNIA.insignia_bloqueada ? "bloqueada" : "")">
+
+                            var INSIGNIA = viewModel.Insignia;
+                            var DesbloqueoInsignia = viewModel.DesbloqueoInsignia;
+
+                            <div class="columna-insignia">
                                 <div class="insignia-progreso">
-                                    @if (!INSIGNIA.insignia_bloqueada)
+                                    @if (DesbloqueoInsignia != null)
                                     {
-                                        <!-- Aplicar filtro gris a la imagen si ninguna ASISTENCIA tiene registro_asistencia_evento como false -->
-                                        <img src="@INSIGNIA.imagen_url" alt="@INSIGNIA.nombre" class="insignia-imagen">
-                                        <div class="check-circulo">
-                                            <i class="fas fa-check"></i>
-                                        </div>
+                                        if (DesbloqueoInsignia.insignia_bloqueada == true)
+                                        {
+                                            <img src="@INSIGNIA.imagen_url" alt="@INSIGNIA.nombre" class="insignia-imagen grayscale">
+                                            <div class="check-circulo grayscale">
+                                                <i class="fas fa-check grayscale"></i>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <img src="@INSIGNIA.imagen_url" alt="@INSIGNIA.nombre" class="insignia-imagen">
+                                            <div class="check-circulo">
+                                                <i class="fas fa-check"></i>
+                                            </div>
+                                        }
                                     }
                                     else
                                     {
-                                        <!-- Mostrar la imagen normal si al menos una ASISTENCIA tiene registro_asistencia_evento como true -->
                                         <img src="@INSIGNIA.imagen_url" alt="@INSIGNIA.nombre" class="insignia-imagen grayscale">
                                         <div class="check-circulo grayscale">
                                             <i class="fas fa-check grayscale"></i>
                                         </div>
                                     }
+
                                 </div>
                                 <div class="insignias-titulos">
                                     <h3>@INSIGNIA.nombre</h3>
-                                    <h4>@ViewBag.Niveles[INSIGNIA.NIVEL_nivel_id]</h4>
-                                    <p>@INSIGNIA.descripción</p>
+                                    <h4>@INSIGNIA.NIVEL.categoría_nivel_insignia </h4>
+                                    <p>
+                                        @INSIGNIA.descripción
+                                    </p>
                                 </div>
                             </div>
+
+
                         }
                     </div>
+                    <!-- Agregar contenido adicional aquí -->
 
                     <div class="btn-certificado">
-                        <br />
-                        <br />
-                        @if (!ViewBag.AreasBloqueadas.Contains(NombreArea) && !string.IsNullOrEmpty(ViewBag.CertificadoURL))
+                        @if (ViewBag.Certificado != null)
                         {
-                            <!-- El botón se muestra como activo si el área no está bloqueada y hay un certificado disponible -->
-                            <a href="@ViewBag.CertificadoURL" class="btn" id="obtener-certificado" target="_blank">OBTENER CERTIFICADO</a>
+                            if (ViewBag.AlgunaInsigniaBloqueada)
+                            {
+                                <a href="@ViewBag.Certificado.certificado_url" class="btn" download>OBTENER CERTIFICADO</a>
+
+                            }
+                            else
+                            {
+                                <button class="btn btn-inactivo" id="obtener-certificado" disabled>
+                                    OBTENER CERTIFICADO
+                                </button>
+                            }
                         }
                         else
                         {
-                            <!-- El botón se muestra como inactivo si el área está bloqueada o no hay certificado disponible -->
-                            <button class="btn btn-inactivo" id="obtener-certificado" style="background-color: #888; color: #fff;" disabled>OBTENER CERTIFICADO</button>
+                            <button class="btn btn-inactivo" id="obtener-certificado" disabled>
+                                OBTENER CERTIFICADO
+                            </button>
                         }
                     </div>
                 </div>
+
             }
-        </div>
+
+        }
     </div>
+
 
     <script src="~/Content/js/reconocimiento.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -117,7 +154,6 @@ else
             });
         });
     </script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
             // Aplicar filtro de color gris a las imágenes bloqueadas
@@ -125,14 +161,18 @@ else
             $(".insignia-imagen.grayscale").css("-webkit-filter", "grayscale(100%)");
             $(".check-circulo.grayscale").css("filter", "grayscale(100%)");
             $(".check-circulo.grayscale").css("-webkit-filter", "grayscale(100%)");
+
+
+
         });
     </script>
+
 }
 else
 {
     <link rel="stylesheet" href="~/Content/css/accesodenegado.css">
     <div id="header">
-        <h1> Acceso denegado. Esta vista solo está disponible para estudiantes</h1>
+        <h1> Acceso denegado. Esta vista solo está disponible para Docentes</h1>
         <br />
         <a href="@Url.Action("Login", "Account")" class="btn-acceso">Iniciar Sesión</a>
     </div>

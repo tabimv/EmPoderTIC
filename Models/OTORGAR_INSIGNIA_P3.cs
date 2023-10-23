@@ -12,10 +12,11 @@ namespace EmPoderTIC.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ASISTENCIA
+    public partial class OTORGAR_INSIGNIA_P3
     {
-        public bool registro_asistencia_evento { get; set; }
-        public System.DateTime fecha_registro_asistencia { get; set; }
+        public bool registro_insignia_evento { get; set; }
+        public string contribucion_evento { get; set; }
+        public System.DateTime fecha_registro_otorgamiento { get; set; }
         public string USUARIO_rut { get; set; }
         public int EVENTO_evento_id { get; set; }
     

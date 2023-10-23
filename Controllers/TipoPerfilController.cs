@@ -13,7 +13,7 @@ namespace EmPoderTIC.Controllers
 {
     public class TipoPerfilController : Controller
     {
-        private EmPoderTICConexionFast db = new EmPoderTICConexionFast();
+        private EmPoderTICConectadoEntities db = new EmPoderTICConectadoEntities();
 
         // GET: TipoPerfil
         public async Task<ActionResult> Index()

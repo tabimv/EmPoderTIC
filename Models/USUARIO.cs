@@ -6,7 +6,7 @@
 //     Los cambios manuales en este archivo se sobrescribirán si se regenera el código.
 // </auto-generated>
 //------------------------------------------------------------------------------
-using System.ComponentModel.DataAnnotations;
+
 namespace EmPoderTIC.Models
 {
     using System;
@@ -18,22 +18,30 @@ namespace EmPoderTIC.Models
         public USUARIO()
         {
             this.ASISTENCIA = new HashSet<ASISTENCIA>();
-            this.EVENTO = new HashSet<EVENTO>();
+            this.CERTIFICADO = new HashSet<CERTIFICADO>();
+            this.CONTROL_INSIGNIA = new HashSet<CONTROL_INSIGNIA>();
+            this.OTORGAR_INSIGNIA_P2 = new HashSet<OTORGAR_INSIGNIA_P2>();
+            this.OTORGAR_INSIGNIA_P3 = new HashSet<OTORGAR_INSIGNIA_P3>();
         }
-
-     
+    
         public string rut { get; set; }
         public string nombre { get; set; }
         public string apellido_paterno { get; set; }
         public string apellido_materno { get; set; }
         public string correo_electronico { get; set; }
-        public string clave { get; set; }
+        public string contraseña { get; set; }
         public int TIPO_PERFIL_tipo_perfil_id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ASISTENCIA> ASISTENCIA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EVENTO> EVENTO { get; set; }
+        public virtual ICollection<CERTIFICADO> CERTIFICADO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CONTROL_INSIGNIA> CONTROL_INSIGNIA { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OTORGAR_INSIGNIA_P2> OTORGAR_INSIGNIA_P2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OTORGAR_INSIGNIA_P3> OTORGAR_INSIGNIA_P3 { get; set; }
         public virtual TIPO_PERFIL TIPO_PERFIL { get; set; }
     }
 }

@@ -18,6 +18,7 @@
             <PropertyRef Name="EVENTO_evento_id" />
           </Key>
           <Property Name="registro_asistencia_evento" Type="bit" Nullable="false" />
+          <Property Name="fecha_registro_asistencia" Type="date" Nullable="false" />
           <Property Name="USUARIO_rut" Type="varchar" MaxLength="12" Nullable="false" />
           <Property Name="EVENTO_evento_id" Type="int" Nullable="false" />
         </EntityType>
@@ -40,6 +41,8 @@
           <Property Name="fecha_otorgamiento" Type="datetime" Nullable="false" />
           <Property Name="CERTIFICACION_certificacion_id" Type="int" Nullable="false" />
           <Property Name="INSIGNIA_insignia_id" Type="int" Nullable="false" />
+          <Property Name="USUARIO_rut" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="AREA_area_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="COMPETENCIA">
           <Key>
@@ -49,6 +52,16 @@
           <Property Name="competencia_conocimiento" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="AREA_area_id" Type="int" Nullable="false" />
           <Property Name="NIVEL_nivel_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CONTROL_INSIGNIA">
+          <Key>
+            <PropertyRef Name="USUARIO_rut" />
+            <PropertyRef Name="INSIGNIA_insignia_id" />
+          </Key>
+          <Property Name="insignia_bloqueada" Type="bit" Nullable="false" />
+          <Property Name="USUARIO_rut" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="fecha_otorgamiento" Type="date" Nullable="false" />
+          <Property Name="INSIGNIA_insignia_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="EVENTO">
           <Key>
@@ -63,8 +76,6 @@
           <Property Name="lugar_evento" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="AREA_area_id" Type="int" Nullable="false" />
           <Property Name="COMPETENCIA_competencia_id" Type="int" Nullable="false" />
-          <Property Name="USUARIO_rut" Type="varchar" MaxLength="12" />
-          <Property Name="INSIGNIA_insignia_id" Type="int" />
         </EntityType>
         <EntityType Name="INSIGNIA">
           <Key>
@@ -75,13 +86,12 @@
           <Property Name="descripción" Type="varchar" MaxLength="1000" Nullable="false" />
           <Property Name="objetivo" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="imagen_url" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="fecha_otorgamiento" Type="date" Nullable="false" />
-          <Property Name="insignia_bloqueada" Type="bit" Nullable="false" />
           <Property Name="NIVEL_nivel_id" Type="int" Nullable="false" />
           <Property Name="AREA_area_id" Type="int" Nullable="false" />
           <Property Name="COMPETENCIA_competencia_id" Type="int" Nullable="false" />
           <Property Name="CERTIFICACION_certificacion_id" Type="int" />
-          <Property Name="EVENTO_evento_id" Type="int" />
+          <Property Name="TIPO_PERFIL_tipo_perfil_id" Type="int" Nullable="false" />
+          <Property Name="EVENTO_evento_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="NIVEL">
           <Key>
@@ -89,6 +99,28 @@
           </Key>
           <Property Name="nivel_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="categoría_nivel_insignia" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OTORGAR_INSIGNIA_P2">
+          <Key>
+            <PropertyRef Name="USUARIO_rut" />
+            <PropertyRef Name="EVENTO_evento_id" />
+          </Key>
+          <Property Name="registro_insignia_evento" Type="bit" Nullable="false" />
+          <Property Name="contribucion_evento" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="fecha_registro_otorgamiento" Type="date" Nullable="false" />
+          <Property Name="USUARIO_rut" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="EVENTO_evento_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OTORGAR_INSIGNIA_P3">
+          <Key>
+            <PropertyRef Name="USUARIO_rut" />
+            <PropertyRef Name="EVENTO_evento_id" />
+          </Key>
+          <Property Name="registro_insignia_evento" Type="bit" Nullable="false" />
+          <Property Name="contribucion_evento" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="fecha_registro_otorgamiento" Type="date" Nullable="false" />
+          <Property Name="USUARIO_rut" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="EVENTO_evento_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TIPO_PERFIL">
           <Key>
@@ -107,7 +139,7 @@
           <Property Name="apellido_paterno" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="apellido_materno" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="correo_electronico" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="clave" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="contraseña" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="TIPO_PERFIL_tipo_perfil_id" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="ASISTENCIA_EVENTO_FK">
@@ -146,6 +178,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="CERTIFICADO_AREA_FK">
+          <End Role="AREA" Type="Self.AREA" Multiplicity="1" />
+          <End Role="CERTIFICADO" Type="Self.CERTIFICADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AREA">
+              <PropertyRef Name="area_id" />
+            </Principal>
+            <Dependent Role="CERTIFICADO">
+              <PropertyRef Name="AREA_area_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="CERTIFICADO_CERTIFICACION_FK">
           <End Role="CERTIFICACION" Type="Self.CERTIFICACION" Multiplicity="1" />
           <End Role="CERTIFICADO" Type="Self.CERTIFICADO" Multiplicity="*" />
@@ -167,6 +211,18 @@
             </Principal>
             <Dependent Role="CERTIFICADO">
               <PropertyRef Name="INSIGNIA_insignia_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CERTIFICADO_USUARIO_FK">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="CERTIFICADO" Type="Self.CERTIFICADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="rut" />
+            </Principal>
+            <Dependent Role="CERTIFICADO">
+              <PropertyRef Name="USUARIO_rut" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -194,6 +250,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="CONTROL_INSIGNIA_INSIGNIA_FK">
+          <End Role="INSIGNIA" Type="Self.INSIGNIA" Multiplicity="1" />
+          <End Role="CONTROL_INSIGNIA" Type="Self.CONTROL_INSIGNIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INSIGNIA">
+              <PropertyRef Name="insignia_id" />
+            </Principal>
+            <Dependent Role="CONTROL_INSIGNIA">
+              <PropertyRef Name="INSIGNIA_insignia_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CONTROL_INSIGNIA_USUARIO_FK">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="CONTROL_INSIGNIA" Type="Self.CONTROL_INSIGNIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="rut" />
+            </Principal>
+            <Dependent Role="CONTROL_INSIGNIA">
+              <PropertyRef Name="USUARIO_rut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="EVENTO_AREA_FK">
           <End Role="AREA" Type="Self.AREA" Multiplicity="1" />
           <End Role="EVENTO" Type="Self.EVENTO" Multiplicity="*" />
@@ -215,30 +295,6 @@
             </Principal>
             <Dependent Role="EVENTO">
               <PropertyRef Name="COMPETENCIA_competencia_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="EVENTO_INSIGNIA_FK">
-          <End Role="INSIGNIA" Type="Self.INSIGNIA" Multiplicity="0..1" />
-          <End Role="EVENTO" Type="Self.EVENTO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="INSIGNIA">
-              <PropertyRef Name="insignia_id" />
-            </Principal>
-            <Dependent Role="EVENTO">
-              <PropertyRef Name="INSIGNIA_insignia_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="EVENTO_USUARIO_FK">
-          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
-          <End Role="EVENTO" Type="Self.EVENTO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="USUARIO">
-              <PropertyRef Name="rut" />
-            </Principal>
-            <Dependent Role="EVENTO">
-              <PropertyRef Name="USUARIO_rut" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -279,7 +335,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="INSIGNIA_EVENTO_FK">
-          <End Role="EVENTO" Type="Self.EVENTO" Multiplicity="0..1" />
+          <End Role="EVENTO" Type="Self.EVENTO" Multiplicity="1" />
           <End Role="INSIGNIA" Type="Self.INSIGNIA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EVENTO">
@@ -299,6 +355,66 @@
             </Principal>
             <Dependent Role="INSIGNIA">
               <PropertyRef Name="NIVEL_nivel_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INSIGNIA_TIPO_PERFIL_FK">
+          <End Role="TIPO_PERFIL" Type="Self.TIPO_PERFIL" Multiplicity="1" />
+          <End Role="INSIGNIA" Type="Self.INSIGNIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_PERFIL">
+              <PropertyRef Name="tipo_perfil_id" />
+            </Principal>
+            <Dependent Role="INSIGNIA">
+              <PropertyRef Name="TIPO_PERFIL_tipo_perfil_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OTORGAR_INSIGNIA_P2_EVENTO_FK">
+          <End Role="EVENTO" Type="Self.EVENTO" Multiplicity="1" />
+          <End Role="OTORGAR_INSIGNIA_P2" Type="Self.OTORGAR_INSIGNIA_P2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EVENTO">
+              <PropertyRef Name="evento_id" />
+            </Principal>
+            <Dependent Role="OTORGAR_INSIGNIA_P2">
+              <PropertyRef Name="EVENTO_evento_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OTORGAR_INSIGNIA_P2_USUARIO_FK">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="OTORGAR_INSIGNIA_P2" Type="Self.OTORGAR_INSIGNIA_P2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="rut" />
+            </Principal>
+            <Dependent Role="OTORGAR_INSIGNIA_P2">
+              <PropertyRef Name="USUARIO_rut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OTORGAR_INSIGNIA_P3_EVENTO_FK">
+          <End Role="EVENTO" Type="Self.EVENTO" Multiplicity="1" />
+          <End Role="OTORGAR_INSIGNIA_P3" Type="Self.OTORGAR_INSIGNIA_P3" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EVENTO">
+              <PropertyRef Name="evento_id" />
+            </Principal>
+            <Dependent Role="OTORGAR_INSIGNIA_P3">
+              <PropertyRef Name="EVENTO_evento_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OTORGAR_INSIGNIA_P3_USUARIO_FK">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="OTORGAR_INSIGNIA_P3" Type="Self.OTORGAR_INSIGNIA_P3" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="rut" />
+            </Principal>
+            <Dependent Role="OTORGAR_INSIGNIA_P3">
+              <PropertyRef Name="USUARIO_rut" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -323,9 +439,12 @@
           <EntitySet Name="CERTIFICACION" EntityType="Self.CERTIFICACION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CERTIFICADO" EntityType="Self.CERTIFICADO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="COMPETENCIA" EntityType="Self.COMPETENCIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CONTROL_INSIGNIA" EntityType="Self.CONTROL_INSIGNIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EVENTO" EntityType="Self.EVENTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="INSIGNIA" EntityType="Self.INSIGNIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NIVEL" EntityType="Self.NIVEL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OTORGAR_INSIGNIA_P2" EntityType="Self.OTORGAR_INSIGNIA_P2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OTORGAR_INSIGNIA_P3" EntityType="Self.OTORGAR_INSIGNIA_P3" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TIPO_PERFIL" EntityType="Self.TIPO_PERFIL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="ASISTENCIA_EVENTO_FK" Association="Self.ASISTENCIA_EVENTO_FK">
@@ -340,12 +459,20 @@
             <End Role="NIVEL" EntitySet="NIVEL" />
             <End Role="CERTIFICACION" EntitySet="CERTIFICACION" />
           </AssociationSet>
+          <AssociationSet Name="CERTIFICADO_AREA_FK" Association="Self.CERTIFICADO_AREA_FK">
+            <End Role="AREA" EntitySet="AREA" />
+            <End Role="CERTIFICADO" EntitySet="CERTIFICADO" />
+          </AssociationSet>
           <AssociationSet Name="CERTIFICADO_CERTIFICACION_FK" Association="Self.CERTIFICADO_CERTIFICACION_FK">
             <End Role="CERTIFICACION" EntitySet="CERTIFICACION" />
             <End Role="CERTIFICADO" EntitySet="CERTIFICADO" />
           </AssociationSet>
           <AssociationSet Name="CERTIFICADO_INSIGNIA_FK" Association="Self.CERTIFICADO_INSIGNIA_FK">
             <End Role="INSIGNIA" EntitySet="INSIGNIA" />
+            <End Role="CERTIFICADO" EntitySet="CERTIFICADO" />
+          </AssociationSet>
+          <AssociationSet Name="CERTIFICADO_USUARIO_FK" Association="Self.CERTIFICADO_USUARIO_FK">
+            <End Role="USUARIO" EntitySet="USUARIO" />
             <End Role="CERTIFICADO" EntitySet="CERTIFICADO" />
           </AssociationSet>
           <AssociationSet Name="COMPETENCIA_AREA_FK" Association="Self.COMPETENCIA_AREA_FK">
@@ -356,20 +483,20 @@
             <End Role="NIVEL" EntitySet="NIVEL" />
             <End Role="COMPETENCIA" EntitySet="COMPETENCIA" />
           </AssociationSet>
+          <AssociationSet Name="CONTROL_INSIGNIA_INSIGNIA_FK" Association="Self.CONTROL_INSIGNIA_INSIGNIA_FK">
+            <End Role="INSIGNIA" EntitySet="INSIGNIA" />
+            <End Role="CONTROL_INSIGNIA" EntitySet="CONTROL_INSIGNIA" />
+          </AssociationSet>
+          <AssociationSet Name="CONTROL_INSIGNIA_USUARIO_FK" Association="Self.CONTROL_INSIGNIA_USUARIO_FK">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="CONTROL_INSIGNIA" EntitySet="CONTROL_INSIGNIA" />
+          </AssociationSet>
           <AssociationSet Name="EVENTO_AREA_FK" Association="Self.EVENTO_AREA_FK">
             <End Role="AREA" EntitySet="AREA" />
             <End Role="EVENTO" EntitySet="EVENTO" />
           </AssociationSet>
           <AssociationSet Name="EVENTO_COMPETENCIA_FK" Association="Self.EVENTO_COMPETENCIA_FK">
             <End Role="COMPETENCIA" EntitySet="COMPETENCIA" />
-            <End Role="EVENTO" EntitySet="EVENTO" />
-          </AssociationSet>
-          <AssociationSet Name="EVENTO_INSIGNIA_FK" Association="Self.EVENTO_INSIGNIA_FK">
-            <End Role="INSIGNIA" EntitySet="INSIGNIA" />
-            <End Role="EVENTO" EntitySet="EVENTO" />
-          </AssociationSet>
-          <AssociationSet Name="EVENTO_USUARIO_FK" Association="Self.EVENTO_USUARIO_FK">
-            <End Role="USUARIO" EntitySet="USUARIO" />
             <End Role="EVENTO" EntitySet="EVENTO" />
           </AssociationSet>
           <AssociationSet Name="INSIGNIA_AREA_FK" Association="Self.INSIGNIA_AREA_FK">
@@ -392,6 +519,26 @@
             <End Role="NIVEL" EntitySet="NIVEL" />
             <End Role="INSIGNIA" EntitySet="INSIGNIA" />
           </AssociationSet>
+          <AssociationSet Name="INSIGNIA_TIPO_PERFIL_FK" Association="Self.INSIGNIA_TIPO_PERFIL_FK">
+            <End Role="TIPO_PERFIL" EntitySet="TIPO_PERFIL" />
+            <End Role="INSIGNIA" EntitySet="INSIGNIA" />
+          </AssociationSet>
+          <AssociationSet Name="OTORGAR_INSIGNIA_P2_EVENTO_FK" Association="Self.OTORGAR_INSIGNIA_P2_EVENTO_FK">
+            <End Role="EVENTO" EntitySet="EVENTO" />
+            <End Role="OTORGAR_INSIGNIA_P2" EntitySet="OTORGAR_INSIGNIA_P2" />
+          </AssociationSet>
+          <AssociationSet Name="OTORGAR_INSIGNIA_P2_USUARIO_FK" Association="Self.OTORGAR_INSIGNIA_P2_USUARIO_FK">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="OTORGAR_INSIGNIA_P2" EntitySet="OTORGAR_INSIGNIA_P2" />
+          </AssociationSet>
+          <AssociationSet Name="OTORGAR_INSIGNIA_P3_EVENTO_FK" Association="Self.OTORGAR_INSIGNIA_P3_EVENTO_FK">
+            <End Role="EVENTO" EntitySet="EVENTO" />
+            <End Role="OTORGAR_INSIGNIA_P3" EntitySet="OTORGAR_INSIGNIA_P3" />
+          </AssociationSet>
+          <AssociationSet Name="OTORGAR_INSIGNIA_P3_USUARIO_FK" Association="Self.OTORGAR_INSIGNIA_P3_USUARIO_FK">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="OTORGAR_INSIGNIA_P3" EntitySet="OTORGAR_INSIGNIA_P3" />
+          </AssociationSet>
           <AssociationSet Name="USUARIO_TIPO_PERFIL_FK" Association="Self.USUARIO_TIPO_PERFIL_FK">
             <End Role="TIPO_PERFIL" EntitySet="TIPO_PERFIL" />
             <End Role="USUARIO" EntitySet="USUARIO" />
@@ -408,6 +555,7 @@
           </Key>
           <Property Name="area_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="area_conocimiento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CERTIFICADO" Relationship="Self.CERTIFICADO_AREA_FK" FromRole="AREA" ToRole="CERTIFICADO" />
           <NavigationProperty Name="COMPETENCIA" Relationship="Self.COMPETENCIA_AREA_FK" FromRole="AREA" ToRole="COMPETENCIA" />
           <NavigationProperty Name="EVENTO" Relationship="Self.EVENTO_AREA_FK" FromRole="AREA" ToRole="EVENTO" />
           <NavigationProperty Name="INSIGNIA" Relationship="Self.INSIGNIA_AREA_FK" FromRole="AREA" ToRole="INSIGNIA" />
@@ -418,6 +566,7 @@
             <PropertyRef Name="EVENTO_evento_id" />
           </Key>
           <Property Name="registro_asistencia_evento" Type="Boolean" Nullable="false" />
+          <Property Name="fecha_registro_asistencia" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="USUARIO_rut" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="EVENTO_evento_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="EVENTO" Relationship="Self.ASISTENCIA_EVENTO_FK" FromRole="ASISTENCIA" ToRole="EVENTO" />
@@ -445,8 +594,12 @@
           <Property Name="fecha_otorgamiento" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CERTIFICACION_certificacion_id" Type="Int32" Nullable="false" />
           <Property Name="INSIGNIA_insignia_id" Type="Int32" Nullable="false" />
+          <Property Name="USUARIO_rut" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AREA_area_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AREA" Relationship="Self.CERTIFICADO_AREA_FK" FromRole="CERTIFICADO" ToRole="AREA" />
           <NavigationProperty Name="CERTIFICACION" Relationship="Self.CERTIFICADO_CERTIFICACION_FK" FromRole="CERTIFICADO" ToRole="CERTIFICACION" />
           <NavigationProperty Name="INSIGNIA" Relationship="Self.CERTIFICADO_INSIGNIA_FK" FromRole="CERTIFICADO" ToRole="INSIGNIA" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.CERTIFICADO_USUARIO_FK" FromRole="CERTIFICADO" ToRole="USUARIO" />
         </EntityType>
         <EntityType Name="COMPETENCIA">
           <Key>
@@ -461,6 +614,18 @@
           <NavigationProperty Name="EVENTO" Relationship="Self.EVENTO_COMPETENCIA_FK" FromRole="COMPETENCIA" ToRole="EVENTO" />
           <NavigationProperty Name="INSIGNIA" Relationship="Self.INSIGNIA_COMPETENCIA_FK" FromRole="COMPETENCIA" ToRole="INSIGNIA" />
         </EntityType>
+        <EntityType Name="CONTROL_INSIGNIA">
+          <Key>
+            <PropertyRef Name="USUARIO_rut" />
+            <PropertyRef Name="INSIGNIA_insignia_id" />
+          </Key>
+          <Property Name="insignia_bloqueada" Type="Boolean" Nullable="false" />
+          <Property Name="USUARIO_rut" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_otorgamiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="INSIGNIA_insignia_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="INSIGNIA" Relationship="Self.CONTROL_INSIGNIA_INSIGNIA_FK" FromRole="CONTROL_INSIGNIA" ToRole="INSIGNIA" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.CONTROL_INSIGNIA_USUARIO_FK" FromRole="CONTROL_INSIGNIA" ToRole="USUARIO" />
+        </EntityType>
         <EntityType Name="EVENTO">
           <Key>
             <PropertyRef Name="evento_id" />
@@ -474,14 +639,12 @@
           <Property Name="lugar_evento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="AREA_area_id" Type="Int32" Nullable="false" />
           <Property Name="COMPETENCIA_competencia_id" Type="Int32" Nullable="false" />
-          <Property Name="USUARIO_rut" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
-          <Property Name="INSIGNIA_insignia_id" Type="Int32" />
           <NavigationProperty Name="AREA" Relationship="Self.EVENTO_AREA_FK" FromRole="EVENTO" ToRole="AREA" />
           <NavigationProperty Name="ASISTENCIA" Relationship="Self.ASISTENCIA_EVENTO_FK" FromRole="EVENTO" ToRole="ASISTENCIA" />
           <NavigationProperty Name="COMPETENCIA" Relationship="Self.EVENTO_COMPETENCIA_FK" FromRole="EVENTO" ToRole="COMPETENCIA" />
-          <NavigationProperty Name="INSIGNIA" Relationship="Self.EVENTO_INSIGNIA_FK" FromRole="EVENTO" ToRole="INSIGNIA" />
-          <NavigationProperty Name="USUARIO" Relationship="Self.EVENTO_USUARIO_FK" FromRole="EVENTO" ToRole="USUARIO" />
-          <NavigationProperty Name="INSIGNIA1" Relationship="Self.INSIGNIA_EVENTO_FK" FromRole="EVENTO" ToRole="INSIGNIA" />
+          <NavigationProperty Name="INSIGNIA" Relationship="Self.INSIGNIA_EVENTO_FK" FromRole="EVENTO" ToRole="INSIGNIA" />
+          <NavigationProperty Name="OTORGAR_INSIGNIA_P2" Relationship="Self.OTORGAR_INSIGNIA_P2_EVENTO_FK" FromRole="EVENTO" ToRole="OTORGAR_INSIGNIA_P2" />
+          <NavigationProperty Name="OTORGAR_INSIGNIA_P3" Relationship="Self.OTORGAR_INSIGNIA_P3_EVENTO_FK" FromRole="EVENTO" ToRole="OTORGAR_INSIGNIA_P3" />
         </EntityType>
         <EntityType Name="INSIGNIA">
           <Key>
@@ -492,20 +655,20 @@
           <Property Name="descripción" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="objetivo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="imagen_url" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="fecha_otorgamiento" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="insignia_bloqueada" Type="Boolean" Nullable="false" />
           <Property Name="NIVEL_nivel_id" Type="Int32" Nullable="false" />
           <Property Name="AREA_area_id" Type="Int32" Nullable="false" />
           <Property Name="COMPETENCIA_competencia_id" Type="Int32" Nullable="false" />
           <Property Name="CERTIFICACION_certificacion_id" Type="Int32" />
-          <Property Name="EVENTO_evento_id" Type="Int32" />
+          <Property Name="TIPO_PERFIL_tipo_perfil_id" Type="Int32" Nullable="false" />
+          <Property Name="EVENTO_evento_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AREA" Relationship="Self.INSIGNIA_AREA_FK" FromRole="INSIGNIA" ToRole="AREA" />
           <NavigationProperty Name="CERTIFICACION" Relationship="Self.INSIGNIA_CERTIFICACION_FK" FromRole="INSIGNIA" ToRole="CERTIFICACION" />
           <NavigationProperty Name="CERTIFICADO" Relationship="Self.CERTIFICADO_INSIGNIA_FK" FromRole="INSIGNIA" ToRole="CERTIFICADO" />
           <NavigationProperty Name="COMPETENCIA" Relationship="Self.INSIGNIA_COMPETENCIA_FK" FromRole="INSIGNIA" ToRole="COMPETENCIA" />
-          <NavigationProperty Name="EVENTO" Relationship="Self.EVENTO_INSIGNIA_FK" FromRole="INSIGNIA" ToRole="EVENTO" />
-          <NavigationProperty Name="EVENTO1" Relationship="Self.INSIGNIA_EVENTO_FK" FromRole="INSIGNIA" ToRole="EVENTO" />
+          <NavigationProperty Name="CONTROL_INSIGNIA" Relationship="Self.CONTROL_INSIGNIA_INSIGNIA_FK" FromRole="INSIGNIA" ToRole="CONTROL_INSIGNIA" />
+          <NavigationProperty Name="EVENTO" Relationship="Self.INSIGNIA_EVENTO_FK" FromRole="INSIGNIA" ToRole="EVENTO" />
           <NavigationProperty Name="NIVEL" Relationship="Self.INSIGNIA_NIVEL_FK" FromRole="INSIGNIA" ToRole="NIVEL" />
+          <NavigationProperty Name="TIPO_PERFIL" Relationship="Self.INSIGNIA_TIPO_PERFIL_FK" FromRole="INSIGNIA" ToRole="TIPO_PERFIL" />
         </EntityType>
         <EntityType Name="NIVEL">
           <Key>
@@ -517,6 +680,32 @@
           <NavigationProperty Name="COMPETENCIA" Relationship="Self.COMPETENCIA_NIVEL_FK" FromRole="NIVEL" ToRole="COMPETENCIA" />
           <NavigationProperty Name="INSIGNIA" Relationship="Self.INSIGNIA_NIVEL_FK" FromRole="NIVEL" ToRole="INSIGNIA" />
         </EntityType>
+        <EntityType Name="OTORGAR_INSIGNIA_P2">
+          <Key>
+            <PropertyRef Name="USUARIO_rut" />
+            <PropertyRef Name="EVENTO_evento_id" />
+          </Key>
+          <Property Name="registro_insignia_evento" Type="Boolean" Nullable="false" />
+          <Property Name="contribucion_evento" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_registro_otorgamiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="USUARIO_rut" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EVENTO_evento_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EVENTO" Relationship="Self.OTORGAR_INSIGNIA_P2_EVENTO_FK" FromRole="OTORGAR_INSIGNIA_P2" ToRole="EVENTO" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.OTORGAR_INSIGNIA_P2_USUARIO_FK" FromRole="OTORGAR_INSIGNIA_P2" ToRole="USUARIO" />
+        </EntityType>
+        <EntityType Name="OTORGAR_INSIGNIA_P3">
+          <Key>
+            <PropertyRef Name="USUARIO_rut" />
+            <PropertyRef Name="EVENTO_evento_id" />
+          </Key>
+          <Property Name="registro_insignia_evento" Type="Boolean" Nullable="false" />
+          <Property Name="contribucion_evento" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_registro_otorgamiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="USUARIO_rut" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EVENTO_evento_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EVENTO" Relationship="Self.OTORGAR_INSIGNIA_P3_EVENTO_FK" FromRole="OTORGAR_INSIGNIA_P3" ToRole="EVENTO" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.OTORGAR_INSIGNIA_P3_USUARIO_FK" FromRole="OTORGAR_INSIGNIA_P3" ToRole="USUARIO" />
+        </EntityType>
         <EntityType Name="TIPO_PERFIL">
           <Key>
             <PropertyRef Name="tipo_perfil_id" />
@@ -524,6 +713,7 @@
           <Property Name="tipo_perfil_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre_tipo_perfil" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="dominio_correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="INSIGNIA" Relationship="Self.INSIGNIA_TIPO_PERFIL_FK" FromRole="TIPO_PERFIL" ToRole="INSIGNIA" />
           <NavigationProperty Name="USUARIO" Relationship="Self.USUARIO_TIPO_PERFIL_FK" FromRole="TIPO_PERFIL" ToRole="USUARIO" />
         </EntityType>
         <EntityType Name="USUARIO">
@@ -535,12 +725,27 @@
           <Property Name="apellido_paterno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="apellido_materno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="correo_electronico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="clave" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contraseña" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TIPO_PERFIL_tipo_perfil_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ASISTENCIA" Relationship="Self.ASISTENCIA_USUARIO_FK" FromRole="USUARIO" ToRole="ASISTENCIA" />
-          <NavigationProperty Name="EVENTO" Relationship="Self.EVENTO_USUARIO_FK" FromRole="USUARIO" ToRole="EVENTO" />
+          <NavigationProperty Name="CERTIFICADO" Relationship="Self.CERTIFICADO_USUARIO_FK" FromRole="USUARIO" ToRole="CERTIFICADO" />
+          <NavigationProperty Name="CONTROL_INSIGNIA" Relationship="Self.CONTROL_INSIGNIA_USUARIO_FK" FromRole="USUARIO" ToRole="CONTROL_INSIGNIA" />
+          <NavigationProperty Name="OTORGAR_INSIGNIA_P2" Relationship="Self.OTORGAR_INSIGNIA_P2_USUARIO_FK" FromRole="USUARIO" ToRole="OTORGAR_INSIGNIA_P2" />
+          <NavigationProperty Name="OTORGAR_INSIGNIA_P3" Relationship="Self.OTORGAR_INSIGNIA_P3_USUARIO_FK" FromRole="USUARIO" ToRole="OTORGAR_INSIGNIA_P3" />
           <NavigationProperty Name="TIPO_PERFIL" Relationship="Self.USUARIO_TIPO_PERFIL_FK" FromRole="USUARIO" ToRole="TIPO_PERFIL" />
         </EntityType>
+        <Association Name="CERTIFICADO_AREA_FK">
+          <End Role="AREA" Type="Self.AREA" Multiplicity="1" />
+          <End Role="CERTIFICADO" Type="Self.CERTIFICADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AREA">
+              <PropertyRef Name="area_id" />
+            </Principal>
+            <Dependent Role="CERTIFICADO">
+              <PropertyRef Name="AREA_area_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="COMPETENCIA_AREA_FK">
           <End Role="AREA" Type="Self.AREA" Multiplicity="1" />
           <End Role="COMPETENCIA" Type="Self.COMPETENCIA" Multiplicity="*" />
@@ -649,6 +854,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="CERTIFICADO_USUARIO_FK">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="CERTIFICADO" Type="Self.CERTIFICADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="rut" />
+            </Principal>
+            <Dependent Role="CERTIFICADO">
+              <PropertyRef Name="USUARIO_rut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="COMPETENCIA_NIVEL_FK">
           <End Role="NIVEL" Type="Self.NIVEL" Multiplicity="1" />
           <End Role="COMPETENCIA" Type="Self.COMPETENCIA" Multiplicity="*" />
@@ -685,38 +902,62 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="EVENTO_INSIGNIA_FK">
-          <End Role="INSIGNIA" Type="Self.INSIGNIA" Multiplicity="0..1" />
-          <End Role="EVENTO" Type="Self.EVENTO" Multiplicity="*" />
+        <Association Name="CONTROL_INSIGNIA_INSIGNIA_FK">
+          <End Role="INSIGNIA" Type="Self.INSIGNIA" Multiplicity="1" />
+          <End Role="CONTROL_INSIGNIA" Type="Self.CONTROL_INSIGNIA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="INSIGNIA">
               <PropertyRef Name="insignia_id" />
             </Principal>
-            <Dependent Role="EVENTO">
+            <Dependent Role="CONTROL_INSIGNIA">
               <PropertyRef Name="INSIGNIA_insignia_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="EVENTO_USUARIO_FK">
-          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
-          <End Role="EVENTO" Type="Self.EVENTO" Multiplicity="*" />
+        <Association Name="CONTROL_INSIGNIA_USUARIO_FK">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="CONTROL_INSIGNIA" Type="Self.CONTROL_INSIGNIA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="USUARIO">
               <PropertyRef Name="rut" />
             </Principal>
-            <Dependent Role="EVENTO">
+            <Dependent Role="CONTROL_INSIGNIA">
               <PropertyRef Name="USUARIO_rut" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="INSIGNIA_EVENTO_FK">
-          <End Role="EVENTO" Type="Self.EVENTO" Multiplicity="0..1" />
+          <End Role="EVENTO" Type="Self.EVENTO" Multiplicity="1" />
           <End Role="INSIGNIA" Type="Self.INSIGNIA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EVENTO">
               <PropertyRef Name="evento_id" />
             </Principal>
             <Dependent Role="INSIGNIA">
+              <PropertyRef Name="EVENTO_evento_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OTORGAR_INSIGNIA_P2_EVENTO_FK">
+          <End Role="EVENTO" Type="Self.EVENTO" Multiplicity="1" />
+          <End Role="OTORGAR_INSIGNIA_P2" Type="Self.OTORGAR_INSIGNIA_P2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EVENTO">
+              <PropertyRef Name="evento_id" />
+            </Principal>
+            <Dependent Role="OTORGAR_INSIGNIA_P2">
+              <PropertyRef Name="EVENTO_evento_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OTORGAR_INSIGNIA_P3_EVENTO_FK">
+          <End Role="EVENTO" Type="Self.EVENTO" Multiplicity="1" />
+          <End Role="OTORGAR_INSIGNIA_P3" Type="Self.OTORGAR_INSIGNIA_P3" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EVENTO">
+              <PropertyRef Name="evento_id" />
+            </Principal>
+            <Dependent Role="OTORGAR_INSIGNIA_P3">
               <PropertyRef Name="EVENTO_evento_id" />
             </Dependent>
           </ReferentialConstraint>
@@ -733,6 +974,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="INSIGNIA_TIPO_PERFIL_FK">
+          <End Role="TIPO_PERFIL" Type="Self.TIPO_PERFIL" Multiplicity="1" />
+          <End Role="INSIGNIA" Type="Self.INSIGNIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_PERFIL">
+              <PropertyRef Name="tipo_perfil_id" />
+            </Principal>
+            <Dependent Role="INSIGNIA">
+              <PropertyRef Name="TIPO_PERFIL_tipo_perfil_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OTORGAR_INSIGNIA_P2_USUARIO_FK">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="OTORGAR_INSIGNIA_P2" Type="Self.OTORGAR_INSIGNIA_P2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="rut" />
+            </Principal>
+            <Dependent Role="OTORGAR_INSIGNIA_P2">
+              <PropertyRef Name="USUARIO_rut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OTORGAR_INSIGNIA_P3_USUARIO_FK">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="OTORGAR_INSIGNIA_P3" Type="Self.OTORGAR_INSIGNIA_P3" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="rut" />
+            </Principal>
+            <Dependent Role="OTORGAR_INSIGNIA_P3">
+              <PropertyRef Name="USUARIO_rut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="USUARIO_TIPO_PERFIL_FK">
           <End Role="TIPO_PERFIL" Type="Self.TIPO_PERFIL" Multiplicity="1" />
           <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
@@ -745,17 +1022,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="EmPoderTICConexionFast" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="EmPoderTICConectadoEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AREA" EntityType="Self.AREA" />
           <EntitySet Name="ASISTENCIA" EntityType="Self.ASISTENCIA" />
           <EntitySet Name="CERTIFICACION" EntityType="Self.CERTIFICACION" />
           <EntitySet Name="CERTIFICADO" EntityType="Self.CERTIFICADO" />
           <EntitySet Name="COMPETENCIA" EntityType="Self.COMPETENCIA" />
+          <EntitySet Name="CONTROL_INSIGNIA" EntityType="Self.CONTROL_INSIGNIA" />
           <EntitySet Name="EVENTO" EntityType="Self.EVENTO" />
           <EntitySet Name="INSIGNIA" EntityType="Self.INSIGNIA" />
           <EntitySet Name="NIVEL" EntityType="Self.NIVEL" />
+          <EntitySet Name="OTORGAR_INSIGNIA_P2" EntityType="Self.OTORGAR_INSIGNIA_P2" />
+          <EntitySet Name="OTORGAR_INSIGNIA_P3" EntityType="Self.OTORGAR_INSIGNIA_P3" />
           <EntitySet Name="TIPO_PERFIL" EntityType="Self.TIPO_PERFIL" />
           <EntitySet Name="USUARIO" EntityType="Self.USUARIO" />
+          <AssociationSet Name="CERTIFICADO_AREA_FK" Association="Self.CERTIFICADO_AREA_FK">
+            <End Role="AREA" EntitySet="AREA" />
+            <End Role="CERTIFICADO" EntitySet="CERTIFICADO" />
+          </AssociationSet>
           <AssociationSet Name="COMPETENCIA_AREA_FK" Association="Self.COMPETENCIA_AREA_FK">
             <End Role="AREA" EntitySet="AREA" />
             <End Role="COMPETENCIA" EntitySet="COMPETENCIA" />
@@ -792,6 +1076,10 @@
             <End Role="INSIGNIA" EntitySet="INSIGNIA" />
             <End Role="CERTIFICADO" EntitySet="CERTIFICADO" />
           </AssociationSet>
+          <AssociationSet Name="CERTIFICADO_USUARIO_FK" Association="Self.CERTIFICADO_USUARIO_FK">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="CERTIFICADO" EntitySet="CERTIFICADO" />
+          </AssociationSet>
           <AssociationSet Name="COMPETENCIA_NIVEL_FK" Association="Self.COMPETENCIA_NIVEL_FK">
             <End Role="NIVEL" EntitySet="NIVEL" />
             <End Role="COMPETENCIA" EntitySet="COMPETENCIA" />
@@ -804,21 +1092,41 @@
             <End Role="COMPETENCIA" EntitySet="COMPETENCIA" />
             <End Role="INSIGNIA" EntitySet="INSIGNIA" />
           </AssociationSet>
-          <AssociationSet Name="EVENTO_INSIGNIA_FK" Association="Self.EVENTO_INSIGNIA_FK">
+          <AssociationSet Name="CONTROL_INSIGNIA_INSIGNIA_FK" Association="Self.CONTROL_INSIGNIA_INSIGNIA_FK">
             <End Role="INSIGNIA" EntitySet="INSIGNIA" />
-            <End Role="EVENTO" EntitySet="EVENTO" />
+            <End Role="CONTROL_INSIGNIA" EntitySet="CONTROL_INSIGNIA" />
           </AssociationSet>
-          <AssociationSet Name="EVENTO_USUARIO_FK" Association="Self.EVENTO_USUARIO_FK">
+          <AssociationSet Name="CONTROL_INSIGNIA_USUARIO_FK" Association="Self.CONTROL_INSIGNIA_USUARIO_FK">
             <End Role="USUARIO" EntitySet="USUARIO" />
-            <End Role="EVENTO" EntitySet="EVENTO" />
+            <End Role="CONTROL_INSIGNIA" EntitySet="CONTROL_INSIGNIA" />
           </AssociationSet>
           <AssociationSet Name="INSIGNIA_EVENTO_FK" Association="Self.INSIGNIA_EVENTO_FK">
             <End Role="EVENTO" EntitySet="EVENTO" />
             <End Role="INSIGNIA" EntitySet="INSIGNIA" />
           </AssociationSet>
+          <AssociationSet Name="OTORGAR_INSIGNIA_P2_EVENTO_FK" Association="Self.OTORGAR_INSIGNIA_P2_EVENTO_FK">
+            <End Role="EVENTO" EntitySet="EVENTO" />
+            <End Role="OTORGAR_INSIGNIA_P2" EntitySet="OTORGAR_INSIGNIA_P2" />
+          </AssociationSet>
+          <AssociationSet Name="OTORGAR_INSIGNIA_P3_EVENTO_FK" Association="Self.OTORGAR_INSIGNIA_P3_EVENTO_FK">
+            <End Role="EVENTO" EntitySet="EVENTO" />
+            <End Role="OTORGAR_INSIGNIA_P3" EntitySet="OTORGAR_INSIGNIA_P3" />
+          </AssociationSet>
           <AssociationSet Name="INSIGNIA_NIVEL_FK" Association="Self.INSIGNIA_NIVEL_FK">
             <End Role="NIVEL" EntitySet="NIVEL" />
             <End Role="INSIGNIA" EntitySet="INSIGNIA" />
+          </AssociationSet>
+          <AssociationSet Name="INSIGNIA_TIPO_PERFIL_FK" Association="Self.INSIGNIA_TIPO_PERFIL_FK">
+            <End Role="TIPO_PERFIL" EntitySet="TIPO_PERFIL" />
+            <End Role="INSIGNIA" EntitySet="INSIGNIA" />
+          </AssociationSet>
+          <AssociationSet Name="OTORGAR_INSIGNIA_P2_USUARIO_FK" Association="Self.OTORGAR_INSIGNIA_P2_USUARIO_FK">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="OTORGAR_INSIGNIA_P2" EntitySet="OTORGAR_INSIGNIA_P2" />
+          </AssociationSet>
+          <AssociationSet Name="OTORGAR_INSIGNIA_P3_USUARIO_FK" Association="Self.OTORGAR_INSIGNIA_P3_USUARIO_FK">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="OTORGAR_INSIGNIA_P3" EntitySet="OTORGAR_INSIGNIA_P3" />
           </AssociationSet>
           <AssociationSet Name="USUARIO_TIPO_PERFIL_FK" Association="Self.USUARIO_TIPO_PERFIL_FK">
             <End Role="TIPO_PERFIL" EntitySet="TIPO_PERFIL" />
@@ -830,7 +1138,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="EmPoderTICModelStoreContainer" CdmEntityContainer="EmPoderTICConexionFast">
+        <EntityContainerMapping StorageEntityContainer="EmPoderTICModelStoreContainer" CdmEntityContainer="EmPoderTICConectadoEntities">
           <EntitySetMapping Name="AREA">
             <EntityTypeMapping TypeName="EmPoderTICModel.AREA">
               <MappingFragment StoreEntitySet="AREA">
@@ -843,6 +1151,7 @@
             <EntityTypeMapping TypeName="EmPoderTICModel.ASISTENCIA">
               <MappingFragment StoreEntitySet="ASISTENCIA">
                 <ScalarProperty Name="registro_asistencia_evento" ColumnName="registro_asistencia_evento" />
+                <ScalarProperty Name="fecha_registro_asistencia" ColumnName="fecha_registro_asistencia" />
                 <ScalarProperty Name="USUARIO_rut" ColumnName="USUARIO_rut" />
                 <ScalarProperty Name="EVENTO_evento_id" ColumnName="EVENTO_evento_id" />
               </MappingFragment>
@@ -867,6 +1176,8 @@
                 <ScalarProperty Name="fecha_otorgamiento" ColumnName="fecha_otorgamiento" />
                 <ScalarProperty Name="CERTIFICACION_certificacion_id" ColumnName="CERTIFICACION_certificacion_id" />
                 <ScalarProperty Name="INSIGNIA_insignia_id" ColumnName="INSIGNIA_insignia_id" />
+                <ScalarProperty Name="USUARIO_rut" ColumnName="USUARIO_rut" />
+                <ScalarProperty Name="AREA_area_id" ColumnName="AREA_area_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -877,6 +1188,16 @@
                 <ScalarProperty Name="competencia_conocimiento" ColumnName="competencia_conocimiento" />
                 <ScalarProperty Name="AREA_area_id" ColumnName="AREA_area_id" />
                 <ScalarProperty Name="NIVEL_nivel_id" ColumnName="NIVEL_nivel_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CONTROL_INSIGNIA">
+            <EntityTypeMapping TypeName="EmPoderTICModel.CONTROL_INSIGNIA">
+              <MappingFragment StoreEntitySet="CONTROL_INSIGNIA">
+                <ScalarProperty Name="insignia_bloqueada" ColumnName="insignia_bloqueada" />
+                <ScalarProperty Name="USUARIO_rut" ColumnName="USUARIO_rut" />
+                <ScalarProperty Name="fecha_otorgamiento" ColumnName="fecha_otorgamiento" />
+                <ScalarProperty Name="INSIGNIA_insignia_id" ColumnName="INSIGNIA_insignia_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -892,8 +1213,6 @@
                 <ScalarProperty Name="lugar_evento" ColumnName="lugar_evento" />
                 <ScalarProperty Name="AREA_area_id" ColumnName="AREA_area_id" />
                 <ScalarProperty Name="COMPETENCIA_competencia_id" ColumnName="COMPETENCIA_competencia_id" />
-                <ScalarProperty Name="USUARIO_rut" ColumnName="USUARIO_rut" />
-                <ScalarProperty Name="INSIGNIA_insignia_id" ColumnName="INSIGNIA_insignia_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -905,12 +1224,11 @@
                 <ScalarProperty Name="descripción" ColumnName="descripción" />
                 <ScalarProperty Name="objetivo" ColumnName="objetivo" />
                 <ScalarProperty Name="imagen_url" ColumnName="imagen_url" />
-                <ScalarProperty Name="fecha_otorgamiento" ColumnName="fecha_otorgamiento" />
-                <ScalarProperty Name="insignia_bloqueada" ColumnName="insignia_bloqueada" />
                 <ScalarProperty Name="NIVEL_nivel_id" ColumnName="NIVEL_nivel_id" />
                 <ScalarProperty Name="AREA_area_id" ColumnName="AREA_area_id" />
                 <ScalarProperty Name="COMPETENCIA_competencia_id" ColumnName="COMPETENCIA_competencia_id" />
                 <ScalarProperty Name="CERTIFICACION_certificacion_id" ColumnName="CERTIFICACION_certificacion_id" />
+                <ScalarProperty Name="TIPO_PERFIL_tipo_perfil_id" ColumnName="TIPO_PERFIL_tipo_perfil_id" />
                 <ScalarProperty Name="EVENTO_evento_id" ColumnName="EVENTO_evento_id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -920,6 +1238,28 @@
               <MappingFragment StoreEntitySet="NIVEL">
                 <ScalarProperty Name="nivel_id" ColumnName="nivel_id" />
                 <ScalarProperty Name="categoría_nivel_insignia" ColumnName="categoría_nivel_insignia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OTORGAR_INSIGNIA_P2">
+            <EntityTypeMapping TypeName="EmPoderTICModel.OTORGAR_INSIGNIA_P2">
+              <MappingFragment StoreEntitySet="OTORGAR_INSIGNIA_P2">
+                <ScalarProperty Name="registro_insignia_evento" ColumnName="registro_insignia_evento" />
+                <ScalarProperty Name="contribucion_evento" ColumnName="contribucion_evento" />
+                <ScalarProperty Name="fecha_registro_otorgamiento" ColumnName="fecha_registro_otorgamiento" />
+                <ScalarProperty Name="USUARIO_rut" ColumnName="USUARIO_rut" />
+                <ScalarProperty Name="EVENTO_evento_id" ColumnName="EVENTO_evento_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OTORGAR_INSIGNIA_P3">
+            <EntityTypeMapping TypeName="EmPoderTICModel.OTORGAR_INSIGNIA_P3">
+              <MappingFragment StoreEntitySet="OTORGAR_INSIGNIA_P3">
+                <ScalarProperty Name="registro_insignia_evento" ColumnName="registro_insignia_evento" />
+                <ScalarProperty Name="contribucion_evento" ColumnName="contribucion_evento" />
+                <ScalarProperty Name="fecha_registro_otorgamiento" ColumnName="fecha_registro_otorgamiento" />
+                <ScalarProperty Name="USUARIO_rut" ColumnName="USUARIO_rut" />
+                <ScalarProperty Name="EVENTO_evento_id" ColumnName="EVENTO_evento_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -940,7 +1280,7 @@
                 <ScalarProperty Name="apellido_paterno" ColumnName="apellido_paterno" />
                 <ScalarProperty Name="apellido_materno" ColumnName="apellido_materno" />
                 <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
-                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
                 <ScalarProperty Name="TIPO_PERFIL_tipo_perfil_id" ColumnName="TIPO_PERFIL_tipo_perfil_id" />
               </MappingFragment>
             </EntityTypeMapping>

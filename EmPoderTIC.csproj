@@ -154,6 +154,7 @@
     <Content Include="Content\img\insignias\Insignia1-Estudiante.png" />
     <Content Include="Content\img\insignias\Insignia2-Estudiante.png" />
     <Content Include="Content\img\insignias\Insignia3-Estudiante.png" />
+    <Content Include="Content\img\insignias\Insignia_Perfil1_NoDisponible.png" />
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\slider_1.png" />
     <Content Include="Content\img\slider_2.png" />
@@ -182,16 +183,13 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AreaController.cs" />
     <Compile Include="Controllers\AsistenciaController.cs" />
-    <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CertificacionController.cs" />
-    <Compile Include="Controllers\CertificadoController.cs" />
     <Compile Include="Controllers\CompetenciaController.cs" />
-    <Compile Include="Controllers\EventoController.cs" />
-    <Compile Include="Controllers\InsigniaController.cs" />
-    <Compile Include="Controllers\InsigniasController.cs" />
     <Compile Include="Controllers\NivelController.cs" />
     <Compile Include="Controllers\TipoPerfilController.cs" />
-    <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Controllers\VistaPerfil1Controller.cs" />
+    <Compile Include="Controllers\VistaPerfil2Controller.cs" />
+    <Compile Include="Controllers\VistaPerfil3Controller.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -209,6 +207,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\COMPETENCIA.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CONTROL_INSIGNIA.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EVENTO.cs">
@@ -235,12 +236,19 @@
     <Compile Include="Models\NIVEL.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\OTORGAR_INSIGNIA_P2.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OTORGAR_INSIGNIA_P3.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TIPO_PERFIL.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\USUARIO.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\InsigniaDesbloqueoViewModel.cs" />
     <Compile Include="Models\ViewModels\LoginViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -256,28 +264,13 @@
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Insignia\Index.cshtml" />
     <Content Include="Views\Shared\_PartialMessage.cshtml" />
-    <Content Include="Views\Auth\Login.cshtml" />
-    <Content Include="Views\Insignia\Perfil.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\TipoPerfil\Create.cshtml" />
     <Content Include="Views\TipoPerfil\Delete.cshtml" />
     <Content Include="Views\TipoPerfil\Edit.cshtml" />
     <Content Include="Views\TipoPerfil\Index.cshtml" />
-    <Content Include="Views\Usuario\Create.cshtml" />
-    <Content Include="Views\Usuario\Delete.cshtml" />
-    <Content Include="Views\Usuario\Edit.cshtml" />
-    <Content Include="Views\Usuario\Index.cshtml" />
-    <Content Include="Views\Evento\Create.cshtml" />
-    <Content Include="Views\Evento\Delete.cshtml" />
-    <Content Include="Views\Evento\Edit.cshtml" />
-    <Content Include="Views\Evento\Index.cshtml" />
-    <Content Include="Views\Asistencia\Create.cshtml" />
-    <Content Include="Views\Asistencia\Delete.cshtml" />
-    <Content Include="Views\Asistencia\Edit.cshtml" />
-    <Content Include="Views\Asistencia\Index.cshtml" />
     <Content Include="Views\Area\Create.cshtml" />
     <Content Include="Views\Area\Delete.cshtml" />
     <Content Include="Views\Area\Edit.cshtml" />
@@ -286,10 +279,6 @@
     <Content Include="Views\Competencia\Delete.cshtml" />
     <Content Include="Views\Competencia\Edit.cshtml" />
     <Content Include="Views\Competencia\Index.cshtml" />
-    <Content Include="Views\Certificado\Create.cshtml" />
-    <Content Include="Views\Certificado\Delete.cshtml" />
-    <Content Include="Views\Certificado\Edit.cshtml" />
-    <Content Include="Views\Certificado\Index.cshtml" />
     <Content Include="Views\Certificacion\Create.cshtml" />
     <Content Include="Views\Certificacion\Delete.cshtml" />
     <Content Include="Views\Certificacion\Edit.cshtml" />
@@ -298,11 +287,15 @@
     <Content Include="Views\Nivel\Delete.cshtml" />
     <Content Include="Views\Nivel\Edit.cshtml" />
     <Content Include="Views\Nivel\Index.cshtml" />
-    <Content Include="Views\Insignias\Create.cshtml" />
-    <Content Include="Views\Insignias\Delete.cshtml" />
-    <Content Include="Views\Insignias\Edit.cshtml" />
-    <Content Include="Views\Insignias\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutGeneral.cshtml" />
+    <Content Include="Views\VistaPerfil1\Index.cshtml" />
+    <Content Include="Views\VistaPerfil1\Perfil.cshtml" />
+    <Content Include="Views\VistaPerfil2\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutPerfil2.cshtml" />
+    <Content Include="Views\VistaPerfil2\Perfil.cshtml" />
+    <Content Include="Views\VistaPerfil3\Index.cshtml" />
+    <Content Include="Views\VistaPerfil3\Perfil.cshtml" />
+    <Content Include="Views\Shared\_LayoutPerfil3.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

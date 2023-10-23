@@ -40,16 +40,16 @@ Estilos del menu
     z-index: 999;
 }
 
-.menu a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-}
+    .menu a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+    }
 
-.menu a:hover {
-    color: #d4d4d4;
-    text-decoration: none;
-}
+        .menu a:hover {
+            color: #d4d4d4;
+            text-decoration: none;
+        }
 
 /* Menú de navegación */
 .menu-list {
@@ -58,15 +58,15 @@ Estilos del menu
     gap: 20px;
 }
 
-.menu-list li:hover {
-    color: #3266a5;
-} 
+    .menu-list li:hover {
+        color: #3266a5;
+    }
 
-.menu-list li {
-    font-size: 16px;
-    transition: color 0.3s ease;
-    margin-right: 15px;
-}
+    .menu-list li {
+        font-size: 16px;
+        transition: color 0.3s ease;
+        margin-right: 15px;
+    }
 
 .btn-perfil {
     background: #3266a5;
@@ -79,13 +79,13 @@ Estilos del menu
     transform: scale(1.1);
 }
 
-.btn-perfil i {
-    margin-left: 5px;
-    font-size: 10px;
-    vertical-align: middle;
-    position: relative;
-    top: -2px;
-}
+    .btn-perfil i {
+        margin-left: 5px;
+        font-size: 10px;
+        vertical-align: middle;
+        position: relative;
+        top: -2px;
+    }
 
 /*========================================
 Estilos del contenido
@@ -102,19 +102,18 @@ Estilos del contenido
     margin-bottom: 20px;
 }
 
-/* Estilos para el título */
-#header h1 {
-    font-size: 20px;
-    color: var(--color-celeste);
-    font-weight: bold;
-    margin-top: 2%;
-}
+    /* Estilos para el título */
+    #header h1 {
+        font-size: 20px;
+        color: var(--color-celeste);
+        font-weight: bold;
+        margin-top: 2%;
+    }
 
 /*========================================
 Estilos del mini contenido para perfil
 ==========================================*/
 .mini-container-perfil {
-    
     background-color: #A65AA2;
     width: 100%;
     max-width: 1500px;
@@ -126,12 +125,10 @@ Estilos del mini contenido para perfil
     justify-content: space-between;
     align-items: center;
     margin-top: 10px;
-    
 }
 
 
 .mini-mini-container-perfil {
-    
     background-color: #ffffff;
     width: 100%;
     max-width: 1200px;
@@ -143,20 +140,19 @@ Estilos del mini contenido para perfil
     justify-content: space-between;
     align-items: center;
     margin-top: 10px;
-    
 }
 
 .perfil-titulos h2 {
     font-size: 20px;
-    text-align:justify;
-    color:#545454;
+    text-align: justify;
+    color: #545454;
     margin-bottom: 2px;
 }
 
 .perfil-titulos h3 {
     font-size: 18px;
-    text-align:justify;
-    color:#3266a5;
+    text-align: justify;
+    color: #3266a5;
     font-weight: bold;
     font-family: 'Poppins', sans-serif;
 }
@@ -166,13 +162,13 @@ Estilos del mini contenido para perfil
 }
 
 
-.perfil-datos p {
-    font-size: 20px;
-    text-align:right;
-    color:#3266a5;
-    font-weight: bold;
-    font-family: 'Poppins', sans-serif;
-}
+    .perfil-datos p {
+        font-size: 20px;
+        text-align: right;
+        color: #3266a5;
+        font-weight: bold;
+        font-family: 'Poppins', sans-serif;
+    }
 
 
 .mi-linea {
@@ -181,13 +177,12 @@ Estilos del mini contenido para perfil
     margin: auto;
     width: 100%;
     margin-bottom: 2px;
-  }  
+}
 
 /*========================================
 Estilos del mini contenido
 ==========================================*/
 .mini-container {
-    
     background-color: #9BB7DC;
     width: 100%;
     max-width: 1500px;
@@ -199,13 +194,12 @@ Estilos del mini contenido
     justify-content: space-between;
     align-items: center;
     margin-top: 10px;
-    
 }
 
-.mini-container h2 {
-    font-size: 20px;
-    font-weight: bold;
-}
+    .mini-container h2 {
+        font-size: 20px;
+        font-weight: bold;
+    }
 
 .fecha-historial {
     font-size: 18px;
@@ -216,13 +210,13 @@ Estilos del mini contenido
 .imagen-insignia {
     flex: 1;
     text-align: right; /* Alinea la imagen a la derecha */
-    margin-left: 20px; /* Agrega espacio entre la imagen y el contenido */   
+    margin-left: 20px; /* Agrega espacio entre la imagen y el contenido */
 }
 
 .fecha-historial {
     flex: 2;
     text-align: right; /* Alinea la imagen a la derecha */
-    margin-left: 20px; /* Agrega espacio entre la imagen y el contenido */   
+    margin-left: 20px; /* Agrega espacio entre la imagen y el contenido */
 }
 
 /* Estilos para la imagen de la insignia */
@@ -231,6 +225,7 @@ Estilos del mini contenido
     min-width: 150px; /* Establece un valor mínimo de ancho para la imagen */
     height: auto;
 }
+
 
 /* Estilos para la columna del contenido de la insignia */
 .contenido-insignia {
@@ -245,7 +240,7 @@ Estilos para insignias dentro del contenido
 .insignias {
     display: flex;
     gap: 100px;
-    justify-content:flex-start;
+    justify-content: flex-start;
     margin-top: 40px;
 }
 
@@ -254,32 +249,32 @@ Estilos para insignias dentro del contenido
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items:flex-start;
-    text-align:justify;
+    align-items: flex-start;
+    text-align: justify;
     width: 40%;
 }
 
-/* Estilos para las insignias */
-.columna-insignia .img {
-    max-width: 200px;
-    height: auto;
-    margin-top: 4%;
-}
+    /* Estilos para las insignias */
+    .columna-insignia .img {
+        max-width: 200px;
+        height: auto;
+        margin-top: 4%;
+    }
 
 /* Estilos para el título de la insignia */
 .insignias-titulos h3 {
     font-size: 18px;
-    text-align:justify;
+    text-align: justify;
 }
 
 .historial-titulos h3 {
     font-size: 17px;
-    text-align:justify;
+    text-align: justify;
 }
 
 .insignias-titulos p {
     font-size: 15px;
-    text-align:justify;
+    text-align: justify;
     max-width: 80%;
 }
 
@@ -298,12 +293,12 @@ Estilos para insignias dentro del contenido
     margin-top: 5px;
 }
 
-/* Estilos para el icono de check */
-.check-circulo i {
-    color: #fff;
-    font-size: 18px;
-    z-index: 1;
-}
+    /* Estilos para el icono de check */
+    .check-circulo i {
+        color: #fff;
+        font-size: 18px;
+        z-index: 1;
+    }
 
 /* Estilos para las imágenes de las insignias */
 .insignias img {
@@ -341,10 +336,10 @@ Estilos para insignias dentro del contenido
     font-size: 15px;
 }
 
-/* Estilos para el botón cuando está en estado de "hover" (cuando el mouse está encima) */
-.btn:hover {
-    background-color: #3266a5; /* Cambia el color de fondo al pasar el cursor sobre el botón */
-}
+    /* Estilos para el botón cuando está en estado de "hover" (cuando el mouse está encima) */
+    .btn:hover {
+        background-color: #3266a5; /* Cambia el color de fondo al pasar el cursor sobre el botón */
+    }
 
 /*========================================
 Estilos del botón compartir + mini menú
@@ -357,9 +352,10 @@ Estilos del botón compartir + mini menú
     justify-items: center;
     position: relative; /* Agregar posición relativa para que el menú compartido sea relativo a este botón */
 }
-.boton-compartir i {
-    color: #6E48B9;
-}
+
+    .boton-compartir i {
+        color: #6E48B9;
+    }
 
 .compartir {
     max-width: 10%;
@@ -376,11 +372,11 @@ Estilos del botón compartir + mini menú
     transition: background-color 0.3s ease, transform 0.2s ease; /* Agrega una transición suave al fondo del botón */
 }
 
-.compartir i {
-    color: #6E48B9;
-    margin-left: 5px;
-    transition: color 0.3s ease; /* Agrega una transición suave al color del icono */
-}
+    .compartir i {
+        color: #6E48B9;
+        margin-left: 5px;
+        transition: color 0.3s ease; /* Agrega una transición suave al color del icono */
+    }
 
 
 /* Estilos para el menú compartir cuando está oculto */
@@ -401,27 +397,27 @@ Estilos del botón compartir + mini menú
     z-index: 2; /* Ajusta el valor de z-index para que sea mayor que el del mini container */
 }
 
-/* Estilos para las opciones del menú compartido */
-.menu-compartir a {
-    display: block;
-    padding: 5px 0; /* Agregar espacio entre las opciones */
-    text-decoration: none;
-    color: #ffffff;
-    transition: background-color 0.3s, color 0.3s; /* Transiciones suaves */
-}
+    /* Estilos para las opciones del menú compartido */
+    .menu-compartir a {
+        display: block;
+        padding: 5px 0; /* Agregar espacio entre las opciones */
+        text-decoration: none;
+        color: #ffffff;
+        transition: background-color 0.3s, color 0.3s; /* Transiciones suaves */
+    }
 
-/* Estilos para las opciones del menú compartido cuando se les pasa el cursor por encima */
-.menu-compartir a:hover {
-    color: #dbdbdb;
-}
+        /* Estilos para las opciones del menú compartido cuando se les pasa el cursor por encima */
+        .menu-compartir a:hover {
+            color: #dbdbdb;
+        }
 
-/* Estilos para el menú compartir cuando está visible */
-.menu-compartir.visible {
-    display: block;
-    opacity: 1; /* Muestra el menú con opacidad completa */
-    min-height: 60px; /* Aumentar la altura */
-    width: 50px; /* Ancho automático para ajustarse al contenido */
-}
+    /* Estilos para el menú compartir cuando está visible */
+    .menu-compartir.visible {
+        display: block;
+        opacity: 1; /* Muestra el menú con opacidad completa */
+        min-height: 60px; /* Aumentar la altura */
+        width: 50px; /* Ancho automático para ajustarse al contenido */
+    }
 
 
 /* Estilo del botón y el icono cuando se pasa el cursor sobre el botón */
@@ -430,9 +426,9 @@ Estilos del botón compartir + mini menú
     transform: scale(1.1); /* Escala ligeramente el botón */
 }
 
-.compartir:hover i {
-    color: #fff; /* Cambia el color del icono al pasar el cursor sobre el botón */
-}
+    .compartir:hover i {
+        color: #fff; /* Cambia el color del icono al pasar el cursor sobre el botón */
+    }
 
 
 
@@ -449,34 +445,34 @@ Filtro
     margin-top: 2%;
 }
 
-.filtro-area-interes label {
-    font-weight: bold;
-    margin-right: 10px; /* Espacio entre el texto y el cuadro de selección */
-    color: #000; /* Cambia el color del texto a negro */
-}
+    .filtro-area-interes label {
+        font-weight: bold;
+        margin-right: 10px; /* Espacio entre el texto y el cuadro de selección */
+        color: #000; /* Cambia el color del texto a negro */
+    }
 
-.filtro-area-interes select {
-    width: 15%;
-    padding: 5px;
-    font-size: 15px;
-    border: 1px solid #000; /* Agrega un borde negro */
-    border-radius: 5px;
-    color: #000; /* Cambia el color del texto a negro */
-    background-color: #fff; /* Cambia el color de fondo a blanco */
-    transition: border-color 0.3s, box-shadow 0.3s; /* Agrega una animación de transición */
-}
+    .filtro-area-interes select {
+        width: 15%;
+        padding: 5px;
+        font-size: 15px;
+        border: 1px solid #000; /* Agrega un borde negro */
+        border-radius: 5px;
+        color: #000; /* Cambia el color del texto a negro */
+        background-color: #fff; /* Cambia el color de fondo a blanco */
+        transition: border-color 0.3s, box-shadow 0.3s; /* Agrega una animación de transición */
+    }
 
-/* Estilos para el cuadro de selección cuando está enfocado */
-.filtro-area-interes select:focus {
-    border-color: #3770B8; /* Cambia el borde a color celeste cuando está enfocado */
-    box-shadow: 0 0 5px rgba(55, 112, 184, 0.5); /* Agrega una sombra sutil cuando está enfocado */
-    outline: none; /* Quita el contorno predeterminado del navegador */
-}
+        /* Estilos para el cuadro de selección cuando está enfocado */
+        .filtro-area-interes select:focus {
+            border-color: #3770B8; /* Cambia el borde a color celeste cuando está enfocado */
+            box-shadow: 0 0 5px rgba(55, 112, 184, 0.5); /* Agrega una sombra sutil cuando está enfocado */
+            outline: none; /* Quita el contorno predeterminado del navegador */
+        }
 
-/* Estilos para las opciones del cuadro de selección */
-.filtro-area-interes select option {
-    color: #000; /* Cambia el color del texto de las opciones a negro */
-}
+        /* Estilos para las opciones del cuadro de selección */
+        .filtro-area-interes select option {
+            color: #000; /* Cambia el color del texto de las opciones a negro */
+        }
 
 
 /* Estilos para las tres columnas en dispositivos grandes */
@@ -492,7 +488,7 @@ Filtro
         padding-bottom: 20px;
     }
 
-  
+
     .menu-list {
         flex-direction: column;
         align-items: flex-start;
@@ -506,13 +502,12 @@ Filtro
         flex-direction: column;
         align-items: center;
         flex-wrap: wrap;
-
     }
 
-    .insignias img {
-        margin-top: 10%;
-        max-width: 100px;
-    }
+        .insignias img {
+            margin-top: 10%;
+            max-width: 100px;
+        }
 
     .mini-container {
         overflow: auto;
@@ -529,10 +524,10 @@ Filtro
         align-items: center;
         left: 35%;
     }
-    
-    .check-circulo i {
-        font-size: 12px;
-    }
+
+        .check-circulo i {
+            font-size: 12px;
+        }
 
 
     .filtro-area-interes {
@@ -544,14 +539,14 @@ Filtro
         margin-top: 5%;
     }
 
-    .filtro-area-interes select {
-        width: 60%;
-        margin-top: 2%;
-        margin-right: 5%;
-    }
+        .filtro-area-interes select {
+            width: 60%;
+            margin-top: 2%;
+            margin-right: 5%;
+        }
 
-     /* Estilos adicionales para dispositivos móviles */
-     .mini-container {
+    /* Estilos adicionales para dispositivos móviles */
+    .mini-container {
         flex-direction: column;
     }
 
@@ -565,22 +560,24 @@ Filtro
 
     /* Estilos para la columna de la imagen de la insignia */
     .imagen-insignia {
-        text-align: center; /* Alinea la imagen al centro */ 
+        text-align: center; /* Alinea la imagen al centro */
     }
 
-    /* Estilos para la imagen de la insignia */
-    .imagen-insignia img {
-        max-width: 80%;
-        min-width: 150px;
-        height: auto;
-        margin-top: 5%;
-    }
+        /* Estilos para la imagen de la insignia */
+        .imagen-insignia img {
+            max-width: 80%;
+            min-width: 150px;
+            height: auto;
+            margin-top: 5%;
+        }
+
+  
 
     .boton-compartir {
         text-align: center; /* Alinea el botón y el menú al centro */
     }
 
     .compartir {
-       margin-left: 20%;
+        margin-left: 20%;
     }
 }

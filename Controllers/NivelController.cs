@@ -13,7 +13,7 @@ namespace EmPoderTIC.Controllers
 {
     public class NivelController : Controller
     {
-        private EmPoderTICConexionFast db = new EmPoderTICConexionFast();
+        private EmPoderTICConectadoEntities db = new EmPoderTICConectadoEntities();
 
         // GET: Nivel
         public async Task<ActionResult> Index()

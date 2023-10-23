@@ -18,7 +18,9 @@ namespace EmPoderTIC.Models
         public EVENTO()
         {
             this.ASISTENCIA = new HashSet<ASISTENCIA>();
-            this.INSIGNIA1 = new HashSet<INSIGNIA>();
+            this.INSIGNIA = new HashSet<INSIGNIA>();
+            this.OTORGAR_INSIGNIA_P2 = new HashSet<OTORGAR_INSIGNIA_P2>();
+            this.OTORGAR_INSIGNIA_P3 = new HashSet<OTORGAR_INSIGNIA_P3>();
         }
     
         public int evento_id { get; set; }
@@ -30,16 +32,16 @@ namespace EmPoderTIC.Models
         public string lugar_evento { get; set; }
         public int AREA_area_id { get; set; }
         public int COMPETENCIA_competencia_id { get; set; }
-        public string USUARIO_rut { get; set; }
-        public Nullable<int> INSIGNIA_insignia_id { get; set; }
     
         public virtual AREA AREA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ASISTENCIA> ASISTENCIA { get; set; }
         public virtual COMPETENCIA COMPETENCIA { get; set; }
-        public virtual INSIGNIA INSIGNIA { get; set; }
-        public virtual USUARIO USUARIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<INSIGNIA> INSIGNIA1 { get; set; }
+        public virtual ICollection<INSIGNIA> INSIGNIA { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OTORGAR_INSIGNIA_P2> OTORGAR_INSIGNIA_P2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OTORGAR_INSIGNIA_P3> OTORGAR_INSIGNIA_P3 { get; set; }
     }
 }
