@@ -1,7 +1,8 @@
-﻿@model IEnumerable<EmPoderTIC.Models.TIPO_PERFIL>
+﻿@model IEnumerable<EmPoderTIC.Models.CERTIFICADO>
 
 @{
     ViewBag.Title = "Index";
+
 }
 
 @if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Administrador")
@@ -25,13 +26,20 @@ else
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Gestión de <b>Tipo Perfil</b></h2>
+                            <h2>Gestión de <b>Certificados</b></h2>
                         </div>
                         <div class="col-sm-6">
                             <a href="@Url.Action("Create")" class="btn btn-success">
                                 <i class="material-icons">&#xE147;</i>
-                                Crear Nuevo Tipo Perfil
+                                Crear Nuevo Certificado
                             </a>
+
+                            <a href="@Url.Action("Index", "UsuarioCertificado")" class="btn btn-success">
+                                <i class="material-icons">check</i>
+                                Gestionar Certificado Para Usuarios
+                            </a>
+
+
 
 
                         </div>
@@ -41,8 +49,11 @@ else
                     <thead>
                         <tr>
                             <th></th>
-                            <th> Tipo de Perfil</th>
-                            <th> Dominio Para Tipo de Perfil</th>
+                            <th> Nombre </th>
+                            <th> Descripción </th>
+                            <th> Area de Conocimiento </th>
+                            <th> Certificación </th>
+                            <th> Insignia </th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -51,18 +62,26 @@ else
                         {
                             <tr>
                                 <td></td>
-                                <td>@Html.DisplayFor(modelItem => item.nombre_tipo_perfil)</td>
-                                <td>@Html.DisplayFor(modelItem => item.dominio_correo) </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.descripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AREA.area_conocimiento)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CERTIFICACION.certificacion_id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.INSIGNIA.nombre)
+                                </td>
                                 <td>
                                     <!-- Enlace "Edit" dentro de un botón -->
-                                    <a href="#" class="edit" data-url="@Url.Action("Edit", new { id = item.tipo_perfil_id })">
+                                    <a href="#" class="edit" data-url="@Url.Action("Edit", new { id = item.certificado_id })">
                                         <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
                                         <span style="display: none;">Edit</span>
-                                    </a>
-
-
-                                    <a href="#" class="delete" id="delete" data-toggle="modal" data-url="@Url.Action("Delete", new { id = item.tipo_perfil_id })">
-                                        <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
                                     </a>
                                 </td>
                             </tr>
@@ -104,12 +123,13 @@ else
     </script>
 
 }
+
 else
 {
-<link rel="stylesheet" href="~/Content/css/accesodenegado.css">
-<div id="header">
-    <h1> Acceso denegado. Esta vista solo está disponible para Administrador</h1>
-    <br />
-    <a href="@Url.Action("Login", "Account")" class="btn-acceso">Iniciar Sesión</a>
-</div>
+    <link rel="stylesheet" href="~/Content/css/accesodenegado.css">
+    <div id="header">
+        <h1> Acceso denegado. Esta vista solo está disponible para Administrador</h1>
+        <br />
+        <a href="@Url.Action("Login", "Account")" class="btn-acceso">Iniciar Sesión</a>
+    </div>
 }

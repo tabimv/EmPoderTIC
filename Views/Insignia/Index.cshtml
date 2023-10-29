@@ -1,9 +1,10 @@
-﻿@model IEnumerable<EmPoderTIC.Models.AREA>
+﻿@model IEnumerable<EmPoderTIC.Models.INSIGNIA>
 
 @{
     ViewBag.Title = "Index";
 
 }
+
 
 @if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Administrador")
 {
@@ -26,21 +27,13 @@ else
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Gestión de <b>Áreas de Conocimiento</b></h2>
+                            <h2>Gestión de <b>Insignias</b></h2>
                         </div>
                         <div class="col-sm-6">
                             <a href="@Url.Action("Create")" class="btn btn-success">
                                 <i class="material-icons">&#xE147;</i>
-                                Crear Nueva Área de Conocimiento
+                                Crear Nueva Insignia
                             </a>
-
-                            <a href="@Url.Action("Index", "Competencia")" class="btn btn-success">
-                                <i class="material-icons">check</i>
-                                Gestionar Competencias de Conocimiento
-                            </a>
-
-
-
 
                         </div>
                     </div>
@@ -49,7 +42,16 @@ else
                     <thead>
                         <tr>
                             <th></th>
-                            <th> Área de Conocimiento</th>
+                            <th> Nombre </th>
+                            <th> Descripción</th>
+                            <th> Objetivo </th>
+                            <th> URL de Isignia </th>
+                            <th> Area de Conocimiento </th>
+                            <th> Certificación </th>
+                            <th> Competencia </th>
+                            <th> Evento </th>
+                            <th> Nivel </th>
+                            <th> Tipo de Perfil </th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -58,10 +60,39 @@ else
                         {
                             <tr>
                                 <td></td>
-                                <td>@Html.DisplayFor(modelItem => item.area_conocimiento)</td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.descripción)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.objetivo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.imagen_url)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AREA.area_conocimiento)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CERTIFICACION.certificacion_id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.COMPETENCIA.competencia_conocimiento)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EVENTO.nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NIVEL.categoría_nivel_insignia)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TIPO_PERFIL.nombre_tipo_perfil)
+                                </td>
                                 <td>
                                     <!-- Enlace "Edit" dentro de un botón -->
-                                    <a href="#" class="edit" data-url="@Url.Action("Edit", new { id = item.area_id })">
+                                    <a href="#" class="edit" data-url="@Url.Action("Edit", new { id = item.insignia_id })">
                                         <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
                                         <span style="display: none;">Edit</span>
                                     </a>
@@ -115,3 +146,6 @@ else
         <a href="@Url.Action("Login", "Account")" class="btn-acceso">Iniciar Sesión</a>
     </div>
 }
+
+
+

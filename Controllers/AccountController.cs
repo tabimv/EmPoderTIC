@@ -14,7 +14,7 @@ namespace EmPoderTIC.Controllers
     public class AccountController : Controller
     {
         // GET: Account
-        private EmPoderTICConectadoEntities db = new EmPoderTICConectadoEntities(); // Tu contexto de base de datos
+        private TICEntities db = new TICEntities();
 
         [HttpGet]
         [AllowAnonymous]

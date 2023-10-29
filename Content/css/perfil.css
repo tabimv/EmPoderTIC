@@ -432,6 +432,83 @@ Estilos del botón compartir + mini menú
 
 
 
+
+
+/* Estilo del contenedor del botón y las opciones */
+.opciones-container {
+    position: relative; /* Establece la posición relativa para poder posicionar las opciones */
+    display: inline-block; /* Permite que el contenedor se ajuste al contenido */
+    border-radius: 5px;
+    margin-top: 10%;
+    justify-items: center;
+}
+
+/* Estilo del botón */
+.opciones-btn {
+    background-color: #6385D6;
+    color: #fff;
+    padding: 10px 15px;
+    cursor: pointer;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    border: 1px solid #000;
+    border-radius: 5px;
+    max-width: 10%;
+    justify-items: center;
+    position: relative;
+    padding: 5px 15px;
+}
+
+    .opciones-btn i {
+        color: #6E48B9;
+        margin-left: -5px;
+    }
+
+    .opciones-btn:hover {
+        background-color: #3266A5;
+        transform: scale(1.1);
+    }
+
+    .opciones-btn:hover i {
+        color: #fff;
+    }
+
+/* Estilo del menú de opciones */
+.menu-opciones {
+    position: absolute;
+    top: 100%; /* Posiciona el menú debajo del botón */
+    right: 0;
+    color: #fff;
+    background-color: #fff;
+    border: 1px solid #000;
+    padding: 10px;
+    display: none; /* Inicialmente oculto */
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    min-width: 150px;
+    padding: 10px;
+    text-align: center; /* Centrar el texto horizontalmente */
+    background-color: #3266a5;
+    z-index: 2; /* Ajusta el valor de z-index para que sea mayor que el del mini container */
+}
+
+    /* Estilo de los enlaces en el menú de opciones */
+    .menu-opciones a {
+        display: inline-block;
+        white-space: nowrap; /* Evita los saltos de línea */
+        color: #fff;
+        text-decoration: none;
+        margin-bottom: 5px;
+        padding: 5px 0; /* Agregar espacio entre las opciones */
+        transition: background-color 0.3s, color 0.3s; /* Transiciones suaves */
+    }
+
+        /* Estilo de los enlaces en el menú de opciones al pasar el ratón por encima */
+        .menu-opciones a:hover {
+            color: #dbdbdb;
+            text-decoration: underline;
+        }
+
 /*========================================
 Filtro
 ==========================================*/

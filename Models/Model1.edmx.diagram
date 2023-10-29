@@ -4,44 +4,46 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="89427d145261486985e7fe0358f8a930" Name="Diagram1">
-        <EntityTypeShape EntityType="EmPoderTICModel.AREA" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmPoderTICModel.ASISTENCIA" Width="1.5" PointX="10.5" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmPoderTICModel.CERTIFICACION" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmPoderTICModel.CERTIFICADO" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmPoderTICModel.COMPETENCIA" Width="1.5" PointX="6" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmPoderTICModel.CONTROL_INSIGNIA" Width="1.5" PointX="15.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmPoderTICModel.EVENTO" Width="1.5" PointX="8.25" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmPoderTICModel.INSIGNIA" Width="1.5" PointX="13.5" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmPoderTICModel.NIVEL" Width="1.5" PointX="1.5" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmPoderTICModel.OTORGAR_INSIGNIA_P2" Width="1.5" PointX="10.5" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmPoderTICModel.OTORGAR_INSIGNIA_P3" Width="1.5" PointX="10.5" PointY="12.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmPoderTICModel.TIPO_PERFIL" Width="1.5" PointX="11.25" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmPoderTICModel.USUARIO" Width="1.5" PointX="0.75" PointY="13.125" IsExpanded="true" />
-        <AssociationConnector Association="EmPoderTICModel.CERTIFICADO_AREA_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="EmPoderTICModel.COMPETENCIA_AREA_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="EmPoderTICModel.EVENTO_AREA_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="EmPoderTICModel.INSIGNIA_AREA_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="EmPoderTICModel.ASISTENCIA_EVENTO_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="EmPoderTICModel.ASISTENCIA_USUARIO_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="EmPoderTICModel.CERTIFICACION_NIVEL_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="EmPoderTICModel.CERTIFICADO_CERTIFICACION_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="EmPoderTICModel.INSIGNIA_CERTIFICACION_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="EmPoderTICModel.CERTIFICADO_INSIGNIA_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="EmPoderTICModel.CERTIFICADO_USUARIO_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="EmPoderTICModel.COMPETENCIA_NIVEL_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="EmPoderTICModel.EVENTO_COMPETENCIA_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="EmPoderTICModel.INSIGNIA_COMPETENCIA_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="EmPoderTICModel.CONTROL_INSIGNIA_INSIGNIA_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="EmPoderTICModel.CONTROL_INSIGNIA_USUARIO_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="EmPoderTICModel.INSIGNIA_EVENTO_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="EmPoderTICModel.OTORGAR_INSIGNIA_P2_EVENTO_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="EmPoderTICModel.OTORGAR_INSIGNIA_P3_EVENTO_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="EmPoderTICModel.INSIGNIA_NIVEL_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="EmPoderTICModel.INSIGNIA_TIPO_PERFIL_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="EmPoderTICModel.OTORGAR_INSIGNIA_P2_USUARIO_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="EmPoderTICModel.OTORGAR_INSIGNIA_P3_USUARIO_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="EmPoderTICModel.USUARIO_TIPO_PERFIL_FK" ManuallyRouted="false" />
+      <Diagram DiagramId="c6271e5f3cf7471e9b5b672ca402e41f" Name="Diagram1">
+        <EntityTypeShape EntityType="TICModel.AREA" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TICModel.ASISTENCIA" Width="1.5" PointX="13.5" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TICModel.CERTIFICACION" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="TICModel.CERTIFICADO" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="TICModel.COMPETENCIA" Width="1.5" PointX="6" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TICModel.CONTROL_INSIGNIA" Width="1.5" PointX="18.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TICModel.EVENTO" Width="1.5" PointX="11.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TICModel.INSIGNIA" Width="1.5" PointX="16.5" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TICModel.NIVEL" Width="1.5" PointX="1.5" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TICModel.OTORGAR_INSIGNIA_P2" Width="1.5" PointX="13.5" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TICModel.OTORGAR_INSIGNIA_P3" Width="1.5" PointX="13.5" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TICModel.TIPO_PERFIL" Width="1.5" PointX="14.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TICModel.USUARIO" Width="1.5" PointX="6" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TICModel.USUARIO_CERTIFICADO" Width="1.5" PointX="8.25" PointY="9.375" IsExpanded="true" />
+        <AssociationConnector Association="TICModel.CERTIFICADO_AREA_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="TICModel.COMPETENCIA_AREA_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="TICModel.EVENTO_AREA_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="TICModel.INSIGNIA_AREA_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="TICModel.ASISTENCIA_EVENTO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="TICModel.ASISTENCIA_USUARIO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="TICModel.CERTIFICACION_NIVEL_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="TICModel.CERTIFICADO_CERTIFICACION_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="TICModel.INSIGNIA_CERTIFICACION_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="TICModel.CERTIFICADO_INSIGNIA_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="TICModel.USUARIO_CERTIFICADO_CERTIFICADO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="TICModel.COMPETENCIA_NIVEL_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="TICModel.EVENTO_COMPETENCIA_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="TICModel.INSIGNIA_COMPETENCIA_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="TICModel.CONTROL_INSIGNIA_INSIGNIA_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="TICModel.CONTROL_INSIGNIA_USUARIO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="TICModel.INSIGNIA_EVENTO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="TICModel.OTORGAR_INSIGNIA_P2_EVENTO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="TICModel.OTORGAR_INSIGNIA_P3_EVENTO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="TICModel.INSIGNIA_NIVEL_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="TICModel.INSIGNIA_TIPO_PERFIL_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="TICModel.OTORGAR_INSIGNIA_P2_USUARIO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="TICModel.OTORGAR_INSIGNIA_P3_USUARIO_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="TICModel.USUARIO_TIPO_PERFIL_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="TICModel.USUARIO_CERTIFICADO_USUARIO_FK" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

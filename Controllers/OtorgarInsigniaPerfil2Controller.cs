@@ -11,33 +11,33 @@ using EmPoderTIC.Models;
 
 namespace EmPoderTIC.Controllers
 {
-    public class AsistenciaController : Controller
+    public class OtorgarInsigniaPerfil2Controller : Controller
     {
         private TICEntities db = new TICEntities();
 
-        // GET: Asistencia
+        // GET: OtorgarInsigniaPerfil2
         public async Task<ActionResult> Index()
         {
-            var aSISTENCIA = db.ASISTENCIA.Include(a => a.EVENTO).Include(a => a.USUARIO);
-            return View(await aSISTENCIA.ToListAsync());
+            var oTORGAR_INSIGNIA_P2 = db.OTORGAR_INSIGNIA_P2.Include(o => o.EVENTO).Include(o => o.USUARIO);
+            return View(await oTORGAR_INSIGNIA_P2.ToListAsync());
         }
 
-        // GET: Asistencia/Details/5
+        // GET: OtorgarInsigniaPerfil2/Details/5
         public async Task<ActionResult> Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ASISTENCIA aSISTENCIA = await db.ASISTENCIA.FindAsync(id);
-            if (aSISTENCIA == null)
+            OTORGAR_INSIGNIA_P2 oTORGAR_INSIGNIA_P2 = await db.OTORGAR_INSIGNIA_P2.FindAsync(id);
+            if (oTORGAR_INSIGNIA_P2 == null)
             {
                 return HttpNotFound();
             }
-            return View(aSISTENCIA);
+            return View(oTORGAR_INSIGNIA_P2);
         }
 
-        // GET: Asistencia/Create
+        // GET: OtorgarInsigniaPerfil2/Create
         public ActionResult Create()
         {
             ViewBag.EVENTO_evento_id = new SelectList(db.EVENTO, "evento_id", "nombre");
@@ -45,82 +45,82 @@ namespace EmPoderTIC.Controllers
             return View();
         }
 
-        // POST: Asistencia/Create
+        // POST: OtorgarInsigniaPerfil2/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "registro_asistencia_evento,fecha_registro_asistencia,USUARIO_rut,EVENTO_evento_id")] ASISTENCIA aSISTENCIA)
+        public async Task<ActionResult> Create([Bind(Include = "registro_insignia_evento,contribucion_evento,fecha_registro_otorgamiento,USUARIO_rut,EVENTO_evento_id")] OTORGAR_INSIGNIA_P2 oTORGAR_INSIGNIA_P2)
         {
             if (ModelState.IsValid)
             {
-                db.ASISTENCIA.Add(aSISTENCIA);
+                db.OTORGAR_INSIGNIA_P2.Add(oTORGAR_INSIGNIA_P2);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EVENTO_evento_id = new SelectList(db.EVENTO, "evento_id", "nombre", aSISTENCIA.EVENTO_evento_id);
-            ViewBag.USUARIO_rut = new SelectList(db.USUARIO, "rut", "nombre", aSISTENCIA.USUARIO_rut);
-            return View(aSISTENCIA);
+            ViewBag.EVENTO_evento_id = new SelectList(db.EVENTO, "evento_id", "nombre", oTORGAR_INSIGNIA_P2.EVENTO_evento_id);
+            ViewBag.USUARIO_rut = new SelectList(db.USUARIO, "rut", "nombre", oTORGAR_INSIGNIA_P2.USUARIO_rut);
+            return View(oTORGAR_INSIGNIA_P2);
         }
 
-        // GET: Asistencia/Edit/5
+        // GET: OtorgarInsigniaPerfil2/Edit/5
         public async Task<ActionResult> Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ASISTENCIA aSISTENCIA = await db.ASISTENCIA.FindAsync(id);
-            if (aSISTENCIA == null)
+            OTORGAR_INSIGNIA_P2 oTORGAR_INSIGNIA_P2 = await db.OTORGAR_INSIGNIA_P2.FindAsync(id);
+            if (oTORGAR_INSIGNIA_P2 == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.EVENTO_evento_id = new SelectList(db.EVENTO, "evento_id", "nombre", aSISTENCIA.EVENTO_evento_id);
-            ViewBag.USUARIO_rut = new SelectList(db.USUARIO, "rut", "nombre", aSISTENCIA.USUARIO_rut);
-            return View(aSISTENCIA);
+            ViewBag.EVENTO_evento_id = new SelectList(db.EVENTO, "evento_id", "nombre", oTORGAR_INSIGNIA_P2.EVENTO_evento_id);
+            ViewBag.USUARIO_rut = new SelectList(db.USUARIO, "rut", "nombre", oTORGAR_INSIGNIA_P2.USUARIO_rut);
+            return View(oTORGAR_INSIGNIA_P2);
         }
 
-        // POST: Asistencia/Edit/5
+        // POST: OtorgarInsigniaPerfil2/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "registro_asistencia_evento,fecha_registro_asistencia,USUARIO_rut,EVENTO_evento_id")] ASISTENCIA aSISTENCIA)
+        public async Task<ActionResult> Edit([Bind(Include = "registro_insignia_evento,contribucion_evento,fecha_registro_otorgamiento,USUARIO_rut,EVENTO_evento_id")] OTORGAR_INSIGNIA_P2 oTORGAR_INSIGNIA_P2)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(aSISTENCIA).State = EntityState.Modified;
+                db.Entry(oTORGAR_INSIGNIA_P2).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.EVENTO_evento_id = new SelectList(db.EVENTO, "evento_id", "nombre", aSISTENCIA.EVENTO_evento_id);
-            ViewBag.USUARIO_rut = new SelectList(db.USUARIO, "rut", "nombre", aSISTENCIA.USUARIO_rut);
-            return View(aSISTENCIA);
+            ViewBag.EVENTO_evento_id = new SelectList(db.EVENTO, "evento_id", "nombre", oTORGAR_INSIGNIA_P2.EVENTO_evento_id);
+            ViewBag.USUARIO_rut = new SelectList(db.USUARIO, "rut", "nombre", oTORGAR_INSIGNIA_P2.USUARIO_rut);
+            return View(oTORGAR_INSIGNIA_P2);
         }
 
-        // GET: Asistencia/Delete/5
+        // GET: OtorgarInsigniaPerfil2/Delete/5
         public async Task<ActionResult> Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ASISTENCIA aSISTENCIA = await db.ASISTENCIA.FindAsync(id);
-            if (aSISTENCIA == null)
+            OTORGAR_INSIGNIA_P2 oTORGAR_INSIGNIA_P2 = await db.OTORGAR_INSIGNIA_P2.FindAsync(id);
+            if (oTORGAR_INSIGNIA_P2 == null)
             {
                 return HttpNotFound();
             }
-            return View(aSISTENCIA);
+            return View(oTORGAR_INSIGNIA_P2);
         }
 
-        // POST: Asistencia/Delete/5
+        // POST: OtorgarInsigniaPerfil2/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(string id)
         {
-            ASISTENCIA aSISTENCIA = await db.ASISTENCIA.FindAsync(id);
-            db.ASISTENCIA.Remove(aSISTENCIA);
+            OTORGAR_INSIGNIA_P2 oTORGAR_INSIGNIA_P2 = await db.OTORGAR_INSIGNIA_P2.FindAsync(id);
+            db.OTORGAR_INSIGNIA_P2.Remove(oTORGAR_INSIGNIA_P2);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

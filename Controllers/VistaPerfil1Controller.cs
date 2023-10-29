@@ -16,7 +16,7 @@ namespace EmPoderTIC.Controllers
     public class VistaPerfil1Controller : Controller
     {
         // GET: VistaPerfil1
-        private EmPoderTICConectadoEntities db = new EmPoderTICConectadoEntities(); // Tu contexto de base de datos
+        private TICEntities db = new TICEntities(); // Tu contexto de base de datos
         public ActionResult Index()
         {
             if (Session["UsuarioAutenticado"] != null)
@@ -30,7 +30,7 @@ namespace EmPoderTIC.Controllers
 
                 // Crea una lista para almacenar las listas de insignias por área
                 var listaInsigniasPorArea = new List<List<InsigniaDesbloqueoViewModel>>();
-                CERTIFICADO certificado = null; // Inicializa certificado fuera del bucle
+                USUARIO_CERTIFICADO certificado = null; // Inicializa certificado fuera del bucle
 
                 foreach (var area in areas)
                 {
@@ -70,7 +70,7 @@ namespace EmPoderTIC.Controllers
 
 
                     // Verifica si hay un certificado para este usuario en esta área
-                    var certificadoArea = db.CERTIFICADO.Include(c => c.INSIGNIA.AREA).FirstOrDefault(c => c.USUARIO_rut == usuarioAutenticado.rut && c.INSIGNIA_insignia_id == c.INSIGNIA.insignia_id && c.AREA_area_id == c.AREA.area_id);
+                    var certificadoArea = db.USUARIO_CERTIFICADO.Include(c => c.CERTIFICADO.AREA).FirstOrDefault(c => c.USUARIO_rut == usuarioAutenticado.rut && c.CERTIFICADO.INSIGNIA_insignia_id == c.CERTIFICADO.INSIGNIA.insignia_id && c.CERTIFICADO.AREA_area_id == c.CERTIFICADO.AREA.area_id);
 
                     if (certificadoArea != null && (certificado == null || certificadoArea.fecha_otorgamiento > certificado.fecha_otorgamiento))
                     {
@@ -131,7 +131,7 @@ namespace EmPoderTIC.Controllers
                 var insigniasNivel1y2 = db.CONTROL_INSIGNIA
                     .Where(d => d.insignia_bloqueada == false)
                     .Include(d => d.INSIGNIA)
-                    .Where(d => (d.INSIGNIA.NIVEL.categoría_nivel_insignia == "Principiante" || d.INSIGNIA.NIVEL.categoría_nivel_insignia == "Intermedio") && d.USUARIO_rut == usuarioAutenticado.rut)
+                    .Where(d => (d.INSIGNIA.NIVEL.categoría_nivel_insignia == "Principiante" || d.INSIGNIA.NIVEL.categoría_nivel_insignia == "Intermedio") && d.USUARIO_rut == usuarioAutenticado.rut) 
                     .Include(d => d.INSIGNIA.EVENTO)
                     .ToList();
 
@@ -149,6 +149,8 @@ namespace EmPoderTIC.Controllers
                 // Maneja el caso en el que el usuario no esté autenticado correctamente
                 return RedirectToAction("Login", "Account"); // Redirige a la página de inicio de sesión u otra página adecuada
             }
+
         }
+
     }
 }

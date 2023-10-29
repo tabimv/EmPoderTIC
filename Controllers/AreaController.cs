@@ -13,7 +13,7 @@ namespace EmPoderTIC.Controllers
 {
     public class AreaController : Controller
     {
-        private EmPoderTICConectadoEntities db = new EmPoderTICConectadoEntities();
+        private TICEntities db = new TICEntities();
 
         // GET: Area
         public async Task<ActionResult> Index()

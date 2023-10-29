@@ -13,10 +13,10 @@ namespace EmPoderTIC.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EmPoderTICConectadoEntities : DbContext
+    public partial class TICEntities : DbContext
     {
-        public EmPoderTICConectadoEntities()
-            : base("name=EmPoderTICConectadoEntities")
+        public TICEntities()
+            : base("name=TICEntities")
         {
         }
     
@@ -38,5 +38,6 @@ namespace EmPoderTIC.Models
         public virtual DbSet<OTORGAR_INSIGNIA_P3> OTORGAR_INSIGNIA_P3 { get; set; }
         public virtual DbSet<TIPO_PERFIL> TIPO_PERFIL { get; set; }
         public virtual DbSet<USUARIO> USUARIO { get; set; }
+        public virtual DbSet<USUARIO_CERTIFICADO> USUARIO_CERTIFICADO { get; set; }
     }
 }

@@ -16,7 +16,7 @@ else
 @if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Estudiante y/o Titulado")
 {
 
-    <link rel="stylesheet" href="~/Content/css/perfil-estudiante.css">
+    <link rel="stylesheet" href="~/Content/css/perfil.css">
 
     <!--========================================
            contenido
@@ -53,6 +53,7 @@ else
         {
             foreach (var insignia_desbloqueada in ViewBag.InsigniasDeNivel3)
             {
+
                 <div class="mini-container">
 
                     <div class="contenido-insignia">
@@ -66,13 +67,15 @@ else
                     <div class="imagen-insignia">
                         <img src="@insignia_desbloqueada.INSIGNIA.imagen_url" alt="Insignia">
                     </div>
-                    <div class="boton-compartir">
-                        <button id="compartir-btn-1" class="compartir">
+                    <!-- Botón con opciones -->
+                    <div class="opciones-container">
+                        <button id="opciones-btn-@insignia_desbloqueada.INSIGNIA.insignia_id" class="opciones-btn">
                             <i class="fas fa-share"></i>
                         </button>
-                        <div class="menu-compartir menu-compartir-1 oculto">
-                            <a href="#" class="linkedin">Compartir en Linkedin</a>
-                            <a href="#" class="certificado">Ver certificado</a>
+                        <div class="menu-opciones menu-opciones-@insignia_desbloqueada.INSIGNIA.insignia_id oculto">
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url=@insignia_desbloqueada.INSIGNIA.imagen_url&title=@insignia_desbloqueada.INSIGNIA.nombre&summary=@insignia_desbloqueada.INSIGNIA.objetivo" class="linkedin" target="_blank">Compartir en LinkedIn</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" target="_blank">Solicitar Insignia como Logros para LinkedIn</a>
                         </div>
                     </div>
                 </div>
@@ -103,6 +106,7 @@ else
         {
             foreach (var insignia_desbloqueada in ViewBag.InsigniasDeNivel1y2)
             {
+
                 <div class="mini-container">
                     <div class="contenido-insignia">
                         <div class="insignias-titulos">
@@ -115,13 +119,14 @@ else
                     <div class="imagen-insignia">
                         <img src="@insignia_desbloqueada.INSIGNIA.imagen_url" alt="Insignia">
                     </div>
-                    <div class="boton-compartir">
-                        <button id="compartir-btn-1" class="compartir">
+
+                    <!-- Botón con opciones -->
+                    <div class="opciones-container">
+                        <button id="opciones-btn-@insignia_desbloqueada.INSIGNIA.insignia_id" class="opciones-btn">
                             <i class="fas fa-share"></i>
                         </button>
-                        <div class="menu-compartir menu-compartir-1 oculto">
-                            <a href="#" class="linkedin">Compartir en Linkedin</a>
-                            <a href="#" class="certificado">Ver certificado</a>
+                        <div class="menu-opciones menu-opciones-@insignia_desbloqueada.INSIGNIA.insignia_id oculto">
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url=@insignia_desbloqueada.INSIGNIA.imagen_url&title=@insignia_desbloqueada.INSIGNIA.nombre&summary=@insignia_desbloqueada.INSIGNIA.objetivo" class="linkedin" target="_blank">Compartir en LinkedIn</a>
                         </div>
                     </div>
                 </div>
@@ -173,7 +178,37 @@ else
         }
 
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="~/Content/js/perfil.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Agrega un controlador de clic al botón
+            $('.opciones-btn').on('click', function () {
+                var menuOpciones = $(this).next('.menu-opciones');
+
+                // Oculta todos los menús de opciones excepto el que se hace clic
+                $('.menu-opciones').not(menuOpciones).hide();
+
+                // Muestra u oculta el menú de opciones al hacer clic en el botón
+                menuOpciones.toggle();
+            });
+
+            // Cierra el menú de opciones cuando se hace clic en cualquier parte de la página
+            $(document).on('click', function (e) {
+                if (!$(e.target).closest('.opciones-container').length) {
+                    $('.menu-opciones').hide();
+                }
+            });
+
+            // Evita que el clic en el menú de opciones se propague al documento
+            $('.opciones-container .menu-opciones').on('click', function (e) {
+                e.stopPropagation();
+            });
+        });
+    </script>
+
+
 }
 
 else

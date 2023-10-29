@@ -1,9 +1,10 @@
-﻿@model IEnumerable<EmPoderTIC.Models.AREA>
+﻿@model IEnumerable<EmPoderTIC.Models.EVENTO>
 
 @{
     ViewBag.Title = "Index";
 
 }
+
 
 @if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Administrador")
 {
@@ -26,21 +27,13 @@ else
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Gestión de <b>Áreas de Conocimiento</b></h2>
+                            <h2>Gestión de <b>Eventos</b></h2>
                         </div>
                         <div class="col-sm-6">
                             <a href="@Url.Action("Create")" class="btn btn-success">
                                 <i class="material-icons">&#xE147;</i>
-                                Crear Nueva Área de Conocimiento
+                                Crear Nuevo Evento
                             </a>
-
-                            <a href="@Url.Action("Index", "Competencia")" class="btn btn-success">
-                                <i class="material-icons">check</i>
-                                Gestionar Competencias de Conocimiento
-                            </a>
-
-
-
 
                         </div>
                     </div>
@@ -49,7 +42,14 @@ else
                     <thead>
                         <tr>
                             <th></th>
-                            <th> Área de Conocimiento</th>
+                            <th> Nombre </th>
+                            <th> Descripción</th>
+                            <th> Tipo de Evento </th>
+                            <th> Fecha de Evento </th>
+                            <th> Hora de Evento </th>
+                            <th> Lugar de Evento </th>
+                            <th> Area de Evento </th>
+                            <th> Competencia de Evento </th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -58,10 +58,33 @@ else
                         {
                             <tr>
                                 <td></td>
-                                <td>@Html.DisplayFor(modelItem => item.area_conocimiento)</td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.descripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tipo_evento)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.fecha_evento)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.hora_evento)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.lugar_evento)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AREA.area_conocimiento)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.COMPETENCIA.competencia_conocimiento)
+                                </td>
                                 <td>
                                     <!-- Enlace "Edit" dentro de un botón -->
-                                    <a href="#" class="edit" data-url="@Url.Action("Edit", new { id = item.area_id })">
+                                    <a href="#" class="edit" data-url="@Url.Action("Edit", new { id = item.evento_id })">
                                         <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
                                         <span style="display: none;">Edit</span>
                                     </a>
@@ -115,3 +138,6 @@ else
         <a href="@Url.Action("Login", "Account")" class="btn-acceso">Iniciar Sesión</a>
     </div>
 }
+
+
+

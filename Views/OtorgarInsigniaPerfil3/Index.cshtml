@@ -1,10 +1,12 @@
-﻿@model IEnumerable<EmPoderTIC.Models.CERTIFICACION>
+﻿@model IEnumerable<EmPoderTIC.Models.OTORGAR_INSIGNIA_P3>
 
 @{
     ViewBag.Title = "Index";
+
 }
 
-@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Administrador")
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Administrador") 
 {
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
@@ -12,7 +14,6 @@ else
 {
     Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
 }
-
 
 
 @if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Administrador")
@@ -26,14 +27,13 @@ else
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Gestión de <b>Certificación</b> para Insignia</h2>
+                            <h2>Gestión de <b>Otorgamiento de Insignia para Colaborador Administrativo</b></h2>
                         </div>
                         <div class="col-sm-6">
                             <a href="@Url.Action("Create")" class="btn btn-success">
                                 <i class="material-icons">&#xE147;</i>
-                                Crear Nuevo Requisito de Certificación
+                                Crear Nueva Insignia
                             </a>
-
 
                         </div>
                     </div>
@@ -42,13 +42,11 @@ else
                     <thead>
                         <tr>
                             <th></th>
-                            <th>
-                                ¿Tiene Certificación?
-                            </th>
-                            <th>
-                                Nivel de Insignia
-                            </th>
-
+                            <th> Registro de Insignia </th>
+                            <th> Contribución Evento</th>
+                            <th> Fecha registro Otorgamiento </th>
+                            <th> Evento </th>
+                            <th> Colaborador Administrativo </th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -58,21 +56,25 @@ else
                             <tr>
                                 <td></td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.tiene_certificacion)
+                                    @Html.DisplayFor(modelItem => item.registro_insignia_evento)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.NIVEL.categoría_nivel_insignia)
+                                    @Html.DisplayFor(modelItem => item.contribucion_evento)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.fecha_registro_otorgamiento)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EVENTO.nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.USUARIO.nombre)
                                 </td>
                                 <td>
                                     <!-- Enlace "Edit" dentro de un botón -->
-                                    <a href="#" class="edit" data-url="@Url.Action("Edit", new { id = item.certificacion_id })">
+                                    <a href="#" class="edit" data-url="@Url.Action("Edit", new { id = item })">
                                         <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
                                         <span style="display: none;">Edit</span>
-                                    </a>
-
-
-                                    <a href="#" class="delete" id="delete" data-toggle="modal" data-url="@Url.Action("Delete", new { id = item.certificacion_id })">
-                                        <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
                                     </a>
                                 </td>
                             </tr>
@@ -124,3 +126,6 @@ else
         <a href="@Url.Action("Login", "Account")" class="btn-acceso">Iniciar Sesión</a>
     </div>
 }
+
+
+

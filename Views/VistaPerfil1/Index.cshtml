@@ -37,7 +37,7 @@ else
                 @foreach (var area in Model)
                 {
 
-                    
+
                     var NombreArea = area.area_conocimiento;
                     if (area.INSIGNIA.Any())
                     {
@@ -110,14 +110,15 @@ else
                         {
                             if (ViewBag.AlgunaInsigniaBloqueada)
                             {
-                                <a href="@ViewBag.Certificado.certificado_url" class="btn" download>OBTENER CERTIFICADO</a>
+                                <button class="btn btn-inactivo" id="obtener-certificado" disabled>
+                                    OBTENER CERTIFICADO
+                                </button>
 
                             }
                             else
                             {
-                                <button class="btn btn-inactivo" id="obtener-certificado" disabled>
-                                    OBTENER CERTIFICADO
-                                </button>
+                               
+                                <h1> @ViewBag.Certificado.certificado_url </h1>
                             }
                         }
                         else

@@ -14,19 +14,23 @@ namespace EmPoderTIC.Models
     
     public partial class CERTIFICADO
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CERTIFICADO()
+        {
+            this.USUARIO_CERTIFICADO = new HashSet<USUARIO_CERTIFICADO>();
+        }
+    
         public int certificado_id { get; set; }
         public string nombre { get; set; }
         public string descripcion { get; set; }
-        public string certificado_url { get; set; }
-        public System.DateTime fecha_otorgamiento { get; set; }
         public int CERTIFICACION_certificacion_id { get; set; }
         public int INSIGNIA_insignia_id { get; set; }
-        public string USUARIO_rut { get; set; }
         public int AREA_area_id { get; set; }
     
         public virtual AREA AREA { get; set; }
         public virtual CERTIFICACION CERTIFICACION { get; set; }
         public virtual INSIGNIA INSIGNIA { get; set; }
-        public virtual USUARIO USUARIO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<USUARIO_CERTIFICADO> USUARIO_CERTIFICADO { get; set; }
     }
 }

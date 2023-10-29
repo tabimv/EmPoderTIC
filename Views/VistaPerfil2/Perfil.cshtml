@@ -19,7 +19,7 @@ else
 @if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Docente")
 {
 
-    <link rel="stylesheet" href="~/Content/css/perfil-estudiante.css">
+    <link rel="stylesheet" href="~/Content/css/perfil.css">
 
     <!--========================================
            contenido
@@ -69,13 +69,13 @@ else
                     <div class="imagen-insignia">
                         <img src="@insignia_desbloqueada.INSIGNIA.imagen_url" alt="Insignia">
                     </div>
-                    <div class="boton-compartir">
-                        <button id="compartir-btn-1" class="compartir">
+                    <!-- Botón con opciones -->
+                    <div class="opciones-container">
+                        <button id="opciones-btn-@insignia_desbloqueada.INSIGNIA.insignia_id" class="opciones-btn">
                             <i class="fas fa-share"></i>
                         </button>
-                        <div class="menu-compartir menu-compartir-1 oculto">
-                            <a href="#" class="linkedin">Compartir en Linkedin</a>
-                            <a href="#" class="certificado">Ver certificado</a>
+                        <div class="menu-opciones menu-opciones-@insignia_desbloqueada.INSIGNIA.insignia_id oculto">
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url=@insignia_desbloqueada.INSIGNIA.imagen_url&title=@insignia_desbloqueada.INSIGNIA.nombre&summary=@insignia_desbloqueada.INSIGNIA.objetivo" class="linkedin" target="_blank">Compartir en LinkedIn</a>
                         </div>
                     </div>
                 </div>
@@ -118,13 +118,13 @@ else
                     <div class="imagen-insignia">
                         <img src="@insignia_desbloqueada.INSIGNIA.imagen_url" alt="Insignia">
                     </div>
-                    <div class="boton-compartir">
-                        <button id="compartir-btn-1" class="compartir">
+                    <!-- Botón con opciones -->
+                    <div class="opciones-container">
+                        <button id="opciones-btn-@insignia_desbloqueada.INSIGNIA.insignia_id" class="opciones-btn">
                             <i class="fas fa-share"></i>
                         </button>
-                        <div class="menu-compartir menu-compartir-1 oculto">
-                            <a href="#" class="linkedin">Compartir en Linkedin</a>
-                            <a href="#" class="certificado">Ver certificado</a>
+                        <div class="menu-opciones menu-opciones-@insignia_desbloqueada.INSIGNIA.insignia_id oculto">
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url=@insignia_desbloqueada.INSIGNIA.imagen_url&title=@insignia_desbloqueada.INSIGNIA.nombre&summary=@insignia_desbloqueada.INSIGNIA.objetivo" class="linkedin" target="_blank">Compartir en LinkedIn</a>
                         </div>
                     </div>
                 </div>

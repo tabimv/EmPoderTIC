@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.Cookies;
+using Owin;
 
 namespace EmPoderTIC
 {
