@@ -117,8 +117,9 @@ else
                             }
                             else
                             {
-                               
-                                <h1> @ViewBag.Certificado.certificado_url </h1>
+
+                                <a href="@Url.Action("ObtenerCertificado", new { nombre = ViewBag.Certificado.USUARIO.nombre, apellido = ViewBag.Certificado.USUARIO.apellido_paterno })" class="btn" download>
+                                </a>
                             }
                         }
                         else

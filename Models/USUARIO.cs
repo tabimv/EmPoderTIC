@@ -19,6 +19,7 @@ namespace EmPoderTIC.Models
         {
             this.ASISTENCIA = new HashSet<ASISTENCIA>();
             this.CONTROL_INSIGNIA = new HashSet<CONTROL_INSIGNIA>();
+            this.NOTIFICACION = new HashSet<NOTIFICACION>();
             this.OTORGAR_INSIGNIA_P2 = new HashSet<OTORGAR_INSIGNIA_P2>();
             this.OTORGAR_INSIGNIA_P3 = new HashSet<OTORGAR_INSIGNIA_P3>();
             this.USUARIO_CERTIFICADO = new HashSet<USUARIO_CERTIFICADO>();
@@ -36,6 +37,8 @@ namespace EmPoderTIC.Models
         public virtual ICollection<ASISTENCIA> ASISTENCIA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CONTROL_INSIGNIA> CONTROL_INSIGNIA { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NOTIFICACION> NOTIFICACION { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OTORGAR_INSIGNIA_P2> OTORGAR_INSIGNIA_P2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

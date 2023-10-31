@@ -17,7 +17,7 @@ namespace EmPoderTIC.Controllers
 {
     public class GenerarCertificadoController : Controller
     {
-        private TICEntities db = new TICEntities();
+        private EmPoderTIC_OFICIALEntities db = new EmPoderTIC_OFICIALEntities();
         // GET: GenerarCertificado
         public ActionResult Index()
         {
@@ -31,7 +31,7 @@ namespace EmPoderTIC.Controllers
             string templatePath = "C://Users//tbmv1//Downloads//PDF//Entrada//Certificado_Estructura.PDF";
 
             // Carpeta de salida para los PDF individuales
-            string outputFolder = "C://Users//tbmv1//Downloads//PDF//Salida";
+            string outputFolder = "C://Users//Public//Downloads//Certificados";
             var areas = db.AREA.ToList();
 
             foreach (var area in areas)
@@ -78,6 +78,26 @@ namespace EmPoderTIC.Controllers
 
             return Content("PDFs generados y almacenados en la base de datos.");
         }
+
+
+        public ActionResult ObtenerCertificado(string nombre, string apellido)
+        {
+            string outputFolder = "C://Users//Public//Downloads//Certificados";
+            string outputPath = Path.Combine(outputFolder, $"{nombre}_{apellido}_Certificado.pdf");
+
+            if (System.IO.File.Exists(outputPath))
+            {
+                // Si el archivo existe, lo entregamos como un archivo para su descarga
+                return File(outputPath, "application/pdf", $"{nombre}_{apellido}_Certificado.pdf");
+            }
+            else
+            {
+                // Si el archivo no existe, puedes mostrar un mensaje de error o redirigir a una página de error.
+                return Content("El certificado no está disponible.");
+            }
+        }
+
+
 
 
 

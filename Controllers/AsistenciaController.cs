@@ -13,7 +13,7 @@ namespace EmPoderTIC.Controllers
 {
     public class AsistenciaController : Controller
     {
-        private TICEntities db = new TICEntities();
+        private EmPoderTIC_OFICIALEntities db = new EmPoderTIC_OFICIALEntities();
 
         // GET: Asistencia
         public async Task<ActionResult> Index()

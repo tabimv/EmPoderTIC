@@ -13,7 +13,7 @@ namespace EmPoderTIC.Controllers
 {
     public class OtorgarInsigniaPerfil3Controller : Controller
     {
-        private TICEntities db = new TICEntities();
+        private EmPoderTIC_OFICIALEntities db = new EmPoderTIC_OFICIALEntities();
 
         // GET: OtorgarInsigniaPerfil3
         public async Task<ActionResult> Index()

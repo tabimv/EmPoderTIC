@@ -16,7 +16,7 @@ namespace EmPoderTIC.Controllers
     public class VistaPerfil1Controller : Controller
     {
         // GET: VistaPerfil1
-        private TICEntities db = new TICEntities(); // Tu contexto de base de datos
+        private EmPoderTIC_OFICIALEntities db = new EmPoderTIC_OFICIALEntities(); // Tu contexto de base de datos
         public ActionResult Index()
         {
             if (Session["UsuarioAutenticado"] != null)
@@ -123,6 +123,7 @@ namespace EmPoderTIC.Controllers
                 var insigniasNivel3 = db.CONTROL_INSIGNIA
                     .Where(di => di.insignia_bloqueada == false)
                     .Include(di => di.INSIGNIA)
+                    .Include (di => di.USUARIO)
                     .Where(di => di.INSIGNIA.NIVEL.categoría_nivel_insignia == "Avanzado" && di.USUARIO_rut == usuarioAutenticado.rut)
                     .Include(di => di.INSIGNIA.EVENTO)
                     .ToList();
@@ -130,6 +131,7 @@ namespace EmPoderTIC.Controllers
 
                 var insigniasNivel1y2 = db.CONTROL_INSIGNIA
                     .Where(d => d.insignia_bloqueada == false)
+                    .Include(di => di.USUARIO)
                     .Include(d => d.INSIGNIA)
                     .Where(d => (d.INSIGNIA.NIVEL.categoría_nivel_insignia == "Principiante" || d.INSIGNIA.NIVEL.categoría_nivel_insignia == "Intermedio") && d.USUARIO_rut == usuarioAutenticado.rut) 
                     .Include(d => d.INSIGNIA.EVENTO)

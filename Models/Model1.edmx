@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TICModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="EmPoderTIC_OFICIALModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AREA">
           <Key>
             <PropertyRef Name="area_id" />
@@ -96,6 +96,17 @@
           </Key>
           <Property Name="nivel_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="categoría_nivel_insignia" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NOTIFICACION">
+          <Key>
+            <PropertyRef Name="notificacion_id" />
+          </Key>
+          <Property Name="notificacion_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mensaje" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="fecha" Type="datetime" Nullable="false" />
+          <Property Name="solicitud_aprobada" Type="bit" Nullable="false" />
+          <Property Name="USUARIO_rut" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="INSIGNIA_insignia_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="OTORGAR_INSIGNIA_P2">
           <Key>
@@ -365,6 +376,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="NOTIFICACION_INSIGNIA_FK">
+          <End Role="INSIGNIA" Type="Self.INSIGNIA" Multiplicity="1" />
+          <End Role="NOTIFICACION" Type="Self.NOTIFICACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INSIGNIA">
+              <PropertyRef Name="insignia_id" />
+            </Principal>
+            <Dependent Role="NOTIFICACION">
+              <PropertyRef Name="INSIGNIA_insignia_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="NOTIFICACION_USUARIO_FK">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="NOTIFICACION" Type="Self.NOTIFICACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="rut" />
+            </Principal>
+            <Dependent Role="NOTIFICACION">
+              <PropertyRef Name="USUARIO_rut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="OTORGAR_INSIGNIA_P2_EVENTO_FK">
           <End Role="EVENTO" Type="Self.EVENTO" Multiplicity="1" />
           <End Role="OTORGAR_INSIGNIA_P2" Type="Self.OTORGAR_INSIGNIA_P2" Multiplicity="*" />
@@ -452,7 +487,7 @@
         <Function Name="ValidarRut" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="bit">
           <Parameter Name="rut" Type="varchar" Mode="In" />
         </Function>
-        <EntityContainer Name="TICModelStoreContainer">
+        <EntityContainer Name="EmPoderTIC_OFICIALModelStoreContainer">
           <EntitySet Name="AREA" EntityType="Self.AREA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ASISTENCIA" EntityType="Self.ASISTENCIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CERTIFICACION" EntityType="Self.CERTIFICACION" Schema="dbo" store:Type="Tables" />
@@ -462,6 +497,7 @@
           <EntitySet Name="EVENTO" EntityType="Self.EVENTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="INSIGNIA" EntityType="Self.INSIGNIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NIVEL" EntityType="Self.NIVEL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NOTIFICACION" EntityType="Self.NOTIFICACION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OTORGAR_INSIGNIA_P2" EntityType="Self.OTORGAR_INSIGNIA_P2" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OTORGAR_INSIGNIA_P3" EntityType="Self.OTORGAR_INSIGNIA_P3" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TIPO_PERFIL" EntityType="Self.TIPO_PERFIL" Schema="dbo" store:Type="Tables" />
@@ -539,6 +575,14 @@
             <End Role="TIPO_PERFIL" EntitySet="TIPO_PERFIL" />
             <End Role="INSIGNIA" EntitySet="INSIGNIA" />
           </AssociationSet>
+          <AssociationSet Name="NOTIFICACION_INSIGNIA_FK" Association="Self.NOTIFICACION_INSIGNIA_FK">
+            <End Role="INSIGNIA" EntitySet="INSIGNIA" />
+            <End Role="NOTIFICACION" EntitySet="NOTIFICACION" />
+          </AssociationSet>
+          <AssociationSet Name="NOTIFICACION_USUARIO_FK" Association="Self.NOTIFICACION_USUARIO_FK">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="NOTIFICACION" EntitySet="NOTIFICACION" />
+          </AssociationSet>
           <AssociationSet Name="OTORGAR_INSIGNIA_P2_EVENTO_FK" Association="Self.OTORGAR_INSIGNIA_P2_EVENTO_FK">
             <End Role="EVENTO" EntitySet="EVENTO" />
             <End Role="OTORGAR_INSIGNIA_P2" EntitySet="OTORGAR_INSIGNIA_P2" />
@@ -572,7 +616,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="TICModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="EmPoderTIC_OFICIALModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="AREA">
           <Key>
             <PropertyRef Name="area_id" />
@@ -690,6 +734,7 @@
           <NavigationProperty Name="EVENTO" Relationship="Self.INSIGNIA_EVENTO_FK" FromRole="INSIGNIA" ToRole="EVENTO" />
           <NavigationProperty Name="NIVEL" Relationship="Self.INSIGNIA_NIVEL_FK" FromRole="INSIGNIA" ToRole="NIVEL" />
           <NavigationProperty Name="TIPO_PERFIL" Relationship="Self.INSIGNIA_TIPO_PERFIL_FK" FromRole="INSIGNIA" ToRole="TIPO_PERFIL" />
+          <NavigationProperty Name="NOTIFICACION" Relationship="Self.NOTIFICACION_INSIGNIA_FK" FromRole="INSIGNIA" ToRole="NOTIFICACION" />
         </EntityType>
         <EntityType Name="NIVEL">
           <Key>
@@ -700,6 +745,19 @@
           <NavigationProperty Name="CERTIFICACION" Relationship="Self.CERTIFICACION_NIVEL_FK" FromRole="NIVEL" ToRole="CERTIFICACION" />
           <NavigationProperty Name="COMPETENCIA" Relationship="Self.COMPETENCIA_NIVEL_FK" FromRole="NIVEL" ToRole="COMPETENCIA" />
           <NavigationProperty Name="INSIGNIA" Relationship="Self.INSIGNIA_NIVEL_FK" FromRole="NIVEL" ToRole="INSIGNIA" />
+        </EntityType>
+        <EntityType Name="NOTIFICACION">
+          <Key>
+            <PropertyRef Name="notificacion_id" />
+          </Key>
+          <Property Name="notificacion_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mensaje" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="solicitud_aprobada" Type="Boolean" Nullable="false" />
+          <Property Name="USUARIO_rut" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="INSIGNIA_insignia_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="INSIGNIA" Relationship="Self.NOTIFICACION_INSIGNIA_FK" FromRole="NOTIFICACION" ToRole="INSIGNIA" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.NOTIFICACION_USUARIO_FK" FromRole="NOTIFICACION" ToRole="USUARIO" />
         </EntityType>
         <EntityType Name="OTORGAR_INSIGNIA_P2">
           <Key>
@@ -750,6 +808,7 @@
           <Property Name="TIPO_PERFIL_tipo_perfil_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ASISTENCIA" Relationship="Self.ASISTENCIA_USUARIO_FK" FromRole="USUARIO" ToRole="ASISTENCIA" />
           <NavigationProperty Name="CONTROL_INSIGNIA" Relationship="Self.CONTROL_INSIGNIA_USUARIO_FK" FromRole="USUARIO" ToRole="CONTROL_INSIGNIA" />
+          <NavigationProperty Name="NOTIFICACION" Relationship="Self.NOTIFICACION_USUARIO_FK" FromRole="USUARIO" ToRole="NOTIFICACION" />
           <NavigationProperty Name="OTORGAR_INSIGNIA_P2" Relationship="Self.OTORGAR_INSIGNIA_P2_USUARIO_FK" FromRole="USUARIO" ToRole="OTORGAR_INSIGNIA_P2" />
           <NavigationProperty Name="OTORGAR_INSIGNIA_P3" Relationship="Self.OTORGAR_INSIGNIA_P3_USUARIO_FK" FromRole="USUARIO" ToRole="OTORGAR_INSIGNIA_P3" />
           <NavigationProperty Name="TIPO_PERFIL" Relationship="Self.USUARIO_TIPO_PERFIL_FK" FromRole="USUARIO" ToRole="TIPO_PERFIL" />
@@ -1019,6 +1078,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="NOTIFICACION_INSIGNIA_FK">
+          <End Role="INSIGNIA" Type="Self.INSIGNIA" Multiplicity="1" />
+          <End Role="NOTIFICACION" Type="Self.NOTIFICACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INSIGNIA">
+              <PropertyRef Name="insignia_id" />
+            </Principal>
+            <Dependent Role="NOTIFICACION">
+              <PropertyRef Name="INSIGNIA_insignia_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="NOTIFICACION_USUARIO_FK">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="NOTIFICACION" Type="Self.NOTIFICACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="rut" />
+            </Principal>
+            <Dependent Role="NOTIFICACION">
+              <PropertyRef Name="USUARIO_rut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="OTORGAR_INSIGNIA_P2_USUARIO_FK">
           <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
           <End Role="OTORGAR_INSIGNIA_P2" Type="Self.OTORGAR_INSIGNIA_P2" Multiplicity="*" />
@@ -1067,7 +1150,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="TICEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="EmPoderTIC_OFICIALEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AREA" EntityType="Self.AREA" />
           <EntitySet Name="ASISTENCIA" EntityType="Self.ASISTENCIA" />
           <EntitySet Name="CERTIFICACION" EntityType="Self.CERTIFICACION" />
@@ -1077,6 +1160,7 @@
           <EntitySet Name="EVENTO" EntityType="Self.EVENTO" />
           <EntitySet Name="INSIGNIA" EntityType="Self.INSIGNIA" />
           <EntitySet Name="NIVEL" EntityType="Self.NIVEL" />
+          <EntitySet Name="NOTIFICACION" EntityType="Self.NOTIFICACION" />
           <EntitySet Name="OTORGAR_INSIGNIA_P2" EntityType="Self.OTORGAR_INSIGNIA_P2" />
           <EntitySet Name="OTORGAR_INSIGNIA_P3" EntityType="Self.OTORGAR_INSIGNIA_P3" />
           <EntitySet Name="TIPO_PERFIL" EntityType="Self.TIPO_PERFIL" />
@@ -1166,6 +1250,14 @@
             <End Role="TIPO_PERFIL" EntitySet="TIPO_PERFIL" />
             <End Role="INSIGNIA" EntitySet="INSIGNIA" />
           </AssociationSet>
+          <AssociationSet Name="NOTIFICACION_INSIGNIA_FK" Association="Self.NOTIFICACION_INSIGNIA_FK">
+            <End Role="INSIGNIA" EntitySet="INSIGNIA" />
+            <End Role="NOTIFICACION" EntitySet="NOTIFICACION" />
+          </AssociationSet>
+          <AssociationSet Name="NOTIFICACION_USUARIO_FK" Association="Self.NOTIFICACION_USUARIO_FK">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="NOTIFICACION" EntitySet="NOTIFICACION" />
+          </AssociationSet>
           <AssociationSet Name="OTORGAR_INSIGNIA_P2_USUARIO_FK" Association="Self.OTORGAR_INSIGNIA_P2_USUARIO_FK">
             <End Role="USUARIO" EntitySet="USUARIO" />
             <End Role="OTORGAR_INSIGNIA_P2" EntitySet="OTORGAR_INSIGNIA_P2" />
@@ -1188,9 +1280,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TICModelStoreContainer" CdmEntityContainer="TICEntities">
+        <EntityContainerMapping StorageEntityContainer="EmPoderTIC_OFICIALModelStoreContainer" CdmEntityContainer="EmPoderTIC_OFICIALEntities">
           <EntitySetMapping Name="AREA">
-            <EntityTypeMapping TypeName="TICModel.AREA">
+            <EntityTypeMapping TypeName="EmPoderTIC_OFICIALModel.AREA">
               <MappingFragment StoreEntitySet="AREA">
                 <ScalarProperty Name="area_id" ColumnName="area_id" />
                 <ScalarProperty Name="area_conocimiento" ColumnName="area_conocimiento" />
@@ -1198,7 +1290,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ASISTENCIA">
-            <EntityTypeMapping TypeName="TICModel.ASISTENCIA">
+            <EntityTypeMapping TypeName="EmPoderTIC_OFICIALModel.ASISTENCIA">
               <MappingFragment StoreEntitySet="ASISTENCIA">
                 <ScalarProperty Name="registro_asistencia_evento" ColumnName="registro_asistencia_evento" />
                 <ScalarProperty Name="fecha_registro_asistencia" ColumnName="fecha_registro_asistencia" />
@@ -1208,7 +1300,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CERTIFICACION">
-            <EntityTypeMapping TypeName="TICModel.CERTIFICACION">
+            <EntityTypeMapping TypeName="EmPoderTIC_OFICIALModel.CERTIFICACION">
               <MappingFragment StoreEntitySet="CERTIFICACION">
                 <ScalarProperty Name="certificacion_id" ColumnName="certificacion_id" />
                 <ScalarProperty Name="tiene_certificacion" ColumnName="tiene_certificacion" />
@@ -1217,7 +1309,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CERTIFICADO">
-            <EntityTypeMapping TypeName="TICModel.CERTIFICADO">
+            <EntityTypeMapping TypeName="EmPoderTIC_OFICIALModel.CERTIFICADO">
               <MappingFragment StoreEntitySet="CERTIFICADO">
                 <ScalarProperty Name="certificado_id" ColumnName="certificado_id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1229,7 +1321,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="COMPETENCIA">
-            <EntityTypeMapping TypeName="TICModel.COMPETENCIA">
+            <EntityTypeMapping TypeName="EmPoderTIC_OFICIALModel.COMPETENCIA">
               <MappingFragment StoreEntitySet="COMPETENCIA">
                 <ScalarProperty Name="competencia_id" ColumnName="competencia_id" />
                 <ScalarProperty Name="competencia_conocimiento" ColumnName="competencia_conocimiento" />
@@ -1239,7 +1331,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CONTROL_INSIGNIA">
-            <EntityTypeMapping TypeName="TICModel.CONTROL_INSIGNIA">
+            <EntityTypeMapping TypeName="EmPoderTIC_OFICIALModel.CONTROL_INSIGNIA">
               <MappingFragment StoreEntitySet="CONTROL_INSIGNIA">
                 <ScalarProperty Name="insignia_bloqueada" ColumnName="insignia_bloqueada" />
                 <ScalarProperty Name="USUARIO_rut" ColumnName="USUARIO_rut" />
@@ -1249,7 +1341,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EVENTO">
-            <EntityTypeMapping TypeName="TICModel.EVENTO">
+            <EntityTypeMapping TypeName="EmPoderTIC_OFICIALModel.EVENTO">
               <MappingFragment StoreEntitySet="EVENTO">
                 <ScalarProperty Name="evento_id" ColumnName="evento_id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1264,7 +1356,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="INSIGNIA">
-            <EntityTypeMapping TypeName="TICModel.INSIGNIA">
+            <EntityTypeMapping TypeName="EmPoderTIC_OFICIALModel.INSIGNIA">
               <MappingFragment StoreEntitySet="INSIGNIA">
                 <ScalarProperty Name="insignia_id" ColumnName="insignia_id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1281,15 +1373,27 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NIVEL">
-            <EntityTypeMapping TypeName="TICModel.NIVEL">
+            <EntityTypeMapping TypeName="EmPoderTIC_OFICIALModel.NIVEL">
               <MappingFragment StoreEntitySet="NIVEL">
                 <ScalarProperty Name="nivel_id" ColumnName="nivel_id" />
                 <ScalarProperty Name="categoría_nivel_insignia" ColumnName="categoría_nivel_insignia" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="NOTIFICACION">
+            <EntityTypeMapping TypeName="EmPoderTIC_OFICIALModel.NOTIFICACION">
+              <MappingFragment StoreEntitySet="NOTIFICACION">
+                <ScalarProperty Name="notificacion_id" ColumnName="notificacion_id" />
+                <ScalarProperty Name="mensaje" ColumnName="mensaje" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="solicitud_aprobada" ColumnName="solicitud_aprobada" />
+                <ScalarProperty Name="USUARIO_rut" ColumnName="USUARIO_rut" />
+                <ScalarProperty Name="INSIGNIA_insignia_id" ColumnName="INSIGNIA_insignia_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="OTORGAR_INSIGNIA_P2">
-            <EntityTypeMapping TypeName="TICModel.OTORGAR_INSIGNIA_P2">
+            <EntityTypeMapping TypeName="EmPoderTIC_OFICIALModel.OTORGAR_INSIGNIA_P2">
               <MappingFragment StoreEntitySet="OTORGAR_INSIGNIA_P2">
                 <ScalarProperty Name="registro_insignia_evento" ColumnName="registro_insignia_evento" />
                 <ScalarProperty Name="contribucion_evento" ColumnName="contribucion_evento" />
@@ -1300,7 +1404,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OTORGAR_INSIGNIA_P3">
-            <EntityTypeMapping TypeName="TICModel.OTORGAR_INSIGNIA_P3">
+            <EntityTypeMapping TypeName="EmPoderTIC_OFICIALModel.OTORGAR_INSIGNIA_P3">
               <MappingFragment StoreEntitySet="OTORGAR_INSIGNIA_P3">
                 <ScalarProperty Name="registro_insignia_evento" ColumnName="registro_insignia_evento" />
                 <ScalarProperty Name="contribucion_evento" ColumnName="contribucion_evento" />
@@ -1311,7 +1415,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TIPO_PERFIL">
-            <EntityTypeMapping TypeName="TICModel.TIPO_PERFIL">
+            <EntityTypeMapping TypeName="EmPoderTIC_OFICIALModel.TIPO_PERFIL">
               <MappingFragment StoreEntitySet="TIPO_PERFIL">
                 <ScalarProperty Name="tipo_perfil_id" ColumnName="tipo_perfil_id" />
                 <ScalarProperty Name="nombre_tipo_perfil" ColumnName="nombre_tipo_perfil" />
@@ -1320,7 +1424,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="USUARIO">
-            <EntityTypeMapping TypeName="TICModel.USUARIO">
+            <EntityTypeMapping TypeName="EmPoderTIC_OFICIALModel.USUARIO">
               <MappingFragment StoreEntitySet="USUARIO">
                 <ScalarProperty Name="rut" ColumnName="rut" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1333,7 +1437,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="USUARIO_CERTIFICADO">
-            <EntityTypeMapping TypeName="TICModel.USUARIO_CERTIFICADO">
+            <EntityTypeMapping TypeName="EmPoderTIC_OFICIALModel.USUARIO_CERTIFICADO">
               <MappingFragment StoreEntitySet="USUARIO_CERTIFICADO">
                 <ScalarProperty Name="fecha_otorgamiento" ColumnName="fecha_otorgamiento" />
                 <ScalarProperty Name="certificado_url" ColumnName="certificado_url" />

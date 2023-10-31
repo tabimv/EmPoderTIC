@@ -19,6 +19,7 @@ namespace EmPoderTIC.Models
         {
             this.CERTIFICADO = new HashSet<CERTIFICADO>();
             this.CONTROL_INSIGNIA = new HashSet<CONTROL_INSIGNIA>();
+            this.NOTIFICACION = new HashSet<NOTIFICACION>();
         }
     
         public int insignia_id { get; set; }
@@ -43,5 +44,7 @@ namespace EmPoderTIC.Models
         public virtual EVENTO EVENTO { get; set; }
         public virtual NIVEL NIVEL { get; set; }
         public virtual TIPO_PERFIL TIPO_PERFIL { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NOTIFICACION> NOTIFICACION { get; set; }
     }
 }

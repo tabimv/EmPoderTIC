@@ -75,7 +75,7 @@ else
                         <div class="menu-opciones menu-opciones-@insignia_desbloqueada.INSIGNIA.insignia_id oculto">
                             <a href="https://www.linkedin.com/sharing/share-offsite/?url=@insignia_desbloqueada.INSIGNIA.imagen_url&title=@insignia_desbloqueada.INSIGNIA.nombre&summary=@insignia_desbloqueada.INSIGNIA.objetivo" class="linkedin" target="_blank">Compartir en LinkedIn</a>
                             <div class="dropdown-divider"></div>
-                            <a href="#" target="_blank">Solicitar Insignia como Logros para LinkedIn</a>
+                            <a href="@Url.Action("SolicitarInsigniaComoLogro", "Notificacion", new { insignia_id = insignia_desbloqueada.INSIGNIA.insignia_id})">Solicitar Insignia como Logros para LinkedIn</a>
                         </div>
                     </div>
                 </div>
@@ -127,6 +127,8 @@ else
                         </button>
                         <div class="menu-opciones menu-opciones-@insignia_desbloqueada.INSIGNIA.insignia_id oculto">
                             <a href="https://www.linkedin.com/sharing/share-offsite/?url=@insignia_desbloqueada.INSIGNIA.imagen_url&title=@insignia_desbloqueada.INSIGNIA.nombre&summary=@insignia_desbloqueada.INSIGNIA.objetivo" class="linkedin" target="_blank">Compartir en LinkedIn</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="@Url.Action("SolicitarInsigniaComoLogro", "Notificacion", new { insignia_id = insignia_desbloqueada.INSIGNIA.insignia_id})">Solicitar Insignia como Logros para LinkedIn</a>
                         </div>
                     </div>
                 </div>
