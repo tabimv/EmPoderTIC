@@ -17,6 +17,4 @@ function ajustarAlturaHeader() {
 window.addEventListener("load", ajustarAlturaHeader);
 window.addEventListener("resize", ajustarAlturaHeader);
 
-/*=================================================
-JavaScript para mostrar/ocultar el menú compartido
-===================================================*/
+

@@ -77,7 +77,14 @@ else
                         <div class="menu-opciones menu-opciones-@insignia_desbloqueada.INSIGNIA.insignia_id oculto">
                             <a href="https://www.linkedin.com/sharing/share-offsite/?url=@insignia_desbloqueada.INSIGNIA.imagen_url&title=@insignia_desbloqueada.INSIGNIA.nombre&summary=@insignia_desbloqueada.INSIGNIA.objetivo" class="linkedin" target="_blank">Compartir en LinkedIn</a>
                             <div class="dropdown-divider"></div>
-                            <a href="@Url.Action("SolicitarInsigniaComoLogro", "Notificacion", new { insignia_id = insignia_desbloqueada.INSIGNIA.insignia_id})">Solicitar Insignia como Logros para LinkedIn</a>
+                            <a id="solicitarInsigniaLink" href="@Url.Action("SolicitarInsigniaComoLogro", "Notificacion", new { insignia_id = insignia_desbloqueada.INSIGNIA.insignia_id})">Solicitar Insignia como Logros para LinkedIn</a>
+                        </div>
+
+                        <div id="modal" class="modal">
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <p>Tu solicitud ha sido enviada con éxito, dentro de 10 días hábiles recibirás tu insignia por tu correo institucional.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -128,7 +135,14 @@ else
                         <div class="menu-opciones menu-opciones-@insignia_desbloqueada.INSIGNIA.insignia_id oculto">
                             <a href="https://www.linkedin.com/sharing/share-offsite/?url=@insignia_desbloqueada.INSIGNIA.imagen_url&title=@insignia_desbloqueada.INSIGNIA.nombre&summary=@insignia_desbloqueada.INSIGNIA.objetivo" class="linkedin" target="_blank">Compartir en LinkedIn</a>
                             <div class="dropdown-divider"></div>
-                            <a href="@Url.Action("SolicitarInsigniaComoLogro", "Notificacion", new { insignia_id = insignia_desbloqueada.INSIGNIA.insignia_id})">Solicitar Insignia como Logros para LinkedIn</a>
+                            <a id="solicitarInsigniaLink" href="@Url.Action("SolicitarInsigniaComoLogro", "Notificacion", new { insignia_id = insignia_desbloqueada.INSIGNIA.insignia_id})">Solicitar Insignia como Logros para LinkedIn</a>
+                        </div>
+
+                        <div id="modal" class="modal">
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <p>Tu solicitud ha sido enviada con éxito, dentro de 10 días hábiles recibirás tu insignia por tu correo institucional.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -181,6 +195,51 @@ else
 
     </div>
     <script src="~/Content/js/perfil.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Agrega un controlador de clic al botón
+            $('.opciones-btn').on('click', function () {
+                var menuOpciones = $(this).next('.menu-opciones');
+
+                // Oculta todos los menús de opciones excepto el que se hace clic
+                $('.menu-opciones').not(menuOpciones).hide();
+
+                // Muestra u oculta el menú de opciones al hacer clic en el botón
+                menuOpciones.toggle();
+            });
+
+            // Cierra el menú de opciones cuando se hace clic en cualquier parte de la página
+            $(document).on('click', function (e) {
+                if (!$(e.target).closest('.opciones-container').length) {
+                    $('.menu-opciones').hide();
+                }
+            });
+
+            // Evita que el clic en el menú de opciones se propague al documento
+            $('.opciones-container .menu-opciones').on('click', function (e) {
+                e.stopPropagation();
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Agregar un manejador de clic al enlace "Solicitar Insignia como Logros para LinkedIn"
+            $("a#solicitarInsigniaLink").click(function (e) {
+                e.preventDefault(); // Evita que el enlace se abra en una nueva página
+
+                // Muestra el modal
+                $("#modal").css("display", "block");
+            });
+
+            // Agregar un manejador de clic al botón de cierre del modal
+            $(".close").click(function () {
+                // Cierra el modal
+                $("#modal").css("display", "none");
+            });
+        });
+    </script>
 }
 
 else

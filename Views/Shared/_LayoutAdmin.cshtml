@@ -67,6 +67,16 @@
                     Certificados
                 </a>
 
+  
+                <a class="list-group-item list-group-item-action list-group-item-light p-3 text-black"  style="margin-top:35%;" href="@Url.Action("Index", "PortalBadges")">
+                    <span style="font-size: 22px; color: #3770B8; display: inline-block;">
+                        <object data="https://badgr.com/canvas-badges.svg" type="image/svg+xml" width="50" height="25" style="fill: #ffffff; vertical-align: middle;"></object>
+                    </span>
+                    <span style="display: inline-block; vertical-align: middle; margin-left: -27px;">Portal Badges</span>
+                </a>
+
+
+
 
 
             </div>
@@ -80,7 +90,7 @@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mt-2 mt-lg-0 menu-list">
-                            <li><a href="@Url.Action("Logout", "Account")" class="btn-iniciar-sesion" style="color: black;">Cerrar Sesión</a></li>
+                            <li><a href="@Url.Action("Logout", "Account")" class="btn-iniciar-sesion" style="color: #fff; transition: background-color 0.3s;"  onmouseover="this.style.backgroundColor='#224291'" onmouseout="this.style.backgroundColor='#224291'">Cerrar Sesión</a></li>
                         </ul>
                     </div>
                 </div>
