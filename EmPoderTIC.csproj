@@ -368,6 +368,8 @@
     <Content Include="Views\UsuarioCertificado\Edit.cshtml" />
     <Content Include="Views\UsuarioCertificado\Index.cshtml" />
     <Content Include="Views\GenerarCertificado\ListaCertificados.cshtml" />
+    <Content Include="Views\Account\Registro.cshtml" />
+    <Content Include="Views\Account\RegistrarUsuario.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

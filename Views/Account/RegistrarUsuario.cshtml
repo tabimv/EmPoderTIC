@@ -1,0 +1,130 @@
+﻿@model EmPoderTIC.Models.USUARIO
+
+@{
+    ViewBag.Title = "Registro Usuario";
+    Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
+}
+
+
+
+
+
+<link rel="stylesheet" href="~/Content/css/login.css">
+
+<!--========================================
+       contenido
+    ==========================================-->
+
+
+<div class="contenedor-login">
+
+    <!--========================================
+        Slider
+    ==========================================-->
+    <div class="contenedor-slider">
+
+        <div class="slider">
+
+            <!-- Slide 1 -->
+            <div class="slide fade ">
+                <img src="~/Content/img/slider_1.png" alt="">
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide fade">
+                <img src="~/Content/img/slider_2.png" alt="">
+            </div>
+
+
+        </div>
+
+        <!-- Botones next y prev -->
+        <a href="#" class="prev"><i class="fas fa-chevron-left"></i></a>
+        <a href="#" class="next"><i class="fas fa-chevron-right"></i></a>
+
+        <!-- dots -->
+        <div class="dots">
+
+            <!-- <span class="dot active"></span> -->
+
+        </div>
+
+    </div>
+
+    <!--========================================
+        Formularios
+    ==========================================-->
+    <div class="contenedor-texto">
+        <div class="contenedor-form">
+            <h1 class="titulo">¡Bienvenido a EmPoderTIC!</h1>
+            <p class="descripcion">Donde Tu Reconocimiento Comienza.</p>
+
+
+            <!--========================================
+        Formulario login
+    ==========================================-->
+            @using (Html.BeginForm("RegistrarUsuario", "Account", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.rut, "RUT")
+                    @Html.TextBoxFor(model => model.rut, new { @class = "form-control", placeholder = "Rut sin puntos con guión" })
+                    @Html.ValidationMessageFor(model => model.rut)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.nombre, "Nombre")
+                    @Html.TextBoxFor(model => model.nombre, new { @class = "form-control", placeholder = "Primer Nombre" })
+                    @Html.ValidationMessageFor(model => model.nombre)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.apellido_paterno, "Apellido Paterno")
+                    @Html.TextBoxFor(model => model.apellido_paterno, new { @class = "form-control", placeholder = "Apellido Paterno" })
+                    @Html.ValidationMessageFor(model => model.apellido_paterno)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.apellido_materno, "Apellido Materno")
+                    @Html.TextBoxFor(model => model.apellido_materno, new { @class = "form-control", placeholder = "Apellido Materno" })
+                    @Html.ValidationMessageFor(model => model.apellido_materno)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.correo_electronico, "Correo Electrónico")
+                    @Html.TextBoxFor(model => model.correo_electronico, new { @class = "form-control", placeholder = "Username + dominio institucional" })
+                    @Html.ValidationMessageFor(model => model.correo_electronico)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.contraseña, "Contraseña")
+                    @Html.PasswordFor(model => model.contraseña, new { @class = "form-control", placeholder = "Contraseña" })
+                    @Html.ValidationMessageFor(model => model.contraseña)
+                </div>
+
+                <!-- Campo oculto para TIPO_PERFIL_tipo_perfil_id -->
+                @Html.HiddenFor(model => model.TIPO_PERFIL_tipo_perfil_id)
+
+
+
+
+
+                <div class="button-container">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <button class="btn-registro" type="submit">REGISTRARSE</button>
+                </div>
+                <br />
+                <a href="@Url.Action("Login")" class="link">¿Ya tienes Cuenta? Inicia Sesión</a>
+
+              
+
+
+            }
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Content/js/login_registro.js"></script>
+

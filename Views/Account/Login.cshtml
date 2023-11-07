@@ -89,9 +89,16 @@ else
 
 
 
-                    <a href="#" class="link">¿Ovidaste tu contraseña?</a>
+
+
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <button class="btn" id="btnLogin" type="submit">Iniciar Sesión</button>
+                    <br />
+                    <a href="#" class="link2">¿Ovidaste tu contraseña?</a>
+
+                    <br />
+                    <br />
+                    <a href="@Url.Action("RegistrarUsuario")" class="link">¿Aún no tienes cuenta? Registrate</a>
                 }
             </div>
                 </div>

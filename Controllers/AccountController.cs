@@ -3,7 +3,9 @@ using EmPoderTIC.Models.ViewModels;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -15,6 +17,72 @@ namespace EmPoderTIC.Controllers
     {
         // GET: Account
         private EmPoderTIC_OFICIAL db = new EmPoderTIC_OFICIAL();
+
+
+        public int ObtenerTipoPerfilId(string correoElectronico)
+        {
+            var dominiosRegistrados = db.TIPO_PERFIL.Select(tp => tp.dominio_correo).ToList();
+
+            foreach (var dominio in dominiosRegistrados)
+            {
+                if (correoElectronico.EndsWith("@" + dominio))
+                {
+                    // Encontraste un dominio coincidente en la base de datos, devuelve el TipoPerfilId
+                    var tipoPerfil = db.TIPO_PERFIL.FirstOrDefault(tp => tp.dominio_correo == dominio);
+                    if (tipoPerfil != null)
+                    {
+                        return tipoPerfil.tipo_perfil_id;
+                    }
+                }
+            }
+
+            return 0; // Valor predeterminado o no válido
+        }
+
+
+        [HttpGet]
+        public ActionResult RegistrarUsuario()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult RegistrarUsuario(string rut, string nombre, string apellido_paterno, string apellido_materno, string correo_electronico, string contraseña)
+        {
+            if (!string.IsNullOrEmpty(rut) && !string.IsNullOrEmpty(nombre) && !string.IsNullOrEmpty(apellido_paterno) && !string.IsNullOrEmpty(apellido_materno) && !string.IsNullOrEmpty(correo_electronico) && !string.IsNullOrEmpty(contraseña))
+            {
+                var tipoPerfilId = ObtenerTipoPerfilId(correo_electronico);
+
+                if (tipoPerfilId != 0)
+                {
+                    var nuevoUsuario = new USUARIO
+                    {
+                        rut = rut,
+                        nombre = nombre,
+                        apellido_paterno = apellido_paterno,
+                        apellido_materno = apellido_materno,
+                        correo_electronico = correo_electronico,
+                        contraseña = contraseña,
+                        TIPO_PERFIL_tipo_perfil_id = tipoPerfilId
+                    };
+
+                    // Agregar el usuario a la base de datos
+                    db.USUARIO.Add(nuevoUsuario);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Login");
+                }
+                else
+                {
+                    ModelState.AddModelError("correo_electronico", "Dominio de correo no válido.");
+                }
+            }
+
+            return View();
+        }
+
+
 
         [HttpGet]
         [AllowAnonymous]

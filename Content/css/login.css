@@ -164,6 +164,8 @@ Estilos contenido slider
     -webkit-animation: fade 1.5s ease-in-out;
 }
 
+
+
 @-webkit-keyframes fade {
     from {
         opacity: 0.4;
@@ -367,6 +369,15 @@ Estilos Formularios
         text-decoration: underline;
     }
 
+.link2 {
+    font-size: 14px;
+    color: var(--color-celeste);
+}
+
+    .link2:hover {
+        text-decoration: underline;
+    }
+
 .formulario .btn {
     width: 100%;
     padding: 14px;
@@ -502,6 +513,49 @@ Estilos mesajes de error
         -webkit-transform: rotateX( 5deg);
         transform: rotateX(5deg);
     }
+}
+
+/*========================================
+Registro de Usuario
+==========================================*/
+
+.btn-registro {
+    background: #3770B8;
+    color: #fff;
+    padding: 15px 147px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.2s ease; /* Agrega transiciones para fondo y transformación */
+    border: 0;
+
+}
+
+.btn-registro:hover {
+    background: #3285dd; /* Cambia el fondo al pasar el cursor */
+    transform: scale(1.1); /* Escala el botón al 110% de su tamaño original */
+}
+
+.form-group {
+    margin-bottom: 20px; /* Espaciado entre los campos de formulario */
+
+}
+
+.form-control {
+    border-color: #000; /* Establece el color del borde en negro */
+    background: #fff;
+    box-shadow: 0px 3px 6px rgba(0,0,0,.08);
+    margin: auto;
+    border-radius: 2px;
+    padding: 10px;
+}
+
+.link {
+    text-align: center;
+    margin-left: 25%;
+}
+
+.link2 {
+    margin-left: 30%;
 }
 
 
