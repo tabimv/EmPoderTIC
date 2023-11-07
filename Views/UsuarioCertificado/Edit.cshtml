@@ -1,4 +1,4 @@
-﻿@model EmPoderTIC.Models.ASISTENCIA
+﻿@model EmPoderTIC.Models.USUARIO_CERTIFICADO
 
 @{
     ViewBag.Title = "Edit";
@@ -25,21 +25,21 @@ else
         @Html.AntiForgeryToken()
         <div class="container-formularios">
             <div class="form-container">
-                <h2>Editar Asistencia</h2>
+                <h2>Editar Certificado Para Un Usuario</h2>
                 <form>
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.registro_asistencia_evento, "Registro Asistencia Evento: ", htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.EditorFor(model => model.registro_asistencia_evento)
-                        @Html.ValidationMessageFor(model => model.registro_asistencia_evento, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.fecha_registro_asistencia, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.EditorFor(model => model.fecha_registro_asistencia, new { htmlAttributes = new { @class = "form-control", type = "date"} })
-                        @Html.ValidationMessageFor(model => model.fecha_registro_asistencia, "", new { @class = "text-danger" })
-                    </div>
+                    @Html.HiddenFor(model => model.CERTIFICADO_certificado_id)
                     @Html.HiddenFor(model => model.USUARIO_rut)
-                    @Html.HiddenFor(model => model.EVENTO_evento_id)
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.fecha_otorgamiento, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.fecha_otorgamiento, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                        @Html.ValidationMessageFor(model => model.fecha_otorgamiento, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.certificado_url, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.certificado_url, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.certificado_url, "", new { @class = "text-danger" })
+                    </div>
                     <div class="form-group">
                         <input type="submit" value="Guardar Cambios" class="btn btn-primary-custom" />
                     </div>

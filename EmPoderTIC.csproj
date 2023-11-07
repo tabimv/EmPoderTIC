@@ -230,10 +230,10 @@
     <Compile Include="Controllers\GenerarCertificadoController.cs" />
     <Compile Include="Controllers\InsigniaController.cs" />
     <Compile Include="Controllers\NotificacionController.cs" />
-    <Compile Include="Controllers\NOTIFICACIONsController.cs" />
     <Compile Include="Controllers\OtorgarInsigniaPerfil2Controller.cs" />
     <Compile Include="Controllers\OtorgarInsigniaPerfil3Controller.cs" />
     <Compile Include="Controllers\PortalBadgesController.cs" />
+    <Compile Include="Controllers\UsuarioCertificadoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\VistaPerfil1Controller.cs" />
     <Compile Include="Controllers\VistaPerfil2Controller.cs" />
@@ -364,11 +364,10 @@
     <Content Include="Views\Notificacion\Edit.cshtml" />
     <Content Include="Views\Notificacion\Index.cshtml" />
     <Content Include="Views\PortalBadges\Index.cshtml" />
-    <Content Include="Views\NOTIFICACIONs\Create.cshtml" />
-    <Content Include="Views\NOTIFICACIONs\Delete.cshtml" />
-    <Content Include="Views\NOTIFICACIONs\Details.cshtml" />
-    <Content Include="Views\NOTIFICACIONs\Edit.cshtml" />
-    <Content Include="Views\NOTIFICACIONs\Index.cshtml" />
+    <Content Include="Views\UsuarioCertificado\Create.cshtml" />
+    <Content Include="Views\UsuarioCertificado\Edit.cshtml" />
+    <Content Include="Views\UsuarioCertificado\Index.cshtml" />
+    <Content Include="Views\GenerarCertificado\ListaCertificados.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -377,8 +376,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Views\GenerarCertificado\" />
+    <Folder Include="App_Data\Certificados\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

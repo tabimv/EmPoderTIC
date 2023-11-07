@@ -117,20 +117,7 @@ else
                             }
                             else
                             {
-
-                                if (ViewBag.certificado_url != null)
-                                {
-                                    <a href="@ViewBag.certificado_url" class="btn" download>OBTENER CERTIFICADO</a>
-                                }
-                                else
-                                {
-                                    <button class="btn btn-inactivo" id="obtener-certificado" disabled>
-                                        TÚ CERTIFICADO SERÁ DESBLOQUEADO 
-                                    </button>
-                                }
-
-
-
+                                @Html.ActionLink("OBTENER CERTIFICADO", "DescargarCertificado", "GenerarCertificado", new { archivoPath = ViewBag.Certificado.certificado_url }, new { @class = "btn btn-activo" })
                             }
                         }
                         else

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EmPoderTIC.Models.ASISTENCIA>
+﻿@model string[]
 
 @{
     ViewBag.Title = "Index";
@@ -26,54 +26,39 @@ else
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Gestión de <b>Asistencia para Alumnos y/o Titulados</b></h2>
+                            <h2><b>Lista de Certificados Generados</b></h2>
+                            <br />
+                            <p> Debes tener la estructura del PDF en: C:\Users\Public\Downloads\Certificado_Estructura.pdf</p>
                         </div>
                         <div class="col-sm-6">
-                            <a href="@Url.Action("Create")" class="btn btn-success">
-                                <i class="material-icons">&#xE147;</i>
-                                Crear Asistencia para Evento
+                            <a href="https://drive.google.com/file/d/1oV56nsXCUU1Hc3zd991_-acDvj1Nf5T6/view?usp=sharing" class="btn btn-primary" download>
+                                <i class="material-icons">cloud_download</i>
+                                Descargar Estructura Certificado PDF
+                            </a>
+                            <a href="#" onclick="window.open('@Url.Action("Generar", "GenerarCertificado")', '_blank'); return false;" class="btn btn-success">
+                                <i class="material-icons">assignment</i>
+                                Generar Certificados
                             </a>
 
-
-
-
+                            <a href="@Url.Action("Index", "UsuarioCertificado")" class="btn btn-success">
+                                <i class="material-icons">arrow_back</i>
+                                Volver
+                            </a>
                         </div>
                     </div>
                 </div>
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th></th>
-                            <th> Registro Asistencia Evento</th>
-                            <th> Fecha Registro Asistencia Evento</th>
-                            <th> Evento</th>
-                            <th> Alumno y/o Titulado</th>
-                            <th>Acciones</th>
+                            <th> Certificados</th>
+                         
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model)
+                        @foreach (var archivo in Model)
                         {
                             <tr>
-                                <td></td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.registro_asistencia_evento)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.fecha_registro_asistencia)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.EVENTO.nombre)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.USUARIO.nombre)
-                                </td>
-                                <td>
-                                    <a href="#" class="edit" data-url="@Url.Action("Edit", new { USUARIO_rut = item.USUARIO_rut, EVENTO_evento_id = item.EVENTO_evento_id })">
-                                        <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
-                                        <span style="display: none;">Edit</span>
-                                    </a>
-                                </td>
+                               <td> @Html.ActionLink(Path.GetFileName(archivo), "DescargarCertificado", new { archivoPath = archivo }) </td>
                             </tr>
                         }
                     </tbody>

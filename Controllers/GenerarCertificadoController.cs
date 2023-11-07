@@ -12,6 +12,7 @@ using Google.Apis.Services;
 using Google.Apis.Util.Store;
 using System;
 using System.Threading;
+using System.Configuration;
 
 namespace EmPoderTIC.Controllers
 {
@@ -28,10 +29,10 @@ namespace EmPoderTIC.Controllers
         public ActionResult Generar()
         {
             // Ruta de la plantilla PDF
-            string templatePath = "C://Users//tbmv1//Downloads//PDF//Entrada//Certificado_Estructura.PDF";
+            string templatePath = ConfigurationManager.AppSettings["TemplatePath"];
 
             // Carpeta de salida para los PDF individuales
-            string outputFolder = "C://Users//Public//Downloads//Certificados";
+            string outputFolder = Server.MapPath("~/App_Data/Certificados");
             var areas = db.AREA.ToList();
 
             foreach (var area in areas)
@@ -39,6 +40,8 @@ namespace EmPoderTIC.Controllers
                 // Listar Certificado Por Area para un Usuario 
                 var DatosUsuarios = db.USUARIO_CERTIFICADO
                                    .Include(uc => uc.USUARIO)
+                                   .Include(uc => uc.CERTIFICADO.AREA)
+                                   .Include(uc => uc.CERTIFICADO.INSIGNIA.COMPETENCIA)
                                    .ToList();
 
                 foreach (var datosCertificado in DatosUsuarios)
@@ -62,12 +65,39 @@ namespace EmPoderTIC.Controllers
                         content.ShowText(datosCertificado.USUARIO.nombre + " " + datosCertificado.USUARIO.apellido_paterno); // Utiliza las propiedades del usuario
                         content.EndText();
 
+                        // Establece las coordenadas (x, y) para el segundo texto
+                        float x2 = 145; // Cambia esto a la nueva coordenada x deseada
+                        float y2 = 235; // Cambia esto a la nueva coordenada y deseada
+
+                        // Define la fuente y el tamaño de fuente
+                        BaseFont font = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
+                        float fontSize = 12;
+
+                        // Define el alto de la fuente
+                        float lineHeight = fontSize * 1.5f;
+
+                        content.BeginText();
+                        content.SetFontAndSize(font, fontSize);
+                        content.SetTextMatrix(x2, y2);
+
+                        // Agrega el texto con salto de línea para controlar el alto
+                        string texto = "Este Certificado se concede en reconocimiento a la destacada participación y compromiso demostrados por \n" +
+                            datosCertificado.USUARIO.nombre + " " + datosCertificado.USUARIO.apellido_paterno + " en el Área de " + datosCertificado.CERTIFICADO.AREA.area_conocimiento + " en colaboración con Más Mujeres en las TIC impartido por \n" + 
+                            " Duoc UC. Durante su participación en este programa," + datosCertificado.USUARIO.nombre + " " + datosCertificado.USUARIO.apellido_paterno + " ha sobresalido en las competencias clave \n" +
+                            "para el " + datosCertificado.CERTIFICADO.AREA.area_conocimiento + " y sus Competencias de Conocimientos.";
+
+                        string[] lineas = texto.Split('\n');
+                        foreach (string linea in lineas)
+                        {
+                            content.ShowText(linea);
+                            content.SetTextMatrix(x2, y2 -= lineHeight);
+                        }
+
+                        content.EndText();
+
                         stamper.Close();
                     }
 
-                   
-
-                    // Actualiza el campo CertificadoPdf en la entidad Usuario
                     datosCertificado.certificado_url = Path.Combine(outputFolder, outputPath);
                     db.Entry(datosCertificado).State = EntityState.Modified;
                     db.SaveChanges();
@@ -80,22 +110,32 @@ namespace EmPoderTIC.Controllers
         }
 
 
-        public ActionResult ObtenerCertificado(string nombre, string apellido)
+        public ActionResult ListaCertificados()
         {
-            string outputFolder = "C://Users//Public//Downloads//Certificados";
-            string outputPath = Path.Combine(outputFolder, $"{nombre}_{apellido}_Certificado.pdf");
+            // Obtener la lista de archivos en la carpeta de salida
+            string outputFolder = Server.MapPath("~/App_Data/Certificados");
+            string[] archivos = Directory.GetFiles(outputFolder);
 
-            if (System.IO.File.Exists(outputPath))
+            // Puedes pasar la lista de archivos a la vista
+            return View(archivos);
+        }
+
+        public ActionResult DescargarCertificado(string archivoPath)
+        {
+            // Verificar que el archivo existe
+            if (System.IO.File.Exists(archivoPath))
             {
-                // Si el archivo existe, lo entregamos como un archivo para su descarga
-                return File(outputPath, "application/pdf", $"{nombre}_{apellido}_Certificado.pdf");
+                return File(archivoPath, "application/pdf", Path.GetFileName(archivoPath));
             }
             else
             {
-                // Si el archivo no existe, puedes mostrar un mensaje de error o redirigir a una página de error.
-                return Content("El certificado no está disponible.");
+                return HttpNotFound(); // Devolver un error 404 si el archivo no existe
             }
         }
+
+
+
+
 
 
 

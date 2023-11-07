@@ -65,19 +65,25 @@ namespace EmPoderTIC.Controllers
         }
 
         // GET: Asistencia/Edit/5
-        public async Task<ActionResult> Edit(string id)
+        public async Task<ActionResult> Edit(string USUARIO_rut, int? EVENTO_evento_id)
         {
-            if (id == null)
+            if (string.IsNullOrEmpty(USUARIO_rut) || EVENTO_evento_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ASISTENCIA aSISTENCIA = await db.ASISTENCIA.FindAsync(id);
+
+            // Buscar el registro de asistencia en función del usuario y el evento
+            ASISTENCIA aSISTENCIA = await db.ASISTENCIA.FirstOrDefaultAsync(a =>
+                a.USUARIO_rut == USUARIO_rut && a.EVENTO_evento_id == EVENTO_evento_id);
+
             if (aSISTENCIA == null)
             {
                 return HttpNotFound();
             }
+
             ViewBag.EVENTO_evento_id = new SelectList(db.EVENTO, "evento_id", "nombre", aSISTENCIA.EVENTO_evento_id);
             ViewBag.USUARIO_rut = new SelectList(db.USUARIO, "rut", "nombre", aSISTENCIA.USUARIO_rut);
+
             return View(aSISTENCIA);
         }
 

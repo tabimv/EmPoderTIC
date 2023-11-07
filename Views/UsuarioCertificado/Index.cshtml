@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EmPoderTIC.Models.ASISTENCIA>
+﻿@model IEnumerable<EmPoderTIC.Models.USUARIO_CERTIFICADO>
 
 @{
     ViewBag.Title = "Index";
@@ -33,6 +33,15 @@ else
                                 <i class="material-icons">&#xE147;</i>
                                 Crear Asistencia para Evento
                             </a>
+                            <a href="@Url.Action("ListaCertificados", "GenerarCertificado")" class="btn btn-success">
+                                <i class="material-icons">assignment</i>
+                                Certificados Generados
+                            </a>
+
+                            <a href="@Url.Action("Index", "Certificado")" class="btn btn-success">
+                                <i class="material-icons">arrow_back</i>
+                                Volver
+                            </a>
 
 
 
@@ -44,10 +53,10 @@ else
                     <thead>
                         <tr>
                             <th></th>
-                            <th> Registro Asistencia Evento</th>
-                            <th> Fecha Registro Asistencia Evento</th>
-                            <th> Evento</th>
-                            <th> Alumno y/o Titulado</th>
+                            <th> Fecha otorgamiento</th>
+                            <th> Certificado_url</th>
+                            <th> Certificado </th>
+                            <th> Usuario </th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -57,19 +66,19 @@ else
                             <tr>
                                 <td></td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.registro_asistencia_evento)
+                                    @Html.DisplayFor(modelItem => item.fecha_otorgamiento)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.fecha_registro_asistencia)
+                                    @Html.DisplayFor(modelItem => item.certificado_url)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.EVENTO.nombre)
+                                    @Html.DisplayFor(modelItem => item.CERTIFICADO.nombre)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.USUARIO.nombre)
                                 </td>
                                 <td>
-                                    <a href="#" class="edit" data-url="@Url.Action("Edit", new { USUARIO_rut = item.USUARIO_rut, EVENTO_evento_id = item.EVENTO_evento_id })">
+                                    <a href="#" class="edit" data-url="@Url.Action("Edit", new { USUARIO_rut = item.USUARIO_rut, certificado_id = item.CERTIFICADO_certificado_id })">
                                         <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
                                         <span style="display: none;">Edit</span>
                                     </a>
