@@ -1150,7 +1150,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="EmPoderTIC_OFICIALEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="EmPoderTIC_OFICIAL" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AREA" EntityType="Self.AREA" />
           <EntitySet Name="ASISTENCIA" EntityType="Self.ASISTENCIA" />
           <EntitySet Name="CERTIFICACION" EntityType="Self.CERTIFICACION" />
@@ -1280,7 +1280,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="EmPoderTIC_OFICIALModelStoreContainer" CdmEntityContainer="EmPoderTIC_OFICIALEntities">
+        <EntityContainerMapping StorageEntityContainer="EmPoderTIC_OFICIALModelStoreContainer" CdmEntityContainer="EmPoderTIC_OFICIAL">
           <EntitySetMapping Name="AREA">
             <EntityTypeMapping TypeName="EmPoderTIC_OFICIALModel.AREA">
               <MappingFragment StoreEntitySet="AREA">

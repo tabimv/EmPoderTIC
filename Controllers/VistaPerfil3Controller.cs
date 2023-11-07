@@ -17,7 +17,7 @@ namespace EmPoderTIC.Controllers
     public class VistaPerfil3Controller : Controller
     {
         // GET: VistaPerfil3
-        private EmPoderTIC_OFICIALEntities db = new EmPoderTIC_OFICIALEntities(); // Tu contexto de base de datos
+        private EmPoderTIC_OFICIAL db = new EmPoderTIC_OFICIAL(); // Tu contexto de base de datos
         public ActionResult Index()
         {
             if (Session["UsuarioAutenticado"] != null)
@@ -135,6 +135,9 @@ namespace EmPoderTIC.Controllers
                     .Include(d => d.INSIGNIA.EVENTO)
                     .ToList();
 
+                var certificado = db.USUARIO_CERTIFICADO
+                .Where(uc => uc.USUARIO_rut == usuarioAutenticado.rut).ToList();
+
 
 
                 // Asigna los datos filtrados a las ViewBag para su uso en la vista
@@ -142,6 +145,7 @@ namespace EmPoderTIC.Controllers
                 ViewBag.InsigniasDeNivel1y2 = insigniasNivel1y2;
                 ViewBag.EventosConAsistencia = eventosConAsistencia;
                 ViewBag.InformacionUsuarios = informacionUsuarios;
+                ViewBag.Certificado = certificado;
                 return View("Perfil");
             }
             else

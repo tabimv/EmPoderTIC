@@ -13,10 +13,10 @@ namespace EmPoderTIC.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EmPoderTIC_OFICIALEntities : DbContext
+    public partial class EmPoderTIC_OFICIAL : DbContext
     {
-        public EmPoderTIC_OFICIALEntities()
-            : base("name=EmPoderTIC_OFICIALEntities")
+        public EmPoderTIC_OFICIAL()
+            : base("name=EmPoderTIC_OFICIAL")
         {
         }
     

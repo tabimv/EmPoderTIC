@@ -16,7 +16,7 @@ namespace EmPoderTIC.Controllers
     public class VistaPerfil1Controller : Controller
     {
         // GET: VistaPerfil1
-        private EmPoderTIC_OFICIALEntities db = new EmPoderTIC_OFICIALEntities(); // Tu contexto de base de datos
+        private EmPoderTIC_OFICIAL db = new EmPoderTIC_OFICIAL(); // Tu contexto de base de datos
         public ActionResult Index()
         {
             if (Session["UsuarioAutenticado"] != null)
@@ -70,7 +70,7 @@ namespace EmPoderTIC.Controllers
 
 
                     // Verifica si hay un certificado para este usuario en esta área
-                    var certificadoArea = db.USUARIO_CERTIFICADO.Include(c => c.CERTIFICADO.AREA).FirstOrDefault(c => c.USUARIO_rut == usuarioAutenticado.rut && c.CERTIFICADO.INSIGNIA_insignia_id == c.CERTIFICADO.INSIGNIA.insignia_id && c.CERTIFICADO.AREA_area_id == c.CERTIFICADO.AREA.area_id);
+                    var certificadoArea = db.USUARIO_CERTIFICADO.Include(c => c.CERTIFICADO).Include(c => c.CERTIFICADO.AREA).FirstOrDefault(c => c.USUARIO_rut == usuarioAutenticado.rut && c.CERTIFICADO.INSIGNIA_insignia_id == c.CERTIFICADO.INSIGNIA.insignia_id && c.CERTIFICADO.AREA_area_id == c.CERTIFICADO.AREA.area_id);
 
                     if (certificadoArea != null && (certificado == null || certificadoArea.fecha_otorgamiento > certificado.fecha_otorgamiento))
                     {
@@ -137,13 +137,17 @@ namespace EmPoderTIC.Controllers
                     .Include(d => d.INSIGNIA.EVENTO)
                     .ToList();
 
+                var certificado = db.USUARIO_CERTIFICADO
+                   .Where(uc => uc.USUARIO_rut == usuarioAutenticado.rut).ToList();
 
+                
 
                 // Asigna los datos filtrados a las ViewBag para su uso en la vista
                 ViewBag.InsigniasDeNivel3 = insigniasNivel3;
                 ViewBag.InsigniasDeNivel1y2 = insigniasNivel1y2;
                 ViewBag.EventosConAsistencia = eventosConAsistencia;
                 ViewBag.InformacionUsuarios = informacionUsuarios;
+                ViewBag.Certificado = certificado;
                 return View("Perfil");
             }
             else

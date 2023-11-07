@@ -13,7 +13,7 @@ namespace EmPoderTIC.Controllers
 {
     public class InsigniaController : Controller
     {
-        private EmPoderTIC_OFICIALEntities db = new EmPoderTIC_OFICIALEntities();
+        private EmPoderTIC_OFICIAL db = new EmPoderTIC_OFICIAL();
 
         // GET: Insignia
         public async Task<ActionResult> Index()

@@ -13,7 +13,7 @@ namespace EmPoderTIC.Controllers
 {
     public class AreaController : Controller
     {
-        private EmPoderTIC_OFICIALEntities db = new EmPoderTIC_OFICIALEntities();
+        private EmPoderTIC_OFICIAL db = new EmPoderTIC_OFICIAL();
 
         // GET: Area
         public async Task<ActionResult> Index()

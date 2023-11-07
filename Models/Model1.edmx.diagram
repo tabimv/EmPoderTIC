@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="29928271644f489ba78cbc996cabce68" Name="Diagram1">
+      <Diagram DiagramId="e3a86b031d164a7981f905d48da04bd4" Name="Diagram1">
         <EntityTypeShape EntityType="EmPoderTIC_OFICIALModel.AREA" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
         <EntityTypeShape EntityType="EmPoderTIC_OFICIALModel.ASISTENCIA" Width="1.5" PointX="13.5" PointY="9.875" IsExpanded="true" />
         <EntityTypeShape EntityType="EmPoderTIC_OFICIALModel.CERTIFICACION" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />

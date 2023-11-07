@@ -78,7 +78,34 @@ else
                             <a href="https://www.linkedin.com/sharing/share-offsite/?url=@insignia_desbloqueada.INSIGNIA.imagen_url&title=@insignia_desbloqueada.INSIGNIA.nombre&summary=@insignia_desbloqueada.INSIGNIA.objetivo" class="linkedin" target="_blank">Compartir en LinkedIn</a>
                             <div class="dropdown-divider"></div>
                             <a id="solicitarInsigniaLink" href="@Url.Action("SolicitarInsigniaComoLogro", "Notificacion", new { insignia_id = insignia_desbloqueada.INSIGNIA.insignia_id})">Solicitar Insignia como Logros para LinkedIn</a>
+                            @foreach (var item in ViewBag.Certificado)
+                            {
+                                if (item.certificado_url != null)
+                                {
+                                    <a> ver certificado </a>
+                                }
+                                else
+                                {
+                                    <a id="solicitarCertificado" href="@Url.Action("SolicitarCertificado", "Notificacion", new { insignia_id = insignia_desbloqueada.INSIGNIA.insignia_id })">Solicitar Certificado</a>
+                                }
+
+                            }
                         </div>
+
+                        <div id="modal" class="modal">
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <p>Tu solicitud ha sido enviada con éxito, dentro de 10 días hábiles recibirás tu insignia. Te notificaremos por tu correo institucional.</p>
+                            </div>
+                        </div>
+
+                        <div id="modal-certificado" class="modal">
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <p>Tu solicitud ha sido enviada con éxito, dentro de 5 días hábiles se desbloqueará tu Certificado. Podrás visualizarlo en la Página de Reconocimientos y Perfil.</p>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             }
@@ -128,6 +155,13 @@ else
                             <a href="https://www.linkedin.com/sharing/share-offsite/?url=@insignia_desbloqueada.INSIGNIA.imagen_url&title=@insignia_desbloqueada.INSIGNIA.nombre&summary=@insignia_desbloqueada.INSIGNIA.objetivo" class="linkedin" target="_blank">Compartir en LinkedIn</a>
                             <div class="dropdown-divider"></div>
                             <a id="solicitarInsigniaLink" href="@Url.Action("SolicitarInsigniaComoLogro", "Notificacion", new { insignia_id = insignia_desbloqueada.INSIGNIA.insignia_id})">Solicitar Insignia como Logros para LinkedIn</a>
+                        </div>
+
+                        <div id="modal" class="modal">
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <p>Tu solicitud ha sido enviada con éxito, dentro de 10 días hábiles recibirás tu insignia. Te notificaremos por tu correo institucional.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -222,6 +256,24 @@ else
             $(".close").click(function () {
                 // Cierra el modal
                 $("#modal").css("display", "none");
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Agregar un manejador de clic al enlace "Solicitar Insignia como Logros para LinkedIn"
+            $("a#solicitarCertificado").click(function (e) {
+                e.preventDefault(); // Evita que el enlace se abra en una nueva página
+
+                // Muestra el modal
+                $("#modal-certificado").css("display", "block");
+            });
+
+            // Agregar un manejador de clic al botón de cierre del modal
+            $(".close").click(function () {
+                // Cierra el modal
+                $("#modal-certificado").css("display", "none");
             });
         });
     </script>

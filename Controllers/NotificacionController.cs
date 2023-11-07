@@ -14,7 +14,7 @@ namespace EmPoderTIC.Controllers
 {
     public class NotificacionController : Controller
     {
-        private EmPoderTIC_OFICIALEntities db = new EmPoderTIC_OFICIALEntities();
+        private EmPoderTIC_OFICIAL db = new EmPoderTIC_OFICIAL();
 
         public ActionResult SolicitarInsigniaComoLogro(int insignia_id)
         {
@@ -32,7 +32,7 @@ namespace EmPoderTIC.Controllers
                     INSIGNIA_insignia_id = insignia_id
                 };
 
-                using (var db = new EmPoderTIC_OFICIALEntities())
+                using (var db = new EmPoderTIC_OFICIAL())
                 {
                     db.NOTIFICACION.Add(nOTIFICACION);
                     db.SaveChanges();
@@ -60,6 +60,54 @@ namespace EmPoderTIC.Controllers
                 return RedirectToAction("Login", "Account");
             }
         }
+
+
+
+        public ActionResult SolicitarCertificado(int insignia_id)
+        {
+            if (Session["UsuarioAutenticado"] != null)
+            {
+                var usuarioAutenticado = (USUARIO)Session["UsuarioAutenticado"];
+                var mensaje = $"ha solicitado el Certificado correspondiente a la Insignia Certificada {insignia_id}.";
+
+                var nOTIFICACION = new NOTIFICACION
+                {
+                    mensaje = mensaje,
+                    fecha = DateTime.Now,
+                    solicitud_aprobada = false,
+                    USUARIO_rut = usuarioAutenticado.rut,
+                    INSIGNIA_insignia_id = insignia_id
+                };
+
+                using (var db = new EmPoderTIC_OFICIAL())
+                {
+                    db.NOTIFICACION.Add(nOTIFICACION);
+                    db.SaveChanges();
+                }
+                // Redirige al usuario a donde corresponda después de enviar la notificación
+
+                if (usuarioAutenticado.TIPO_PERFIL.nombre_tipo_perfil == "Estudiante y/o Titulado")
+                {
+                    return RedirectToAction("Perfil", "VistaPerfil1");
+                }
+                else if (usuarioAutenticado.TIPO_PERFIL.nombre_tipo_perfil == "Docente")
+                {
+                    return RedirectToAction("Perfil", "VistaPerfil2");
+                }
+                else if (usuarioAutenticado.TIPO_PERFIL.nombre_tipo_perfil == "Colaborador administrativo")
+                {
+                    return RedirectToAction("Perfil", "VistaPerfil3");
+                }
+
+
+                return RedirectToAction("Perfil");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
 
         // GET: Notificacion
         public async Task<ActionResult> Index()

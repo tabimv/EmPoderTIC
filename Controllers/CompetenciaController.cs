@@ -13,7 +13,7 @@ namespace EmPoderTIC.Controllers
 {
     public class CompetenciaController : Controller
     {
-        private EmPoderTIC_OFICIALEntities db = new EmPoderTIC_OFICIALEntities();
+        private EmPoderTIC_OFICIAL db = new EmPoderTIC_OFICIAL();
 
         // GET: Competencia
         public async Task<ActionResult> Index()
