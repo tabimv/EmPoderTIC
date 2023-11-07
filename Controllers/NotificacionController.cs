@@ -129,8 +129,8 @@ namespace EmPoderTIC.Controllers
             {
                 return HttpNotFound();
             }
-
-
+            ViewBag.INSIGNIA_insignia_id = new SelectList(db.INSIGNIA, "insignia_id", "nombre", nOTIFICACION.INSIGNIA_insignia_id);
+            ViewBag.USUARIO_rut = new SelectList(db.USUARIO, "rut", "nombre", nOTIFICACION.USUARIO_rut);
             return View(nOTIFICACION);
         }
 
@@ -139,29 +139,16 @@ namespace EmPoderTIC.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "notificacion_id,solicitud_aprobada")] NOTIFICACION nOTIFICACION)
+        public async Task<ActionResult> Edit([Bind(Include = "notificacion_id,mensaje,fecha,solicitud_aprobada,USUARIO_rut,INSIGNIA_insignia_id")] NOTIFICACION nOTIFICACION)
         {
             if (ModelState.IsValid)
             {
-                try
-                {
-                    db.Entry(nOTIFICACION).State = EntityState.Modified;
-                    await db.SaveChangesAsync();
-                    return RedirectToAction("Index");
-                }
-                catch (DbEntityValidationException ex)
-                {
-                    // Manejo de excepciones de validación
-                    foreach (var entityValidationErrors in ex.EntityValidationErrors)
-                    {
-                        foreach (var validationError in entityValidationErrors.ValidationErrors)
-                        {
-                            ModelState.AddModelError(validationError.PropertyName, validationError.ErrorMessage);
-                        }
-                    }
-                }
+                db.Entry(nOTIFICACION).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
             }
-
+            ViewBag.INSIGNIA_insignia_id = new SelectList(db.INSIGNIA, "insignia_id", "nombre", nOTIFICACION.INSIGNIA_insignia_id);
+            ViewBag.USUARIO_rut = new SelectList(db.USUARIO, "rut", "nombre", nOTIFICACION.USUARIO_rut);
             return View(nOTIFICACION);
         }
 

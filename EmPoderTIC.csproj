@@ -230,6 +230,7 @@
     <Compile Include="Controllers\GenerarCertificadoController.cs" />
     <Compile Include="Controllers\InsigniaController.cs" />
     <Compile Include="Controllers\NotificacionController.cs" />
+    <Compile Include="Controllers\NOTIFICACIONsController.cs" />
     <Compile Include="Controllers\OtorgarInsigniaPerfil2Controller.cs" />
     <Compile Include="Controllers\OtorgarInsigniaPerfil3Controller.cs" />
     <Compile Include="Controllers\PortalBadgesController.cs" />
@@ -363,6 +364,11 @@
     <Content Include="Views\Notificacion\Edit.cshtml" />
     <Content Include="Views\Notificacion\Index.cshtml" />
     <Content Include="Views\PortalBadges\Index.cshtml" />
+    <Content Include="Views\NOTIFICACIONs\Create.cshtml" />
+    <Content Include="Views\NOTIFICACIONs\Delete.cshtml" />
+    <Content Include="Views\NOTIFICACIONs\Details.cshtml" />
+    <Content Include="Views\NOTIFICACIONs\Edit.cshtml" />
+    <Content Include="Views\NOTIFICACIONs\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
