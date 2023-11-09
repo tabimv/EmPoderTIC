@@ -4,7 +4,7 @@
     max-width: 1200px;
     margin: 5% auto auto auto;
     padding: 20px;
-    height: auto;
+    height: 600px;
     position: relative;
     margin-bottom: 20px;
 }
@@ -18,15 +18,16 @@ h1 {
 .btn-acceso {
     background: #3266a5;
     color: #fff;
-    padding: 10px 20px;
+    padding: 15px 30px;
     border-radius: 5px;
     text-decoration: none;
     transition: background 0.3s ease, transform 0.2s ease;
     position: relative;
     transform: scale(1.1);
     text-align: center;
-    margin-left: 45%;
-    margin-top: 2%;
+    margin-left: 42%;
+    margin-top: 10px;
+    font-size: 25px;
  
 }
 

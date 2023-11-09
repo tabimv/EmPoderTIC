@@ -15,6 +15,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="~/Content/css/admin.css" rel="stylesheet" />
+    <link href="~/Content/css/footer.css" rel="stylesheet" />
     @RenderSection("css", required: false)
     @RenderSection("js", required: false)
 </head>
@@ -67,8 +68,8 @@
                     Certificados
                 </a>
 
-  
-                <a class="list-group-item list-group-item-action list-group-item-light p-3 text-black"  style="margin-top:35%;" href="@Url.Action("Index", "PortalBadges")">
+
+                <a class="list-group-item list-group-item-action list-group-item-light p-3 text-black" style="margin-top:35%;" href="@Url.Action("Index", "PortalBadges")">
                     <span style="font-size: 22px; color: #3770B8; display: inline-block;">
                         <object data="https://badgr.com/canvas-badges.svg" type="image/svg+xml" width="50" height="25" style="fill: #ffffff; vertical-align: middle;"></object>
                     </span>
@@ -90,7 +91,7 @@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mt-2 mt-lg-0 menu-list">
-                            <li><a href="@Url.Action("Logout", "Account")" class="btn-iniciar-sesion" style="color: #fff; transition: background-color 0.3s;"  onmouseover="this.style.backgroundColor='#224291'" onmouseout="this.style.backgroundColor='#224291'">Cerrar Sesión</a></li>
+                            <li><a href="@Url.Action("Logout", "Account")" class="btn-iniciar-sesion" style="color: #fff; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#224291'" onmouseout="this.style.backgroundColor='#224291'">Cerrar Sesión</a></li>
                         </ul>
                     </div>
                 </div>
@@ -102,10 +103,29 @@
 
         </div>
     </div>
+
+    <footer>
+        <div class="footer-line"></div>
+        <img class="footer-logo" src="../Home HTML/img/logo.png" alt="Logo">
+        <div class="footer-line"></div>
+        <div class="footer-icons">
+            <a href="https://www.linkedin.com/company/duocuc/?originalSubdomain=cl" target="_blank">
+                <i class="fab fa-linkedin"></i> <!-- Icono de LinkedIn -->
+            </a>
+            <a href="https://www.instagram.com/masmujeresenlastics/" target="_blank">
+                <i class="fab fa-instagram"></i> <!-- Icono de Instagram -->
+            </a>
+        </div>
+        <div class="footer-copyright">
+            Derechos de Autor &copy; 2023 - Programa Más Mujeres en las TICs Duoc UC
+        </div>
+    </footer>
+
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="~/Content/js/admin.js"></script>
     @RenderSection("js", required: false)
+
 </body>
 </html>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
@@ -11,6 +12,16 @@ namespace EmPoderTIC.App_Start
 {
     public class Startup
     {
+        public void ConfigureServices(IServiceCollection services)
+        {
+            // Agrega la configuración de MVC u otros servicios que necesites.
+
+            // Agrega la configuración para IMemoryCache.
+            services.AddMemoryCache();
+
+            // Resto de la configuración...
+        }
+
         public void Configuration(IAppBuilder app)
         {
             // Para obtener más información sobre cómo configurar la aplicación, visite https://go.microsoft.com/fwlink/?LinkID=316888

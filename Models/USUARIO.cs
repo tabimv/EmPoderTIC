@@ -31,6 +31,8 @@ namespace EmPoderTIC.Models
         public string apellido_materno { get; set; }
         public string correo_electronico { get; set; }
         public string contraseña { get; set; }
+        public string token { get; set; }
+        public bool estado_confirmacion { get; set; }
         public int TIPO_PERFIL_tipo_perfil_id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

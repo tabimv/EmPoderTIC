@@ -13,10 +13,10 @@ namespace EmPoderTIC.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EmPoderTIC_OFICIAL : DbContext
+    public partial class EmPoderTICtoken : DbContext
     {
-        public EmPoderTIC_OFICIAL()
-            : base("name=EmPoderTIC_OFICIAL")
+        public EmPoderTICtoken()
+            : base("name=EmPoderTICtoken")
         {
         }
     

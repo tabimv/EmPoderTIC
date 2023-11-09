@@ -18,7 +18,7 @@ namespace EmPoderTIC.Controllers
 {
     public class GenerarCertificadoController : Controller
     {
-        private EmPoderTIC_OFICIAL db = new EmPoderTIC_OFICIAL();
+        private EmPoderTICtoken db = new EmPoderTICtoken();
         // GET: GenerarCertificado
         public ActionResult Index()
         {

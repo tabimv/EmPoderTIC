@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EmPoderTIC_OFICIALModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="EmPoderTICtokenModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AREA">
           <Key>
             <PropertyRef Name="area_id" />
@@ -148,6 +148,8 @@
           <Property Name="apellido_materno" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="correo_electronico" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="contraseña" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="token" Type="varchar" MaxLength="200" />
+          <Property Name="estado_confirmacion" Type="bit" Nullable="false" />
           <Property Name="TIPO_PERFIL_tipo_perfil_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="USUARIO_CERTIFICADO">
@@ -487,7 +489,7 @@
         <Function Name="ValidarRut" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="bit">
           <Parameter Name="rut" Type="varchar" Mode="In" />
         </Function>
-        <EntityContainer Name="EmPoderTIC_OFICIALModelStoreContainer">
+        <EntityContainer Name="EmPoderTICtokenModelStoreContainer">
           <EntitySet Name="AREA" EntityType="Self.AREA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ASISTENCIA" EntityType="Self.ASISTENCIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CERTIFICACION" EntityType="Self.CERTIFICACION" Schema="dbo" store:Type="Tables" />
@@ -616,7 +618,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="EmPoderTIC_OFICIALModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="EmPoderTICtokenModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="AREA">
           <Key>
             <PropertyRef Name="area_id" />
@@ -805,6 +807,8 @@
           <Property Name="apellido_materno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="correo_electronico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="contraseña" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="token" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="estado_confirmacion" Type="Boolean" Nullable="false" />
           <Property Name="TIPO_PERFIL_tipo_perfil_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ASISTENCIA" Relationship="Self.ASISTENCIA_USUARIO_FK" FromRole="USUARIO" ToRole="ASISTENCIA" />
           <NavigationProperty Name="CONTROL_INSIGNIA" Relationship="Self.CONTROL_INSIGNIA_USUARIO_FK" FromRole="USUARIO" ToRole="CONTROL_INSIGNIA" />
@@ -1150,7 +1154,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="EmPoderTIC_OFICIAL" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="EmPoderTICtoken" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AREA" EntityType="Self.AREA" />
           <EntitySet Name="ASISTENCIA" EntityType="Self.ASISTENCIA" />
           <EntitySet Name="CERTIFICACION" EntityType="Self.CERTIFICACION" />
@@ -1280,9 +1284,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="EmPoderTIC_OFICIALModelStoreContainer" CdmEntityContainer="EmPoderTIC_OFICIAL">
+        <EntityContainerMapping StorageEntityContainer="EmPoderTICtokenModelStoreContainer" CdmEntityContainer="EmPoderTICtoken">
           <EntitySetMapping Name="AREA">
-            <EntityTypeMapping TypeName="EmPoderTIC_OFICIALModel.AREA">
+            <EntityTypeMapping TypeName="EmPoderTICtokenModel.AREA">
               <MappingFragment StoreEntitySet="AREA">
                 <ScalarProperty Name="area_id" ColumnName="area_id" />
                 <ScalarProperty Name="area_conocimiento" ColumnName="area_conocimiento" />
@@ -1290,7 +1294,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ASISTENCIA">
-            <EntityTypeMapping TypeName="EmPoderTIC_OFICIALModel.ASISTENCIA">
+            <EntityTypeMapping TypeName="EmPoderTICtokenModel.ASISTENCIA">
               <MappingFragment StoreEntitySet="ASISTENCIA">
                 <ScalarProperty Name="registro_asistencia_evento" ColumnName="registro_asistencia_evento" />
                 <ScalarProperty Name="fecha_registro_asistencia" ColumnName="fecha_registro_asistencia" />
@@ -1300,7 +1304,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CERTIFICACION">
-            <EntityTypeMapping TypeName="EmPoderTIC_OFICIALModel.CERTIFICACION">
+            <EntityTypeMapping TypeName="EmPoderTICtokenModel.CERTIFICACION">
               <MappingFragment StoreEntitySet="CERTIFICACION">
                 <ScalarProperty Name="certificacion_id" ColumnName="certificacion_id" />
                 <ScalarProperty Name="tiene_certificacion" ColumnName="tiene_certificacion" />
@@ -1309,7 +1313,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CERTIFICADO">
-            <EntityTypeMapping TypeName="EmPoderTIC_OFICIALModel.CERTIFICADO">
+            <EntityTypeMapping TypeName="EmPoderTICtokenModel.CERTIFICADO">
               <MappingFragment StoreEntitySet="CERTIFICADO">
                 <ScalarProperty Name="certificado_id" ColumnName="certificado_id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1321,7 +1325,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="COMPETENCIA">
-            <EntityTypeMapping TypeName="EmPoderTIC_OFICIALModel.COMPETENCIA">
+            <EntityTypeMapping TypeName="EmPoderTICtokenModel.COMPETENCIA">
               <MappingFragment StoreEntitySet="COMPETENCIA">
                 <ScalarProperty Name="competencia_id" ColumnName="competencia_id" />
                 <ScalarProperty Name="competencia_conocimiento" ColumnName="competencia_conocimiento" />
@@ -1331,7 +1335,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CONTROL_INSIGNIA">
-            <EntityTypeMapping TypeName="EmPoderTIC_OFICIALModel.CONTROL_INSIGNIA">
+            <EntityTypeMapping TypeName="EmPoderTICtokenModel.CONTROL_INSIGNIA">
               <MappingFragment StoreEntitySet="CONTROL_INSIGNIA">
                 <ScalarProperty Name="insignia_bloqueada" ColumnName="insignia_bloqueada" />
                 <ScalarProperty Name="USUARIO_rut" ColumnName="USUARIO_rut" />
@@ -1341,7 +1345,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EVENTO">
-            <EntityTypeMapping TypeName="EmPoderTIC_OFICIALModel.EVENTO">
+            <EntityTypeMapping TypeName="EmPoderTICtokenModel.EVENTO">
               <MappingFragment StoreEntitySet="EVENTO">
                 <ScalarProperty Name="evento_id" ColumnName="evento_id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1356,7 +1360,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="INSIGNIA">
-            <EntityTypeMapping TypeName="EmPoderTIC_OFICIALModel.INSIGNIA">
+            <EntityTypeMapping TypeName="EmPoderTICtokenModel.INSIGNIA">
               <MappingFragment StoreEntitySet="INSIGNIA">
                 <ScalarProperty Name="insignia_id" ColumnName="insignia_id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1373,7 +1377,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NIVEL">
-            <EntityTypeMapping TypeName="EmPoderTIC_OFICIALModel.NIVEL">
+            <EntityTypeMapping TypeName="EmPoderTICtokenModel.NIVEL">
               <MappingFragment StoreEntitySet="NIVEL">
                 <ScalarProperty Name="nivel_id" ColumnName="nivel_id" />
                 <ScalarProperty Name="categoría_nivel_insignia" ColumnName="categoría_nivel_insignia" />
@@ -1381,7 +1385,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NOTIFICACION">
-            <EntityTypeMapping TypeName="EmPoderTIC_OFICIALModel.NOTIFICACION">
+            <EntityTypeMapping TypeName="EmPoderTICtokenModel.NOTIFICACION">
               <MappingFragment StoreEntitySet="NOTIFICACION">
                 <ScalarProperty Name="notificacion_id" ColumnName="notificacion_id" />
                 <ScalarProperty Name="mensaje" ColumnName="mensaje" />
@@ -1393,7 +1397,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OTORGAR_INSIGNIA_P2">
-            <EntityTypeMapping TypeName="EmPoderTIC_OFICIALModel.OTORGAR_INSIGNIA_P2">
+            <EntityTypeMapping TypeName="EmPoderTICtokenModel.OTORGAR_INSIGNIA_P2">
               <MappingFragment StoreEntitySet="OTORGAR_INSIGNIA_P2">
                 <ScalarProperty Name="registro_insignia_evento" ColumnName="registro_insignia_evento" />
                 <ScalarProperty Name="contribucion_evento" ColumnName="contribucion_evento" />
@@ -1404,7 +1408,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OTORGAR_INSIGNIA_P3">
-            <EntityTypeMapping TypeName="EmPoderTIC_OFICIALModel.OTORGAR_INSIGNIA_P3">
+            <EntityTypeMapping TypeName="EmPoderTICtokenModel.OTORGAR_INSIGNIA_P3">
               <MappingFragment StoreEntitySet="OTORGAR_INSIGNIA_P3">
                 <ScalarProperty Name="registro_insignia_evento" ColumnName="registro_insignia_evento" />
                 <ScalarProperty Name="contribucion_evento" ColumnName="contribucion_evento" />
@@ -1415,7 +1419,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TIPO_PERFIL">
-            <EntityTypeMapping TypeName="EmPoderTIC_OFICIALModel.TIPO_PERFIL">
+            <EntityTypeMapping TypeName="EmPoderTICtokenModel.TIPO_PERFIL">
               <MappingFragment StoreEntitySet="TIPO_PERFIL">
                 <ScalarProperty Name="tipo_perfil_id" ColumnName="tipo_perfil_id" />
                 <ScalarProperty Name="nombre_tipo_perfil" ColumnName="nombre_tipo_perfil" />
@@ -1424,7 +1428,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="USUARIO">
-            <EntityTypeMapping TypeName="EmPoderTIC_OFICIALModel.USUARIO">
+            <EntityTypeMapping TypeName="EmPoderTICtokenModel.USUARIO">
               <MappingFragment StoreEntitySet="USUARIO">
                 <ScalarProperty Name="rut" ColumnName="rut" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1432,12 +1436,14 @@
                 <ScalarProperty Name="apellido_materno" ColumnName="apellido_materno" />
                 <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
                 <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+                <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="estado_confirmacion" ColumnName="estado_confirmacion" />
                 <ScalarProperty Name="TIPO_PERFIL_tipo_perfil_id" ColumnName="TIPO_PERFIL_tipo_perfil_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="USUARIO_CERTIFICADO">
-            <EntityTypeMapping TypeName="EmPoderTIC_OFICIALModel.USUARIO_CERTIFICADO">
+            <EntityTypeMapping TypeName="EmPoderTICtokenModel.USUARIO_CERTIFICADO">
               <MappingFragment StoreEntitySet="USUARIO_CERTIFICADO">
                 <ScalarProperty Name="fecha_otorgamiento" ColumnName="fecha_otorgamiento" />
                 <ScalarProperty Name="certificado_url" ColumnName="certificado_url" />

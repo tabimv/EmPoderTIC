@@ -105,6 +105,8 @@
 
                 <!-- Campo oculto para TIPO_PERFIL_tipo_perfil_id -->
                 @Html.HiddenFor(model => model.TIPO_PERFIL_tipo_perfil_id)
+                @Html.HiddenFor(model => model.token)
+                @Html.HiddenFor(model => model.estado_confirmacion)
 
 
 
@@ -117,7 +119,7 @@
                 <br />
                 <a href="@Url.Action("Login")" class="link">¿Ya tienes Cuenta? Inicia Sesión</a>
 
-              
+
 
 
             }

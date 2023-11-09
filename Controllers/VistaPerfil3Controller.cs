@@ -17,7 +17,7 @@ namespace EmPoderTIC.Controllers
     public class VistaPerfil3Controller : Controller
     {
         // GET: VistaPerfil3
-        private EmPoderTIC_OFICIAL db = new EmPoderTIC_OFICIAL(); // Tu contexto de base de datos
+        private EmPoderTICtoken db = new EmPoderTICtoken(); // Tu contexto de base de datos
         public ActionResult Index()
         {
             if (Session["UsuarioAutenticado"] != null)

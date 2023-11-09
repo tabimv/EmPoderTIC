@@ -1,0 +1,40 @@
+﻿footer {
+    background: radial-gradient(circle at 0% 0%, #11468d, #8d2ba8, #500096, #6d39c2);
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.footer-icons a:hover .fab.fa-linkedin,
+.footer-icons a:hover .fab.fa-instagram {
+    background: #11468d;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.footer-line {
+    width: 40%;  Longitud 
+  border-top: 1px solid #fff; 
+  display: inline-block;
+  margin: 10px 0;
+}
+
+.footer-copyright {
+  margin-top: 10px;
+}
+
+.footer-logo {
+  max-width: 1500px; 
+}
+
+.footer-icons {
+  margin-top: 10px; 
+}
+
+.footer-icons a {
+  display: inline-block;
+  margin: 0 10px;
+  color: #fff;
+  font-size: 24px; 
+}
