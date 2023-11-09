@@ -18,6 +18,7 @@ namespace EmPoderTIC.Models
         public EVENTO()
         {
             this.ASISTENCIA = new HashSet<ASISTENCIA>();
+            this.INSCRIPCION = new HashSet<INSCRIPCION>();
             this.INSIGNIA = new HashSet<INSIGNIA>();
             this.OTORGAR_INSIGNIA_P2 = new HashSet<OTORGAR_INSIGNIA_P2>();
             this.OTORGAR_INSIGNIA_P3 = new HashSet<OTORGAR_INSIGNIA_P3>();
@@ -37,6 +38,8 @@ namespace EmPoderTIC.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ASISTENCIA> ASISTENCIA { get; set; }
         public virtual COMPETENCIA COMPETENCIA { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<INSCRIPCION> INSCRIPCION { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<INSIGNIA> INSIGNIA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

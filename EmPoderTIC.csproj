@@ -288,6 +288,12 @@
     <Compile Include="Models\EVENTO.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\INFO_PERFIL.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\INSCRIPCION.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\INSIGNIA.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

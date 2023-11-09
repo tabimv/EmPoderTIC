@@ -13,7 +13,7 @@ namespace EmPoderTIC.Controllers
 {
     public class UsuarioController : Controller
     {
-        private EmPoderTICtoken db = new EmPoderTICtoken();
+        private EmPoderTICConexionFinal db = new EmPoderTICConexionFinal();
 
         // GET: Usuario
         public async Task<ActionResult> Index()

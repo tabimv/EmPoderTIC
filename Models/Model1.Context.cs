@@ -13,10 +13,10 @@ namespace EmPoderTIC.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EmPoderTICtoken : DbContext
+    public partial class EmPoderTICConexionFinal : DbContext
     {
-        public EmPoderTICtoken()
-            : base("name=EmPoderTICtoken")
+        public EmPoderTICConexionFinal()
+            : base("name=EmPoderTICConexionFinal")
         {
         }
     
@@ -32,6 +32,8 @@ namespace EmPoderTIC.Models
         public virtual DbSet<COMPETENCIA> COMPETENCIA { get; set; }
         public virtual DbSet<CONTROL_INSIGNIA> CONTROL_INSIGNIA { get; set; }
         public virtual DbSet<EVENTO> EVENTO { get; set; }
+        public virtual DbSet<INFO_PERFIL> INFO_PERFIL { get; set; }
+        public virtual DbSet<INSCRIPCION> INSCRIPCION { get; set; }
         public virtual DbSet<INSIGNIA> INSIGNIA { get; set; }
         public virtual DbSet<NIVEL> NIVEL { get; set; }
         public virtual DbSet<NOTIFICACION> NOTIFICACION { get; set; }

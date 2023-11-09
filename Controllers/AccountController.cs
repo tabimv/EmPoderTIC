@@ -23,7 +23,7 @@ namespace EmPoderTIC.Controllers
     public class AccountController : Controller
     {
         // GET: Account
-        private EmPoderTICtoken db = new EmPoderTICtoken();
+        private EmPoderTICConexionFinal db = new EmPoderTICConexionFinal();
        
 
         public int ObtenerTipoPerfilId(string correoElectronico)

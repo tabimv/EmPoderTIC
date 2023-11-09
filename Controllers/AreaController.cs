@@ -13,7 +13,7 @@ namespace EmPoderTIC.Controllers
 {
     public class AreaController : Controller
     {
-        private EmPoderTICtoken db = new EmPoderTICtoken();
+        private EmPoderTICConexionFinal db = new EmPoderTICConexionFinal();
 
         // GET: Area
         public async Task<ActionResult> Index()

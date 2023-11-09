@@ -13,7 +13,7 @@ namespace EmPoderTIC.Controllers
 {
     public class EventoController : Controller
     {
-        private EmPoderTICtoken db = new EmPoderTICtoken();
+        private EmPoderTICConexionFinal db = new EmPoderTICConexionFinal();
 
         // GET: Evento
         public async Task<ActionResult> Index()

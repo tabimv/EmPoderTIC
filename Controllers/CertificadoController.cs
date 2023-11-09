@@ -13,7 +13,7 @@ namespace EmPoderTIC.Controllers
 {
     public class CertificadoController : Controller
     {
-        private EmPoderTICtoken db = new EmPoderTICtoken();
+        private EmPoderTICConexionFinal db = new EmPoderTICConexionFinal();
 
         // GET: Certificado
         public async Task<ActionResult> Index()
