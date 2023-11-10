@@ -61,16 +61,18 @@
 
 
             <!--========================================
-        Formulario login
-    ==========================================-->
-            @using (Html.BeginForm("RegistrarUsuario", "Account", FormMethod.Post))
+                Formulario login
+            ==========================================-->
+            @using (Html.BeginForm("RegistrarUsuario", "Account", FormMethod.Post, new { onsubmit = "return validarFormulario();" }))
             {
                 @Html.AntiForgeryToken()
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.rut, "RUT")
-                    @Html.TextBoxFor(model => model.rut, new { @class = "form-control", placeholder = "Rut sin puntos con guión" })
+                    @Html.TextBoxFor(model => model.rut, new { @class = "form-control", placeholder = "Rut sin puntos con guión", onchange = "validarRut(this.value)" })
                     @Html.ValidationMessageFor(model => model.rut)
+                    <div id="mensajeErrorRut" class="text-danger"></div>
+
                 </div>
 
                 <div class="form-group">
@@ -129,4 +131,64 @@
 
 
 <script src="~/Content/js/login_registro.js"></script>
+<script src="~/Content/js/login_registro.js"></script>
+<script>
+    function validarRut(rut) {
+        rut = rut.replace(".", "").toUpperCase();
+
+        // Validar formato
+        if (!rut.match(/^[0-9]{7,8}-[0-9Kk]$/)) {
+            mostrarError("Formato de RUT inválido.");
+            return false;
+        }
+
+        // Validar dígito verificador
+        var rutNumerico = parseInt(rut.substring(0, rut.length - 2), 10);
+        var dvCalculado = calcularDigitoVerificador(rutNumerico);
+
+        if (dvCalculado !== rut.charAt(rut.length - 1)) {
+            mostrarError("El dígito verificador no es válido.");
+            return false;
+        }
+
+        // Limpiar mensajes de error si el RUT es válido
+        limpiarErrores();
+        return true;
+    }
+
+    function calcularDigitoVerificador(rutNumerico) {
+        var m = 0, s = 1;
+        while (rutNumerico !== 0) {
+            s = (s + rutNumerico % 10 * (9 - m++ % 6)) % 11;
+            rutNumerico = Math.floor(rutNumerico / 10);
+        }
+        return String.fromCharCode((s > 0) ? s + 47 : 75);
+    }
+
+    function mostrarError(mensaje) {
+        // Muestra el mensaje de error en la vista
+        document.getElementById("mensajeErrorRut").innerHTML = mensaje;
+    }
+
+    function limpiarErrores() {
+        // Limpia los mensajes de error en la vista
+        document.getElementById("mensajeErrorRut").innerHTML = "";
+    }
+
+    function validarFormulario() {
+        var rut = document.getElementById("rut").value;
+
+        // Validar el RUT
+        if (!validarRut(rut)) {
+            mostrarError("Corrija los errores antes de enviar el formulario.");
+            return false; // Evita que se envíe el formulario
+        }
+
+        // Limpiar mensajes de error si el RUT es válido
+        limpiarErrores();
+
+        // Permitir el envío del formulario
+        return true;
+    }
+</script>
 

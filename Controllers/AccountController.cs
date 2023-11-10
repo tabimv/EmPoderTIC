@@ -14,6 +14,8 @@ using System.Net.Mail;
 using System.Web.Caching;
 using Microsoft.Extensions.Caching.Memory;
 using System.Net;
+using System.Data.Entity.Validation;
+
 
 
 
@@ -76,30 +78,41 @@ namespace EmPoderTIC.Controllers
 
                 if (tipoPerfilId != 0)
                 {
-              
-                    var nuevoUsuario = new USUARIO
+                    try
                     {
-                        rut = rut,
-                        nombre = nombre,
-                        apellido_paterno = apellido_paterno,
-                        apellido_materno = apellido_materno,
-                        correo_electronico = correo_electronico,
-                        contraseña = contraseña,
-                        TIPO_PERFIL_tipo_perfil_id = tipoPerfilId,
-                        token = token,
-                        estado_confirmacion = false
-                       
+                        var nuevoUsuario = new USUARIO
+                        {
+                            rut = rut,
+                            nombre = nombre,
+                            apellido_paterno = apellido_paterno,
+                            apellido_materno = apellido_materno,
+                            correo_electronico = correo_electronico,
+                            contraseña = contraseña,
+                            TIPO_PERFIL_tipo_perfil_id = tipoPerfilId,
+                            token = token,
+                            estado_confirmacion = false
+                        };
 
-                    };
+                        // Agregar el usuario a la base de datos
+                        db.USUARIO.Add(nuevoUsuario);
+                        db.SaveChanges();
 
-                    // Agregar el usuario a la base de datos
-                    db.USUARIO.Add(nuevoUsuario);
-                    db.SaveChanges();
+                        // Enviar un correo de confirmación con el token
+                        EnviarCorreoConfirmacion(correo_electronico, token);
 
-                    // Enviar un correo de confirmación con el token
-                    EnviarCorreoConfirmacion(correo_electronico, token);
-
-                    return RedirectToAction("RegistroExitoso");
+                        return RedirectToAction("RegistroExitoso");
+                    }
+                    catch (DbEntityValidationException ex)
+                    {
+                        // Manejar errores de validación de la entidad
+                        foreach (var validationErrors in ex.EntityValidationErrors)
+                        {
+                            foreach (var error in validationErrors.ValidationErrors)
+                            {
+                                ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+                            }
+                        }
+                    }
                 }
                 else
                 {
@@ -107,6 +120,7 @@ namespace EmPoderTIC.Controllers
                 }
             }
 
+            // Si llegas aquí, significa que hubo un error en la validación o en el registro
             return View();
         }
 

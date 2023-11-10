@@ -559,6 +559,12 @@ Registro de Usuario
 }
 
 
+.field-validation-error {
+    color: #15458E; /* Cambia este color según tus preferencias */
+    font-weight: bold;
+}
+
+
 /*========================================
 Responsive
 ==========================================*/

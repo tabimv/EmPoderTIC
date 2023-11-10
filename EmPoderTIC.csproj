@@ -225,6 +225,7 @@
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\slider_1.png" />
     <Content Include="Content\img\slider_2.png" />
+    <Content Include="Content\js\rut.js" />
     <Content Include="Content\js\login_registro.js" />
     <Content Include="Content\js\perfil.js" />
     <Content Include="Content\js\reconocimiento.js" />
