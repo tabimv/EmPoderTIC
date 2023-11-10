@@ -11,6 +11,8 @@ using System.Web.Security;
 using EmPoderTIC.Models.ViewModels;
 using System.Security.Cryptography;
 
+
+
 namespace EmPoderTIC.Controllers
 {
     public class VistaPerfil1Controller : Controller
@@ -106,13 +108,10 @@ namespace EmPoderTIC.Controllers
 
 
                 // Filtra todos los eventos con asistencia verdadera para el usuario autenticado
-                var eventosConAsistencia = db.USUARIO
-                    .Include(u => u.ASISTENCIA)
-                    .Where(u => u.rut == usuarioAutenticado.rut && u.ASISTENCIA.Any(a => a.registro_asistencia_evento))
-                    .SelectMany(u => u.ASISTENCIA)
-                    .Select(a => a.EVENTO)
-                    .ToList();
-
+                var eventosConAsistencia = db.ASISTENCIA
+                    .Include(a => a.EVENTO)
+                    .Where(a => a.USUARIO_rut == usuarioAutenticado.rut && a.registro_asistencia_evento == true).ToList();
+                   
 
                 var informacionUsuarios = db.USUARIO
                      .Include(u => u.TIPO_PERFIL)
@@ -123,7 +122,7 @@ namespace EmPoderTIC.Controllers
                 var insigniasNivel3 = db.CONTROL_INSIGNIA
                     .Where(di => di.insignia_bloqueada == false)
                     .Include(di => di.INSIGNIA)
-                    .Include (di => di.USUARIO)
+                    .Include(di => di.USUARIO)
                     .Where(di => di.INSIGNIA.NIVEL.categoría_nivel_insignia == "Avanzado" && di.USUARIO_rut == usuarioAutenticado.rut)
                     .Include(di => di.INSIGNIA.EVENTO)
                     .ToList();
@@ -133,12 +132,14 @@ namespace EmPoderTIC.Controllers
                     .Where(d => d.insignia_bloqueada == false)
                     .Include(di => di.USUARIO)
                     .Include(d => d.INSIGNIA)
-                    .Where(d => (d.INSIGNIA.NIVEL.categoría_nivel_insignia == "Principiante" || d.INSIGNIA.NIVEL.categoría_nivel_insignia == "Intermedio") && d.USUARIO_rut == usuarioAutenticado.rut) 
+                    .Where(d => (d.INSIGNIA.NIVEL.categoría_nivel_insignia == "Principiante" || d.INSIGNIA.NIVEL.categoría_nivel_insignia == "Intermedio") && d.USUARIO_rut == usuarioAutenticado.rut)
                     .Include(d => d.INSIGNIA.EVENTO)
                     .ToList();
 
                 var certificado = db.USUARIO_CERTIFICADO
                    .Where(uc => uc.USUARIO_rut == usuarioAutenticado.rut).ToList();
+
+                var datosPerfil = db.INFO_PERFIL.Where(ip => ip.USUARIO_rut == usuarioAutenticado.rut).ToList();
 
                 
 
@@ -148,6 +149,7 @@ namespace EmPoderTIC.Controllers
                 ViewBag.EventosConAsistencia = eventosConAsistencia;
                 ViewBag.InformacionUsuarios = informacionUsuarios;
                 ViewBag.Certificado = certificado;
+                ViewBag.DatosPerfil = datosPerfil;
                 return View("Perfil");
             }
             else
@@ -157,6 +159,59 @@ namespace EmPoderTIC.Controllers
             }
 
         }
+
+
+        public ActionResult CompletaPerfil()
+        {
+            // Comprueba si el usuario está autenticado
+            if (Session["UsuarioAutenticado"] != null)
+            {
+                var usuarioAutenticado = (USUARIO)Session["UsuarioAutenticado"];
+
+                // Verifica si ya existe información de perfil para el usuario
+                var infoPerfil = db.INFO_PERFIL.FirstOrDefault(info => info.USUARIO_rut == usuarioAutenticado.rut);
+
+                if (infoPerfil != null)
+                {
+                    // Ya hay información de perfil, muestra los detalles
+                    ViewBag.InfoPerfil = infoPerfil;
+                }
+                else
+                {
+                    // No hay información de perfil, muestra el formulario para completar el perfil
+                    ViewBag.MostrarFormulario = true;
+                }
+
+                return View();
+            }
+            else
+            {
+                // Maneja el caso en el que el usuario no esté autenticado correctamente
+                return RedirectToAction("Login", "Account"); // Redirige a la página de inicio de sesión u otra página adecuada
+            }
+        }
+
+        [HttpPost]
+        public ActionResult CompletaPerfil(INFO_PERFIL nuevoPerfil)
+        {
+            if (ModelState.IsValid)
+            {
+                // Asigna el usuario actual al nuevo perfil
+                nuevoPerfil.USUARIO_rut = ((USUARIO)Session["UsuarioAutenticado"]).rut;
+
+                // Agrega el nuevo perfil a la base de datos
+                db.INFO_PERFIL.Add(nuevoPerfil);
+                db.SaveChanges();
+
+                // Redirige a la página de perfil para mostrar los detalles actualizados
+                return RedirectToAction("Perfil");
+            }
+
+            // Si el modelo no es válido, vuelve a mostrar el formulario con errores
+            return View(nuevoPerfil);
+        }
+
+
 
     }
 }

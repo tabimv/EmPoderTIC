@@ -111,13 +111,15 @@ else
                             if (ViewBag.AlgunaInsigniaBloqueada)
                             {
 
-                                <button class="btn btn-inactivo" id="obtener-certificado" disabled>
-                                    OBTENER CERTIFICADO
-                                </button>
+                                @Html.ActionLink("OBTENER CERTIFICADO", "DescargarCertificado", "GenerarCertificado", new { archivoPath = ViewBag.Certificado.certificado_url }, new { @class = "btn btn-activo" })
+
                             }
                             else
                             {
-                                @Html.ActionLink("OBTENER CERTIFICADO", "DescargarCertificado", "GenerarCertificado", new { archivoPath = ViewBag.Certificado.certificado_url }, new { @class = "btn btn-activo" })
+                                <button class="btn btn-inactivo" id="obtener-certificado" disabled>
+                                    OBTENER CERTIFICADO
+                                </button>
+
                             }
                         }
                         else

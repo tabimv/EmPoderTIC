@@ -600,6 +600,23 @@ Filtro
 }
 
 /*========================================
+    Boton completar perfil
+==========================================*/
+.completar-perfil-btn {
+    background-color:#3266A5;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+}
+
+    .completar-perfil-btn:hover {
+        background-color: #520399;
+        color: aliceblue;
+    }
+
+/*========================================
     Responsive
 ==========================================*/
 /* Estilos adicionales para dispositivos móviles */

@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Perfil - EmPoderTIC";
+    var datosPerfil = ViewBag.DatosPerfil as List<EmPoderTIC.Models.INFO_PERFIL>;
 }
 
 @if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Estudiante y/o Titulado")
@@ -33,10 +34,19 @@ else
                     }
                 </div>
                 <div class="perfil-datos">
-                    <p>Informática y telecomunicaciones</p>
-                    <p>Ingeniería en informática</p>
-                    <div class="mi-linea"></div>
-                    <p>Duoc UC, San Andrés Concepción</p>
+                    @if (datosPerfil != null && datosPerfil.Any())
+                    {
+                        <p>@datosPerfil.First().escuela</p>
+                        <p>@datosPerfil.First().carrera</p>
+                        <div class="mi-linea"></div>
+                        <p>@datosPerfil.First().sede</p>
+                    }
+
+                    else
+                    {
+                        @Html.ActionLink("Completar Perfil", "CompletaPerfil", "VistaPerfil1", null, new { @class = "completar-perfil-btn" })
+                    }
+
                 </div>
             </div>
 
@@ -202,10 +212,10 @@ else
             {
                 <div class="mini-container">
                     <div class="historial-titulos">
-                        <h3>@evento.nombre</h3>
+                        <h3>@evento.EVENTO.nombre</h3>
                     </div>
                     <div class="fecha-historial">
-                        <p> @evento.fecha_evento.ToString("dddd dd MMMM yyyy")</p>
+                        <p> @evento.EVENTO.fecha_evento.ToString("dddd dd MMMM yyyy")</p>
                     </div>
                 </div>
             }

@@ -1,0 +1,158 @@
+﻿@model EmPoderTIC.Models.INFO_PERFIL
+
+@{
+    ViewBag.Title = "Create";
+
+    // Simular opciones de escuela y carrera
+    Dictionary<string, List<string>> carrerasPorEscuela = new Dictionary<string, List<string>>
+{
+        { "Administración y negocios", new List<string> { "Ingeniería en Marketing Digital", "Comercio Exterior", "Ingeniería en Administración Mención Finanzas" } },
+        { "Informática y Telecomunicaciones", new List<string> { "Analista Programador Computacional", "Ingeniería en Desarrollo de Software", "Ingeniería en Informática" } },
+        { "Comunicaciónes", new List<string> { "Actuación", "Animación", "Tecnología en Sonido" } },
+        { "Salud", new List<string> { "Informática Biomédica", "Técnico en Enfermería", "Preparador Físico" } },
+        // Agrega más escuelas y carreras según sea necesario
+    };
+
+    // Simular opciones de carrera y sedes
+    Dictionary<string, List<string>> sedesPorCarrera = new Dictionary<string, List<string>>
+{
+        { "Ingeniería en Marketing Digital", new List<string> { "Sede San Andrés de Concepción", "Sede Valparaíso", "Sede Viña del Mar" } },
+        { "Comercio Exterior", new List<string> { "Sede Viña del Mar" } },
+        { "Ingeniería en Administración Mención Finanzas", new List<string> { "Sede San Andrés de Concepción" } },
+        { "Analista Programador Computacional", new List<string> { "Sede San Andrés de Concepción", "Sede Viña del Mar" } },
+        { "Ingeniería en Desarrollo de Software", new List<string> { "Sede San Andrés de Concepción" } },
+        { "Ingeniería en Informática", new List<string> { "Sede Valparaíso", "Sede Viña del Mar", "Sede San Andrés de Concepción" } },
+        { "Actuación", new List<string> { "Sede Valparaíso" } },
+        { "Animación", new List<string> { "Sede Valparaíso", "Sede Viña del Mar" } },
+        { "Tecnología en Sonido", new List<string> { "Sede San Andrés de Concepción" } },
+        { "Informática Biomédica", new List<string> { "Sede San Andrés de Concepción", "Sede Valparaíso" } },
+        { "Técnico en Enfermería", new List<string> { "Sede Viña del Mar" } },
+        { "Preparador Físico", new List<string> { "Sede Valparaíso" } }
+        // Agrega más carreras y sedes según sea necesario
+    };
+}
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Estudiante y/o Titulado")
+{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+else
+{
+    Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
+}
+
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Estudiante y/o Titulado")
+{
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/css/CRUD_create_edit.css">
+
+    using (Html.BeginForm("CompletaPerfil", "VistaPerfil1", FormMethod.Post))
+    {
+
+
+        <div class="container-formularios">
+            <div class="form-container">
+                <h2>Completar Perfil</h2>
+                <form>
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.escuela, "Escuela: ", htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.DropDownListFor(model => model.escuela, new SelectList(carrerasPorEscuela.Keys), "Selecciona una escuela", new { @class = "form-control", id = "escuelaDropdown" })
+                        @Html.ValidationMessageFor(model => model.escuela, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.carrera, "Carrera: ", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <select id="carreraDropdown" name="carrera" class="form-control">
+                            <option value="">Selecciona una carrera</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => model.carrera, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.sede, "Sede: ", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <select id="sedeDropdown" name="sede" class="form-control">
+                            <option value="">Selecciona una sede</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => model.sede, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <input type="submit" value="Crear" class="btn btn-primary-custom" />
+                    </div>
+                    <div>
+                        <a href="@Url.Action("Perfil")" class="btn-custom">Volver al Perfil</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    }
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Obtener las opciones de carrera según la escuela seleccionada
+            function obtenerCarrerasPorEscuela(escuela) {
+                var carreras = @Html.Raw(Json.Encode(carrerasPorEscuela));
+
+                // Limpiar el dropdown de carrera
+                $('#carreraDropdown').empty();
+
+                // Agregar las opciones de carrera según la escuela seleccionada
+                $.each(carreras[escuela], function (index, value) {
+                    $('#carreraDropdown').append($('<option>', {
+                        value: value,
+                        text: value
+                    }));
+                });
+            }
+
+            // Asociar el evento change al dropdown de escuela
+            $('#escuelaDropdown').change(function () {
+                var escuelaSeleccionada = $(this).val();
+
+                // Obtener y mostrar las opciones de carrera según la escuela seleccionada
+                obtenerCarrerasPorEscuela(escuelaSeleccionada);
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            // Obtener las opciones de sede según la carrera seleccionada
+            function obtenerSedesPorCarrera(carrera) {
+                var sedes = @Html.Raw(Json.Encode(sedesPorCarrera));
+
+                // Limpiar el dropdown de sede
+                $('#sedeDropdown').empty();
+
+                // Agregar las opciones de sede según la carrera seleccionada
+                $.each(sedes[carrera], function (index, value) {
+                    $('#sedeDropdown').append($('<option>', {
+                        value: value,
+                        text: value
+                    }));
+                });
+            }
+
+            // Asociar el evento change al dropdown de carrera
+            $('#carreraDropdown').change(function () {
+                var carreraSeleccionada = $(this).val();
+
+                // Obtener y mostrar las opciones de sede según la carrera seleccionada
+                obtenerSedesPorCarrera(carreraSeleccionada);
+            });
+        });
+    </script>
+}
+
+else
+{
+    <link rel="stylesheet" href="~/Content/css/accesodenegado.css">
+    <div id="header">
+        <h1> Acceso denegado. Esta vista solo está disponible para Estudiante y/o Titulado</h1>
+        <br />
+        <a href="@Url.Action("Login", "Account")" class="btn-acceso">Iniciar Sesión</a>
+    </div>
+}

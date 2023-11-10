@@ -217,6 +217,7 @@
     <Content Include="Content\css\admin.css" />
     <Content Include="Content\css\menu.css" />
     <Content Include="Content\css\styles.css" />
+    <Content Include="Content\img\footer.png" />
     <Content Include="Content\img\insignias\Insignia1-Estudiante.png" />
     <Content Include="Content\img\insignias\Insignia2-Estudiante.png" />
     <Content Include="Content\img\insignias\Insignia3-Estudiante.png" />
@@ -404,6 +405,9 @@
     <Content Include="Views\Account\ConfirmacionExitosa.cshtml" />
     <Content Include="Views\Account\RegistroExitoso.cshtml" />
     <Content Include="Views\Account\ConfirmacionPendiente.cshtml" />
+    <Content Include="Views\VistaPerfil1\CompletaPerfil.cshtml" />
+    <Content Include="Views\VistaPerfil2\CompletaPerfil.cshtml" />
+    <Content Include="Views\VistaPerfil3\CompletaPerfil.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
