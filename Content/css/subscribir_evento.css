@@ -1,0 +1,91 @@
+﻿
+.text-center {
+    margin-bottom: 50px;
+}
+.text-center h2 {
+    color: #fff; /* Color blanco para h2 */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra sutil para resaltar el texto */
+    font-weight: bold; /* Texto en negrita */
+    transition: color 0.5s, text-shadow 0.5s;
+    margin-top: 20px;
+}
+
+.text-center h4 {
+    color: #3266a5; /* Color #3266a5 para h4 */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Sombra sutil para resaltar el texto */
+    font-weight: bold; /* Texto en negrita */
+    transition: color 0.5s, text-shadow 0.5s;
+}
+
+    /* Efecto de cambio al pasar el ratón sobre los títulos */
+    .text-center h2:hover,
+    .text-center h4:hover {
+        color: #6d39c2; /* Cambio de color al pasar el ratón */
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5); /* Sombra más pronunciada al pasar el ratón */
+    }
+
+
+.item span {
+    font-style: normal;
+}
+
+
+.panel {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transform: translate(0, -5px);
+    transition: box-shadow 0.5s, transform 0.5s;
+    background-color: #fff;
+}
+
+    .panel:hover {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        transform: translate(0, 0);
+    }
+
+
+
+.panel-heading {
+    color: #fff !important;
+    background: radial-gradient(circle at 0% 0%, #1a3d73, #3266a5, #1a3d73);
+    padding: 25px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+
+
+
+.panel-footer h3 {
+    font-size: 32px;
+}
+
+
+
+.panel-footer {
+    background-color: #f8f8f8;
+    border-top: 1px solid #ddd;
+}
+
+    .panel-footer .btn {
+        background: radial-gradient(circle at 0% 0%, #1a3d73, #3266a5, #1a3d73);
+        color: #fff;
+        border: none;
+        margin-bottom: 20px;
+    }
+
+        .panel-footer .btn:hover {
+            background: #500096; /* Cambia el color al pasar el ratón sobre el botón */
+        }
+
+
+
+.event-image {
+    max-width: 100%;
+    height: 140px;
+    max-height: 200px;
+    margin-top: 10px;
+}
+

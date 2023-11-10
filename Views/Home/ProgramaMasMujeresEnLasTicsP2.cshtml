@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Programa Más Mujeres En Las TICs";
+}
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Docente")
+{
+    Layout = "~/Views/Shared/_LayoutPerfil2.cshtml";
+}
+else
+{
+    Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
+}
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Docente")
+{
+
+    <link href="~/Content/css/programa.css" rel="stylesheet" />
+
+    <section>
+        <div class="program-title">Programa <span class="highlight">Más Mujeres en las TICs</span></div>
+        <div class="program-description">
+            <div class="program-description-box">
+                <h1><span>¿Qué es Más Mujeres en las TICs?</span></h1>
+                <p>"Más Mujeres en las TICs" es un programa de la Escuela de Informática y Telecomunicaciones de Duoc UC que empodera a las mujeres en la industria de las TIC. Ofrecemos habilidades de vanguardia, mentores excepcionales y acceso a eventos exclusivos con líderes de la industria. Únete a esta comunidad global de mujeres en las TIC y sé parte de la próxima generación de líderes tecnológicas. ¡Únete a la transformación!</p>
+            </div>
+            <div class="program-description-box">
+                <h1><span>¿De donde Somos?</span></h1>
+                <p>"Más Mujeres en las TICs" encuentra su origen en la Escuela de Informática y Telecomunicaciones de Duoc UC, pero su verdadero hogar está en la diversidad y la inclusión de mujeres apasionadas por la tecnología que se unen para cambiar el panorama de las TIC. Es un lugar donde nuestras diferencias enriquecen nuestra fortaleza colectiva y nos permiten avanzar hacia un futuro más inclusivo y equitativo en la industria tecnológica. Este es el lugar "de donde somos," un lugar de unidad y empoderamiento.</p>
+            </div>
+        </div>
+    </section>
+
+}
+
+else
+{
+    <link rel="stylesheet" href="~/Content/css/accesodenegado.css">
+    <div id="header">
+        <h1> Acceso denegado. Esta vista solo está disponible para Docente</h1>
+        <br />
+        <a href="@Url.Action("Login", "Account")" class="btn-acceso">Iniciar Sesión</a>
+    </div>
+}

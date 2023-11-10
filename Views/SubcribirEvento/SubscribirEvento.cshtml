@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Programa Más Mujeres En Las TICs";
+}
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Estudiante y/o Titulado")
+{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+else
+{
+    Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
+}
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Estudiante y/o Titulado")
+{
+
+    <link rel="stylesheet" href="~/Content/css/subscribir_evento.css">
+
+    <!-- Container (Pricing Section) -->
+    <div id="pricing" class="container-fluid">
+        <div class="text-center">
+            <h2>Eventos Disponibles</h2>
+        </div>
+        <div class="row slideanim">
+            <div class="col-sm-6 col-xs-12">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                        <h1>Liderazgo Femenino</h1>
+                    </div>
+                    <div class="panel-body">
+                        <p><img src="~/Content/img/images.jpg" alt="" class="event-image"></p>
+                        <p><strong>Nombre evento: </strong> Dolor</p>
+                        <p><strong>Area evento: </strong> Lorem</p>
+                        <p><strong>Descripcion evento: </strong> Ipsum</p>
+                    </div>
+                    <div class="panel-footer">
+                        <button class="btn btn-lg">Inscribir Evento</button>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+
+}
+
+else
+{
+    <link rel="stylesheet" href="~/Content/css/accesodenegado.css">
+    <div id="header">
+        <h1> Acceso denegado. Esta vista solo está disponible para Estudiante y/o Titulado</h1>
+        <br />
+        <a href="@Url.Action("Login", "Account")" class="btn-acceso">Iniciar Sesión</a>
+    </div>
+}

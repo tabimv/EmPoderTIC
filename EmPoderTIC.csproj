@@ -219,8 +219,10 @@
     <Content Include="Content\css\styles.css" />
     <Content Include="Content\css\inicio.css" />
     <Content Include="Content\css\programa.css" />
+    <Content Include="Content\css\subscribir_evento.css" />
     <Content Include="Content\img\banner.png" />
     <Content Include="Content\img\footer.png" />
+    <Content Include="Content\img\images.jpg" />
     <Content Include="Content\img\insignias\Insignia1-Estudiante.png" />
     <Content Include="Content\img\insignias\Insignia2-Estudiante.png" />
     <Content Include="Content\img\insignias\Insignia3-Estudiante.png" />
@@ -417,6 +419,10 @@
     <Content Include="Views\VistaPerfil3\CompletaPerfil.cshtml" />
     <Content Include="Views\Home\InicioGeneral.cshtml" />
     <Content Include="Views\Home\ProgramaMasMujeresEnLasTics.cshtml" />
+    <Content Include="Views\Home\ProgramaMasMujeresEnLasTicsP1.cshtml" />
+    <Content Include="Views\Home\ProgramaMasMujeresEnLasTicsP2.cshtml" />
+    <Content Include="Views\Home\ProgramaMasMujeresEnLasTicsP3.cshtml" />
+    <Content Include="Views\SubcribirEvento\SubscribirEvento.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -426,7 +432,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Certificados\" />
-    <Folder Include="Views\SubcribirEvento\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
