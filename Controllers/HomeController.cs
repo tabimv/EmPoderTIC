@@ -17,5 +17,11 @@ namespace EmPoderTIC.Controllers
         {
             return View();
         }
+
+        public ActionResult ProgramaMasMujeresEnLasTics()
+        {
+            return View();
+        }
+
     }
 }

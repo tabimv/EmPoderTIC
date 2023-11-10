@@ -218,6 +218,7 @@
     <Content Include="Content\css\menu.css" />
     <Content Include="Content\css\styles.css" />
     <Content Include="Content\css\inicio.css" />
+    <Content Include="Content\css\programa.css" />
     <Content Include="Content\img\banner.png" />
     <Content Include="Content\img\footer.png" />
     <Content Include="Content\img\insignias\Insignia1-Estudiante.png" />
@@ -234,6 +235,7 @@
     <Content Include="Content\js\admin.js" />
     <Content Include="Content\js\menu.js" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\StyleSheet1.css" />
     <Content Include="Global.asax" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -263,6 +265,7 @@
     <Compile Include="Controllers\OtorgarInsigniaPerfil2Controller.cs" />
     <Compile Include="Controllers\OtorgarInsigniaPerfil3Controller.cs" />
     <Compile Include="Controllers\PortalBadgesController.cs" />
+    <Compile Include="Controllers\SubcribirEventoController.cs" />
     <Compile Include="Controllers\UsuarioCertificadoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\VistaPerfil1Controller.cs" />
@@ -413,6 +416,7 @@
     <Content Include="Views\VistaPerfil2\CompletaPerfil.cshtml" />
     <Content Include="Views\VistaPerfil3\CompletaPerfil.cshtml" />
     <Content Include="Views\Home\InicioGeneral.cshtml" />
+    <Content Include="Views\Home\ProgramaMasMujeresEnLasTics.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -422,6 +426,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Certificados\" />
+    <Folder Include="Views\SubcribirEvento\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
