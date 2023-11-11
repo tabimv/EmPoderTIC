@@ -1,0 +1,64 @@
+﻿.contact-container {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    font-size: 18px;
+}
+
+.inner-container {
+    text-align: center;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    max-width: 800px; /* Ajusta el ancho máximo según tus preferencias */
+    margin: 50px; /* Ajusta el margen según tus preferencias */
+    background: radial-gradient(circle at 0% 0%, #1a3d73, #3266a5, #1a3d73);
+}
+
+header.contact-header {
+    background: #5913A5;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+    header.contact-header h1 {
+        margin: 0;
+        font-size: 2em;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+.contact-info p {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.motivos {
+    text-align: left;
+    margin-top: 20px;
+}
+
+    .motivos p {
+        margin-bottom: 15px;
+        font-size: 1.2em;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .motivos ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .motivos li {
+        margin-bottom: 10px;
+        background: #3266a5;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }

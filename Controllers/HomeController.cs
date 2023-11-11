@@ -12,7 +12,12 @@ namespace EmPoderTIC.Controllers
 
         private EmPoderTIC_WEB db = new EmPoderTIC_WEB();
 
-        // GET: 
+        // GET:
+
+        public ActionResult Contacto()
+        {
+            return View();
+        }
         public ActionResult InicioGeneral()
         {
             return View();

@@ -206,6 +206,7 @@
   <ItemGroup>
     <Content Include="Content\assets\favicon.ico" />
     <Content Include="Content\css\accesodenegado.css" />
+    <Content Include="Content\css\contacto.css" />
     <Content Include="Content\css\CRUD.css" />
     <Content Include="Content\css\CRUD_create_edit.css" />
     <Content Include="Content\css\CRUD_delete.css" />
@@ -435,6 +436,7 @@
     <Content Include="Views\Account\RestablecimientoExitoso.cshtml" />
     <Content Include="Views\SubcribirEvento\SubscribirEventoP2.cshtml" />
     <Content Include="Views\SubcribirEvento\SubscribirEventoP3.cshtml" />
+    <Content Include="Views\Home\Contacto.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
