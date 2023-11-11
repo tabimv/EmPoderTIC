@@ -18,6 +18,21 @@ namespace EmPoderTIC.Controllers
             return View();
         }
 
+        public ActionResult InicioP1()
+        {
+            return View();
+        }
+
+        public ActionResult InicioP2()
+        {
+            return View();
+        }
+
+        public ActionResult InicioP3()
+        {
+            return View();
+        }
+
         public ActionResult ProgramaMasMujeresEnLasTics()
         {
             return View();

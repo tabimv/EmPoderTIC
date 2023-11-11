@@ -424,6 +424,9 @@
     <Content Include="Views\Home\ProgramaMasMujeresEnLasTicsP3.cshtml" />
     <Content Include="Views\SubcribirEvento\SubscribirEvento.cshtml" />
     <Content Include="Views\SubcribirEvento\DetallesEvento.cshtml" />
+    <Content Include="Views\Home\InicioP1.cshtml" />
+    <Content Include="Views\Home\InicioP2.cshtml" />
+    <Content Include="Views\Home\InicioP3.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

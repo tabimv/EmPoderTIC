@@ -1,0 +1,85 @@
+﻿@model List<EmPoderTIC.Models.INSIGNIA>
+
+@{
+    ViewBag.Title = "Inicio - EmPoderTIC";
+    var datosPerfil = ViewBag.DatosPerfil as List<EmPoderTIC.Models.INFO_PERFIL>;
+}
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Estudiante y/o Titulado")
+{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+else
+{
+    Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
+}
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Estudiante y/o Titulado")
+{
+
+    <link href="~/Content/css/inicio.css" rel="stylesheet" />
+
+
+    <div class="banner">
+        <img src="~/Content/img/banner.png" alt="Banner de EmPoderTIC">
+    </div>
+    <section class="welcome">
+        <div class="overlay">
+            <h1>Bienvenidos a EmPoderTIC</h1>
+            <h2>¡Construyendo un futuro equitativo en las TIC!</h2>
+            <br>
+        </div>
+    </section>
+    <!-- Sección de "Servicios" -->
+    <section>
+        <h2>Servicios</h2>
+        <div class="services">
+            <div class="service-item">
+                <i class="fas fa-award service-icon custom-icon-award"></i> <!-- Icono de Insignias -->
+                <h3>Insignias</h3>
+                <p>Descubre nuestras Insignias de Reconocimiento.</p>
+            </div>
+            <div class="service-item">
+                <i class="fas fa-certificate service-icon custom-icon-certificate"></i> <!-- Icono de Certificados -->
+                <h3>Certificados</h3>
+                <p>Colecciona Insignias y obtén un Certificado.</p>
+            </div>
+            <div class="service-item">
+                <i class="fab fa-linkedin service-icon custom-icon-linkedin"></i> <!-- Icono de Linkedin -->
+                <h3>Linkedin</h3>
+                <p>Añade tus Insignias a LinkedIn.</p>
+            </div>
+            <div class="service-item">
+                <i class="fas fa-calendar-alt service-icon custom-icon-calendar"></i> <!-- Icono de Actividades -->
+                <h3>Actividades</h3>
+                <p>Inscribete a los Eventos del Programa Más Mujeres en las TICs.</p>
+            </div>
+            <div class="service-item">
+                <i class="fas fa-download service-icon custom-icon-download"></i> <!-- Icono de Curriculum -->
+                <h3>CV</h3>
+                <p>Descarga tú Certificado para tu Curriculum.</p>
+            </div>
+            <div class="service-item">
+                <i class="fas fa-book service-icon custom-icon-book"></i> <!-- Icono de Eventos -->
+                <h3>Historial de Eventos</h3>
+                <p>Visualiza tú historial de participación en los eventos del Programa.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+
+}
+
+else
+{
+    <link rel="stylesheet" href="~/Content/css/accesodenegado.css">
+    <div id="header">
+        <h1> Acceso denegado. Esta vista solo está disponible para Estudiante y/o Titulado</h1>
+        <br />
+        <a href="@Url.Action("Login", "Account")" class="btn-acceso">Iniciar Sesión</a>
+    </div>
+}
