@@ -10,7 +10,7 @@ namespace EmPoderTIC.Controllers
 {
     public class SubcribirEventoController : Controller
     {
-        private EmPoderTICConexionFinal db = new EmPoderTICConexionFinal();
+        private EmPoderTIC_WEB db = new EmPoderTIC_WEB();
 
         // GET: SubcribirEvento
         public ActionResult SubscribirEvento()
@@ -64,6 +64,85 @@ namespace EmPoderTIC.Controllers
             return RedirectToAction("DetallesEvento", new { eventoId = eventoId });
         }
 
+
+
+
+
+        public ActionResult SubscribirEventoP2()
+        {
+            // Recupera la lista de eventos desde la base de datos
+            List<EVENTO> eventos = db.EVENTO.ToList();
+         
+   
+            // Pasa la lista de eventos a la vista
+            return View(eventos);
+        }
+
+
+        [HttpPost]
+        public ActionResult InscribirEventoP2(int eventoId)
+        {
+            // Verifica si el usuario está autenticado
+            if (Session["UsuarioAutenticado"] != null)
+            {
+                // Recupera la información del usuario autenticado desde la sesión
+                var usuarioAutenticado = (USUARIO)Session["UsuarioAutenticado"];
+
+                // Crea una nueva inscripción
+                INSCRIPCION inscripcion = new INSCRIPCION
+                {
+                    USUARIO_rut = usuarioAutenticado.rut,
+                    EVENTO_evento_id = eventoId
+                };
+
+                // Agrega la inscripción a la base de datos
+                db.INSCRIPCION.Add(inscripcion);
+                db.SaveChanges();
+
+            }
+
+            // Redirige a la página de detalles del evento después de la inscripción
+            return RedirectToAction("DetallesEvento", new { eventoId = eventoId });
+        }
+
+
+
+        public ActionResult SubscribirEventoP3()
+        {
+            // Recupera la lista de eventos desde la base de datos
+            List<EVENTO> eventos = db.EVENTO.ToList();
+
+
+            // Pasa la lista de eventos a la vista
+            return View(eventos);
+        }
+
+
+        [HttpPost]
+        public ActionResult InscribirEventoP3(int eventoId)
+        {
+            // Verifica si el usuario está autenticado
+            if (Session["UsuarioAutenticado"] != null)
+            {
+                // Recupera la información del usuario autenticado desde la sesión
+                var usuarioAutenticado = (USUARIO)Session["UsuarioAutenticado"];
+
+                // Crea una nueva inscripción
+                INSCRIPCION inscripcion = new INSCRIPCION
+                {
+                    USUARIO_rut = usuarioAutenticado.rut,
+                    EVENTO_evento_id = eventoId
+                };
+
+                // Agrega la inscripción a la base de datos
+                db.INSCRIPCION.Add(inscripcion);
+                db.SaveChanges();
+
+            }
+
+            // Redirige a la página de detalles del evento después de la inscripción
+            return RedirectToAction("DetallesEvento", new { eventoId = eventoId });
+        }
 
         public ActionResult DetallesEvento(int eventoId)
         {

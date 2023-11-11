@@ -172,7 +172,21 @@ else
                         <div class="menu-opciones menu-opciones-@insignia_desbloqueada.INSIGNIA.insignia_id oculto">
                             <a href="https://www.linkedin.com/sharing/share-offsite/?url=@insignia_desbloqueada.INSIGNIA.imagen_url&title=@insignia_desbloqueada.INSIGNIA.nombre&summary=@insignia_desbloqueada.INSIGNIA.objetivo" class="linkedin" target="_blank">Compartir en LinkedIn</a>
                             <div class="dropdown-divider"></div>
-                            <a id="solicitarInsigniaLink" href="@Url.Action("SolicitarInsigniaComoLogro", "Notificacion", new { insignia_id = insignia_desbloqueada.INSIGNIA.insignia_id})">Solicitar Insignia como Logros para LinkedIn</a>
+                            @if (ViewBag.NotificacionesEnviadas != null)
+                            {
+                                var notificacionesEnviadas = (List<int>)ViewBag.NotificacionesEnviadas;
+                                bool fueEnviado = notificacionesEnviadas.Contains(insignia_desbloqueada.INSIGNIA.insignia_id);
+
+                                if (fueEnviado)
+                                {
+
+                                    <a href="#">Solicitud Enviada</a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("SolicitarInsigniaComoLogro", "Notificacion", new { insignia_id = insignia_desbloqueada.INSIGNIA.insignia_id })" onclick="confirmarInscripcion()">Solicitar Insignia como Logros para LinkedIn</a>
+                                }
+                            }
                         </div>
 
                         <div id="modal" class="modal">
@@ -234,6 +248,21 @@ else
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="~/Content/js/perfil.js"></script>
+
+    <script>
+        function confirmarInscripcion() {
+            // Muestra una confirmación adicional si lo deseas
+            var confirmacion = confirm("¿Estás seguro/a de que deseas enviar  esta Solicitud?");
+
+            // Si el usuario confirma, redirige a la otra vista
+            if (confirmacion) {
+                confirm("Tu solicitud ha sido enviada con éxito, dentro de 5 días hábiles recibirás tu insignia. Te notificaremos por tu correo institucional.");
+            }
+
+            // Evita que el formulario se envíe si el usuario cancela
+            return confirmacion;
+        }
+    </script>
     <script>
         $(document).ready(function () {
             // Agrega un controlador de clic al botón

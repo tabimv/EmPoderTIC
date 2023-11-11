@@ -1,35 +1,18 @@
 ﻿@model EmPoderTIC.Models.INFO_PERFIL
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Completar Perfil";
 
-    // Simular opciones de escuela y carrera
-    Dictionary<string, List<string>> carrerasPorEscuela = new Dictionary<string, List<string>>
-{
-        { "Administración y negocios", new List<string> { "Ingeniería en Marketing Digital", "Comercio Exterior", "Ingeniería en Administración Mención Finanzas" } },
-        { "Informática y Telecomunicaciones", new List<string> { "Analista Programador Computacional", "Ingeniería en Desarrollo de Software", "Ingeniería en Informática" } },
-        { "Comunicaciónes", new List<string> { "Actuación", "Animación", "Tecnología en Sonido" } },
-        { "Salud", new List<string> { "Informática Biomédica", "Técnico en Enfermería", "Preparador Físico" } },
-        // Agrega más escuelas y carreras según sea necesario
-    };
 
-    // Simular opciones de carrera y sedes
-    Dictionary<string, List<string>> sedesPorCarrera = new Dictionary<string, List<string>>
+    // Nuevo Dictionary para almacenar las relaciones entre sedes y escuelas
+    Dictionary<string, List<string>> escuelasPorSede = new Dictionary<string, List<string>>
 {
-        { "Ingeniería en Marketing Digital", new List<string> { "Sede San Andrés de Concepción", "Sede Valparaíso", "Sede Viña del Mar" } },
-        { "Comercio Exterior", new List<string> { "Sede Viña del Mar" } },
-        { "Ingeniería en Administración Mención Finanzas", new List<string> { "Sede San Andrés de Concepción" } },
-        { "Analista Programador Computacional", new List<string> { "Sede San Andrés de Concepción", "Sede Viña del Mar" } },
-        { "Ingeniería en Desarrollo de Software", new List<string> { "Sede San Andrés de Concepción" } },
-        { "Ingeniería en Informática", new List<string> { "Sede Valparaíso", "Sede Viña del Mar", "Sede San Andrés de Concepción" } },
-        { "Actuación", new List<string> { "Sede Valparaíso" } },
-        { "Animación", new List<string> { "Sede Valparaíso", "Sede Viña del Mar" } },
-        { "Tecnología en Sonido", new List<string> { "Sede San Andrés de Concepción" } },
-        { "Informática Biomédica", new List<string> { "Sede San Andrés de Concepción", "Sede Valparaíso" } },
-        { "Técnico en Enfermería", new List<string> { "Sede Viña del Mar" } },
-        { "Preparador Físico", new List<string> { "Sede Valparaíso" } }
-        // Agrega más carreras y sedes según sea necesario
-    };
+    { "Sede San Andrés de Concepción", new List<string> { "Informática y Telecomunicaciones", "Salud" } },
+    { "Sede Valparaíso", new List<string> { "Administración y negocios", "Comunicaciónes", "Informática y Telecomunicaciones" } },
+    { "Sede Viña del Mar", new List<string> { "Administración y negocios", "Informática y Telecomunicaciones", "Comunicaciónes", "Salud" } }
+    // Agrega más sedes y escuelas según sea necesario
+};
+
 }
 
 @if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Colaborador administrativo")
@@ -57,23 +40,16 @@ else
                 <form>
                     @Html.AntiForgeryToken()
                     <div class="form-group">
-                        @Html.LabelFor(model => model.escuela, "Escuela: ", htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.DropDownListFor(model => model.escuela, new SelectList(carrerasPorEscuela.Keys), "Selecciona una escuela", new { @class = "form-control", id = "escuelaDropdown" })
-                        @Html.ValidationMessageFor(model => model.escuela, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.carrera, "Carrera: ", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <select id="carreraDropdown" name="carrera" class="form-control">
-                            <option value="">Selecciona una carrera</option>
-                        </select>
-                        @Html.ValidationMessageFor(model => model.carrera, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="form-group">
                         @Html.LabelFor(model => model.sede, "Sede: ", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <select id="sedeDropdown" name="sede" class="form-control">
-                            <option value="">Selecciona una sede</option>
-                        </select>
+                        @Html.DropDownListFor(model => model.sede, new SelectList(escuelasPorSede.Keys), "Selecciona una sede", new { @class = "form-control", id = "sedeDropdown" })
                         @Html.ValidationMessageFor(model => model.sede, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.escuela, "Escuela: ", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <select id="escuelaDropdown" name="escuela" class="form-control">
+                            <option value="">Selecciona una escuela</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => model.escuela, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -92,59 +68,36 @@ else
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        $(document).ready(function () {
-            // Obtener las opciones de carrera según la escuela seleccionada
-            function obtenerCarrerasPorEscuela(escuela) {
-                var carreras = @Html.Raw(Json.Encode(carrerasPorEscuela));
+      $(document).ready(function () {
+          // Obtener las opciones de carrera según la escuela seleccionada
+          function obtenerescuelasPorSede(sede) {
+              var escuelas = @Html.Raw(Json.Encode(escuelasPorSede));
 
-                // Limpiar el dropdown de carrera
-                $('#carreraDropdown').empty();
+              // Limpiar el dropdown de carrera
+              $('#escuelaDropdown').empty();
 
-                // Agregar las opciones de carrera según la escuela seleccionada
-                $.each(carreras[escuela], function (index, value) {
-                    $('#carreraDropdown').append($('<option>', {
-                        value: value,
-                        text: value
-                    }));
-                });
-            }
+              // Agregar las opciones de carrera según la escuela seleccionada
+              $.each(escuelas[sede], function (index, value) {
+                  $('#escuelaDropdown').append($('<option>', {
+                      value: value,
+                      text: value
+                  }));
+              });
+          }
 
-            // Asociar el evento change al dropdown de escuela
-            $('#escuelaDropdown').change(function () {
-                var escuelaSeleccionada = $(this).val();
+          // Asociar el evento change al dropdown de escuela
+          $('#sedeDropdown').change(function () {
+              var sedeSeleccionada = $(this).val();
 
-                // Obtener y mostrar las opciones de carrera según la escuela seleccionada
-                obtenerCarrerasPorEscuela(escuelaSeleccionada);
-            });
-        });
+              // Obtener y mostrar las opciones de carrera según la escuela seleccionada
+              obtenerescuelasPorSede(sedeSeleccionada);
+          });
+      });
     </script>
-    <script>
-        $(document).ready(function () {
-            // Obtener las opciones de sede según la carrera seleccionada
-            function obtenerSedesPorCarrera(carrera) {
-                var sedes = @Html.Raw(Json.Encode(sedesPorCarrera));
 
-                // Limpiar el dropdown de sede
-                $('#sedeDropdown').empty();
 
-                // Agregar las opciones de sede según la carrera seleccionada
-                $.each(sedes[carrera], function (index, value) {
-                    $('#sedeDropdown').append($('<option>', {
-                        value: value,
-                        text: value
-                    }));
-                });
-            }
 
-            // Asociar el evento change al dropdown de carrera
-            $('#carreraDropdown').change(function () {
-                var carreraSeleccionada = $(this).val();
 
-                // Obtener y mostrar las opciones de sede según la carrera seleccionada
-                obtenerSedesPorCarrera(carreraSeleccionada);
-            });
-        });
-    </script>
 }
 
 else
@@ -156,3 +109,16 @@ else
         <a href="@Url.Action("Login", "Account")" class="btn-acceso">Iniciar Sesión</a>
     </div>
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

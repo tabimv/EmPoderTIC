@@ -124,38 +124,6 @@ a {
         text-decoration: none;
     }
 
-.menu-list {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-
-    .menu-list li:hover {
-        color: #3770B8; /* Cambia el color de texto al pasar el cursor */
-    }
-
-    .menu-list li {
-        font-size: 16px;
-        transition: color 0.3s ease; /* Agrega una transición suave para el color de texto */
-    }
-
-/* Botón de Iniciar Sesión */
-.btn-iniciar-sesion {
-    background: #3770B8;
-    color: #fff;
-    padding: 20px 30px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background 0.3s ease, transform 0.2s ease; /* Agrega transiciones para fondo y transformación */
-    padding: 8px 16px; /* Adjust padding for button size */
-    font-size: 25px; /* Adjust font size for responsiveness */
-    margin-top: 0; /* Reset top margin */
-}
-
-    .btn-iniciar-sesion:hover {
-        background: #3285dd; /* Cambia el fondo al pasar el cursor */
-        transform: scale(1.1); /* Escala el botón al 110% de su tamaño original */
-    }
 
 /* Estilo del banner */
 .banner img {

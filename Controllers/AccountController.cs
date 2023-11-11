@@ -25,7 +25,7 @@ namespace EmPoderTIC.Controllers
     public class AccountController : Controller
     {
         // GET: Account
-        private EmPoderTICConexionFinal db = new EmPoderTICConexionFinal();
+        private EmPoderTIC_WEB db = new EmPoderTIC_WEB();
        
 
         public int ObtenerTipoPerfilId(string correoElectronico)
@@ -323,6 +323,178 @@ namespace EmPoderTIC.Controllers
 
             // Redirigir al inicio de sesión
             return RedirectToAction("Login", "Account");
+        }
+
+
+        [HttpGet]
+        public ActionResult ForgotPassword()
+        {
+            return View(new ForgotPasswordViewModel());
+        }
+
+        [HttpGet]
+        public ActionResult SolicitudRestablecerPass()
+        {
+            return View(new ForgotPasswordViewModel());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ForgotPassword(ForgotPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var usuario = db.USUARIO.FirstOrDefault(u => u.correo_electronico == model.correo_electronico);
+
+                if (usuario != null)
+                {
+                    // Generar un token único para el restablecimiento de contraseña
+                    var token = Guid.NewGuid().ToString();
+
+                    // Almacenar el token en la base de datos junto con la fecha de solicitud
+                    usuario.token_reset_contraseña = token;
+                    usuario.fecha_solicitud_reset_contraseña = DateTime.Now;
+                    db.SaveChanges();
+
+                    // Enviar un correo con el enlace para restablecer la contraseña
+                    EnviarCorreoResetContraseña(model.correo_electronico, token);
+
+                    // Redirigir a una vista de confirmación
+                    return RedirectToAction("SolicitudRestablecerPass");
+                }
+                else
+                {
+                    // El correo electrónico no está registrado en la base de datos
+                    ModelState.AddModelError("correo_electronico", "No se encontró una cuenta asociada con este correo electrónico.");
+                }
+            }
+
+            // Si hay errores de validación o la cuenta no existe, vuelve a mostrar la vista con el modelo
+            return View(model);
+        }
+
+
+
+        private void EnviarCorreoResetContraseña(string destinatario, string token)
+        {
+            var fromAddress = "empodertic@gmail.com";
+            var fromPassword = "bzzn olsk wchs xlxv";
+            var subject = "Restablecer contraseña - EmPoderTIC";
+
+            var body = $@"
+        <html>
+        <head>
+            <style>
+                body {{
+                    font-family: Arial, sans-serif;
+                    background-color: #f5f5f5;
+                }}
+                .container {{
+                    max-width: 600px;
+                    margin: 0 auto;
+                    padding: 20px;
+                    background-color: #fff;
+                    border-radius: 5px;
+                }}
+                .header {{
+                    background-color: #500297; /* Fondo morado */
+                    color: #fff; /* Texto blanco */
+                    text-align: center;
+                    padding: 20px;
+                }}
+                .content {{
+                    padding: 20px;
+                }}
+                .button {{
+                    background-color: #14468E; /* Fondo azul */
+                    color: #fff; /* Texto blanco */
+                    padding: 10px 20px;
+                    text-align: center;
+                    display: block;
+                    margin: 0 auto;
+                    text-decoration: none;
+                }}
+                a{{ 
+                 color: #fff;
+                }}
+            </style>
+        </head>
+        <body>
+            <div class='container'>
+                <div class='header'>
+                    <h1>¡Restablece tu contraseña en EmPoderTIC!</h1>
+                </div>
+                <div class='content'>
+                    <p>Haz clic en el siguiente enlace para restablecer tu contraseña:</p>
+                   <a class='button' href='https://localhost:44389/Account/ResetPassword?token={token}' style='color: #fff; text-decoration: none;'>Restablecer Contraseña</a>
+                </div>
+            </div>
+        </body>
+        </html>
+    ";
+
+            var smtpClient = new SmtpClient("smtp.gmail.com")
+            {
+                Port = 587,
+                Credentials = new NetworkCredential(fromAddress, fromPassword),
+                EnableSsl = true,
+            };
+
+            var mailMessage = new MailMessage(fromAddress, destinatario, subject, body)
+            {
+                IsBodyHtml = true,
+            };
+
+            smtpClient.Send(mailMessage);
+        }
+
+
+        public ActionResult RestablecimientoExitoso()
+        {
+            return View(new ForgotPasswordViewModel());
+        }
+
+        [HttpGet]
+        public ActionResult ResetPassword(string token)
+        {
+            // Buscar el usuario con el token proporcionado
+            var usuario = db.USUARIO.FirstOrDefault(u => u.token_reset_contraseña == token);
+            // Crear un modelo para la vista de restablecimiento de contraseña
+            var model = new ResetPasswordViewModel
+            {
+                Token = token
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ResetPassword(ResetPasswordViewModel model)
+        {
+            // Validar el modelo y restablecer la contraseña si es válido
+            if (ModelState.IsValid)
+            {
+                var usuario = db.USUARIO.FirstOrDefault(u => u.token_reset_contraseña == model.Token);
+
+                if (usuario != null)
+                {
+                    // Actualizar la contraseña y borrar el token de restablecimiento
+                    usuario.contraseña = model.NuevaContraseña;
+                    usuario.token_reset_contraseña = null;
+                    db.SaveChanges();
+
+                    // Redirigir a una vista de confirmación de restablecimiento de contraseña
+                    return RedirectToAction("RestablecimientoExitoso");
+                }
+                else
+                {
+                    // Token no válido, redirigir a una vista de error
+                    return View("Error");
+                }
+            }
+
+            return View(model);
         }
 
 

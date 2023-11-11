@@ -39,9 +39,8 @@ else
                 <div class="perfil-datos">
                     @if (datosPerfil != null && datosPerfil.Any())
                     {
-                        <p>@datosPerfil.First().escuela</p>
-                        <p>@datosPerfil.First().carrera</p>
-                        <div class="mi-linea"></div>
+                        <p style="margin-bottom: 0px;">@datosPerfil.First().escuela</p>
+                        <div style="top:20%;"class="mi-linea"></div>
                         <p>@datosPerfil.First().sede</p>
                     }
 
@@ -218,7 +217,7 @@ else
         {
             <div class="mini-container">
                 <div class="historial-titulos">
-                    <h3>Lo sentimos, usted no ha asistido a ningún Evento</h3>
+                    <h3>Lo sentimos, usted no ha registrado asistencia a ningún Evento</h3>
                     <h4> Participa en los Eventos del Programa Más Mujeres en las TICs</h4>
                 </div>
             </div>

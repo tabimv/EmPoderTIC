@@ -13,10 +13,10 @@ namespace EmPoderTIC.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EmPoderTICConexionFinal : DbContext
+    public partial class EmPoderTIC_WEB : DbContext
     {
-        public EmPoderTICConexionFinal()
-            : base("name=EmPoderTICConexionFinal")
+        public EmPoderTIC_WEB()
+            : base("name=EmPoderTIC_WEB")
         {
         }
     

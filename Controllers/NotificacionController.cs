@@ -14,7 +14,7 @@ namespace EmPoderTIC.Controllers
 {
     public class NotificacionController : Controller
     {
-        private EmPoderTICConexionFinal db = new EmPoderTICConexionFinal();
+        private EmPoderTIC_WEB db = new EmPoderTIC_WEB();
 
         public ActionResult SolicitarInsigniaComoLogro(int insignia_id)
         {
@@ -32,7 +32,7 @@ namespace EmPoderTIC.Controllers
                     INSIGNIA_insignia_id = insignia_id
                 };
 
-                using (var db = new EmPoderTICConexionFinal())
+                using (var db = new EmPoderTIC_WEB())
                 {
                     db.NOTIFICACION.Add(nOTIFICACION);
                     db.SaveChanges();
@@ -79,7 +79,7 @@ namespace EmPoderTIC.Controllers
                     INSIGNIA_insignia_id = insignia_id
                 };
 
-                using (var db = new EmPoderTICConexionFinal())
+                using (var db = new EmPoderTIC_WEB())
                 {
                     db.NOTIFICACION.Add(nOTIFICACION);
                     db.SaveChanges();

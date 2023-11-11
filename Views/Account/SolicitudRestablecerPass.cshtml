@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/css/accesodenegado.css">
+<div id="header">
+    <h1> Tu solicitud ha sido enviada. Por favor, verifica tu correo para restablecer tú contraseña. </h1>
+    <br />
+    <br />
+    <a href="@Url.Action("Login", "Account")" class="btn-acceso">Iniciar Sesión</a>
+</div>

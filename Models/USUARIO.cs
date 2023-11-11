@@ -13,7 +13,6 @@ namespace EmPoderTIC.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-
     public partial class USUARIO
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -38,6 +37,8 @@ namespace EmPoderTIC.Models
         public string correo_electronico { get; set; }
         public string contraseña { get; set; }
         public string token { get; set; }
+        public string token_reset_contraseña { get; set; }
+        public Nullable<System.DateTime> fecha_solicitud_reset_contraseña { get; set; }
         public bool estado_confirmacion { get; set; }
         public int TIPO_PERFIL_tipo_perfil_id { get; set; }
     
