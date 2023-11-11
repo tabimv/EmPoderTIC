@@ -13,7 +13,7 @@ namespace EmPoderTIC.Controllers
 {
     public class OtorgarInsigniaPerfil2Controller : Controller
     {
-        private EmPoderTIC_WEB db = new EmPoderTIC_WEB();
+        private EmPoderTIC_Conexion_Oficial db = new EmPoderTIC_Conexion_Oficial();
 
         // GET: OtorgarInsigniaPerfil2
         public async Task<ActionResult> Index()

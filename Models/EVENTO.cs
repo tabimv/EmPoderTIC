@@ -31,6 +31,7 @@ namespace EmPoderTIC.Models
         public System.DateTime fecha_evento { get; set; }
         public System.TimeSpan hora_evento { get; set; }
         public string lugar_evento { get; set; }
+        public string imagen_url_evento { get; set; }
         public int AREA_area_id { get; set; }
         public int COMPETENCIA_competencia_id { get; set; }
     

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EmPoderTIC_WEBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="EmPoderTICModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AREA">
           <Key>
             <PropertyRef Name="area_id" />
@@ -71,6 +71,7 @@
           <Property Name="fecha_evento" Type="date" Nullable="false" />
           <Property Name="hora_evento" Type="time" Precision="7" Nullable="false" />
           <Property Name="lugar_evento" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="imagen_url_evento" Type="varchar(max)" />
           <Property Name="AREA_area_id" Type="int" Nullable="false" />
           <Property Name="COMPETENCIA_competencia_id" Type="int" Nullable="false" />
         </EntityType>
@@ -542,7 +543,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="EmPoderTIC_WEBModelStoreContainer">
+        <EntityContainer Name="EmPoderTICModelStoreContainer">
           <EntitySet Name="AREA" EntityType="Self.AREA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ASISTENCIA" EntityType="Self.ASISTENCIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CERTIFICACION" EntityType="Self.CERTIFICACION" Schema="dbo" store:Type="Tables" />
@@ -685,7 +686,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="EmPoderTIC_WEBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="EmPoderTICModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="AREA">
           <Key>
             <PropertyRef Name="area_id" />
@@ -771,6 +772,7 @@
           <Property Name="fecha_evento" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="hora_evento" Type="Time" Nullable="false" Precision="7" />
           <Property Name="lugar_evento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="imagen_url_evento" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="AREA_area_id" Type="Int32" Nullable="false" />
           <Property Name="COMPETENCIA_competencia_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AREA" Relationship="Self.EVENTO_AREA_FK" FromRole="EVENTO" ToRole="AREA" />
@@ -1283,7 +1285,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="EmPoderTIC_WEB" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="EmPoderTIC_Conexion_Oficial" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AREA" EntityType="Self.AREA" />
           <EntitySet Name="ASISTENCIA" EntityType="Self.ASISTENCIA" />
           <EntitySet Name="CERTIFICACION" EntityType="Self.CERTIFICACION" />
@@ -1427,9 +1429,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="EmPoderTIC_WEBModelStoreContainer" CdmEntityContainer="EmPoderTIC_WEB">
+        <EntityContainerMapping StorageEntityContainer="EmPoderTICModelStoreContainer" CdmEntityContainer="EmPoderTIC_Conexion_Oficial">
           <EntitySetMapping Name="AREA">
-            <EntityTypeMapping TypeName="EmPoderTIC_WEBModel.AREA">
+            <EntityTypeMapping TypeName="EmPoderTICModel.AREA">
               <MappingFragment StoreEntitySet="AREA">
                 <ScalarProperty Name="area_id" ColumnName="area_id" />
                 <ScalarProperty Name="area_conocimiento" ColumnName="area_conocimiento" />
@@ -1437,7 +1439,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ASISTENCIA">
-            <EntityTypeMapping TypeName="EmPoderTIC_WEBModel.ASISTENCIA">
+            <EntityTypeMapping TypeName="EmPoderTICModel.ASISTENCIA">
               <MappingFragment StoreEntitySet="ASISTENCIA">
                 <ScalarProperty Name="registro_asistencia_evento" ColumnName="registro_asistencia_evento" />
                 <ScalarProperty Name="fecha_registro_asistencia" ColumnName="fecha_registro_asistencia" />
@@ -1447,7 +1449,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CERTIFICACION">
-            <EntityTypeMapping TypeName="EmPoderTIC_WEBModel.CERTIFICACION">
+            <EntityTypeMapping TypeName="EmPoderTICModel.CERTIFICACION">
               <MappingFragment StoreEntitySet="CERTIFICACION">
                 <ScalarProperty Name="certificacion_id" ColumnName="certificacion_id" />
                 <ScalarProperty Name="tiene_certificacion" ColumnName="tiene_certificacion" />
@@ -1456,7 +1458,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CERTIFICADO">
-            <EntityTypeMapping TypeName="EmPoderTIC_WEBModel.CERTIFICADO">
+            <EntityTypeMapping TypeName="EmPoderTICModel.CERTIFICADO">
               <MappingFragment StoreEntitySet="CERTIFICADO">
                 <ScalarProperty Name="certificado_id" ColumnName="certificado_id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1468,7 +1470,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="COMPETENCIA">
-            <EntityTypeMapping TypeName="EmPoderTIC_WEBModel.COMPETENCIA">
+            <EntityTypeMapping TypeName="EmPoderTICModel.COMPETENCIA">
               <MappingFragment StoreEntitySet="COMPETENCIA">
                 <ScalarProperty Name="competencia_id" ColumnName="competencia_id" />
                 <ScalarProperty Name="competencia_conocimiento" ColumnName="competencia_conocimiento" />
@@ -1478,7 +1480,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CONTROL_INSIGNIA">
-            <EntityTypeMapping TypeName="EmPoderTIC_WEBModel.CONTROL_INSIGNIA">
+            <EntityTypeMapping TypeName="EmPoderTICModel.CONTROL_INSIGNIA">
               <MappingFragment StoreEntitySet="CONTROL_INSIGNIA">
                 <ScalarProperty Name="insignia_bloqueada" ColumnName="insignia_bloqueada" />
                 <ScalarProperty Name="USUARIO_rut" ColumnName="USUARIO_rut" />
@@ -1488,7 +1490,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EVENTO">
-            <EntityTypeMapping TypeName="EmPoderTIC_WEBModel.EVENTO">
+            <EntityTypeMapping TypeName="EmPoderTICModel.EVENTO">
               <MappingFragment StoreEntitySet="EVENTO">
                 <ScalarProperty Name="evento_id" ColumnName="evento_id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1497,13 +1499,14 @@
                 <ScalarProperty Name="fecha_evento" ColumnName="fecha_evento" />
                 <ScalarProperty Name="hora_evento" ColumnName="hora_evento" />
                 <ScalarProperty Name="lugar_evento" ColumnName="lugar_evento" />
+                <ScalarProperty Name="imagen_url_evento" ColumnName="imagen_url_evento" />
                 <ScalarProperty Name="AREA_area_id" ColumnName="AREA_area_id" />
                 <ScalarProperty Name="COMPETENCIA_competencia_id" ColumnName="COMPETENCIA_competencia_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="INFO_PERFIL">
-            <EntityTypeMapping TypeName="EmPoderTIC_WEBModel.INFO_PERFIL">
+            <EntityTypeMapping TypeName="EmPoderTICModel.INFO_PERFIL">
               <MappingFragment StoreEntitySet="INFO_PERFIL">
                 <ScalarProperty Name="info_perfil_id" ColumnName="info_perfil_id" />
                 <ScalarProperty Name="escuela" ColumnName="escuela" />
@@ -1514,7 +1517,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="INSCRIPCION">
-            <EntityTypeMapping TypeName="EmPoderTIC_WEBModel.INSCRIPCION">
+            <EntityTypeMapping TypeName="EmPoderTICModel.INSCRIPCION">
               <MappingFragment StoreEntitySet="INSCRIPCION">
                 <ScalarProperty Name="inscripcion_id" ColumnName="inscripcion_id" />
                 <ScalarProperty Name="USUARIO_rut" ColumnName="USUARIO_rut" />
@@ -1523,7 +1526,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="INSIGNIA">
-            <EntityTypeMapping TypeName="EmPoderTIC_WEBModel.INSIGNIA">
+            <EntityTypeMapping TypeName="EmPoderTICModel.INSIGNIA">
               <MappingFragment StoreEntitySet="INSIGNIA">
                 <ScalarProperty Name="insignia_id" ColumnName="insignia_id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1540,7 +1543,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NIVEL">
-            <EntityTypeMapping TypeName="EmPoderTIC_WEBModel.NIVEL">
+            <EntityTypeMapping TypeName="EmPoderTICModel.NIVEL">
               <MappingFragment StoreEntitySet="NIVEL">
                 <ScalarProperty Name="nivel_id" ColumnName="nivel_id" />
                 <ScalarProperty Name="categoría_nivel_insignia" ColumnName="categoría_nivel_insignia" />
@@ -1548,7 +1551,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NOTIFICACION">
-            <EntityTypeMapping TypeName="EmPoderTIC_WEBModel.NOTIFICACION">
+            <EntityTypeMapping TypeName="EmPoderTICModel.NOTIFICACION">
               <MappingFragment StoreEntitySet="NOTIFICACION">
                 <ScalarProperty Name="notificacion_id" ColumnName="notificacion_id" />
                 <ScalarProperty Name="mensaje" ColumnName="mensaje" />
@@ -1560,7 +1563,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OTORGAR_INSIGNIA_P2">
-            <EntityTypeMapping TypeName="EmPoderTIC_WEBModel.OTORGAR_INSIGNIA_P2">
+            <EntityTypeMapping TypeName="EmPoderTICModel.OTORGAR_INSIGNIA_P2">
               <MappingFragment StoreEntitySet="OTORGAR_INSIGNIA_P2">
                 <ScalarProperty Name="registro_insignia_evento" ColumnName="registro_insignia_evento" />
                 <ScalarProperty Name="contribucion_evento" ColumnName="contribucion_evento" />
@@ -1571,7 +1574,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OTORGAR_INSIGNIA_P3">
-            <EntityTypeMapping TypeName="EmPoderTIC_WEBModel.OTORGAR_INSIGNIA_P3">
+            <EntityTypeMapping TypeName="EmPoderTICModel.OTORGAR_INSIGNIA_P3">
               <MappingFragment StoreEntitySet="OTORGAR_INSIGNIA_P3">
                 <ScalarProperty Name="registro_insignia_evento" ColumnName="registro_insignia_evento" />
                 <ScalarProperty Name="contribucion_evento" ColumnName="contribucion_evento" />
@@ -1582,7 +1585,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TIPO_PERFIL">
-            <EntityTypeMapping TypeName="EmPoderTIC_WEBModel.TIPO_PERFIL">
+            <EntityTypeMapping TypeName="EmPoderTICModel.TIPO_PERFIL">
               <MappingFragment StoreEntitySet="TIPO_PERFIL">
                 <ScalarProperty Name="tipo_perfil_id" ColumnName="tipo_perfil_id" />
                 <ScalarProperty Name="nombre_tipo_perfil" ColumnName="nombre_tipo_perfil" />
@@ -1591,7 +1594,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="USUARIO">
-            <EntityTypeMapping TypeName="EmPoderTIC_WEBModel.USUARIO">
+            <EntityTypeMapping TypeName="EmPoderTICModel.USUARIO">
               <MappingFragment StoreEntitySet="USUARIO">
                 <ScalarProperty Name="rut" ColumnName="rut" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1608,7 +1611,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="USUARIO_CERTIFICADO">
-            <EntityTypeMapping TypeName="EmPoderTIC_WEBModel.USUARIO_CERTIFICADO">
+            <EntityTypeMapping TypeName="EmPoderTICModel.USUARIO_CERTIFICADO">
               <MappingFragment StoreEntitySet="USUARIO_CERTIFICADO">
                 <ScalarProperty Name="fecha_otorgamiento" ColumnName="fecha_otorgamiento" />
                 <ScalarProperty Name="certificado_url" ColumnName="certificado_url" />

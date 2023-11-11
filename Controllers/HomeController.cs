@@ -10,7 +10,7 @@ namespace EmPoderTIC.Controllers
     public class HomeController : Controller
     {
 
-        private EmPoderTIC_WEB db = new EmPoderTIC_WEB();
+        private EmPoderTIC_Conexion_Oficial db = new EmPoderTIC_Conexion_Oficial();
 
         // GET:
 
