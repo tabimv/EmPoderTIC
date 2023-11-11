@@ -7,7 +7,7 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra sutil para resaltar el texto */
     font-weight: bold; /* Texto en negrita */
     transition: color 0.5s, text-shadow 0.5s;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 .text-center h4 {
@@ -75,6 +75,8 @@
         border: none;
         margin-bottom: 20px;
     }
+
+ 
 
         .panel-footer .btn:hover {
             background: #500096; /* Cambia el color al pasar el ratón sobre el botón */

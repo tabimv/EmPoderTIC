@@ -1,0 +1,100 @@
+﻿@model EmPoderTIC.Models.EVENTO
+
+@{
+    ViewBag.Title = "Delete";
+
+}
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Estudiante y/o Titulado")
+{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+else
+{
+    Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
+}
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Estudiante y/o Titulado")
+{
+    <link rel="stylesheet" href="~/Content/css/CRUD_delete.css">
+
+
+    <div class="container-delete">
+        <div class="form-container-delete">
+            <h2> Inscripción Evento</h2>
+            <h3>¿Estás seguro/a de que deseas inscribirte en este evento?</h3>
+            <div>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        Evento:
+                    </dt>
+                    <dd>
+                        @Model.nombre
+                    </dd>
+
+                    <dt>
+                        Descripción:
+                    </dt>
+                    <dd>
+                        @Model.descripcion
+                    </dd>
+                    <dt>
+                        Tipo de Evento:
+                    </dt>
+                    <dd>
+                        @Model.tipo_evento
+                    </dd>
+                    <dt>
+                        Fecha y hora
+                    </dt>
+                    <dd>
+                        @Model.fecha_evento.ToString("dd-MM-yyyy") @Model.hora_evento
+                    </dd>
+
+                    <dt>
+                        Lugar
+                    </dt>
+                    <dd>
+                        @Model.lugar_evento
+                    </dd>
+
+                </dl>
+
+
+                <form id="formEvento" action="@Url.Action("InscribirEvento", "SubcribirEvento")" method="post">
+                    <div class="form-actions no-color">
+                        @Html.ActionLink("Volver a la Lista de Eventos", "SubscribirEvento", null, new { @class = "btn btn-sm btn-custom-link" }) |
+                        <input type="submit" value="Confirmar Inscripción" class="btn btn-sm btn-primary-custom" onclick="confirmarInscripcion()" />
+                        @Html.Hidden("eventoId", @Model.evento_id)
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function confirmarInscripcion() {
+        // Muestra una confirmación adicional si lo deseas
+        var confirmacion = confirm("¿Estás seguro/a de que deseas inscribirte en este evento?");
+
+        // Si el usuario confirma, redirige a la otra vista
+        if (confirmacion) {
+            confirm("Inscripción exitosa: Tu participación en el evento ha sido registrada con éxito. ¡Gracias por inscribirte!");
+        }
+
+        // Evita que el formulario se envíe si el usuario cancela
+        return confirmacion;
+    }
+    </script>
+}
+
+else
+{
+    <link rel="stylesheet" href="~/Content/css/accesodenegado.css">
+    <div id="header">
+        <h1> Acceso denegado. Esta vista solo está disponible para Estudiante y/o Titulado</h1>
+        <br />
+        <a href="@Url.Action("Login", "Account")" class="btn-acceso">Iniciar Sesión</a>
+    </div>
+}
