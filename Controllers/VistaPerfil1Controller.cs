@@ -18,7 +18,7 @@ namespace EmPoderTIC.Controllers
     public class VistaPerfil1Controller : Controller
     {
         // GET: VistaPerfil1
-        private EmPoderTIC_Conexion_Oficial db = new EmPoderTIC_Conexion_Oficial(); // Tu contexto de base de datos
+        private EmPoderTIC_Conexion_Oficial_WEB db = new EmPoderTIC_Conexion_Oficial_WEB(); // Tu contexto de base de datos
         public ActionResult Index()
         {
             if (Session["UsuarioAutenticado"] != null)
@@ -40,7 +40,7 @@ namespace EmPoderTIC.Controllers
                         .Include(i => i.EVENTO)
                         .Include(i => i.AREA)
                         .OrderBy(i => i.NIVEL.nivel_id)
-                        .Where(i => i.AREA.area_id == area.area_id && i.TIPO_PERFIL.tipo_perfil_id == 1)
+                        .Where(i => i.AREA.area_id == area.area_id && i.TIPO_PERFIL.tipo_perfil_id == 1 && i.activo == true)
                         .ToList();
 
                     var listaViewModel = listaInsignias
@@ -123,7 +123,7 @@ namespace EmPoderTIC.Controllers
                     .Where(di => di.insignia_bloqueada == false)
                     .Include(di => di.INSIGNIA)
                     .Include(di => di.USUARIO)
-                    .Where(di => di.INSIGNIA.NIVEL.categoría_nivel_insignia == "Avanzado" && di.USUARIO_rut == usuarioAutenticado.rut)
+                    .Where(di => di.INSIGNIA.NIVEL.categoría_nivel_insignia == "Avanzado" && di.USUARIO_rut == usuarioAutenticado.rut && di.INSIGNIA.activo == true)
                     .Include(di => di.INSIGNIA.EVENTO)
                     .ToList();
 
@@ -132,7 +132,7 @@ namespace EmPoderTIC.Controllers
                     .Where(d => d.insignia_bloqueada == false)
                     .Include(di => di.USUARIO)
                     .Include(d => d.INSIGNIA)
-                    .Where(d => (d.INSIGNIA.NIVEL.categoría_nivel_insignia == "Principiante" || d.INSIGNIA.NIVEL.categoría_nivel_insignia == "Intermedio") && d.USUARIO_rut == usuarioAutenticado.rut)
+                    .Where(d => (d.INSIGNIA.NIVEL.categoría_nivel_insignia == "Principiante" || d.INSIGNIA.NIVEL.categoría_nivel_insignia == "Intermedio") && d.USUARIO_rut == usuarioAutenticado.rut && d.INSIGNIA.activo == true)
                     .Include(d => d.INSIGNIA.EVENTO)
                     .ToList();
 

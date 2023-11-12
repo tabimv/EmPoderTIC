@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EmPoderTIC.Models.USUARIO_CERTIFICADO>
+﻿@model IEnumerable<EmPoderTIC.Models.NOTIFICACION>
 
 @{
     ViewBag.Title = "Index";
@@ -26,63 +26,27 @@ else
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Gestión de <b>Certificados Para Usuarios</b></h2>
+                            <h2>Lista de <b>Notificaciones</b></h2>
                         </div>
                         <div class="col-sm-6">
-                            <a href="@Url.Action("Create")" class="btn btn-success">
-                                <i class="material-icons">&#xE147;</i>
-                                Crear Asistencia para Evento
+                            <a href="@Url.Action("Index")" class="btn btn-success">
+                                <i class="material-icons">notifications</i>
+                                Gestionar Notificaciones
                             </a>
-                            <a href="@Url.Action("ListaCertificados", "GenerarCertificado")" class="btn btn-success">
-                                <i class="material-icons">assignment</i>
-                                Certificados Generados
-                            </a>
-
-                            <a href="@Url.Action("Index", "Certificado")" class="btn btn-success">
-                                <i class="material-icons">arrow_back</i>
-                                Volver
-                            </a>
-
-
-
-
                         </div>
                     </div>
                 </div>
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th></th>
-                            <th> Fecha otorgamiento</th>
-                            <th> Certificado_url</th>
-                            <th> Certificado </th>
-                            <th> Usuario </th>
-                            <th>Acciones</th>
+                            <th> Notificaciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td></td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.fecha_otorgamiento)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.certificado_url)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CERTIFICADO.nombre)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.USUARIO.nombre)
-                                </td>
-                                <td>
-                                    <a href="#" class="edit" data-url="@Url.Action("Edit", new { USUARIO_rut = item.USUARIO_rut, certificado_id = item.CERTIFICADO_certificado_id })">
-                                        <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
-                                        <span style="display: none;">Edit</span>
-                                    </a>
-                                </td>
+                                <td> El usuario @item.USUARIO_rut @item.mensaje - @item.fecha.ToString("yyyy-MM-dd HH:mm:ss")</td>
                             </tr>
                         }
                     </tbody>
@@ -120,6 +84,7 @@ else
             });
         });
     </script>
+
 
 }
 

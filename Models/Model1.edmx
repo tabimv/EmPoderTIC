@@ -102,6 +102,7 @@
           <Property Name="descripción" Type="varchar" MaxLength="1000" Nullable="false" />
           <Property Name="objetivo" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="imagen_url" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="activo" Type="bit" Nullable="false" />
           <Property Name="NIVEL_nivel_id" Type="int" Nullable="false" />
           <Property Name="AREA_area_id" Type="int" Nullable="false" />
           <Property Name="COMPETENCIA_competencia_id" Type="int" Nullable="false" />
@@ -123,6 +124,7 @@
           <Property Name="notificacion_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="mensaje" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="fecha" Type="datetime" Nullable="false" />
+          <Property Name="activo" Type="bit" Nullable="false" />
           <Property Name="solicitud_aprobada" Type="bit" Nullable="false" />
           <Property Name="USUARIO_rut" Type="varchar" MaxLength="12" Nullable="false" />
           <Property Name="INSIGNIA_insignia_id" Type="int" Nullable="false" />
@@ -171,6 +173,7 @@
           <Property Name="token_reset_contraseña" Type="varchar" MaxLength="200" />
           <Property Name="fecha_solicitud_reset_contraseña" Type="date" />
           <Property Name="estado_confirmacion" Type="bit" Nullable="false" />
+          <Property Name="activo" Type="bit" Nullable="false" />
           <Property Name="TIPO_PERFIL_tipo_perfil_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="USUARIO_CERTIFICADO">
@@ -813,6 +816,7 @@
           <Property Name="descripción" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="objetivo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="imagen_url" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
           <Property Name="NIVEL_nivel_id" Type="Int32" Nullable="false" />
           <Property Name="AREA_area_id" Type="Int32" Nullable="false" />
           <Property Name="COMPETENCIA_competencia_id" Type="Int32" Nullable="false" />
@@ -846,6 +850,7 @@
           <Property Name="notificacion_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="mensaje" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
           <Property Name="solicitud_aprobada" Type="Boolean" Nullable="false" />
           <Property Name="USUARIO_rut" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="INSIGNIA_insignia_id" Type="Int32" Nullable="false" />
@@ -902,6 +907,7 @@
           <Property Name="token_reset_contraseña" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="fecha_solicitud_reset_contraseña" Type="DateTime" Precision="0" />
           <Property Name="estado_confirmacion" Type="Boolean" Nullable="false" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
           <Property Name="TIPO_PERFIL_tipo_perfil_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ASISTENCIA" Relationship="Self.ASISTENCIA_USUARIO_FK" FromRole="USUARIO" ToRole="ASISTENCIA" />
           <NavigationProperty Name="CONTROL_INSIGNIA" Relationship="Self.CONTROL_INSIGNIA_USUARIO_FK" FromRole="USUARIO" ToRole="CONTROL_INSIGNIA" />
@@ -1285,7 +1291,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="EmPoderTIC_Conexion_Oficial" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="EmPoderTIC_Conexion_Oficial_WEB" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AREA" EntityType="Self.AREA" />
           <EntitySet Name="ASISTENCIA" EntityType="Self.ASISTENCIA" />
           <EntitySet Name="CERTIFICACION" EntityType="Self.CERTIFICACION" />
@@ -1429,7 +1435,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="EmPoderTICModelStoreContainer" CdmEntityContainer="EmPoderTIC_Conexion_Oficial">
+        <EntityContainerMapping StorageEntityContainer="EmPoderTICModelStoreContainer" CdmEntityContainer="EmPoderTIC_Conexion_Oficial_WEB">
           <EntitySetMapping Name="AREA">
             <EntityTypeMapping TypeName="EmPoderTICModel.AREA">
               <MappingFragment StoreEntitySet="AREA">
@@ -1533,6 +1539,7 @@
                 <ScalarProperty Name="descripción" ColumnName="descripción" />
                 <ScalarProperty Name="objetivo" ColumnName="objetivo" />
                 <ScalarProperty Name="imagen_url" ColumnName="imagen_url" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
                 <ScalarProperty Name="NIVEL_nivel_id" ColumnName="NIVEL_nivel_id" />
                 <ScalarProperty Name="AREA_area_id" ColumnName="AREA_area_id" />
                 <ScalarProperty Name="COMPETENCIA_competencia_id" ColumnName="COMPETENCIA_competencia_id" />
@@ -1556,6 +1563,7 @@
                 <ScalarProperty Name="notificacion_id" ColumnName="notificacion_id" />
                 <ScalarProperty Name="mensaje" ColumnName="mensaje" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
                 <ScalarProperty Name="solicitud_aprobada" ColumnName="solicitud_aprobada" />
                 <ScalarProperty Name="USUARIO_rut" ColumnName="USUARIO_rut" />
                 <ScalarProperty Name="INSIGNIA_insignia_id" ColumnName="INSIGNIA_insignia_id" />
@@ -1606,6 +1614,7 @@
                 <ScalarProperty Name="token_reset_contraseña" ColumnName="token_reset_contraseña" />
                 <ScalarProperty Name="fecha_solicitud_reset_contraseña" ColumnName="fecha_solicitud_reset_contraseña" />
                 <ScalarProperty Name="estado_confirmacion" ColumnName="estado_confirmacion" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
                 <ScalarProperty Name="TIPO_PERFIL_tipo_perfil_id" ColumnName="TIPO_PERFIL_tipo_perfil_id" />
               </MappingFragment>
             </EntityTypeMapping>

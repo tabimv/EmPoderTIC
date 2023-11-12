@@ -295,6 +295,18 @@ table.table .avatar {
     font-size: 10px; /* Ajusta el tamaño del icono según tus preferencias */
 }
 
+.toggle-estado {
+    padding: 0; /* Elimina el relleno del botón */
+    border: none; /* Elimina el borde del botón */
+    background: none; /* Elimina el fondo del botón */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}
+
+    .toggle-estado .icon {
+        font-size: 1.5em; /* Tamaño del icono */
+        color: #3498db; /* Color del icono */
+    }
+
 
 
 

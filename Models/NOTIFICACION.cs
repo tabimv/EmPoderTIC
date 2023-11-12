@@ -17,6 +17,7 @@ namespace EmPoderTIC.Models
         public int notificacion_id { get; set; }
         public string mensaje { get; set; }
         public System.DateTime fecha { get; set; }
+        public bool activo { get; set; }
         public bool solicitud_aprobada { get; set; }
         public string USUARIO_rut { get; set; }
         public int INSIGNIA_insignia_id { get; set; }

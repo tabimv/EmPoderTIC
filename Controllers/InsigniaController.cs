@@ -13,7 +13,7 @@ namespace EmPoderTIC.Controllers
 {
     public class InsigniaController : Controller
     {
-        private EmPoderTIC_Conexion_Oficial db = new EmPoderTIC_Conexion_Oficial();
+        private EmPoderTIC_Conexion_Oficial_WEB db = new EmPoderTIC_Conexion_Oficial_WEB();
 
         // GET: Insignia
         public async Task<ActionResult> Index()
@@ -149,5 +149,32 @@ namespace EmPoderTIC.Controllers
             }
             base.Dispose(disposing);
         }
+
+        [HttpPost]
+        public async Task<ActionResult> ToggleEstado(int id)
+        {
+            if (id <= 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var insignia = await db.INSIGNIA.FindAsync(id);
+
+            if (insignia == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Cambiar el estado
+            insignia.activo = !insignia.activo;
+
+            // Guardar los cambios
+            db.Entry(insignia).State = EntityState.Modified;
+            await db.SaveChangesAsync();
+
+            // Redirigir a la vista Index
+            return RedirectToAction("Index");
+        }
+
     }
 }

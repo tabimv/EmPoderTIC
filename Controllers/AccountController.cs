@@ -25,7 +25,7 @@ namespace EmPoderTIC.Controllers
     public class AccountController : Controller
     {
         // GET: Account
-        private EmPoderTIC_Conexion_Oficial db = new EmPoderTIC_Conexion_Oficial();
+        private EmPoderTIC_Conexion_Oficial_WEB db = new EmPoderTIC_Conexion_Oficial_WEB();
        
 
         public int ObtenerTipoPerfilId(string correoElectronico)
@@ -256,6 +256,10 @@ namespace EmPoderTIC.Controllers
             else if (!user.estado_confirmacion)
             {
                 ModelState.AddModelError("", "Su cuenta aún no ha sido confirmada. Por favor, verifique su correo electrónico para completar la confirmación.");
+            }
+            else if (!user.activo)
+            {
+                ModelState.AddModelError("", "Su cuenta está deshabilitada. Por favor, póngase en contacto con el Administrador.");
             }
             else if (ModelState.IsValid) // Solo si el correo es válido, verifica la contraseña
             {

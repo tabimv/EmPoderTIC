@@ -443,6 +443,7 @@
     <Content Include="Views\InfoPerfil\Edit.cshtml" />
     <Content Include="Views\InfoPerfil\Index.cshtml" />
     <Content Include="Views\Inscripcion\Index.cshtml" />
+    <Content Include="Views\Notificacion\ListaNotificaciones.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

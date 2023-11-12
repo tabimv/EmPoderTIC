@@ -13,7 +13,7 @@ namespace EmPoderTIC.Controllers
 {
     public class AreaController : Controller
     {
-        private EmPoderTIC_Conexion_Oficial db = new EmPoderTIC_Conexion_Oficial();
+        private EmPoderTIC_Conexion_Oficial_WEB db = new EmPoderTIC_Conexion_Oficial_WEB();
 
         // GET: Area
         public async Task<ActionResult> Index()
@@ -137,5 +137,6 @@ namespace EmPoderTIC.Controllers
             }
             base.Dispose(disposing);
         }
+
     }
 }

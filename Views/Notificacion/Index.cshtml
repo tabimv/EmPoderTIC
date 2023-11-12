@@ -29,6 +29,10 @@ else
                             <h2>Gestión de <b>Notificaciones</b></h2>
                         </div>
                         <div class="col-sm-6">
+                            <a href="@Url.Action("ListaNotificaciones")" class="btn btn-success">
+                                <i class="material-icons">arrow_back</i>
+                                Volver
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -39,7 +43,8 @@ else
                             <th> Notificaciones</th>
                             <th> Tipo de Perfil </th>
                             <th> ¿Solicitud Aprobada? </th>
-                            <th> Modificar Estado de Notificación </th>
+                            <th> Estado</th>
+                            <th> Acciones </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,11 +56,30 @@ else
                                 <td>  @Html.DisplayFor(modelItem => item.USUARIO.TIPO_PERFIL.nombre_tipo_perfil) </td>
                                 <td>  @Html.DisplayFor(modelItem => item.solicitud_aprobada) </td>
                                 <td>
+                                    @if (item.activo)
+                                    {
+                                        <span class="badge bg-success">Activo</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger">Inactivo</span>
+                                    }
+                                </td>
+                                <td style="width: 140px;">
                                     <!-- Enlace "Edit" dentro de un botón -->
                                     <a href="#" class="edit" data-url="@Url.Action("Edit", new { id = item.notificacion_id })">
-                                        <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+                                        <i class="material-icons" data-toggle="tooltip" title="Modificar Estado de Notificación">&#xE254;</i>
                                         <span style="display: none;">Edit</span>
                                     </a>
+
+                                    <button class="btn btn-lg toggle-estado" data-url="@Url.Action("ToggleEstado", new { notificacionId = item.notificacion_id })">
+                                        <span class="icon">
+                                            <i class="material-icons on" style="font-size: 1.5em; color: #4CAF50; display: @(item.activo ? "inline-block" : "none")">toggle_on</i>
+                                            <i class="material-icons off" style="font-size: 1.5em; color: #e74c3c; display: @(!item.activo ? "inline-block" : "none")">toggle_off</i>
+                                        </span>
+                                        <span style="display: none;">Toggle Estado</span>
+                                    </button>
+
                                 </td>
                             </tr>
                         }
@@ -69,6 +93,21 @@ else
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
 
+    <script>
+        $(document).ready(function () {
+            $(".toggle-estado").click(function (e) {
+                e.preventDefault();
+
+                var url = $(this).data("url");
+
+                // Realizar la petición AJAX para cambiar el estado
+                $.post(url, function () {
+                    // Recargar la página después de cambiar el estado
+                    location.reload();
+                });
+            });
+        });
+    </script>
     <script>
         $(document).ready(function () {
             $(".edit").click(function (e) {

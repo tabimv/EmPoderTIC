@@ -45,7 +45,7 @@ else
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                       
+
                             <th> Rut </th>
                             <th> Nombre </th>
                             <th> Apellido Paterno </th>
@@ -54,6 +54,7 @@ else
                             <th> Contraseña </th>
                             <th> Tipo Perfil </th>
                             <th> Estado Confirmación Registro</th>
+                            <th> Estado </th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -61,7 +62,7 @@ else
                         @foreach (var item in Model)
                         {
                             <tr>
-                            
+
                                 <td style="width: 8%;">  @Html.DisplayFor(modelItem => item.rut)</td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.nombre)
@@ -86,11 +87,31 @@ else
                                     @Html.DisplayFor(modelItem => item.estado_confirmacion)
                                 </td>
                                 <td>
+                                    @if (item.activo)
+                                    {
+                                        <span class="badge bg-success">Activo</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger">Inactivo</span>
+                                    }
+                                </td>
+                                <td style="width: 150px;">
                                     <!-- Enlace "Edit" dentro de un botón -->
                                     <a href="#" class="edit" data-url="@Url.Action("Edit", new { id = item.rut })">
                                         <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
                                         <span style="display: none;">Edit</span>
                                     </a>
+
+                                    <button class="btn btn-lg toggle-estado" data-url="@Url.Action("ToggleEstado", new { id = item.rut })">
+                                        <span class="icon">
+                                            <i class="material-icons on" style="font-size: 1.5em; color: #4CAF50; display: @(item.activo ? "inline-block" : "none")">toggle_on</i>
+                                            <i class="material-icons off" style="font-size: 1.5em; color: #e74c3c; display: @(!item.activo ? "inline-block" : "none")">toggle_off</i>
+                                        </span>
+                                        <span style="display: none;">Toggle Estado</span>
+                                    </button>
+
+
                                 </td>
                             </tr>
                         }
@@ -129,6 +150,22 @@ else
             });
         });
     </script>
+    <script>
+        $(document).ready(function () {
+            $(".toggle-estado").click(function (e) {
+                e.preventDefault();
+
+                var url = $(this).data("url");
+
+                // Realizar la petición AJAX para cambiar el estado
+                $.post(url, function () {
+                    // Recargar la página después de cambiar el estado
+                    location.reload();
+                });
+            });
+        });
+    </script>
+
 
 }
 

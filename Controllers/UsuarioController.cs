@@ -13,7 +13,7 @@ namespace EmPoderTIC.Controllers
 {
     public class UsuarioController : Controller
     {
-        private EmPoderTIC_Conexion_Oficial db = new EmPoderTIC_Conexion_Oficial();
+        private EmPoderTIC_Conexion_Oficial_WEB db = new EmPoderTIC_Conexion_Oficial_WEB();
 
         // GET: Usuario
         public async Task<ActionResult> Index()
@@ -129,5 +129,49 @@ namespace EmPoderTIC.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        [HttpPost]
+        public async Task<ActionResult> ToggleEstado(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            // Obtener el usuario autenticado desde la sesión
+            var usuarioAutenticado = (USUARIO)Session["UsuarioAutenticado"];
+
+            // Obtener el usuario que se va a deshabilitar
+            USUARIO uSUARIO = await db.USUARIO.FindAsync(id);
+
+            if (uSUARIO == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Verificar si el usuario autenticado es el mismo que se está intentando deshabilitar
+            if (usuarioAutenticado.rut == uSUARIO.rut)
+            {
+                // El usuario autenticado no puede deshabilitarse a sí mismo
+                TempData["ErrorMessage"] = "No puedes deshabilitar tu propia cuenta.";
+            }
+            else
+            {
+                // Cambiar el estado
+                uSUARIO.activo = !uSUARIO.activo;
+
+                // Guardar los cambios
+                db.Entry(uSUARIO).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+
+                TempData["SuccessMessage"] = $"El estado del usuario {uSUARIO.rut} ha sido cambiado con éxito.";
+            }
+
+            // Redirigir a la vista Index
+            return RedirectToAction("Index");
+        }
+
+
     }
 }

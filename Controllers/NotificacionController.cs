@@ -9,12 +9,13 @@ using System.Web;
 using System.Web.Mvc;
 using EmPoderTIC.Models;
 using System.Data.Entity.Validation;
+using System.EnterpriseServices;
 
 namespace EmPoderTIC.Controllers
 {
     public class NotificacionController : Controller
     {
-        private EmPoderTIC_Conexion_Oficial db = new EmPoderTIC_Conexion_Oficial();
+        private EmPoderTIC_Conexion_Oficial_WEB db = new EmPoderTIC_Conexion_Oficial_WEB();
 
         public ActionResult SolicitarInsigniaComoLogro(int insignia_id)
         {
@@ -27,12 +28,14 @@ namespace EmPoderTIC.Controllers
                 {
                     mensaje = mensaje,
                     fecha = DateTime.Now,
+                    activo = true,
                     solicitud_aprobada = false,
                     USUARIO_rut = usuarioAutenticado.rut,
-                    INSIGNIA_insignia_id = insignia_id
+                    INSIGNIA_insignia_id = insignia_id,
+                   
                 };
 
-                using (var db = new EmPoderTIC_Conexion_Oficial())
+                using (var db = new EmPoderTIC_Conexion_Oficial_WEB())
                 {
                     db.NOTIFICACION.Add(nOTIFICACION);
                     db.SaveChanges();
@@ -76,10 +79,12 @@ namespace EmPoderTIC.Controllers
                     fecha = DateTime.Now,
                     solicitud_aprobada = false,
                     USUARIO_rut = usuarioAutenticado.rut,
-                    INSIGNIA_insignia_id = insignia_id
+                    INSIGNIA_insignia_id = insignia_id,
+                    activo = true
+
                 };
 
-                using (var db = new EmPoderTIC_Conexion_Oficial())
+                using (var db = new EmPoderTIC_Conexion_Oficial_WEB())
                 {
                     db.NOTIFICACION.Add(nOTIFICACION);
                     db.SaveChanges();
@@ -110,6 +115,13 @@ namespace EmPoderTIC.Controllers
 
 
         // GET: Notificacion
+
+        public async Task<ActionResult> ListaNotificaciones()
+        {
+            var nOTIFICACION = db.NOTIFICACION.Include(n => n.INSIGNIA).Include(n => n.USUARIO).Where(n => n.activo == true);
+            return View(await nOTIFICACION.ToListAsync());
+        }
+
         public async Task<ActionResult> Index()
         {
             var nOTIFICACION = db.NOTIFICACION.Include(n => n.INSIGNIA).Include(n => n.USUARIO);
@@ -186,5 +198,34 @@ namespace EmPoderTIC.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        [HttpPost]
+        public async Task<ActionResult> ToggleEstado(int notificacionId)
+        {
+            if (notificacionId <= 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var notificacion = await db.NOTIFICACION.FindAsync(notificacionId);
+
+            if (notificacion == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Cambiar el estado
+            notificacion.activo = !notificacion.activo;
+
+            // Guardar los cambios
+            db.Entry(notificacion).State = EntityState.Modified;
+            await db.SaveChangesAsync();
+
+            // Redirigir a la vista Index
+            return RedirectToAction("Index");
+        }
+
+     
     }
 }

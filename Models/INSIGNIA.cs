@@ -27,6 +27,7 @@ namespace EmPoderTIC.Models
         public string descripción { get; set; }
         public string objetivo { get; set; }
         public string imagen_url { get; set; }
+        public bool activo { get; set; }
         public int NIVEL_nivel_id { get; set; }
         public int AREA_area_id { get; set; }
         public int COMPETENCIA_competencia_id { get; set; }

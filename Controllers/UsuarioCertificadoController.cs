@@ -13,7 +13,7 @@ namespace EmPoderTIC.Controllers
 {
     public class UsuarioCertificadoController : Controller
     {
-        private EmPoderTIC_Conexion_Oficial db = new EmPoderTIC_Conexion_Oficial();
+        private EmPoderTIC_Conexion_Oficial_WEB db = new EmPoderTIC_Conexion_Oficial_WEB();
 
         // GET: UsuarioCertificado
         public async Task<ActionResult> Index()

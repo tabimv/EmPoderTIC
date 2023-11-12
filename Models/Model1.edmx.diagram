@@ -4,24 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9fc32832b9734a49b985dfd1c386d9b8" Name="Diagram1">
-        <EntityTypeShape EntityType="EmPoderTICModel.AREA" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmPoderTICModel.ASISTENCIA" Width="1.5" PointX="5.25" PointY="18.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmPoderTICModel.CERTIFICACION" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmPoderTICModel.CERTIFICADO" Width="1.5" PointX="5.25" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmPoderTICModel.COMPETENCIA" Width="1.5" PointX="0.75" PointY="16.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmPoderTICModel.CONTROL_INSIGNIA" Width="1.5" PointX="8.25" PointY="10.75" IsExpanded="true" />
+      <Diagram DiagramId="c1a57701d2c3483ca9c422e87f5cb7e4" Name="Diagram1">
+        <EntityTypeShape EntityType="EmPoderTICModel.AREA" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmPoderTICModel.ASISTENCIA" Width="1.5" PointX="5.25" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmPoderTICModel.CERTIFICACION" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmPoderTICModel.CERTIFICADO" Width="1.5" PointX="5.25" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmPoderTICModel.COMPETENCIA" Width="1.5" PointX="0.75" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmPoderTICModel.CONTROL_INSIGNIA" Width="1.5" PointX="8.25" PointY="10.875" IsExpanded="true" />
         <EntityTypeShape EntityType="EmPoderTICModel.EVENTO" Width="1.5" PointX="0.75" PointY="19.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmPoderTICModel.INFO_PERFIL" Width="1.5" PointX="5.25" PointY="21.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmPoderTICModel.INSCRIPCION" Width="1.5" PointX="5.25" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmPoderTICModel.INFO_PERFIL" Width="1.5" PointX="5.25" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmPoderTICModel.INSCRIPCION" Width="1.5" PointX="5.25" PointY="15.875" IsExpanded="true" />
         <EntityTypeShape EntityType="EmPoderTICModel.INSIGNIA" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmPoderTICModel.NIVEL" Width="1.5" PointX="1.5" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmPoderTICModel.NOTIFICACION" Width="1.5" PointX="11.25" PointY="15.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmPoderTICModel.OTORGAR_INSIGNIA_P2" Width="1.5" PointX="8.25" PointY="18.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmPoderTICModel.OTORGAR_INSIGNIA_P3" Width="1.5" PointX="8.25" PointY="14.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmPoderTICModel.TIPO_PERFIL" Width="1.5" PointX="0.75" PointY="13" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmPoderTICModel.USUARIO" Width="1.5" PointX="3" PointY="17.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmPoderTICModel.USUARIO_CERTIFICADO" Width="1.5" PointX="10.5" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmPoderTICModel.NIVEL" Width="1.5" PointX="1.5" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmPoderTICModel.NOTIFICACION" Width="1.5" PointX="11.25" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmPoderTICModel.OTORGAR_INSIGNIA_P2" Width="1.5" PointX="8.25" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmPoderTICModel.OTORGAR_INSIGNIA_P3" Width="1.5" PointX="8.25" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmPoderTICModel.TIPO_PERFIL" Width="1.5" PointX="0.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmPoderTICModel.USUARIO" Width="1.5" PointX="3" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmPoderTICModel.USUARIO_CERTIFICADO" Width="1.5" PointX="10.5" PointY="12" IsExpanded="true" />
         <AssociationConnector Association="EmPoderTICModel.CERTIFICADO_AREA_FK" ManuallyRouted="false" />
         <AssociationConnector Association="EmPoderTICModel.COMPETENCIA_AREA_FK" ManuallyRouted="false" />
         <AssociationConnector Association="EmPoderTICModel.EVENTO_AREA_FK" ManuallyRouted="false" />
