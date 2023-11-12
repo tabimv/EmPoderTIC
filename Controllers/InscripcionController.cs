@@ -11,116 +11,116 @@ using EmPoderTIC.Models;
 
 namespace EmPoderTIC.Controllers
 {
-    public class EventoController : Controller
+    public class InscripcionController : Controller
     {
         private EmPoderTIC_Conexion_Oficial db = new EmPoderTIC_Conexion_Oficial();
 
-        // GET: Evento
+        // GET: Inscripcion
         public async Task<ActionResult> Index()
         {
-            var eVENTO = db.EVENTO.Include(e => e.AREA).Include(e => e.COMPETENCIA);
-            return View(await eVENTO.ToListAsync());
+            var iNSCRIPCION = db.INSCRIPCION.Include(i => i.EVENTO).Include(i => i.USUARIO);
+            return View(await iNSCRIPCION.ToListAsync());
         }
 
-        // GET: Evento/Details/5
+        // GET: Inscripcion/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EVENTO eVENTO = await db.EVENTO.FindAsync(id);
-            if (eVENTO == null)
+            INSCRIPCION iNSCRIPCION = await db.INSCRIPCION.FindAsync(id);
+            if (iNSCRIPCION == null)
             {
                 return HttpNotFound();
             }
-            return View(eVENTO);
+            return View(iNSCRIPCION);
         }
 
-        // GET: Evento/Create
+        // GET: Inscripcion/Create
         public ActionResult Create()
         {
-            ViewBag.AREA_area_id = new SelectList(db.AREA, "area_id", "area_conocimiento");
-            ViewBag.COMPETENCIA_competencia_id = new SelectList(db.COMPETENCIA, "competencia_id", "competencia_conocimiento");
+            ViewBag.EVENTO_evento_id = new SelectList(db.EVENTO, "evento_id", "nombre");
+            ViewBag.USUARIO_rut = new SelectList(db.USUARIO, "rut", "nombre");
             return View();
         }
 
-        // POST: Evento/Create
+        // POST: Inscripcion/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "evento_id,nombre,descripcion,tipo_evento,fecha_evento,hora_evento,lugar_evento,imagen_url_evento,AREA_area_id,COMPETENCIA_competencia_id")] EVENTO eVENTO)
+        public async Task<ActionResult> Create([Bind(Include = "inscripcion_id,USUARIO_rut,EVENTO_evento_id")] INSCRIPCION iNSCRIPCION)
         {
             if (ModelState.IsValid)
             {
-                db.EVENTO.Add(eVENTO);
+                db.INSCRIPCION.Add(iNSCRIPCION);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AREA_area_id = new SelectList(db.AREA, "area_id", "area_conocimiento", eVENTO.AREA_area_id);
-            ViewBag.COMPETENCIA_competencia_id = new SelectList(db.COMPETENCIA, "competencia_id", "competencia_conocimiento", eVENTO.COMPETENCIA_competencia_id);
-            return View(eVENTO);
+            ViewBag.EVENTO_evento_id = new SelectList(db.EVENTO, "evento_id", "nombre", iNSCRIPCION.EVENTO_evento_id);
+            ViewBag.USUARIO_rut = new SelectList(db.USUARIO, "rut", "nombre", iNSCRIPCION.USUARIO_rut);
+            return View(iNSCRIPCION);
         }
 
-        // GET: Evento/Edit/5
+        // GET: Inscripcion/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EVENTO eVENTO = await db.EVENTO.FindAsync(id);
-            if (eVENTO == null)
+            INSCRIPCION iNSCRIPCION = await db.INSCRIPCION.FindAsync(id);
+            if (iNSCRIPCION == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.AREA_area_id = new SelectList(db.AREA, "area_id", "area_conocimiento", eVENTO.AREA_area_id);
-            ViewBag.COMPETENCIA_competencia_id = new SelectList(db.COMPETENCIA, "competencia_id", "competencia_conocimiento", eVENTO.COMPETENCIA_competencia_id);
-            return View(eVENTO);
+            ViewBag.EVENTO_evento_id = new SelectList(db.EVENTO, "evento_id", "nombre", iNSCRIPCION.EVENTO_evento_id);
+            ViewBag.USUARIO_rut = new SelectList(db.USUARIO, "rut", "nombre", iNSCRIPCION.USUARIO_rut);
+            return View(iNSCRIPCION);
         }
 
-        // POST: Evento/Edit/5
+        // POST: Inscripcion/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "evento_id,nombre,descripcion,tipo_evento,fecha_evento,hora_evento,lugar_evento,imagen_url_evento,AREA_area_id,COMPETENCIA_competencia_id")] EVENTO eVENTO)
+        public async Task<ActionResult> Edit([Bind(Include = "inscripcion_id,USUARIO_rut,EVENTO_evento_id")] INSCRIPCION iNSCRIPCION)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(eVENTO).State = EntityState.Modified;
+                db.Entry(iNSCRIPCION).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.AREA_area_id = new SelectList(db.AREA, "area_id", "area_conocimiento", eVENTO.AREA_area_id);
-            ViewBag.COMPETENCIA_competencia_id = new SelectList(db.COMPETENCIA, "competencia_id", "competencia_conocimiento", eVENTO.COMPETENCIA_competencia_id);
-            return View(eVENTO);
+            ViewBag.EVENTO_evento_id = new SelectList(db.EVENTO, "evento_id", "nombre", iNSCRIPCION.EVENTO_evento_id);
+            ViewBag.USUARIO_rut = new SelectList(db.USUARIO, "rut", "nombre", iNSCRIPCION.USUARIO_rut);
+            return View(iNSCRIPCION);
         }
 
-        // GET: Evento/Delete/5
+        // GET: Inscripcion/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EVENTO eVENTO = await db.EVENTO.FindAsync(id);
-            if (eVENTO == null)
+            INSCRIPCION iNSCRIPCION = await db.INSCRIPCION.FindAsync(id);
+            if (iNSCRIPCION == null)
             {
                 return HttpNotFound();
             }
-            return View(eVENTO);
+            return View(iNSCRIPCION);
         }
 
-        // POST: Evento/Delete/5
+        // POST: Inscripcion/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            EVENTO eVENTO = await db.EVENTO.FindAsync(id);
-            db.EVENTO.Remove(eVENTO);
+            INSCRIPCION iNSCRIPCION = await db.INSCRIPCION.FindAsync(id);
+            db.INSCRIPCION.Remove(iNSCRIPCION);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

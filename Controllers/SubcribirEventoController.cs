@@ -19,6 +19,9 @@ namespace EmPoderTIC.Controllers
             List<EVENTO> eventos = db.EVENTO.ToList();
             // Verifica si el usuario está autenticado
             // Verifica si el usuario está autenticado
+
+          
+          
             if (Session["UsuarioAutenticado"] != null)
             {
                 // Recupera la información del usuario autenticado desde la sesión
@@ -30,8 +33,10 @@ namespace EmPoderTIC.Controllers
                     .Select(i => i.EVENTO_evento_id)
                     .ToList();
 
+
                 // Agrega la lista de eventos inscritos al modelo de vista
                 ViewBag.EventosInscritos = eventosInscritos;
+
             }
             // Pasa la lista de eventos a la vista
             return View(eventos);

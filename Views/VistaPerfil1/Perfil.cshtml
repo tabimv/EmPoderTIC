@@ -127,22 +127,27 @@ else
         }
         else
         {
-            <div class="mini-container">
-                <div class="contenido-insignia">
-                    <div class="insignias-titulos">
-                        <h3>Lo sentimos, usted no cuenta con ninguna Insignia Certificada</h3>
-                        <h4> Participa en los Eventos del Programa Más Mujeres en las TICs</h4>
-                    </div>
-                </div>
-                <div class="imagen-insignia">
-                    <img src="https://i.ibb.co/SQ37T5c/Insignia-Perfil1-No-Disponible.png" alt="Insignia-Perfil1-No-Disponible" border="0">
-                </div>
+    <div class="mini-container">
+        <div class="contenido-insignia">
+            <div class="insignias-titulos">
+                <h3>Lo sentimos, usted no cuenta con ninguna Insignia Certificada</h3>
+                <h4> Participa en los Eventos del Programa Más Mujeres en las TICs</h4>
             </div>
+        </div>
+        <div class="imagen-insignia">
+            <img src="https://i.ibb.co/SQ37T5c/Insignia-Perfil1-No-Disponible.png" alt="Insignia-Perfil1-No-Disponible" border="0">
+        </div>
+        <div class="opciones-container">
+            <button class="opciones-btn-inactivo" disabled>
+                <i class="fas fa-share"></i>
+            </button>
+        </div>
+     </div>
         }
 
         <!--========================================
-        Insignias de Reconocimiento Nivel 1 y 2
-        ==========================================-->
+    Insignias de Reconocimiento Nivel 1 y 2
+    ==========================================-->
 
 
         <h1>Insignias de Reconocimiento</h1>
@@ -217,8 +222,8 @@ else
 
 
         <!--========================================
-        Otro mini container
-        ==========================================-->
+    Otro mini container
+    ==========================================-->
         <h1>Historial de participación</h1>
         @if (ViewBag.EventosConAsistencia != null && ViewBag.EventosConAsistencia.Count > 0)
         {

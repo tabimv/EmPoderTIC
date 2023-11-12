@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EmPoderTIC.Models.USUARIO>
+﻿@model IEnumerable<EmPoderTIC.Models.INFO_PERFIL>
 
 @{
     ViewBag.Title = "Index";
@@ -26,34 +26,24 @@ else
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Gestión de <b>Usuarios</b></h2>
+                            <h2>Gestión de <b>Información de Perfil de Usuarios</b></h2>
                         </div>
                         <div class="col-sm-6">
-                            <a href="@Url.Action("Create")" class="btn btn-success">
-                                <i class="material-icons">&#xE147;</i>
-                                Crear Nuevo Usuario
+                            <a href="@Url.Action("Index", "Usuario")" class="btn btn-success">
+                                <i class="material-icons">arrow_back</i>
+                                Volver
                             </a>
-                            <a href="@Url.Action("Index", "InfoPerfil")" class="btn btn-success">
-                                <i class="material-icons">person</i>
-                                Gestionar Información de Perfil
-                            </a>
-
-
                         </div>
                     </div>
                 </div>
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                       
-                            <th> Rut </th>
-                            <th> Nombre </th>
-                            <th> Apellido Paterno </th>
-                            <th> Apellido Materno </th>
-                            <th> Correo Electrónico </th>
-                            <th> Contraseña </th>
-                            <th> Tipo Perfil </th>
-                            <th> Estado Confirmación Registro</th>
+                            <th></th>
+                            <th> Escuela</th>
+                            <th> Carrera</th>
+                            <th> Sede</th>
+                            <th> Usuario</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -61,33 +51,22 @@ else
                         @foreach (var item in Model)
                         {
                             <tr>
-                            
-                                <td style="width: 8%;">  @Html.DisplayFor(modelItem => item.rut)</td>
+                                <td></td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.nombre)
+                                    @Html.DisplayFor(modelItem => item.escuela)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.apellido_paterno)
+                                    @Html.DisplayFor(modelItem => item.carrera)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.apellido_materno)
+                                    @Html.DisplayFor(modelItem => item.sede)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.correo_electronico)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.contraseña)
-                                </td>
-
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TIPO_PERFIL.nombre_tipo_perfil)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.estado_confirmacion)
+                                    @Html.DisplayFor(modelItem => item.USUARIO.correo_electronico)
                                 </td>
                                 <td>
                                     <!-- Enlace "Edit" dentro de un botón -->
-                                    <a href="#" class="edit" data-url="@Url.Action("Edit", new { id = item.rut })">
+                                    <a href="#" class="edit" data-url="@Url.Action("Edit", new { id = item.info_perfil_id })">
                                         <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
                                         <span style="display: none;">Edit</span>
                                     </a>

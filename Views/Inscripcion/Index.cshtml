@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EmPoderTIC.Models.USUARIO>
+﻿@model IEnumerable<EmPoderTIC.Models.INSCRIPCION>
 
 @{
     ViewBag.Title = "Index";
@@ -26,72 +26,36 @@ else
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Gestión de <b>Usuarios</b></h2>
+                            <h2>Lista de <b>Incripción de Estudiante y/o Titulado a Eventos</b></h2>
                         </div>
                         <div class="col-sm-6">
-                            <a href="@Url.Action("Create")" class="btn btn-success">
-                                <i class="material-icons">&#xE147;</i>
-                                Crear Nuevo Usuario
+                            <a href="@Url.Action("Index", "Evento")" class="btn btn-success">
+                                <i class="material-icons">arrow_back</i>
+                                Volver
                             </a>
-                            <a href="@Url.Action("Index", "InfoPerfil")" class="btn btn-success">
-                                <i class="material-icons">person</i>
-                                Gestionar Información de Perfil
-                            </a>
-
-
                         </div>
                     </div>
                 </div>
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                       
-                            <th> Rut </th>
-                            <th> Nombre </th>
-                            <th> Apellido Paterno </th>
-                            <th> Apellido Materno </th>
-                            <th> Correo Electrónico </th>
-                            <th> Contraseña </th>
-                            <th> Tipo Perfil </th>
-                            <th> Estado Confirmación Registro</th>
-                            <th>Acciones</th>
+                            <th></th>
+                            <th> Nombre Usuario</th>
+                            <th> Evento Inscrito</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
                             <tr>
-                            
-                                <td style="width: 8%;">  @Html.DisplayFor(modelItem => item.rut)</td>
+                                <td></td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.nombre)
+                                    @Html.DisplayFor(modelItem => item.USUARIO.nombre)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.apellido_paterno)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.apellido_materno)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.correo_electronico)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.contraseña)
+                                    @Html.DisplayFor(modelItem => item.EVENTO.nombre)
                                 </td>
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TIPO_PERFIL.nombre_tipo_perfil)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.estado_confirmacion)
-                                </td>
-                                <td>
-                                    <!-- Enlace "Edit" dentro de un botón -->
-                                    <a href="#" class="edit" data-url="@Url.Action("Edit", new { id = item.rut })">
-                                        <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
-                                        <span style="display: none;">Edit</span>
-                                    </a>
-                                </td>
                             </tr>
                         }
                     </tbody>

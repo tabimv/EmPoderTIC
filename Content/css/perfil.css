@@ -472,6 +472,26 @@ Estilos del botón compartir + mini menú
         color: #fff;
     }
 
+.opciones-btn-inactivo {
+    background-color: #626262;
+    color: #fff;
+    padding: 10px 15px;
+    cursor: pointer;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    border: 1px solid #000;
+    border-radius: 5px;
+    max-width: 10%;
+    justify-items: center;
+    position: relative;
+    padding: 5px 15px;
+}
+
+.opciones-btn-inactivo i {
+    color: rgba(0, 0, 0, 0.2);
+    margin-left: -5px;
+}
+
+
 /* Estilo del menú de opciones */
 .menu-opciones {
     position: absolute;

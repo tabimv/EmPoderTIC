@@ -221,9 +221,11 @@
     <Content Include="Content\css\inicio.css" />
     <Content Include="Content\css\programa.css" />
     <Content Include="Content\css\subscribir_evento.css" />
+    <Content Include="Content\img\2.png" />
+    <Content Include="Content\img\3.png" />
+    <Content Include="Content\img\4.png" />
     <Content Include="Content\img\banner.png" />
     <Content Include="Content\img\footer.png" />
-    <Content Include="Content\img\images.jpg" />
     <Content Include="Content\img\insignias\Insignia1-Estudiante.png" />
     <Content Include="Content\img\insignias\Insignia2-Estudiante.png" />
     <Content Include="Content\img\insignias\Insignia3-Estudiante.png" />
@@ -263,6 +265,8 @@
     <Compile Include="Controllers\EventoController.cs" />
     <Compile Include="Controllers\GenerarCertificadoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InfoPerfilController.cs" />
+    <Compile Include="Controllers\InscripcionController.cs" />
     <Compile Include="Controllers\InsigniaController.cs" />
     <Compile Include="Controllers\NotificacionController.cs" />
     <Compile Include="Controllers\OtorgarInsigniaPerfil2Controller.cs" />
@@ -383,13 +387,6 @@
     <Content Include="Views\VistaPerfil3\Index.cshtml" />
     <Content Include="Views\VistaPerfil3\Perfil.cshtml" />
     <Content Include="Views\Shared\_LayoutPerfil3.cshtml" />
-    <Content Include="Views\Usuario\Create.cshtml" />
-    <Content Include="Views\Usuario\Delete.cshtml" />
-    <Content Include="Views\Usuario\Edit.cshtml" />
-    <Content Include="Views\Usuario\Index.cshtml" />
-    <Content Include="Views\Evento\Create.cshtml" />
-    <Content Include="Views\Evento\Edit.cshtml" />
-    <Content Include="Views\Evento\Index.cshtml" />
     <Content Include="Views\Insignia\Create.cshtml" />
     <Content Include="Views\Insignia\Edit.cshtml" />
     <Content Include="Views\Insignia\Index.cshtml" />
@@ -437,6 +434,15 @@
     <Content Include="Views\SubcribirEvento\SubscribirEventoP2.cshtml" />
     <Content Include="Views\SubcribirEvento\SubscribirEventoP3.cshtml" />
     <Content Include="Views\Home\Contacto.cshtml" />
+    <Content Include="Views\Usuario\Create.cshtml" />
+    <Content Include="Views\Usuario\Edit.cshtml" />
+    <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\Evento\Create.cshtml" />
+    <Content Include="Views\Evento\Edit.cshtml" />
+    <Content Include="Views\Evento\Index.cshtml" />
+    <Content Include="Views\InfoPerfil\Edit.cshtml" />
+    <Content Include="Views\InfoPerfil\Index.cshtml" />
+    <Content Include="Views\Inscripcion\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

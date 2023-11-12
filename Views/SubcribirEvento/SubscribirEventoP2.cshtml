@@ -30,13 +30,17 @@ else
                 <div class="col-sm-4">
                     <div class="panel panel-default text-center">
                         <div class="panel-heading">
-                            <h1>Liderazgo Femenino</h1>
+                            <h1>@evento.nombre</h1>
                         </div>
                         <div class="panel-body" style="padding-bottom: 10px;">
                             <p><img src="~/Content/img/images.jpg" alt="" class="event-image"></p>
-                            <p><strong>Nombre evento: </strong> @evento.nombre</p>
-                            <p><strong>Tipo Evento: </strong> Lorem</p>
-                            <p><strong>Descripcion evento: </strong> Ipsum</p>
+                            <p><strong>Descripción: </strong> @evento.descripcion</p>
+                            <p><strong>Tipo Evento: </strong> @evento.tipo_evento</p>
+                            <p><strong>Fecha: </strong> @evento.fecha_evento.ToString("dd-MM-yyyy")</p>
+                            <p><strong>Hora: </strong> @evento.hora_evento</p>
+                            <p><strong>Lugar: </strong> @evento.lugar_evento</p>
+                            <p><strong>Area Asociada: </strong> @evento.AREA.area_conocimiento</p>
+                            <p><strong>Competencia Asociada: </strong> @evento.COMPETENCIA.competencia_conocimiento</p>
                         </div>
        
                     </div>

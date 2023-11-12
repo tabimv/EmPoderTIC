@@ -253,6 +253,10 @@ namespace EmPoderTIC.Controllers
             {
                 ModelState.AddModelError("correo", "El correo es incorrecto.");
             }
+            else if (!user.estado_confirmacion)
+            {
+                ModelState.AddModelError("", "Su cuenta aún no ha sido confirmada. Por favor, verifique su correo electrónico para completar la confirmación.");
+            }
             else if (ModelState.IsValid) // Solo si el correo es válido, verifica la contraseña
             {
                 if (user.contraseña != model.password)

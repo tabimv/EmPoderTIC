@@ -65,13 +65,16 @@ namespace EmPoderTIC.Controllers
         }
 
         // GET: OtorgarInsigniaPerfil2/Edit/5
-        public async Task<ActionResult> Edit(string id)
+        public async Task<ActionResult> Edit(string id, int? EVENTO_evento_id)
         {
-            if (id == null)
+            if (string.IsNullOrEmpty(id) || EVENTO_evento_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OTORGAR_INSIGNIA_P2 oTORGAR_INSIGNIA_P2 = await db.OTORGAR_INSIGNIA_P2.FindAsync(id);
+
+            OTORGAR_INSIGNIA_P2 oTORGAR_INSIGNIA_P2 = await db.OTORGAR_INSIGNIA_P2.FirstOrDefaultAsync(a =>
+              a.USUARIO_rut == id && a.EVENTO_evento_id == EVENTO_evento_id);
+
             if (oTORGAR_INSIGNIA_P2 == null)
             {
                 return HttpNotFound();
