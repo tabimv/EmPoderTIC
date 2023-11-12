@@ -1,0 +1,59 @@
+﻿header {
+    background-color: #3770B8;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.section {
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 20px;
+    color: #3770B8;
+}
+
+p {
+    font-size: 16px;
+    color: #333;
+    text-align:justify; /* Alinea el texto al centro horizontalmente */
+}
+
+/* Agrega este estilo a tu archivo inductivo.css o en una etiqueta <style> en tu head */
+
+.btn-continuar {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #3770B8; /* Color de fondo */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s ease; /* Transición de color de fondo */
+}
+
+    .btn-continuar:hover {
+        background-color: #26538b; /* Color de fondo al pasar el ratón (hover) */
+        color:#ffffff;
+    }
+
+img {
+    max-width: 100%;
+    height: auto;
+    margin: 10px 0; /* Añade un margen superior e inferior a las imágenes */
+   
+}

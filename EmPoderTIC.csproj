@@ -220,6 +220,7 @@
     <Content Include="Content\css\styles.css" />
     <Content Include="Content\css\inicio.css" />
     <Content Include="Content\css\programa.css" />
+    <Content Include="Content\css\instructivo.css" />
     <Content Include="Content\css\subscribir_evento.css" />
     <Content Include="Content\img\2.png" />
     <Content Include="Content\img\3.png" />
@@ -231,6 +232,10 @@
     <Content Include="Content\img\insignias\Insignia3-Estudiante.png" />
     <Content Include="Content\img\insignias\Insignia_Perfil1_NoDisponible.png" />
     <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\paso1.png" />
+    <Content Include="Content\img\paso2.png" />
+    <Content Include="Content\img\paso3.png" />
+    <Content Include="Content\img\paso4.png" />
     <Content Include="Content\img\slider_1.png" />
     <Content Include="Content\img\slider_2.png" />
     <Content Include="Content\js\rut.js" />
@@ -268,6 +273,7 @@
     <Compile Include="Controllers\InfoPerfilController.cs" />
     <Compile Include="Controllers\InscripcionController.cs" />
     <Compile Include="Controllers\InsigniaController.cs" />
+    <Compile Include="Controllers\InstructivoController.cs" />
     <Compile Include="Controllers\NotificacionController.cs" />
     <Compile Include="Controllers\OtorgarInsigniaPerfil2Controller.cs" />
     <Compile Include="Controllers\OtorgarInsigniaPerfil3Controller.cs" />
@@ -444,6 +450,8 @@
     <Content Include="Views\InfoPerfil\Index.cshtml" />
     <Content Include="Views\Inscripcion\Index.cshtml" />
     <Content Include="Views\Notificacion\ListaNotificaciones.cshtml" />
+    <Content Include="Views\Instructivo\Index.cshtml" />
+    <Content Include="Views\Instructivo\PortalBadges.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

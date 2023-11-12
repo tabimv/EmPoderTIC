@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "Instructivo";
+
+}
+
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Administrador")
+{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+else
+{
+    Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
+}
+
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Administrador")
+{
+    <link rel="stylesheet" href="~/Content/css/instructivo.css">
+
+    <header>
+        <h1>Instructivo del Panel de Administrador</h1>
+    </header>
+
+    <div class="container">
+
+        <div class="section">
+            <h2>Conceptos del Portal Badges</h2>
+            <p>Canvas Bages, una plataforma dedicada a la gestión de insignias certificadas para plataformas como LinkedIn.
+            <p><strong>Insignias (Badges):</strong> Son representaciones digitales de logros, habilidades o competencias. Las insignias pueden ser otorgadas por diversas instituciones o plataformas y se utilizan para reconocer y validar el aprendizaje o los logros de un individuo.</p>
+
+            <p><strong>Mochila (Backpack):</strong> La mochila es una función que permite a los usuarios almacenar y mostrar sus insignias digitales en un solo lugar. Funciona como un repositorio centralizado donde los usuarios pueden gestionar y compartir sus insignias acumuladas desde diferentes emisores.</p>
+
+            <p><strong>Emisores (Issuers):</strong> Los emisores son organizaciones o plataformas que otorgan insignias. Pueden ser instituciones educativas, empresas, organizaciones sin fines de lucro, entre otros. Los emisores definen los criterios para ganar una insignia y emiten las insignias a los receptores que cumplen con esos criterios.</p>
+
+            <p><strong>Grupos (Groups):</strong> Badgr permite la creación de grupos, que son colecciones personalizadas de insignias. Los grupos pueden ser utilizados para organizar y categorizar insignias de acuerdo con ciertos temas, competencias o eventos.</p>
+
+            <p><strong>Receptores (Earners):</strong> Son los individuos que reciben y acumulan insignias. Los receptores pueden ser estudiantes, profesionales o cualquier persona que participe en actividades que sean reconocidas con insignias digitales.</p>
+
+            <p><strong>Credenciales (Credentials):</strong> Este término se utiliza a veces de manera intercambiable con "insignias". Las credenciales digitales son representaciones verificables de logros y habilidades que se pueden compartir en línea. Las insignias son un tipo específico de credencial.</p>
+        </div>
+
+        <div class="section">
+            <h2>Portal Badges</h2>
+            <p>Para ingresar como administrador, utiliza las credenciales proporcionadas y navega hacia la sección de <em>issuers</em>.</p>
+            <p>En <em>issuers</em> encontrarás el emisor del programa "Más Mujeres en las TICs". Aquí podrás acceder a la función de creación de insignias.</p>
+            <img src="~/Content/img/paso1.png" alt="Icono de Insignia">
+            <p>Una vez creada la insignia, puedes asignarla a un usuario específico. Como administrador, podrás revisar las notificaciones en tu bandeja y gestionar las solicitudes de insignias de los usuarios. Cada solicitud estará relacionada con la insignia que desean compartir en LinkedIn.</p>
+            <p>Una vez creada la insignia, puedes asignarla a un usuario específico. Como administrador, podrás revisar las notificaciones en tu bandeja y gestionar las solicitudes de insignias de los usuarios. Cada solicitud estará relacionada con la insignia que desean compartir en LinkedIn.</p>
+            <img src="~/Content/img/paso2.png" alt="Icono de Insignia">
+            <p>Para otorgar la insignia correspondiente, proporciona el correo del usuario solicitante. Asegúrate de verificar la autenticidad de la solicitud y procede a otorgar la insignia. Esto permitirá a los usuarios mostrar sus logros y certificaciones en LinkedIn de manera efectiva.</p>
+            <img src="~/Content/img/paso3.png" alt="Icono de Insignia">
+            <p> Al Usuario le llegará un correo con la Insignia otorgada</p>
+            <img src="~/Content/img/paso4.png" alt="Icono de Insignia">
+        </div>
+
+
+
+
+
+        <div class="section">
+            <a href="/Instructivo/Index" class="btn-continuar"> << Volver</a>
+        </div>
+    </div>
+
+}
+
+else
+{
+    <link rel="stylesheet" href="~/Content/css/accesodenegado.css">
+    <div id="header">
+        <h1> Acceso denegado. Esta vista solo está disponible para Administrador</h1>
+        <br />
+        <a href="@Url.Action("Login", "Account")" class="btn-acceso">Iniciar Sesión</a>
+    </div>
+}
+
+
+
