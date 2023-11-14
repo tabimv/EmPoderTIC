@@ -138,6 +138,10 @@ namespace EmPoderTIC.Controllers
                 var datosPerfil = db.INFO_PERFIL.Where(ip => ip.USUARIO_rut == usuarioAutenticado.rut).ToList();
 
 
+                List<int> notificacionesEnviadas = db.NOTIFICACION
+                  .Where(n => n.USUARIO_rut == usuarioAutenticado.rut)
+                  .Select(n => n.INSIGNIA_insignia_id)
+                  .ToList();
 
                 // Asigna los datos filtrados a las ViewBag para su uso en la vista
                 ViewBag.InsigniasDeNivel3 = insigniasNivel3;
@@ -146,6 +150,7 @@ namespace EmPoderTIC.Controllers
                 ViewBag.InformacionUsuarios = informacionUsuarios;
                 ViewBag.Certificado = certificado;
                 ViewBag.DatosPerfil = datosPerfil;
+                ViewBag.NotificacionesEnviadas = notificacionesEnviadas;
                 return View("Perfil");
             }
             else

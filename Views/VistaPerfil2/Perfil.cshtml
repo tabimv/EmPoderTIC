@@ -86,7 +86,21 @@ else
                         <div class="menu-opciones menu-opciones-@insignia_desbloqueada.INSIGNIA.insignia_id oculto">
                             <a href="https://www.linkedin.com/sharing/share-offsite/?url=@insignia_desbloqueada.INSIGNIA.imagen_url&title=@insignia_desbloqueada.INSIGNIA.nombre&summary=@insignia_desbloqueada.INSIGNIA.objetivo" class="linkedin" target="_blank">Compartir en LinkedIn</a>
                             <div class="dropdown-divider"></div>
-                            <a id="solicitarInsigniaLink" href="@Url.Action("SolicitarInsigniaComoLogro", "Notificacion", new { insignia_id = insignia_desbloqueada.INSIGNIA.insignia_id})">Solicitar Insignia como Logros para LinkedIn</a>
+                            @if (ViewBag.NotificacionesEnviadas != null)
+                            {
+                                var notificacionesEnviadas = (List<int>)ViewBag.NotificacionesEnviadas;
+                                bool fueEnviado = notificacionesEnviadas.Contains(insignia_desbloqueada.INSIGNIA.insignia_id);
+
+                                if (fueEnviado)
+                                {
+
+                                    <a href="/Instructivo/Instructivo">Instructivo Compartir Insignia a LinkedIn</a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("SolicitarInsigniaComoLogro", "Notificacion", new { insignia_id = insignia_desbloqueada.INSIGNIA.insignia_id })" onclick="confirmarInscripcion()">Solicitar Insignia como Logros para LinkedIn</a>
+                                }
+                            }
                             @foreach (var item in ViewBag.Certificado)
                             {
                                 if (item.certificado_url != null)
@@ -164,7 +178,21 @@ else
                         <div class="menu-opciones menu-opciones-@insignia_desbloqueada.INSIGNIA.insignia_id oculto">
                             <a href="https://www.linkedin.com/sharing/share-offsite/?url=@insignia_desbloqueada.INSIGNIA.imagen_url&title=@insignia_desbloqueada.INSIGNIA.nombre&summary=@insignia_desbloqueada.INSIGNIA.objetivo" class="linkedin" target="_blank">Compartir en LinkedIn</a>
                             <div class="dropdown-divider"></div>
-                            <a id="solicitarInsigniaLink" href="@Url.Action("SolicitarInsigniaComoLogro", "Notificacion", new { insignia_id = insignia_desbloqueada.INSIGNIA.insignia_id})">Solicitar Insignia como Logros para LinkedIn</a>
+                            @if (ViewBag.NotificacionesEnviadas != null)
+                            {
+                                var notificacionesEnviadas = (List<int>)ViewBag.NotificacionesEnviadas;
+                                bool fueEnviado = notificacionesEnviadas.Contains(insignia_desbloqueada.INSIGNIA.insignia_id);
+
+                                if (fueEnviado)
+                                {
+
+                                    <a href="/Instructivo/Instructivo">Instructivo Compartir Insignia a LinkedIn</a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("SolicitarInsigniaComoLogro", "Notificacion", new { insignia_id = insignia_desbloqueada.INSIGNIA.insignia_id })" onclick="confirmarInscripcion()">Solicitar Insignia como Logros para LinkedIn</a>
+                                }
+                            }
 
                         </div>
 
