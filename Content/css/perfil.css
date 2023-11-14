@@ -473,7 +473,7 @@ Estilos del botón compartir + mini menú
     }
 
 .opciones-btn-inactivo {
-    background-color: #626262;
+    background-color: #a2a2a2;
     color: #fff;
     padding: 10px 15px;
     cursor: pointer;

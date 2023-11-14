@@ -17,5 +17,20 @@ namespace EmPoderTIC.Controllers
         {
             return View();
         }
+
+        public ActionResult Instructivo()
+        {
+            return View();
+        }
+
+        public ActionResult InstructivoP2()
+        {
+            return View();
+        }
+
+        public ActionResult InstructivoP3()
+        {
+            return View();
+        }
     }
 }

@@ -231,6 +231,10 @@
     <Content Include="Content\img\insignias\Insignia2-Estudiante.png" />
     <Content Include="Content\img\insignias\Insignia3-Estudiante.png" />
     <Content Include="Content\img\insignias\Insignia_Perfil1_NoDisponible.png" />
+    <Content Include="Content\img\instrucciones-paso2.png" />
+    <Content Include="Content\img\instrucciones-paso3.png" />
+    <Content Include="Content\img\instrucciones-paso4.png" />
+    <Content Include="Content\img\instrucciones-paso5.png" />
     <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\paso1.png" />
     <Content Include="Content\img\paso2.png" />
@@ -452,6 +456,10 @@
     <Content Include="Views\Notificacion\ListaNotificaciones.cshtml" />
     <Content Include="Views\Instructivo\Index.cshtml" />
     <Content Include="Views\Instructivo\PortalBadges.cshtml" />
+    <Content Include="Views\Instructivo\Instructivo.cshtml" />
+    <Content Include="Views\Shared\_LayoutInstructivo.cshtml" />
+    <Content Include="Views\Instructivo\InstructivoP2.cshtml" />
+    <Content Include="Views\Instructivo\InstructivoP3.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

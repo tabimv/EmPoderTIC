@@ -11,7 +11,8 @@ namespace EmPoderTIC.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class USUARIO
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -26,12 +27,23 @@ namespace EmPoderTIC.Models
             this.OTORGAR_INSIGNIA_P3 = new HashSet<OTORGAR_INSIGNIA_P3>();
             this.USUARIO_CERTIFICADO = new HashSet<USUARIO_CERTIFICADO>();
         }
-    
+
+        [Required(ErrorMessage = "El RUT es obligatorio")]
+        [RegularExpression(@"^[0-9]{7,8}-[0-9Kk]$", ErrorMessage = "Formato de RUT inválido")]
         public string rut { get; set; }
+
+        [Required(ErrorMessage = "El Nombre es obligatorio")]
         public string nombre { get; set; }
+
+        [Required(ErrorMessage = "El Apellido es obligatorio")]
         public string apellido_paterno { get; set; }
+
         public string apellido_materno { get; set; }
+
+        [Required(ErrorMessage = "El Correo es obligatorio")]
         public string correo_electronico { get; set; }
+
+        [Required(ErrorMessage = "La Contraseña es obligatorio")]
         public string contraseña { get; set; }
         public string token { get; set; }
         public string token_reset_contraseña { get; set; }

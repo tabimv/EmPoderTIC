@@ -1,0 +1,84 @@
+﻿@{
+    ViewBag.Title = "Instructivo";
+
+}
+
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Colaborador administrativo")
+{
+    Layout = "~/Views/Shared/_LayoutInstructivo.cshtml";
+}
+else
+{
+    Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
+}
+
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Colaborador administrativo")
+{
+    <link rel="stylesheet" href="~/Content/css/instructivo.css">
+
+    <header>
+        <h1>Instructivo Compartir Insignia a LinkedIn</h1>
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <h2>Portal Badges</h2>
+            <p>¡Felicidades por llegar hasta aquí! Tu solicitud ha sido enviada y está en proceso. En un plazo de 5 días hábiles, recibirás un correo con la insignia correspondiente.</p>
+            <p>Aquí tienes las instrucciones para compartir en LinkedIn:</p>
+
+            <ol>
+                <li>
+                    <strong>Registro en Canvas Badges:</strong><br>
+                    Si aún no tienes una cuenta en Canvas Badges, dirígete al portal de insignias y crea tu cuenta utilizando tu correo institucional.
+                </li>
+
+
+                <li>
+                    <strong>Ubicación de tu Insignia:</strong><br>
+                    Ve a la sección de Backpack en el portal y localiza la Insignia que te ha sido otorgada.
+                </li>
+
+                <img src="~/Content/img/instrucciones-paso2.png" alt="Insignia en Canvas Badges">
+                <li>
+                    <strong>Compartir en LinkedIn:</strong><br>
+                    Haz clic en tu insignia otorgada y selecciona "Compartir". Luego, ve a la sección "Social" y haz clic en el botón azul "Agregar al perfil".
+                </li>
+                <img src="~/Content/img/instrucciones-paso3.png" alt="Insignia en Canvas Badges">
+
+                <li>
+                    <strong>Añadir a tu Perfil de LinkedIn:</strong><br>
+                    Se abrirá una ventana para añadir la licencia o certificación a tu perfil de LinkedIn. Cambia la emisora de la insignia por "Más Mujeres en las TICs" y guarda los cambios.
+                </li>
+                <img src="~/Content/img/instrucciones-paso4.png" alt="Insignia en Canvas Badges">
+            </ol>
+
+            <p>¡Listo! Tu insignia ahora se ha añadido a tu perfil de LinkedIn en la sección de "Añadir licencia o certificación". ¡Comparte tus logros con orgullo!</p>
+            <img src="~/Content/img/instrucciones-paso5.png" alt="Insignia en Canvas Badges">
+
+        </div>
+
+
+        <div class="section">
+            <a href="https://badgr.com/" class="btn-continuar" target="_blank">Portal Badges</a>
+        </div>
+        <div class="section">
+            <a style="width: 90px;" href="/VistaPerfil3/Perfil" class="btn-continuar"> << Volver</a>
+        </div>
+    </div>
+
+}
+
+else
+{
+    <link rel="stylesheet" href="~/Content/css/accesodenegado.css">
+    <div id="header">
+        <h1> Acceso denegado. Esta vista solo está disponible para Colaborador administrativo</h1>
+        <br />
+        <a href="@Url.Action("Login", "Account")" class="btn-acceso">Iniciar Sesión</a>
+    </div>
+}
+
+
+

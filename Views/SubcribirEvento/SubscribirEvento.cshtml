@@ -33,7 +33,7 @@ else
                             <h1>@evento.nombre</h1>
                         </div>
                         <div class="panel-body">
-                            <p><img src="~/Content/img/images.jpg" alt="" class="event-image"></p>
+                            <p><img src="@evento.imagen_url_evento" alt="" class="event-image"></p>
                             <p><strong>Descripción: </strong> @evento.descripcion</p>
                             <p><strong>Tipo Evento: </strong> @evento.tipo_evento</p>
                             <p><strong>Fecha: </strong> @evento.fecha_evento.ToString("dd-MM-yyyy")</p>

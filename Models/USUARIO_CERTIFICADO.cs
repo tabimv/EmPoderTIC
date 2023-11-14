@@ -11,10 +11,12 @@ namespace EmPoderTIC.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class USUARIO_CERTIFICADO
     {
         public System.DateTime fecha_otorgamiento { get; set; }
+        [MaxLength]
         public string certificado_url { get; set; }
         public int CERTIFICADO_certificado_id { get; set; }
         public string USUARIO_rut { get; set; }
