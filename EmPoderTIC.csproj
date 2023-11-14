@@ -271,6 +271,7 @@
     <Compile Include="Controllers\AsistenciaController.cs" />
     <Compile Include="Controllers\CertificadoController.cs" />
     <Compile Include="Controllers\CompetenciaController.cs" />
+    <Compile Include="Controllers\ControlInsigniaController.cs" />
     <Compile Include="Controllers\EventoController.cs" />
     <Compile Include="Controllers\GenerarCertificadoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -460,6 +461,8 @@
     <Content Include="Views\Shared\_LayoutInstructivo.cshtml" />
     <Content Include="Views\Instructivo\InstructivoP2.cshtml" />
     <Content Include="Views\Instructivo\InstructivoP3.cshtml" />
+    <Content Include="Views\ControlInsignia\Edit.cshtml" />
+    <Content Include="Views\ControlInsignia\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

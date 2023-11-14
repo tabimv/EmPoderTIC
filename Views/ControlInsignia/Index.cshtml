@@ -1,0 +1,134 @@
+﻿@model IEnumerable<EmPoderTIC.Models.CONTROL_INSIGNIA>
+
+@{
+    ViewBag.Title = "Index";
+
+}
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Administrador")
+{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+else
+{
+    Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
+}
+
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Administrador")
+{
+    <link rel="stylesheet" href="~/Content/css/CRUD.css">
+
+
+    <div class="container-xl">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2>Gestión de <b>Control Insignias</b></h2>
+                            <br />
+                            <p> Esta Tabla ya cuenta con un trigger vinculado en la base de datos, por lo que no es necesario proporcionar un método de creación </p>
+                        </div>
+                        <div style="margin-left: 40%;" class="col-sm-7">
+                            <a href="@Url.Action("Index", "Asistencia")" class="btn btn-success">
+                                <i class="material-icons">&#xE147;</i>
+                                Gestionar Asistencia Perfil 1
+                            </a>
+                            <a href="@Url.Action("Index", "OtorgarInsigniaPerfil2")" class="btn btn-success">
+                                <i class="material-icons">&#xE147;</i>
+                                Otorgar Insignia Perfil 2
+                            </a>
+
+                            <a href="@Url.Action("Index", "OtorgarInsigniaPerfil3")" class="btn btn-success">
+                                <i class="material-icons">&#xE147;</i>
+                                Otorgar Insignia Perfil 3
+                            </a>
+                        </div>
+
+                  
+                    </div>
+                </div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th> ¿Insignia Bloqueada? </th>
+                            <th> Fecha Otorgamiento Insignia </th>
+                            <th> Insignia</th>
+                            <th> Usuario </th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td></td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.insignia_bloqueada)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.fecha_otorgamiento)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.INSIGNIA.nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.USUARIO.nombre)
+                                </td>
+                                <td>
+                                    <a href="#" class="edit" data-url="@Url.Action("Edit", new { id = item.USUARIO_rut, INSIGNIA_insignia_id = item.INSIGNIA_insignia_id })">
+                                        <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+                                        <span style="display: none;">Edit</span>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalDelete"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            $(".edit").click(function (e) {
+                e.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
+
+                var url = $(this).data("url"); // Obtener la URL de data-url
+
+                // Redirigir a la vista "Edit"
+                window.location.href = url;
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $(".delete").click(function (e) {
+                e.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
+
+                var url = $(this).data("url"); // Obtener la URL de data-url
+
+                // Redirigir a la vista "Edit"
+                window.location.href = url;
+            });
+        });
+    </script>
+
+}
+
+else
+{
+    <link rel="stylesheet" href="~/Content/css/accesodenegado.css">
+    <div id="header">
+        <h1> Acceso denegado. Esta vista solo está disponible para Administrador</h1>
+        <br />
+        <a href="@Url.Action("Login", "Account")" class="btn-acceso">Iniciar Sesión</a>
+    </div>
+}
