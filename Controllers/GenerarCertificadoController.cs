@@ -13,6 +13,9 @@ using Google.Apis.Util.Store;
 using System;
 using System.Threading;
 using System.Configuration;
+using QRCoder;
+using System.Drawing;
+using System.Xml.Linq;
 
 namespace EmPoderTIC.Controllers
 {
@@ -54,6 +57,27 @@ namespace EmPoderTIC.Controllers
                         PdfReader reader = new PdfReader(templatePath);
                         PdfStamper stamper = new PdfStamper(reader, fs);
                         PdfContentByte content = stamper.GetOverContent(1);
+
+
+                        float qrX = 725; // ajusta esta coordenada x
+                        float qrY = 40; // ajusta esta coordenada y
+
+
+
+                        // Generar código QR
+                        string eventoDescripcion = "Ha participado en los Eventos del Área de Conocimiento de: ";
+                        string qrText = $"{datosCertificado.USUARIO.nombre} {datosCertificado.USUARIO.apellido_paterno} {eventoDescripcion.Substring(0, Math.Min(eventoDescripcion.Length, 50))} {datosCertificado.CERTIFICADO.AREA.area_conocimiento}";
+                        byte[] qrBytes = GenerateQrCode(qrText);
+
+                        // Convertir la imagen de QR a iTextSharp Image
+                        iTextSharp.text.Image qrImage = iTextSharp.text.Image.GetInstance(qrBytes);
+                        qrImage.ScaleAbsolute(100, 100); // Ajusta el tamaño según tus necesidades
+
+                        // Agregar la imagen QR directamente al contenido (content) sin usar document
+                        content.AddImage(qrImage, qrImage.ScaledWidth, 0, 0, qrImage.ScaledHeight, qrX, qrY);
+
+
+                        // ... Resto de tu código para agregar texto al PDF ...
 
                         // Establece las coordenadas (x, y) en puntos donde se agregará el texto
                         float x = 295; // Cambia esto a la coordenada x deseada
@@ -109,6 +133,20 @@ namespace EmPoderTIC.Controllers
             return Content("PDFs generados y almacenados en la base de datos.");
         }
 
+        // Método para generar el código QR
+        private byte[] GenerateQrCode(string qrText)
+        {
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(qrText, QRCodeGenerator.ECCLevel.Q);
+            QRCode qrCode = new QRCode(qrCodeData);
+            Bitmap qrCodeImage = qrCode.GetGraphic(20);
+
+            using (MemoryStream stream = new MemoryStream())
+            {
+                qrCodeImage.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                return stream.ToArray();
+            }
+        }
 
         public ActionResult ListaCertificados()
         {
