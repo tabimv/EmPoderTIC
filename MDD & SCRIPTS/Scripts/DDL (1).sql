@@ -1,14 +1,11 @@
--- Generado por Oracle SQL Developer Data Modeler 19.4.0.350.1424
---   en:        2023-10-23 12:10:15 CLST
---   sitio:      SQL Server 2012
---   tipo:      SQL Server 2012
+-- 12 - 11- 2023
 
 
 
 CREATE TABLE AREA 
     (
      area_id INTEGER IDENTITY(1, 1) NOT NULL , 
-     area_conocimiento VARCHAR (100) NOT NULL 
+     area_conocimiento VARCHAR (100) NOT NULL,
     )
 GO
 
@@ -20,10 +17,10 @@ GO
 
 CREATE TABLE ASISTENCIA 
     (
-     registro_asistencia_evento BIT NOT NULL  DEFAULT 0, -- Por defecto False (No asistiÛ) , 
+     registro_asistencia_evento BIT NOT NULL DEFAULT 0, -- Por defecto False (No asisti√≥), 
      fecha_registro_asistencia DATE NOT NULL , 
      USUARIO_rut VARCHAR (12) NOT NULL , 
-     EVENTO_evento_id INTEGER NOT NULL 
+     EVENTO_evento_id INTEGER NOT NULL
     )
 GO
 
@@ -35,7 +32,7 @@ GO
 
 CREATE TABLE CERTIFICACION 
     (
-     certificacion_id INTEGER  IDENTITY(1, 1) NOT NULL , 
+     certificacion_id INTEGER IDENTITY(1, 1) NOT NULL , 
      tiene_certificacion BIT NOT NULL , 
      NIVEL_nivel_id INTEGER NOT NULL 
     )
@@ -56,14 +53,11 @@ GO
 
 CREATE TABLE CERTIFICADO 
     (
-     certificado_id INTEGER IDENTITY(1, 1)  NOT NULL , 
+     certificado_id INTEGER IDENTITY(1, 1) NOT NULL , 
      nombre VARCHAR (100) NOT NULL , 
      descripcion VARCHAR (100) NOT NULL , 
-     certificado_url VARCHAR (200) NOT NULL , 
-     fecha_otorgamiento DATETIME NOT NULL , 
      CERTIFICACION_certificacion_id INTEGER NOT NULL , 
      INSIGNIA_insignia_id INTEGER NOT NULL , 
-     USUARIO_rut VARCHAR (12) NOT NULL , 
      AREA_area_id INTEGER NOT NULL 
     )
 GO
@@ -76,7 +70,7 @@ GO
 
 CREATE TABLE COMPETENCIA 
     (
-     competencia_id INTEGER IDENTITY(1, 1)  NOT NULL , 
+     competencia_id INTEGER IDENTITY(1, 1) NOT NULL , 
      competencia_conocimiento VARCHAR (100) NOT NULL , 
      AREA_area_id INTEGER NOT NULL , 
      NIVEL_nivel_id INTEGER NOT NULL 
@@ -91,7 +85,7 @@ GO
 
 CREATE TABLE CONTROL_INSIGNIA 
     (
-     insignia_bloqueada BIT NOT NULL  DEFAULT 1, -- Por defecto True (Bloqueada), 
+     insignia_bloqueada  BIT NOT NULL DEFAULT 1, -- Por defecto True (Bloqueada), 
      USUARIO_rut VARCHAR (12) NOT NULL , 
      fecha_otorgamiento DATE NOT NULL , 
      INSIGNIA_insignia_id INTEGER NOT NULL 
@@ -106,13 +100,14 @@ GO
 
 CREATE TABLE EVENTO 
     (
-     evento_id INTEGER IDENTITY(1, 1)  NOT NULL , 
+     evento_id INTEGER IDENTITY(1, 1) NOT NULL , 
      nombre VARCHAR (100) NOT NULL , 
      descripcion VARCHAR (1000) NOT NULL , 
      tipo_evento VARCHAR (100) NOT NULL , 
      fecha_evento DATE NOT NULL , 
      hora_evento TIME NOT NULL , 
      lugar_evento VARCHAR (50) NOT NULL , 
+	 imagen_url_evento VARCHAR (MAX), 
      AREA_area_id INTEGER NOT NULL , 
      COMPETENCIA_competencia_id INTEGER NOT NULL 
     )
@@ -124,13 +119,54 @@ ALTER TABLE EVENTO ADD CONSTRAINT EVENTO_PK PRIMARY KEY CLUSTERED (evento_id)
      ALLOW_ROW_LOCKS = ON )
 GO
 
+CREATE TABLE INFO_PERFIL 
+    (
+     info_perfil_id INTEGER IDENTITY(1, 1) NOT NULL , 
+     escuela VARCHAR (500), 
+     carrera VARCHAR (500), 
+     sede VARCHAR (500) NOT NULL , 
+     USUARIO_rut VARCHAR (12) NOT NULL 
+    )
+GO 
+
+    
+
+
+CREATE UNIQUE NONCLUSTERED INDEX 
+    INFO_PERFIL__IDX ON INFO_PERFIL 
+    ( 
+     USUARIO_rut 
+    ) 
+GO
+
+ALTER TABLE INFO_PERFIL ADD CONSTRAINT INFO_PERFIL_PK PRIMARY KEY CLUSTERED (info_perfil_id)
+     WITH (
+     ALLOW_PAGE_LOCKS = ON , 
+     ALLOW_ROW_LOCKS = ON )
+GO
+
+CREATE TABLE INSCRIPCION 
+    (
+     inscripcion_id INTEGER IDENTITY(1, 1) NOT NULL , 
+     USUARIO_rut VARCHAR (12) NOT NULL , 
+     EVENTO_evento_id INTEGER NOT NULL 
+    )
+GO
+
+ALTER TABLE INSCRIPCION ADD CONSTRAINT INSCRIPCION_PK PRIMARY KEY CLUSTERED (inscripcion_id)
+     WITH (
+     ALLOW_PAGE_LOCKS = ON , 
+     ALLOW_ROW_LOCKS = ON )
+GO
+
 CREATE TABLE INSIGNIA 
     (
-     insignia_id INTEGER  IDENTITY(1, 1) NOT NULL , 
+     insignia_id INTEGER IDENTITY(1, 1) NOT NULL , 
      nombre VARCHAR (100) NOT NULL , 
-     descripciÛn VARCHAR (1000) NOT NULL , 
+     descripci√≥n VARCHAR (1000) NOT NULL , 
      objetivo VARCHAR (500) NOT NULL , 
      imagen_url VARCHAR (200) NOT NULL , 
+	 activo BIT NOT NULL DEFAULT 1, -- Por defecto TRUE (ACTIVO), 
      NIVEL_nivel_id INTEGER NOT NULL , 
      AREA_area_id INTEGER NOT NULL , 
      COMPETENCIA_competencia_id INTEGER NOT NULL , 
@@ -148,8 +184,8 @@ GO
 
 CREATE TABLE NIVEL 
     (
-     nivel_id INTEGER  IDENTITY(1, 1) NOT NULL , 
-     categorÌa_nivel_insignia VARCHAR (100) NOT NULL 
+     nivel_id INTEGER IDENTITY(1, 1) NOT NULL , 
+     categor√≠a_nivel_insignia VARCHAR (100) NOT NULL 
     )
 GO
 
@@ -159,10 +195,28 @@ ALTER TABLE NIVEL ADD CONSTRAINT NIVEL_PK PRIMARY KEY CLUSTERED (nivel_id)
      ALLOW_ROW_LOCKS = ON )
 GO
 
+CREATE TABLE NOTIFICACION 
+    (
+     notificacion_id INTEGER IDENTITY(1, 1) NOT NULL , 
+     mensaje VARCHAR (100) NOT NULL , 
+     fecha DATETIME NOT NULL , 
+	 activo BIT NOT NULL DEFAULT 1, -- Por defecto TRUE (ACTIVO), 
+	 solicitud_aprobada BIT NOT NULL, 
+     USUARIO_rut VARCHAR (12) NOT NULL , 
+     INSIGNIA_insignia_id INTEGER NOT NULL 
+    )
+GO
+
+ALTER TABLE NOTIFICACION ADD CONSTRAINT NOTIFICACION_PK PRIMARY KEY CLUSTERED (notificacion_id)
+     WITH (
+     ALLOW_PAGE_LOCKS = ON , 
+     ALLOW_ROW_LOCKS = ON )
+GO
+
 CREATE TABLE OTORGAR_INSIGNIA_P2 
     (
-     registro_insignia_evento BIT NOT NULL  DEFAULT 0, -- Por defecto False (No Recibe Insignia),  
-     contribucion_evento VARCHAR (500) NOT NULL , 
+     registro_insignia_evento BIT NOT NULL DEFAULT 0, -- Por defecto False (No Recibe Insignia), 
+     contribucion_evento VARCHAR (500) , 
      fecha_registro_otorgamiento DATE NOT NULL , 
      USUARIO_rut VARCHAR (12) NOT NULL , 
      EVENTO_evento_id INTEGER NOT NULL 
@@ -177,8 +231,8 @@ GO
 
 CREATE TABLE OTORGAR_INSIGNIA_P3 
     (
-     registro_insignia_evento BIT NOT NULL  DEFAULT 0, -- Por defecto False (No Recibe Insignia),  
-     contribucion_evento VARCHAR (500) NOT NULL , 
+     registro_insignia_evento BIT NOT NULL DEFAULT 0, -- Por defecto False (No Recibe Insignia), 
+     contribucion_evento VARCHAR (500) , 
      fecha_registro_otorgamiento DATE NOT NULL , 
      USUARIO_rut VARCHAR (12) NOT NULL , 
      EVENTO_evento_id INTEGER NOT NULL 
@@ -193,7 +247,7 @@ GO
 
 CREATE TABLE TIPO_PERFIL 
     (
-     tipo_perfil_id INTEGER  IDENTITY(1, 1) NOT NULL , 
+     tipo_perfil_id INTEGER IDENTITY(1, 1) NOT NULL , 
      nombre_tipo_perfil VARCHAR (100) NOT NULL , 
      dominio_correo VARCHAR (100) NOT NULL 
     )
@@ -212,12 +266,32 @@ CREATE TABLE USUARIO
      apellido_paterno VARCHAR (100) NOT NULL , 
      apellido_materno VARCHAR (100) NOT NULL , 
      correo_electronico VARCHAR (100) NOT NULL , 
-     contraseÒa VARCHAR (100) NOT NULL , 
+     contrase√±a VARCHAR (100) NOT NULL , 
+     token VARCHAR (200) , 
+	 token_reset_contrase√±a VARCHAR (200),
+	 fecha_solicitud_reset_contrase√±a DATE,
+     estado_confirmacion BIT NOT NULL , 
+	 activo BIT NOT NULL DEFAULT 1, -- Por defecto TRUE (ACTIVO), 
      TIPO_PERFIL_tipo_perfil_id INTEGER NOT NULL 
     )
 GO
 
 ALTER TABLE USUARIO ADD CONSTRAINT USUARIO_PK PRIMARY KEY CLUSTERED (rut)
+     WITH (
+     ALLOW_PAGE_LOCKS = ON , 
+     ALLOW_ROW_LOCKS = ON )
+GO
+
+CREATE TABLE USUARIO_CERTIFICADO 
+    (
+     fecha_otorgamiento DATE NOT NULL , 
+     certificado_url VARCHAR , 
+     CERTIFICADO_certificado_id INTEGER NOT NULL , 
+     USUARIO_rut VARCHAR (12) NOT NULL 
+    )
+GO
+
+ALTER TABLE USUARIO_CERTIFICADO ADD CONSTRAINT USUARIO_CERTIFICADO_PK PRIMARY KEY CLUSTERED (CERTIFICADO_certificado_id, USUARIO_rut)
      WITH (
      ALLOW_PAGE_LOCKS = ON , 
      ALLOW_ROW_LOCKS = ON )
@@ -301,19 +375,6 @@ ALTER TABLE CERTIFICADO
     ON UPDATE NO ACTION 
 GO
 
-ALTER TABLE CERTIFICADO 
-    ADD CONSTRAINT CERTIFICADO_USUARIO_FK FOREIGN KEY 
-    ( 
-     USUARIO_rut
-    ) 
-    REFERENCES USUARIO 
-    ( 
-     rut 
-    ) 
-    ON DELETE NO ACTION 
-    ON UPDATE NO ACTION 
-GO
-
 ALTER TABLE COMPETENCIA 
     ADD CONSTRAINT COMPETENCIA_AREA_FK FOREIGN KEY 
     ( 
@@ -387,6 +448,45 @@ ALTER TABLE EVENTO
     REFERENCES COMPETENCIA 
     ( 
      competencia_id 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE INFO_PERFIL 
+    ADD CONSTRAINT INFO_PERFIL_USUARIO_FK FOREIGN KEY 
+    ( 
+     USUARIO_rut
+    ) 
+    REFERENCES USUARIO 
+    ( 
+     rut 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE INSCRIPCION 
+    ADD CONSTRAINT INSCRIPCION_EVENTO_FK FOREIGN KEY 
+    ( 
+     EVENTO_evento_id
+    ) 
+    REFERENCES EVENTO 
+    ( 
+     evento_id 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE INSCRIPCION 
+    ADD CONSTRAINT INSCRIPCION_USUARIO_FK FOREIGN KEY 
+    ( 
+     USUARIO_rut
+    ) 
+    REFERENCES USUARIO 
+    ( 
+     rut 
     ) 
     ON DELETE NO ACTION 
     ON UPDATE NO ACTION 
@@ -470,6 +570,32 @@ ALTER TABLE INSIGNIA
     ON UPDATE NO ACTION 
 GO
 
+ALTER TABLE NOTIFICACION 
+    ADD CONSTRAINT NOTIFICACION_INSIGNIA_FK FOREIGN KEY 
+    ( 
+     INSIGNIA_insignia_id
+    ) 
+    REFERENCES INSIGNIA 
+    ( 
+     insignia_id 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE NOTIFICACION 
+    ADD CONSTRAINT NOTIFICACION_USUARIO_FK FOREIGN KEY 
+    ( 
+     USUARIO_rut
+    ) 
+    REFERENCES USUARIO 
+    ( 
+     rut 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
 ALTER TABLE OTORGAR_INSIGNIA_P2 
     ADD CONSTRAINT OTORGAR_INSIGNIA_P2_EVENTO_FK FOREIGN KEY 
     ( 
@@ -522,6 +648,32 @@ ALTER TABLE OTORGAR_INSIGNIA_P3
     ON UPDATE NO ACTION 
 GO
 
+ALTER TABLE USUARIO_CERTIFICADO 
+    ADD CONSTRAINT USUARIO_CERTIFICADO_CERTIFICADO_FK FOREIGN KEY 
+    ( 
+     CERTIFICADO_certificado_id
+    ) 
+    REFERENCES CERTIFICADO 
+    ( 
+     certificado_id 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
+ALTER TABLE USUARIO_CERTIFICADO 
+    ADD CONSTRAINT USUARIO_CERTIFICADO_USUARIO_FK FOREIGN KEY 
+    ( 
+     USUARIO_rut
+    ) 
+    REFERENCES USUARIO 
+    ( 
+     rut 
+    ) 
+    ON DELETE NO ACTION 
+    ON UPDATE NO ACTION 
+GO
+
 ALTER TABLE USUARIO 
     ADD CONSTRAINT USUARIO_TIPO_PERFIL_FK FOREIGN KEY 
     ( 
@@ -539,9 +691,9 @@ GO
 
 -- Informe de Resumen de Oracle SQL Developer Data Modeler: 
 -- 
--- CREATE TABLE                            13
--- CREATE INDEX                             0
--- ALTER TABLE                             37
+-- CREATE TABLE                            17
+-- CREATE INDEX                             1
+-- ALTER TABLE                             47
 -- CREATE VIEW                              0
 -- ALTER VIEW                               0
 -- CREATE PACKAGE                           0

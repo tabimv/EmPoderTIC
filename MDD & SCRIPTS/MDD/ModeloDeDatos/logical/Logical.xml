@@ -1,7 +1,0 @@
-<?xml version = '1.0' encoding = 'UTF-8'?>
-<LogicalDesign class="oracle.dbtools.crest.model.design.logical.LogicalDesign" name="Logical" id="5DD4D370-8A42-DFF0-2706-BEF2F1D1B052" mainViewID="EAC12818-A18B-C0B6-6312-F2A043D3DA5C">
-<createdBy>tbmv1</createdBy>
-<createdTime>2023-09-09 16:21:50 UTC</createdTime>
-<ownerDesignName>ModeloDeDatos</ownerDesignName>
-<shouldBeOpen>false</shouldBeOpen>
-</LogicalDesign>
