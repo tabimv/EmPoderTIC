@@ -19,7 +19,8 @@ else
     <link rel="stylesheet" href="~/Content/css/subscribir_evento.css">
 
     <!-- Container (Pricing Section) -->
-    <div style="margin-bottom: 5%;" id="pricing" class="container-fluid">
+<div style="margin-bottom: 5%;" id="pricing" class="container-fluid">
+  
         <div class="text-center">
             <h2>Eventos Disponibles</h2>
         </div>
@@ -27,48 +28,43 @@ else
         <div class="row slideanim">
             @foreach (var evento in Model)
             {
-                <div class="col-sm-4">
-                    <div class="panel panel-default text-center">
-                        <div class="panel-heading">
-                            <h1>@evento.nombre</h1>
-                        </div>
-                        <div class="panel-body">
-                            <p><img src="@evento.imagen_url_evento" alt="" class="event-image"></p>
-                            <p><strong>Descripción: </strong> @evento.descripcion</p>
-                            <p><strong>Tipo Evento: </strong> @evento.tipo_evento</p>
-                            <p><strong>Fecha: </strong> @evento.fecha_evento.ToString("dd-MM-yyyy")</p>
-                         
-                        </div>
-                        @if (ViewBag.EventosInscritos != null)
-                        {
-                            var eventosInscritos = (List<int>)ViewBag.EventosInscritos;
-
-                            // Verificar si el evento actual está en la lista de eventos inscritos
-                            bool estaInscrito = eventosInscritos.Contains(evento.evento_id);
-                            <div class="panel-footer">
-                                @if (estaInscrito)
-                                {
-
-                                    <a href="#" class="btn btn-lg" disabled style="color: gray; background-color: lightgray;">Inscrito al evento</a>
-
-
-                                }
-                                else
-                                {
-                                    <a href="@Url.Action("DetallesEvento", "SubcribirEvento", new { eventoId = evento.evento_id })" class="btn btn-lg">Inscribir Evento</a>
-                                }
+                    <div class="col-sm-4">
+                        <div class="panel panel-default text-center">
+                            <div class="panel-heading">
+                                <h1>@evento.nombre</h1>
                             </div>
-                        }
-                        </div>
-                </div>
+                            <div class="panel-body">
+                                <p><img src="@evento.imagen_url_evento" alt="" class="event-image"></p>
+                                <p style="text-align:justify; width: 90%; margin-left: 20px;"> <strong>Descripción: </strong> @evento.descripcion</p>
+                                <p><strong>Tipo Evento: </strong> @evento.tipo_evento</p>
+                                <p><strong>Fecha: </strong> @evento.fecha_evento.ToString("dd-MM-yyyy")</p>
 
+                            </div>
+                            @if (ViewBag.EventosInscritos != null)
+                            {
+                                var eventosInscritos = (List<int>)ViewBag.EventosInscritos;
+
+                                // Verificar si el evento actual está en la lista de eventos inscritos
+                                bool estaInscrito = eventosInscritos.Contains(evento.evento_id);
+                                <div class="panel-footer">
+                                    @if (estaInscrito)
+                                    {
+
+                                        <a href="#" class="btn btn-lg" disabled style="color: gray; background-color: lightgray;">Inscrito al evento</a>
+
+
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("DetallesEvento", "SubcribirEvento", new { eventoId = evento.evento_id })" class="btn btn-lg">Inscribir Evento</a>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div>
             }
         </div>
-
-
-
-
-    </div>
+</div>
 
 
 

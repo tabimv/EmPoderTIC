@@ -29,6 +29,7 @@ namespace EmPoderTIC.Controllers
                 // Verificar si hay alguna insignia bloqueada
                 bool algunaInsigniaBloqueada = false;
 
+                
 
                 // Crea una lista para almacenar las listas de insignias por área
                 var listaInsigniasPorArea = new List<List<InsigniaDesbloqueoViewModel>>();

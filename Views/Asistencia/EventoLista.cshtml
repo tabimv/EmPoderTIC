@@ -1,9 +1,10 @@
-﻿@model IEnumerable<EmPoderTIC.Models.USUARIO>
+﻿@model IEnumerable<EmPoderTIC.Models.EVENTO>
 
 @{
     ViewBag.Title = "Index";
 
 }
+
 
 @if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Administrador")
 {
@@ -17,8 +18,11 @@ else
 
 @if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Administrador")
 {
-    <link rel="stylesheet" href="~/Content/css/CRUD.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="~/Content/css/CRUD.css">
+    <link rel="stylesheet" href="~/Content/css/items.css">
+
 
     <div class="container-xl">
         <div class="table-responsive">
@@ -26,87 +30,61 @@ else
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Gestión de <b>Usuarios</b></h2>
+                            <h2>Lista de Asistencia <b>Eventos</b></h2>
                         </div>
                         <div class="col-sm-6">
-                            <a href="@Url.Action("Create")" class="btn btn-success">
-                                <i class="material-icons">&#xE147;</i>
-                                Crear Nuevo Usuario
+                            <a href="@Url.Action("Index", "ControlInsignia")" class="btn btn-success">
+                                <i class="material-icons">arrow_back</i>
+                                Volver
                             </a>
-                            <a href="@Url.Action("Index", "InfoPerfil")" class="btn btn-success">
-                                <i class="material-icons">person</i>
-                                Gestionar Información de Perfil
-                            </a>
-
-
                         </div>
                     </div>
                 </div>
                 <table id="EmPoderTICTable" class="table table-striped table-hover">
                     <thead>
                         <tr>
-
-                            <th> Rut </th>
-                            <th> Nombre </th>
-                            <th> Apellido Paterno </th>
-                            <th> Apellido Materno </th>
-                            <th> Correo Electrónico </th>
-                            <th> Tipo Perfil </th>
-                            <th> Estado Confirmación Registro</th>
-                            <th> Estado </th>
-                            <th>Acciones</th>
+                            <th> Evento </th>
+                            <th> Fecha de Evento </th>
+                            <th> Hora de Evento </th>
+                            <th> Lugar de Evento </th>
+                            <th style="white-space: nowrap;">Visualizar Lista</th>
+                            <th style="white-space: nowrap;">Registro Asistencia</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
                             <tr>
-
-                                <td style="width: 8%;">  @Html.DisplayFor(modelItem => item.rut)</td>
-                                <td>
+                                <td style="white-space: nowrap;">
                                     @Html.DisplayFor(modelItem => item.nombre)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.apellido_paterno)
+                                    @Html.DisplayFor(modelItem => item.fecha_evento)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.apellido_materno)
+                                    @Html.DisplayFor(modelItem => item.hora_evento)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.correo_electronico)
+                                    @Html.DisplayFor(modelItem => item.lugar_evento)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.TIPO_PERFIL.nombre_tipo_perfil)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.estado_confirmacion)
-                                </td>
-                                <td>
-                                    @if (item.activo)
-                                    {
-                                        <span class="badge bg-success">Activo</span>
-                                    }
-                                    else
-                                    {
-                                        <span class="badge bg-danger">Inactivo</span>
-                                    }
-                                </td>
-                                <td style="width: 150px;">
                                     <!-- Enlace "Edit" dentro de un botón -->
-                                    <a href="#" class="edit" data-url="@Url.Action("Edit", new { id = item.rut })">
-                                        <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+                                    <a href="#" class="edit" data-url="@Url.Action("EventDetails", new { eventoId = item.evento_id })">
+                                        <i class="material-icons eye-icon"
+                                           data-toggle="tooltip"
+                                           title="Visualizar Lista"
+                                           style="color: black; transition: color 0.3s ease;"
+                                           onmouseover="this.style.color='#3770B8'"
+                                           onmouseout="this.style.color='black'">visibility</i>
+                                        <span style="display: none;">Visualizar</span>
+                                    </a>
+                                </td>
+
+                                <td>
+                                    <a href="#" class="edit" data-url="@Url.Action("EditarAsistencia", new { eventoId = item.evento_id })">
+                                        <i class="material-icons" data-toggle="tooltip" title="Registrar Asistencia">&#xE254;</i>
                                         <span style="display: none;">Edit</span>
                                     </a>
-
-                                    <button class="btn btn-lg toggle-estado" data-url="@Url.Action("ToggleEstado", new { id = item.rut })">
-                                        <span class="icon">
-                                            <i class="material-icons on" style="font-size: 1.5em; color: #4CAF50; display: @(item.activo ? "inline-block" : "none")">toggle_on</i>
-                                            <i class="material-icons off" style="font-size: 1.5em; color: #e74c3c; display: @(!item.activo ? "inline-block" : "none")">toggle_off</i>
-                                        </span>
-                                        <span style="display: none;">Toggle Estado</span>
-                                    </button>
-
-
                                 </td>
                             </tr>
                         }
@@ -129,34 +107,6 @@ else
 
                 // Redirigir a la vista "Edit"
                 window.location.href = url;
-            });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function () {
-            $(".delete").click(function (e) {
-                e.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
-
-                var url = $(this).data("url"); // Obtener la URL de data-url
-
-                // Redirigir a la vista "Edit"
-                window.location.href = url;
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function () {
-            $(".toggle-estado").click(function (e) {
-                e.preventDefault();
-
-                var url = $(this).data("url");
-
-                // Realizar la petición AJAX para cambiar el estado
-                $.post(url, function () {
-                    // Recargar la página después de cambiar el estado
-                    location.reload();
-                });
             });
         });
     </script>
@@ -202,3 +152,6 @@ else
         <a href="@Url.Action("Login", "Account")" class="btn-acceso">Iniciar Sesión</a>
     </div>
 }
+
+
+

@@ -11,10 +11,13 @@ namespace EmPoderTIC.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ASISTENCIA
     {
         public bool registro_asistencia_evento { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime fecha_registro_asistencia { get; set; }
         public string USUARIO_rut { get; set; }
         public int EVENTO_evento_id { get; set; }

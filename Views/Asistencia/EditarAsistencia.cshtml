@@ -1,0 +1,94 @@
+﻿@model List<EmPoderTIC.Models.ASISTENCIA>
+
+@{
+    ViewBag.Title = "Registro Asistencia";
+
+}
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Administrador")
+{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+else
+{
+    Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
+}
+
+
+@if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Administrador")
+{
+    <link rel="stylesheet" href="~/Content/css/CRUD.css">
+
+    using (Html.BeginForm())
+    {
+        <div class="container-xl">
+            <div class="table-responsive">
+                <div class="table-wrapper">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h2>Registro Asistencia para el Evento: @ViewBag.Evento.nombre</h2>
+                            </div>
+                            <div class="col-sm-6">
+                                <a href="@Url.Action("EventoLista", "Asistencia")" class="btn btn-success">
+                                    <i class="material-icons">arrow_back</i>
+                                    Volver
+                                </a>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Rut</th>
+                                <th>Nombre</th>
+                                <th>Registro Asistencia</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.Count; i++)
+                            {
+                                <tr>
+                                    <td style="white-space: nowrap;">@Model[i].USUARIO_rut</td>
+                                    <td>@Model[i].USUARIO.nombre @Model[i].USUARIO.apellido_paterno</td>
+                                    <td>
+                                        @Html.CheckBoxFor(m => m[i].registro_asistencia_evento)
+                                        @Html.HiddenFor(m => m[i].fecha_registro_asistencia)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="fechaRegistro">Fecha de Registro:</label>
+            <input type="date" class="form-control" name="fechaRegistro" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+
+    }
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+}
+
+else
+{
+    <link rel="stylesheet" href="~/Content/css/accesodenegado.css">
+    <div id="header">
+        <h1> Acceso denegado. Esta vista solo está disponible para Administrador</h1>
+        <br />
+        <a href="@Url.Action("Login", "Account")" class="btn-acceso">Iniciar Sesión</a>
+    </div>
+}

@@ -22,6 +22,22 @@ namespace EmPoderTIC.Controllers
             return View(await oTORGAR_INSIGNIA_P2.ToListAsync());
         }
 
+        public async Task<ActionResult> EventoOtorgarInsigniaLista()
+        {
+            var eventos = await db.EVENTO.ToListAsync();
+            return View(eventos);
+        }
+
+        public async Task<ActionResult> EventDetails(int eventoId)
+        {
+            var asistentes = await db.OTORGAR_INSIGNIA_P2
+                .Where(a => a.EVENTO_evento_id == eventoId)
+                .Include(a => a.USUARIO)
+                .ToListAsync();
+
+            return View(asistentes);
+        }
+
         // GET: OtorgarInsigniaPerfil2/Details/5
         public async Task<ActionResult> Details(string id)
         {
@@ -95,7 +111,7 @@ namespace EmPoderTIC.Controllers
             {
                 db.Entry(oTORGAR_INSIGNIA_P2).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("EventoOtorgarInsigniaLista");
             }
             ViewBag.EVENTO_evento_id = new SelectList(db.EVENTO, "evento_id", "nombre", oTORGAR_INSIGNIA_P2.EVENTO_evento_id);
             ViewBag.USUARIO_rut = new SelectList(db.USUARIO, "rut", "nombre", oTORGAR_INSIGNIA_P2.USUARIO_rut);
@@ -128,6 +144,51 @@ namespace EmPoderTIC.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Crear()
+        {
+
+            // Filtrar usuarios por tipo_perfil_id = 2
+            var usuariosFiltrados = db.USUARIO.Where(u => u.TIPO_PERFIL_tipo_perfil_id == 2).ToList();
+
+            ViewBag.Eventos = new SelectList(db.EVENTO.ToList(), "evento_id", "nombre");
+            ViewBag.Usuarios = new SelectList(usuariosFiltrados, "rut", "rut");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult GuardarRegistros(FormCollection form)
+        {
+            if (ModelState.IsValid)
+            {
+
+                int eventoID = int.Parse(form["eventoID"]);
+
+
+                for (int i = 0; i < form.Count / 5; i++) 
+                {
+                    var nuevoItem = new OTORGAR_INSIGNIA_P2
+                    {
+                        registro_insignia_evento = Convert.ToBoolean(form[$"otorgar_insignia_p2[{i}].registro_insignia_evento"]),
+                        contribucion_evento = form[$"otorgar_insignia_p2[{i}].contribucion_evento"],
+                        fecha_registro_otorgamiento = DateTime.Parse(form[$"otorgar_insignia_p2[{i}].fecha_registro_otorgamiento"]),
+                        USUARIO_rut = form[$"otorgar_insignia_p2[{i}].USUARIO_rut"],
+                        EVENTO_evento_id = eventoID
+                    };
+
+                    db.OTORGAR_INSIGNIA_P2.Add(nuevoItem);
+                }
+
+                db.SaveChanges();
+                return RedirectToAction("EventoOtorgarInsigniaLista");
+            }
+
+            var usuariosFiltrados = db.USUARIO.Where(u => u.TIPO_PERFIL_tipo_perfil_id == 2).ToList();
+            // En caso de errores, regresar a la vista
+            ViewBag.Eventos = new SelectList(db.EVENTO.ToList(), "evento_id", "nombre");
+            ViewBag.Usuarios = new SelectList(usuariosFiltrados, "rut", "rut");
+            return View("Crear");
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

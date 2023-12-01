@@ -22,6 +22,23 @@ namespace EmPoderTIC.Controllers
             return View(await aSISTENCIA.ToListAsync());
         }
 
+        public async Task<ActionResult> EventoLista()
+        {
+            var eventos = await db.EVENTO.ToListAsync();
+            return View(eventos);
+        }
+
+        public async Task<ActionResult> EventDetails(int eventoId)
+        {
+            var asistentes = await db.ASISTENCIA
+                .Where(a => a.EVENTO_evento_id == eventoId)
+                .Include(a => a.USUARIO)
+                .ToListAsync();
+
+            return View(asistentes);
+        }
+
+
         // GET: Asistencia/Details/5
         public async Task<ActionResult> Details(string id)
         {
@@ -56,7 +73,7 @@ namespace EmPoderTIC.Controllers
             {
                 db.ASISTENCIA.Add(aSISTENCIA);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("EventoLista");
             }
 
             ViewBag.EVENTO_evento_id = new SelectList(db.EVENTO, "evento_id", "nombre", aSISTENCIA.EVENTO_evento_id);
@@ -98,7 +115,7 @@ namespace EmPoderTIC.Controllers
             {
                 db.Entry(aSISTENCIA).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("EventoLista");
             }
             ViewBag.EVENTO_evento_id = new SelectList(db.EVENTO, "evento_id", "nombre", aSISTENCIA.EVENTO_evento_id);
             ViewBag.USUARIO_rut = new SelectList(db.USUARIO, "rut", "nombre", aSISTENCIA.USUARIO_rut);
@@ -128,8 +145,90 @@ namespace EmPoderTIC.Controllers
             ASISTENCIA aSISTENCIA = await db.ASISTENCIA.FindAsync(id);
             db.ASISTENCIA.Remove(aSISTENCIA);
             await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("EventoLista");
         }
+
+        public ActionResult Crear()
+        {
+            ViewBag.Eventos = new SelectList(db.EVENTO.ToList(), "evento_id", "nombre");
+            ViewBag.Usuarios = new SelectList(db.USUARIO.ToList(), "rut", "rut");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult GuardarRegistros(FormCollection form)
+        {
+            if (ModelState.IsValid)
+            {
+               
+                int eventoID = int.Parse(form["eventoID"]);
+
+              
+                for (int i = 0; i < form.Count / 4; i++) // Suponiendo que por cada registro hay 3 campos (fecha, usuario y evento)
+                {
+                    var nuevoItem = new ASISTENCIA
+                    {
+                        registro_asistencia_evento = Convert.ToBoolean(form[$"asistencia[{i}].registro_asistencia_evento"]),
+                        fecha_registro_asistencia = DateTime.Parse(form[$"asistencia[{i}].fecha_registro_asistencia"]),
+                        USUARIO_rut = form[$"asistencia[{i}].USUARIO_rut"],
+                        EVENTO_evento_id = eventoID
+                    };
+
+                    db.ASISTENCIA.Add(nuevoItem);
+                }
+
+                db.SaveChanges();
+                return RedirectToAction("EventoLista");
+            }
+
+            // En caso de errores, regresar a la vista
+            ViewBag.Eventos = new SelectList(db.EVENTO.ToList(), "evento_id", "nombre");
+            ViewBag.Usuarios = new SelectList(db.USUARIO.ToList(), "rut", "rut");
+            return View("Crear");
+        }
+
+
+        public async Task<ActionResult> EditarAsistencia(int eventoId)
+        {
+            // Obtener la información del evento
+            var evento = await db.EVENTO.FindAsync(eventoId);
+            ViewBag.Evento = evento;
+
+            // Obtener la lista de asistencia para el evento
+            var asistencia = await db.ASISTENCIA
+                .Where(a => a.EVENTO_evento_id == eventoId)
+                .Include(a => a.USUARIO)
+                .ToListAsync();
+
+            return View(asistencia);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> EditarAsistencia(int eventoId, DateTime fechaRegistro)
+        {
+            // Obtener la información del evento
+            var evento = await db.EVENTO.FindAsync(eventoId);
+            ViewBag.Evento = evento;
+
+            // Obtener la lista de asistencia para el evento
+            var asistencia = await db.ASISTENCIA
+                .Where(a => a.EVENTO_evento_id == eventoId)
+                .Include(a => a.USUARIO)
+                .ToListAsync();
+
+            // Actualizar la fecha de registro para todos los registros de asistencia
+            foreach (var item in asistencia)
+            {
+                item.fecha_registro_asistencia = fechaRegistro;
+            }
+
+            // Guardar los cambios en la base de datos
+            await db.SaveChangesAsync();
+
+            return RedirectToAction("EventoLista");
+        }
+
 
         protected override void Dispose(bool disposing)
         {

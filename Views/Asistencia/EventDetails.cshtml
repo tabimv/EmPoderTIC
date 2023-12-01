@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EmPoderTIC.Models.NOTIFICACION>
+﻿@model IEnumerable<EmPoderTIC.Models.ASISTENCIA>
 
 @{
     ViewBag.Title = "Index";
@@ -18,7 +18,7 @@ else
 @if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Administrador")
 {
     <link rel="stylesheet" href="~/Content/css/CRUD.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+
 
     <div class="container-xl">
         <div class="table-responsive">
@@ -26,27 +26,42 @@ else
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Lista de <b>Notificaciones</b></h2>
+                            <h2>Gestión de Lista de <b> Asistencia para Alumnos y/o Titulados</b></h2>
                         </div>
                         <div class="col-sm-6">
-                            <a href="@Url.Action("Index")" class="btn btn-success">
-                                <i class="material-icons">notifications</i>
-                                Gestionar Notificaciones
+                            <a href="@Url.Action("EventoLista", "Asistencia")" class="btn btn-success">
+                                <i class="material-icons">arrow_back</i>
+                                Volver
                             </a>
                         </div>
                     </div>
                 </div>
-                <table id="EmPoderTICTable" class="table table-striped table-hover">
+                <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th> Notificaciones</th>
+                            <th style="white-space: nowrap;"> Rut Alumno y/o Titulado</th>
+                            <th> Nombre Alumno y/o Titulado</th>
+                            <th> Registro Asistencia Evento</th>
+                            <th style="white-space: nowrap;"> Fecha Registro Asistencia Evento</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td> El usuario @item.USUARIO_rut @item.mensaje - @item.fecha.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.USUARIO_rut) 
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.USUARIO.nombre)  @Html.DisplayFor(modelItem => item.USUARIO.apellido_paterno)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.registro_asistencia_evento)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.fecha_registro_asistencia)
+                                </td>
+                               
                             </tr>
                         }
                     </tbody>
@@ -57,7 +72,7 @@ else
 
     <div class="modal fade" id="modalDelete"></div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+
 
     <script>
         $(document).ready(function () {
@@ -81,36 +96,6 @@ else
 
                 // Redirigir a la vista "Edit"
                 window.location.href = url;
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function () {
-            $('#EmPoderTICTable').DataTable({
-                "language": {
-                    "sProcessing": "Procesando...",
-                    "sLengthMenu": "Mostrar _MENU_ registros",
-                    "sZeroRecords": "No se encontraron resultados",
-                    "sEmptyTable": "Ningún dato disponible en esta tabla",
-                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                    "sInfoPostFix": "",
-                    "sSearch": "Buscar:",
-                    "sUrl": "",
-                    "sInfoThousands": ",",
-                    "sLoadingRecords": "Cargando...",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Último",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "oAria": {
-                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                    }
-                }
             });
         });
     </script>

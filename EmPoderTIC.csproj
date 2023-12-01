@@ -227,6 +227,7 @@
     <Content Include="Content\css\inicio.css" />
     <Content Include="Content\css\programa.css" />
     <Content Include="Content\css\instructivo.css" />
+    <Content Include="Content\css\asistencia.css" />
     <Content Include="Content\css\subscribir_evento.css" />
     <Content Include="Content\img\2.png" />
     <Content Include="Content\img\3.png" />
@@ -469,6 +470,16 @@
     <Content Include="Views\Instructivo\InstructivoP3.cshtml" />
     <Content Include="Views\ControlInsignia\Edit.cshtml" />
     <Content Include="Views\ControlInsignia\Index.cshtml" />
+    <Content Include="Views\Asistencia\EventoLista.cshtml" />
+    <Content Include="Views\Asistencia\EventDetails.cshtml" />
+    <Content Include="Views\Asistencia\Crear.cshtml" />
+    <Content Include="Views\OtorgarInsigniaPerfil2\EventoOtorgarInsigniaLista.cshtml" />
+    <Content Include="Views\OtorgarInsigniaPerfil2\EventDetails.cshtml" />
+    <Content Include="Views\OtorgarInsigniaPerfil2\Crear.cshtml" />
+    <Content Include="Views\OtorgarInsigniaPerfil3\EventoOtorgarInsigniaLista.cshtml" />
+    <Content Include="Views\OtorgarInsigniaPerfil3\EventDetails.cshtml" />
+    <Content Include="Views\OtorgarInsigniaPerfil3\Crear.cshtml" />
+    <Content Include="Views\Asistencia\EditarAsistencia.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

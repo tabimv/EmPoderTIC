@@ -1,10 +1,9 @@
-﻿@model IEnumerable<EmPoderTIC.Models.OTORGAR_INSIGNIA_P2>
+﻿@model IEnumerable<EmPoderTIC.Models.OTORGAR_INSIGNIA_P3>
 
 @{
     ViewBag.Title = "Index";
 
 }
-
 
 @if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Administrador")
 {
@@ -19,7 +18,7 @@ else
 @if (Session["TipoPerfil"] != null && Session["TipoPerfil"].ToString() == "Administrador")
 {
     <link rel="stylesheet" href="~/Content/css/CRUD.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+
 
     <div class="container-xl">
         <div class="table-responsive">
@@ -27,26 +26,24 @@ else
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Gestión de <b>Otorgamiento de Insignia para Docentes</b></h2>
+                            <h2>Gestión de <b>Otorgamiento de Insignia para Colaborador Administrativo</b></h2>
                         </div>
                         <div class="col-sm-6">
-                            <a href="@Url.Action("Create")" class="btn btn-success">
-                                <i class="material-icons">&#xE147;</i>
-                                Crear Nueva Insignia
+                            <a href="@Url.Action("EventoOtorgarInsigniaLista", "OtorgarInsigniaPerfil3")" class="btn btn-success">
+                                <i class="material-icons">arrow_back</i>
+                                Volver
                             </a>
-
                         </div>
                     </div>
                 </div>
-                <table id="EmPoderTICTable" class="table table-striped table-hover">
+                <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th></th>
+                            <th style="white-space: nowrap;"> Rut Colaborador Administrativo</th>
+                            <th style="white-space: nowrap;" > Nombre Colaborador Administrativo </th>
                             <th> Registro de Insignia </th>
                             <th> Contribución Evento</th>
                             <th> Fecha registro Otorgamiento </th>
-                            <th> Evento </th>
-                            <th> Docente </th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -54,7 +51,12 @@ else
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td></td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.USUARIO_rut)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.USUARIO.nombre)  @Html.DisplayFor(modelItem => item.USUARIO.apellido_paterno)
+                                </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.registro_insignia_evento)
                                 </td>
@@ -65,14 +67,7 @@ else
                                     @Html.DisplayFor(modelItem => item.fecha_registro_otorgamiento)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.EVENTO.nombre)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.USUARIO.nombre)
-                                </td>
-                                <td>
-                                    <!-- Enlace "Edit" dentro de un botón -->
-                                    <a href="#" class="edit" data-url="@Url.Action("Edit", new { id = item.USUARIO_rut, EVENTO_evento_id = item.EVENTO_evento_id })">
+                                    <a href="#" class="edit" data-url="@Url.Action("Edit", new { USUARIO_rut = item.USUARIO_rut, EVENTO_evento_id = item.EVENTO_evento_id })">
                                         <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
                                         <span style="display: none;">Edit</span>
                                     </a>
@@ -87,7 +82,6 @@ else
 
     <div class="modal fade" id="modalDelete"></div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 
 
     <script>
@@ -102,33 +96,16 @@ else
             });
         });
     </script>
+
     <script>
         $(document).ready(function () {
-            $('#EmPoderTICTable').DataTable({
-                "language": {
-                    "sProcessing": "Procesando...",
-                    "sLengthMenu": "Mostrar _MENU_ registros",
-                    "sZeroRecords": "No se encontraron resultados",
-                    "sEmptyTable": "Ningún dato disponible en esta tabla",
-                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                    "sInfoPostFix": "",
-                    "sSearch": "Buscar:",
-                    "sUrl": "",
-                    "sInfoThousands": ",",
-                    "sLoadingRecords": "Cargando...",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Último",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "oAria": {
-                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                    }
-                }
+            $(".delete").click(function (e) {
+                e.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
+
+                var url = $(this).data("url"); // Obtener la URL de data-url
+
+                // Redirigir a la vista "Edit"
+                window.location.href = url;
             });
         });
     </script>
@@ -144,6 +121,3 @@ else
         <a href="@Url.Action("Login", "Account")" class="btn-acceso">Iniciar Sesión</a>
     </div>
 }
-
-
-
