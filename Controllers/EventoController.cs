@@ -18,7 +18,7 @@ namespace EmPoderTIC.Controllers
         // GET: Evento
         public async Task<ActionResult> Index()
         {
-            var eVENTO = db.EVENTO.Include(e => e.AREA).Include(e => e.COMPETENCIA);
+            var eVENTO = db.EVENTO.Include(e => e.AREA).Include(e => e.COMPETENCIA).OrderBy(e => e.fecha_evento);
             return View(await eVENTO.ToListAsync());
         }
 

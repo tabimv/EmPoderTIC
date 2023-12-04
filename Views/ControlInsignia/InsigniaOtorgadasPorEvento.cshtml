@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EmPoderTIC.Models.NOTIFICACION>
+﻿@model IEnumerable<EmPoderTIC.Models.CONTROL_INSIGNIA>
 
 @{
     ViewBag.Title = "Index";
@@ -20,33 +20,62 @@ else
     <link rel="stylesheet" href="~/Content/css/CRUD.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
 
+
     <div class="container-xl">
         <div class="table-responsive">
             <div class="table-wrapper">
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Lista de <b>Notificaciones</b></h2>
+                            <h2>Gestión de <b>Control Insignias</b></h2>
+                            <br />
+                            <p> Esta Tabla ya cuenta con un trigger vinculado en la base de datos, por lo que no es necesario proporcionar un método de creación </p>
                         </div>
-                        <div class="col-sm-6">
-                            <a href="@Url.Action("Index")" class="btn btn-success">
-                                <i class="material-icons">notifications</i>
-                                Gestionar Notificaciones
+                        <div style="margin-left: 40%;" class="col-sm-7">
+                            <a href="@Url.Action("EventoLista", "Asistencia")" class="btn btn-success">
+                                <i class="material-icons">&#xE147;</i>
+                                Gestionar Asistencia Perfil 1
+                            </a>
+                            <a href="@Url.Action("EventoOtorgarInsigniaLista", "OtorgarInsigniaPerfil2")" class="btn btn-success">
+                                <i class="material-icons">&#xE147;</i>
+                                Otorgar Insignia Perfil 2
                             </a>
                         </div>
+
+
                     </div>
                 </div>
                 <table id="EmPoderTICTable" class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th> Notificaciones</th>
+                            <th></th>
+                            <th> Insignia</th>
+                            <th style="white-space: nowrap;"> Evento Asociado </th>
+                            <th style="white-space: nowrap;" >Visualizar Lista de Otorgamiento</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td> El usuario @item.USUARIO_rut @item.mensaje - @item.fecha.ToString("yyyy-MM-dd HH:mm:ss"). <strong> Correo: @item.USUARIO.correo_electronico </strong></td>
+                                <td></td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.INSIGNIA.nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.INSIGNIA.EVENTO.nombre)
+                                </td>
+                                <td>
+                                    <a href="#" class="edit" data-url="@Url.Action("ControlDetails", new { eventoId = item.INSIGNIA.EVENTO_evento_id })">
+                                        <i class="material-icons eye-icon"
+                                           data-toggle="tooltip"
+                                           title="Visualizar Lista"
+                                           style="color: black; transition: color 0.3s ease;"
+                                           onmouseover="this.style.color='#3770B8'"
+                                           onmouseout="this.style.color='black'">visibility</i>
+                                        <span style="display: none;">Visualizar</span>
+                                    </a>
+                                </td>
                             </tr>
                         }
                     </tbody>
@@ -58,6 +87,7 @@ else
     <div class="modal fade" id="modalDelete"></div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+
 
     <script>
         $(document).ready(function () {

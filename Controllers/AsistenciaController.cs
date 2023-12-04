@@ -8,6 +8,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using EmPoderTIC.Models;
+using System.Web.Configuration;
+using System.Globalization;
 
 namespace EmPoderTIC.Controllers
 {
@@ -24,7 +26,10 @@ namespace EmPoderTIC.Controllers
 
         public async Task<ActionResult> EventoLista()
         {
-            var eventos = await db.EVENTO.ToListAsync();
+            var eventos = await db.EVENTO
+                        .OrderBy(e => e.evento_id)
+                        .ToListAsync();
+
             return View(eventos);
         }
 
@@ -33,6 +38,7 @@ namespace EmPoderTIC.Controllers
             var asistentes = await db.ASISTENCIA
                 .Where(a => a.EVENTO_evento_id == eventoId)
                 .Include(a => a.USUARIO)
+                .OrderBy(a => a.fecha_registro_asistencia)
                 .ToListAsync();
 
             return View(asistentes);
@@ -204,31 +210,64 @@ namespace EmPoderTIC.Controllers
             return View(asistencia);
         }
 
-        [HttpPost]
-        public async Task<ActionResult> EditarAsistencia(int eventoId, DateTime fechaRegistro)
+
+
+        // Método asincrónico GET para mostrar la vista de edición de asistencia
+        public async Task<ActionResult> EditarAsistenciaEvento(int eventoId)
         {
-            // Obtener la información del evento
             var evento = await db.EVENTO.FindAsync(eventoId);
-            ViewBag.Evento = evento;
+            ViewBag.NombreEvento = evento.nombre;
 
-            // Obtener la lista de asistencia para el evento
-            var asistencia = await db.ASISTENCIA
-                .Where(a => a.EVENTO_evento_id == eventoId)
-                .Include(a => a.USUARIO)
-                .ToListAsync();
+            var usuarios = await db.USUARIO
+            .Where(u => db.ASISTENCIA.Any(a => a.USUARIO_rut == u.rut && a.EVENTO_evento_id == eventoId))
+            .ToListAsync();
 
-            // Actualizar la fecha de registro para todos los registros de asistencia
-            foreach (var item in asistencia)
+
+            var asistencias = new List<ASISTENCIA>();
+
+            foreach (var usuario in usuarios)
             {
-                item.fecha_registro_asistencia = fechaRegistro;
+                var asistencia = await db.ASISTENCIA.FirstOrDefaultAsync(a => a.USUARIO_rut == usuario.rut && a.EVENTO_evento_id == eventoId);
+
+                if (asistencia == null)
+                {
+                    asistencia = new ASISTENCIA
+                    {
+                        USUARIO_rut = usuario.rut,
+                        EVENTO_evento_id = eventoId,
+                        fecha_registro_asistencia = DateTime.Now,
+                        registro_asistencia_evento = false
+                    };
+                }
+
+                asistencias.Add(asistencia);
             }
 
-            // Guardar los cambios en la base de datos
-            await db.SaveChangesAsync();
-
-            return RedirectToAction("EventoLista");
+            ViewBag.Eventos = new SelectList(db.EVENTO.ToList(), "evento_id", "nombre");
+            return View(asistencias);
         }
 
+
+        // Método asincrónico POST para guardar la asistencia editada
+        [HttpPost]
+        public async Task<ActionResult> EditarAsistenciaEvento(List<ASISTENCIA> asistencias)
+        {
+            if (ModelState.IsValid)
+            {
+                foreach (var asistencia in asistencias)
+                {
+                    asistencia.fecha_registro_asistencia = DateTime.Now;
+                    db.Entry(asistencia).State = EntityState.Modified;
+                }
+
+                await db.SaveChangesAsync();
+
+                return RedirectToAction("EventoLista", "Asistencia"); // Redirigir a la página de inicio después de guardar
+            }
+
+            ViewBag.Eventos = new SelectList(db.EVENTO.ToList(), "evento_id", "nombre");
+            return View(asistencias); // Mostrar la vista de nuevo si hay errores de validación
+        }
 
         protected override void Dispose(bool disposing)
         {

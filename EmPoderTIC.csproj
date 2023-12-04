@@ -480,6 +480,11 @@
     <Content Include="Views\OtorgarInsigniaPerfil3\EventDetails.cshtml" />
     <Content Include="Views\OtorgarInsigniaPerfil3\Crear.cshtml" />
     <Content Include="Views\Asistencia\EditarAsistencia.cshtml" />
+    <Content Include="Views\Asistencia\EditarAsistenciaEvento.cshtml" />
+    <Content Include="Views\ControlInsignia\InsigniaOtorgadasPorEvento.cshtml" />
+    <Content Include="Views\ControlInsignia\ControlDetails.cshtml" />
+    <Content Include="Views\Inscripcion\InscripcionesPorEvento.cshtml" />
+    <Content Include="Views\Inscripcion\InscripcionDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

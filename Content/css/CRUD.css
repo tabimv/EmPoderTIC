@@ -6,6 +6,23 @@ body {
     font-size: 13px;
 }
 
+/* CRUD.css o tu archivo de estilos */
+.btn-submit {
+    background-color: #3770B8 !important;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+    .btn-submit:hover {
+        background-color: #285A96;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    }
+
+
 .table-responsive {
     margin: 30px 0;
 }

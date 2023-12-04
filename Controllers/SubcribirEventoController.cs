@@ -19,7 +19,7 @@ namespace EmPoderTIC.Controllers
             List<EVENTO> eventos = db.EVENTO.ToList();
             // Verifica si el usuario está autenticado
             // Verifica si el usuario está autenticado
-            eventos = eventos.Where(e => e.fecha_evento >= DateTime.Now).OrderBy(e => e.fecha_evento).ToList();
+            eventos = eventos.OrderBy(e => e.fecha_evento).ToList();
 
             if (Session["UsuarioAutenticado"] != null)
             {

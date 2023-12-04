@@ -19,7 +19,7 @@ else
 {
     <link rel="stylesheet" href="~/Content/css/CRUD.css">
 
-    using (Html.BeginForm())
+    using (Html.BeginForm("EditarAsistenciaEvento", "Asistencia", FormMethod.Post))
     {
         <div class="container-xl">
             <div class="table-responsive">
@@ -27,7 +27,7 @@ else
                     <div class="table-title">
                         <div class="row">
                             <div class="col-sm-6">
-                                <h2>Registro Asistencia para el Evento: @ViewBag.Evento.nombre</h2>
+                                <h2 style="white-space: nowrap;">Registro Asistencia para el Evento: @ViewBag.NombreEvento </h2>
                             </div>
                             <div class="col-sm-6">
                                 <a href="@Url.Action("EventoLista", "Asistencia")" class="btn btn-success">
@@ -53,24 +53,20 @@ else
                             @for (int i = 0; i < Model.Count; i++)
                             {
                                 <tr>
-                                    <td style="white-space: nowrap;">@Model[i].USUARIO_rut</td>
-                                    <td>@Model[i].USUARIO.nombre @Model[i].USUARIO.apellido_paterno</td>
-                                    <td>
-                                        <input type="checkbox" name="asistenciaList[@i].registro_asistencia_evento" checked="@Model[i].registro_asistencia_evento" />
-
-                                    </td>
+                                    @Html.HiddenFor(m => m[i].USUARIO_rut)
+                                    @Html.HiddenFor(m => m[i].EVENTO_evento_id)
+                                    @Html.HiddenFor(m => m[i].fecha_registro_asistencia)
+                                    <td style="white-space: nowrap;"> @Html.DisplayFor(m => m[i].USUARIO.rut)</td>
+                                    <td> @Html.DisplayFor(m => m[i].USUARIO.nombre) </td>
+                                    <td> @Html.CheckBoxFor(m => m[i].registro_asistencia_evento) </td>
                                 </tr>
+
                             }
                         </tbody>
                     </table>
 
-                    <div class="form-group">
-                        <label for="fechaRegistro">Fecha de Registro:</label>
-                        <input type="date" class="form-control" name="fechaRegistro" value="@DateTime.Now.ToString("yyyy-MM-dd")" required />
-                    </div>
+                    <input type="submit" value="Guardar" class="btn-submit" />
 
-
-                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
 
                 </div>
             </div>

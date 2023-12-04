@@ -22,6 +22,32 @@ namespace EmPoderTIC.Controllers
             return View(await iNSCRIPCION.ToListAsync());
         }
 
+        public async Task<ActionResult> InscripcionesPorEvento()
+        {
+            var iNSCRIPCION = db.INSCRIPCION.Include(i => i.USUARIO).Include(i => i.EVENTO);
+            return View(await iNSCRIPCION.ToListAsync());
+        }
+
+        public async Task<ActionResult> InscripcionDetails(int eventoId)
+        {
+            var eventoSeleccionado = await db.EVENTO.FindAsync(eventoId);
+            if (eventoSeleccionado == null)
+            {
+                return HttpNotFound(); // O maneja la situación de evento no encontrado de la forma que prefieras
+            }
+
+
+            var asistentes = await db.INSCRIPCION
+                .Where(a => a.EVENTO_evento_id == eventoId)
+                .Include(a => a.USUARIO)
+                .ToListAsync();
+
+
+            ViewBag.EventoSeleccionado = eventoSeleccionado;
+
+            return View(asistentes);
+        }
+
         // GET: Inscripcion/Details/5
         public async Task<ActionResult> Details(int? id)
         {

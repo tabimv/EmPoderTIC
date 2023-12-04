@@ -22,6 +22,24 @@ namespace EmPoderTIC.Controllers
             return View(await cONTROL_INSIGNIA.ToListAsync());
         }
 
+        public async Task<ActionResult> InsigniaOtorgadasPorEvento()
+        {
+            var cONTROL_INSIGNIA = db.CONTROL_INSIGNIA.Include(c => c.INSIGNIA).Include(c => c.USUARIO).Include(c => c.INSIGNIA.EVENTO);
+            return View(await cONTROL_INSIGNIA.ToListAsync());
+        }
+
+        public async Task<ActionResult> ControlDetails(int eventoId)
+        {
+            var asistentes = await db.CONTROL_INSIGNIA
+                .Include(ci => ci.INSIGNIA)
+                .Include(ci => ci.USUARIO.TIPO_PERFIL)
+                .Where(ci => ci.INSIGNIA.EVENTO_evento_id == eventoId)
+                .Include(a => a.USUARIO)
+                .ToListAsync();
+
+            return View(asistentes);
+        }
+
         // GET: ControlInsignia/Details/5
         public async Task<ActionResult> Details(string id)
         {

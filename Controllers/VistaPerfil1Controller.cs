@@ -19,6 +19,20 @@ namespace EmPoderTIC.Controllers
     {
         // GET: VistaPerfil1
         private EmPoderTIC_Conexion_Oficial_WEB db = new EmPoderTIC_Conexion_Oficial_WEB(); // Tu contexto de base de datos
+
+        private bool TodasLasInsigniasDesbloqueadas(int areaId, string usuarioRut)
+        {
+            // Realizar la consulta SQL para verificar si todas las insignias están desbloqueadas
+            bool todasDesbloqueadas = db.CONTROL_INSIGNIA
+                .Where(ci => ci.USUARIO_rut == usuarioRut &&
+                             ci.INSIGNIA.AREA_area_id == areaId)
+                .All(ci => ci.insignia_bloqueada == false);
+
+             
+        
+            return todasDesbloqueadas;
+        }
+
         public ActionResult Index()
         {
             if (Session["UsuarioAutenticado"] != null)
@@ -26,10 +40,7 @@ namespace EmPoderTIC.Controllers
                 var areas = db.AREA.ToList();
                 var usuarioAutenticado = (USUARIO)Session["UsuarioAutenticado"];
                 ViewBag.UsuarioAutenticado = usuarioAutenticado;
-                // Verificar si hay alguna insignia bloqueada
-                bool algunaInsigniaBloqueada = false;
 
-                
 
                 // Crea una lista para almacenar las listas de insignias por área
                 var listaInsigniasPorArea = new List<List<InsigniaDesbloqueoViewModel>>();
@@ -37,6 +48,7 @@ namespace EmPoderTIC.Controllers
 
                 foreach (var area in areas)
                 {
+                    var areaId = area.area_id;
                     var listaInsignias = db.INSIGNIA
                         .Include(i => i.EVENTO)
                         .Include(i => i.AREA)
@@ -64,29 +76,47 @@ namespace EmPoderTIC.Controllers
                         }
                     }
 
-                    // Verificar si alguna insignia está bloqueada en esta área
-                    // Verificar si todas las insignias en esta área están desbloqueadas
-                    if (listaViewModel.All(viewModel => viewModel.DesbloqueoInsignia != null && !viewModel.DesbloqueoInsignia.insignia_bloqueada))
-                    {
-                        algunaInsigniaBloqueada = false;
-                    }
+                    // Obtén las áreas con las insignias correspondientes
+                    var areasConInsignias = db.AREA
+                        .Include(a => a.INSIGNIA)
+                        .Where(a => a.INSIGNIA.Any())
+                        .ToList();
 
+                    // Obtén la información de insignia_bloqueada por separado
+                    var insigniasBloqueadas = db.CONTROL_INSIGNIA
+                        .Where(ci => ci.insignia_bloqueada)
+                        .Select(ci => ci.INSIGNIA.insignia_id)
+                        .ToList();
+
+                    // Verifica si todas las insignias de cada área están desbloqueadas
+                    bool todasDesbloqueadas = areasConInsignias.All(a =>
+                        a.INSIGNIA.All(insignia =>
+                            !insigniasBloqueadas.Contains(insignia.insignia_id)
+                        )
+                    );
+
+
+                    ViewBag.TodasDesbloqueadas = todasDesbloqueadas;
 
                     // Verifica si hay un certificado para este usuario en esta área
                     var certificadoArea = db.USUARIO_CERTIFICADO.Include(c => c.CERTIFICADO).Include(c => c.CERTIFICADO.AREA).FirstOrDefault(c => c.USUARIO_rut == usuarioAutenticado.rut && c.CERTIFICADO.INSIGNIA_insignia_id == c.CERTIFICADO.INSIGNIA.insignia_id && c.CERTIFICADO.AREA_area_id == c.CERTIFICADO.AREA.area_id);
 
-                    if (certificadoArea != null && (certificado == null || certificadoArea.fecha_otorgamiento > certificado.fecha_otorgamiento))
+                    if (certificadoArea != null && (certificado == null))
                     {
                         certificado = certificadoArea;
                     }
 
 
                     listaInsigniasPorArea.Add(listaViewModel);
+
                 }
+              
 
                 ViewBag.Certificado = certificado;
                 ViewBag.ListaInsigniasPorArea = listaInsigniasPorArea;
-                ViewBag.AlgunaInsigniaBloqueada = algunaInsigniaBloqueada;
+              
+
+
 
 
 

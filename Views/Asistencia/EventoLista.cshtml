@@ -33,7 +33,7 @@ else
                             <h2>Lista de Asistencia <b>Eventos</b></h2>
                         </div>
                         <div class="col-sm-6">
-                            <a href="@Url.Action("Index", "ControlInsignia")" class="btn btn-success">
+                            <a href="@Url.Action("Index", "Evento")" class="btn btn-success">
                                 <i class="material-icons">arrow_back</i>
                                 Volver
                             </a>
@@ -81,7 +81,7 @@ else
                                 </td>
 
                                 <td>
-                                    <a href="#" class="edit" data-url="@Url.Action("EditarAsistencia", new { eventoId = item.evento_id })">
+                                    <a href="#" class="edit" data-url="@Url.Action("EditarAsistenciaEvento", new { eventoId = item.evento_id })">
                                         <i class="material-icons" data-toggle="tooltip" title="Registrar Asistencia">&#xE254;</i>
                                         <span style="display: none;">Edit</span>
                                     </a>
@@ -97,7 +97,6 @@ else
     <div class="modal fade" id="modalDelete"></div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
-
     <script>
         $(document).ready(function () {
             $(".edit").click(function (e) {
@@ -113,6 +112,7 @@ else
     <script>
         $(document).ready(function () {
             $('#EmPoderTICTable').DataTable({
+                "order": [[2, 'desc']],
                 "language": {
                     "sProcessing": "Procesando...",
                     "sLengthMenu": "Mostrar _MENU_ registros",

@@ -106,9 +106,8 @@ else
                     <!-- Agregar contenido adicional aquí -->
 
                     <div class="btn-certificado">
-                        @if (ViewBag.Certificado != null)
-                        {
-                            if (ViewBag.AlgunaInsigniaBloqueada)
+                      
+                            @if (ViewBag.AlgunaInsigniaBloqueada)
                             {
 
                               
@@ -124,13 +123,7 @@ else
                                 </button>
 
                             }
-                        }
-                        else
-                        {
-                            <button class="btn btn-inactivo" id="obtener-certificado" disabled>
-                                OBTENER CERTIFICADO
-                            </button>
-                        }
+                      
                     </div>
                 </div>
 
